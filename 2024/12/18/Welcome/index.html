@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sabthever.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2024-12-18T10:57:45.000Z">
-<meta property="article:modified_time" content="2024-12-21T04:05:02.020Z">
+<meta property="article:modified_time" content="2024-12-23T02:20:01.332Z">
 <meta property="article:author" content="Sabthever">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sabthever.github.io/images/redefine-og.webp">
@@ -408,8 +408,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-12-21 12:05:02</span>
-            <span class="mobile">2024-12-21 12:05:02</span>
+            <span class="desktop">2024-12-23 10:20:01</span>
+            <span class="mobile">2024-12-23 10:20:01</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -420,7 +420,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>300 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>543 字</span>
         </span>
     
     
@@ -517,6 +517,21 @@
 <p>  <code>hexo n[ew] &quot;帖子名称&quot;</code></p>
 </li>
 </ul>
+<blockquote>
+<h5 id="子模块的使用"><a href="#子模块的使用" class="headerlink" title="子模块的使用"></a>子模块的使用</h5></blockquote>
+<ul>
+<li><p>缘由</p>
+<p>  我的<code>themes/</code>中的theme是从别人的仓库中拿下来的，可以建立<code>fork</code></p>
+</li>
+<li><p>初期使用</p>
+  <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># fork的方法自己找找，这里没写，就一条命令</span></span><br><span class="line"><span class="built_in">cd</span> themes/my-forked-repo</span><br><span class="line"><span class="comment"># 自己的仓库</span></span><br><span class="line">git remote set-url origin https://github.com/Sabthever/myrepo.git</span><br><span class="line"><span class="comment"># 别人的原始仓库</span></span><br><span class="line">git remote add upstream https://github.com/original-username/original-repo.git</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>后期使用</p>
+  <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从别人的url获取更新</span></span><br><span class="line">git fetch upstream</span><br><span class="line"><span class="comment"># 这会获取原始仓库的所有更新。如果你想将这些更新合并到你本地的 main 分支中，可以运行：</span></span><br><span class="line">git merge upstream/main</span><br><span class="line"><span class="comment"># 或者，如果你希望直接把 upstream/main 的更改应用到你的本地分支，可以使用：</span></span><br><span class="line">git pull upstream main</span><br><span class="line"><span class="comment"># 然后可以回到自己文件夹的位置</span></span><br><span class="line">git commit -m <span class="string">&quot;xxx&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>后面所有<code>theme/other-repo</code>中的修改，都要现在子模块里<code>commit，push</code>一下，再到自己的里面<code>commit，push</code>一下</p>
+</li>
+</ul>
 
 		</div>
 
@@ -531,11 +546,11 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-12-21 12:05:02
+                    :</strong> 2024-12-23 10:20:01
             </li>
         
         <li>
-            <strong>链接:</strong> https://redefine.ohevan.com/2024/12/18/Welcome/
+            <strong>链接:</strong> https://sabthever.github.io/2024/12/18/Welcome/
         </li>
         <li>
             <strong>
@@ -606,7 +621,7 @@
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">Welcome to Sabthever&#39;s blog!</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sabthever%E6%90%AD%E5%BB%BA%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2"><span class="nav-text">Sabthever搭建的第一个博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes"><span class="nav-text">Notes</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E6%9E%B6%E6%9E%84"><span class="nav-text">搭建架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text">网站搭建参考文献</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%BB%E9%A2%98"><span class="nav-text">使用主题</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-operate"><span class="nav-text">How to operate</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hexo%E6%96%87%E6%A1%A3%E5%9C%B0%E5%9D%80"><span class="nav-text">Hexo文档地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88"><span class="nav-text">本地预览</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E4%B8%8E%E6%9B%B4%E6%96%B0"><span class="nav-text">发布与更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%BD%91%E5%9D%80"><span class="nav-text">修改网址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-text">修改主题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E6%96%B0%E7%9A%84%E5%B8%96%E5%AD%90"><span class="nav-text">建立新的帖子</span></a></li></ol></li></ol></li></ol></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sabthever%E6%90%AD%E5%BB%BA%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2"><span class="nav-text">Sabthever搭建的第一个博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes"><span class="nav-text">Notes</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E6%9E%B6%E6%9E%84"><span class="nav-text">搭建架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text">网站搭建参考文献</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%BB%E9%A2%98"><span class="nav-text">使用主题</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-operate"><span class="nav-text">How to operate</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hexo%E6%96%87%E6%A1%A3%E5%9C%B0%E5%9D%80"><span class="nav-text">Hexo文档地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88"><span class="nav-text">本地预览</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E4%B8%8E%E6%9B%B4%E6%96%B0"><span class="nav-text">发布与更新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%BD%91%E5%9D%80"><span class="nav-text">修改网址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-text">修改主题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E6%96%B0%E7%9A%84%E5%B8%96%E5%AD%90"><span class="nav-text">建立新的帖子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">子模块的使用</span></a></li></ol></li></ol></li></ol></li></ol>
 
 	</div>
 </div>
@@ -637,7 +652,7 @@
                     </span>
                     
                         <span>
-                            共 313 字
+                            共 556 字
                         </span>
                     
                 </p>
