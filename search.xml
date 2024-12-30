@@ -1,35 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>第一篇博客</title>
-    <url>/2024/12/18/personal/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<blockquote>
-<h5 id="第一次搭博客的萌新，涩涩发抖"><a href="#第一次搭博客的萌新，涩涩发抖" class="headerlink" title="第一次搭博客的萌新，涩涩发抖"></a>第一次搭博客的萌新，涩涩发抖</h5></blockquote>
-<!-- ![图片找不到了](https://inews.gtimg.com/om_bt/OpT81bdKWb3-3ARQOP-5BWVykiPP-9Eio3yBW26s_1q64AA/641 "/doge") -->
-
-<p><img src="/images/641.jpg" alt="/doge 图片找不到了" title="/doge"></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/%E5%A4%B4%E5%83%8F.jpg"
-                      alt="妞妞 图片找不到了" title="妞妞"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/2.jpg"
-                      alt="哭哭 图片找不到了" title="哭哭"
-                ></p>
-]]></content>
-      <categories>
-        <category>Personal</category>
-      </categories>
-      <tags>
-        <tag>Thought</tag>
-        <tag>Picture</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Sabthever的博客搭建</title>
     <url>/2024/12/18/technology/blog/Welcome/</url>
     <content><![CDATA[<h2 id="Sabthever搭建的第一个博客"><a href="#Sabthever搭建的第一个博客" class="headerlink" title="Sabthever搭建的第一个博客"></a>Sabthever搭建的第一个博客</h2><ul>
@@ -136,141 +107,32 @@
       </tags>
   </entry>
   <entry>
-    <title>利用Cloudflare管理网站(配置CDN)</title>
-    <url>/2024/12/28/technology/blog/cdn_settings/</url>
+    <title>第一篇博客</title>
+    <url>/2024/12/18/personal/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<blockquote>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3></blockquote>
-<p>　　在博客的建立后，我发现访问我的博客速度是十分缓慢的。毕竟是Github作为Paas提供商，国内有时能连，有时不能连，很不稳定。</p>
-<img  
+<h5 id="第一次搭博客的萌新，涩涩发抖"><a href="#第一次搭博客的萌新，涩涩发抖" class="headerlink" title="第一次搭博客的萌新，涩涩发抖"></a>第一次搭博客的萌新，涩涩发抖</h5></blockquote>
+<!-- ![图片找不到了](https://inews.gtimg.com/om_bt/OpT81bdKWb3-3ARQOP-5BWVykiPP-9Eio3yBW26s_1q64AA/641 "/doge") -->
+
+<p><img src="/images/641.jpg" alt="/doge 图片找不到了" title="/doge"></p>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/苦恼.webp"
-                      alt="苦恼" style="zoom:50%;"
-                >
-
-</br>
-
-<p>　　因此，我想给我的博客配置CDN服务。</p>
-<p>　　但是！！！</p>
-<p>　　作为一个资深的白嫖党，买是不可能买的，这辈子都不可能买的。这时候我就找到了一个叫做<strong>Cloudflare</strong>的网站管理服务提供商，对于个人用户而言，可以免费试用它的部分服务，其中就包括了CDN。</p>
-<p>　　这里再强调一下，我的是<strong>Hexo + Github</strong>的架构，不是这个架构的主要也可借鉴一下。</p>
-<blockquote>
-<h3 id="Cloudflare介绍"><a href="#Cloudflare介绍" class="headerlink" title="Cloudflare介绍"></a>Cloudflare介绍</h3></blockquote>
-<p>　　Cloudflare是一家美国的跨国科技企业，总部位于旧金山，在英国伦敦亦设有办事处。Cloudflare以向客户提供网站安全管理、性能优化及相关的技术支持为主要业务。通过基于反向代理的内容分发网络(CDN, Content Delivery Network)、任播(Anycast)技术 、基于nginx+lua架构的Web应用防火墙(WAF, Web Application Firewall) 及分布式域名解析服务(Distributed Domain Name Server)等技术，Cloudflare可以帮助受保护站点抵御包括分布式拒绝服务攻击(DDoS, Distributed Denial of Service)在内的大多数网络攻击，确保该网站长期在线，同时提升网站的性能、访问速度以改善访客体验。</p>
-<div style="text-align: right;">-- 摘自<a class="link"   href="https://baike.baidu.com/item/Cloudflare/17359757?fr=ge_ala" >Cloudflare(美国的跨国科技企业) - 百度百科<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></div>
-
-</p>
-
-<p>　　可以看到它的功能是很多的，我主要就用里面的DNS服务、CDN服务，当然一些免费的小组件肯定也是开起来的，不用白不用。</p>
-<blockquote>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3></blockquote>
-<ol>
-<li><p>打开<a class="link"   href="https://dash.cloudflare.com/" >Cloudflare<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>的Dashboard注册登录；</p>
-</li>
-<li><p>Home页中新增配置自己的域名，这个域名就是之前购买的域名，只要顶级域名就行了，不用加www这些。在这步之前，需要先购买自己的域名，详情可见<a href="../hexo-domain-settings"><strong>博客配置域名</strong></a>。<br> 当然，其实那篇文章中的DNS配置可以不配了，到Cloudflare中再配置；</p>
-</li>
-<li><p>选择免费套餐，下一步；</p>
-</li>
-<li><p>在其中配置DNS，ipv4的一定要配置，ipv6的选择性配置，建议也写上。CName这条一定要，因为要重定向到你的网站，yourcount替换为你自己的用户名。</p>
-</li>
-</ol>
-<table style="margin: 0 auto; text-align: center; width: min-content;">
-  <tr>
-    <th>Type</th>
-    <th>Name</th>
-    <th>Content</th>
-  </tr>
-  <tr>
-    <td>CName</td>
-    <td>www</td>
-    <td>yourcount.github.io</td>
-  </tr>
-  <tr>
-    <td>A</td>
-    <td>@</td>
-    <td>185.199.108.153</td>
-  </tr>
-  <tr>
-    <td>A</td>
-    <td>@</td>
-    <td>185.199.109.153</td>
-  </tr>
-  <tr>
-    <td>A</td>
-    <td>@</td>
-    <td>185.199.110.153</td>
-  </tr>
-  <tr>
-    <td>A</td>
-    <td>@</td>
-    <td>185.199.111.153</td>
-  </tr>
-  <tr>
-    <td>AAAA</td>
-    <td>@</td>
-    <td>2606:50c0:8000::153</td>
-  </tr>
-  <tr>
-    <td>AAAA</td>
-    <td>@</td>
-    <td>2606:50c0:8001::153</td>
-  </tr>
-  <tr>
-    <td>AAAA</td>
-    <td>@</td>
-    <td>2606:50c0:8002::153</td>
-  </tr>
-  <tr>
-    <td>AAAA</td>
-    <td>@</td>
-    <td>2606:50c0:8003::153</td>
-  </tr>
-</table>
-</p>
-
-<ol start="5">
-<li><p>点击下一步，这时候他会出现如下内容：</p>
- <img  
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/%E5%A4%B4%E5%83%8F.jpg"
+                      alt="妞妞 图片找不到了" title="妞妞"
+                ></p>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/3.png"
-                      alt="出现内容" style="zoom:50%;"
-                >
-
-<p> 　　这是要你去你购买域名的服务商那里把DNS改为它的DNS服务，这样子才能提供服务。最下面两个云里的链接就是它的DNS服务器。</p>
-</li>
-<li><p>修改DNS服务器地址。我这边以我的阿里云为例，登录后，控制台 - 域名 - 域名列表 - 管理 - DNS管理-DNS修改，然后就将其中的DNS服务器替换成刚才的Cloudflare的DNS服务器链接。提交成功后，等待一段时间，短则几分钟，长则24~48小时。</p>
-</li>
-<li><p>等到相应DNS服务器访问到了你的网站后，刷新页面会有变化</p>
-</li>
-<li><p>打开speed - optimizaiton，把可以打开的全打开，要么就是能保障你的安全性，要么就能加速，要钱就不要开了，够用了。</p>
-</li>
-<li><p>在Hexo下的<code>_config.yml</code>中，加上下面的</p>
- <div class="code-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">cdn:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">provider:</span> <span class="string">custom</span></span><br><span class="line">    <span class="attr">custom_url:</span> <span class="string">你购买的域名</span></span><br></pre></td></tr></table></figure></div>
-
-<p> 　　记得也要在Hexo的source下面，加一个CNAME文件，里面写你购买的域名就OK，然后部署。</p>
- <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># source/CNAME</span></span><br><span class="line">www.yourdomain</span><br></pre></td></tr></table></figure></div>
-<p> 　　然后保存后，重新部署</p>
- <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>测试：等部署成功后一会，再打开你的Cloudflare，在你相应的你的域名的管理条目下找到<code>Speed-Observatory</code>，输入你的url测试一下，跑通了的话，在通过域名访问一下，就成功了。</p>
-</li>
-</ol>
-<p>　　当然中间很有可能要等一段时间。</p>
-
-  <div class="note p-4 mb-4 rounded-small red">
-    <p><i class="fa-solid fa-circle-info"></i>  　Cloudflare配置好后CDN服务是默认开启的，不需要去设置，主要只要把DNS服务配好就行。其他的小组件，也可以自己看看，有安全协议，http重定位https，加速流量包，主要看自己 </p>
-
-  </div>
-
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/2.jpg"
+                      alt="哭哭 图片找不到了" title="哭哭"
+                ></p>
 ]]></content>
       <categories>
-        <category>Technology</category>
-        <category>MyBlog</category>
+        <category>Personal</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>CDN</tag>
+        <tag>Thought</tag>
+        <tag>Picture</tag>
       </tags>
   </entry>
   <entry>
@@ -487,6 +349,144 @@
         <tag>Hexo</tag>
         <tag>Markdown</tag>
         <tag>Html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>利用Cloudflare管理网站(配置CDN)</title>
+    <url>/2024/12/28/technology/blog/cdn_settings/</url>
+    <content><![CDATA[<blockquote>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3></blockquote>
+<p>　　在博客的建立后，我发现访问我的博客速度是十分缓慢的。毕竟是Github作为Paas提供商，国内有时能连，有时不能连，很不稳定。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/苦恼.webp"
+                      alt="苦恼" style="zoom:50%;"
+                >
+
+</br>
+
+<p>　　因此，我想给我的博客配置CDN服务。</p>
+<p>　　但是！！！</p>
+<p>　　作为一个资深的白嫖党，买是不可能买的，这辈子都不可能买的。这时候我就找到了一个叫做<strong>Cloudflare</strong>的网站管理服务提供商，对于个人用户而言，可以免费试用它的部分服务，其中就包括了CDN。</p>
+<p>　　这里再强调一下，我的是<strong>Hexo + Github</strong>的架构，不是这个架构的主要也可借鉴一下。</p>
+<blockquote>
+<h3 id="Cloudflare介绍"><a href="#Cloudflare介绍" class="headerlink" title="Cloudflare介绍"></a>Cloudflare介绍</h3></blockquote>
+<p>　　Cloudflare是一家美国的跨国科技企业，总部位于旧金山，在英国伦敦亦设有办事处。Cloudflare以向客户提供网站安全管理、性能优化及相关的技术支持为主要业务。通过基于反向代理的内容分发网络(CDN, Content Delivery Network)、任播(Anycast)技术 、基于nginx+lua架构的Web应用防火墙(WAF, Web Application Firewall) 及分布式域名解析服务(Distributed Domain Name Server)等技术，Cloudflare可以帮助受保护站点抵御包括分布式拒绝服务攻击(DDoS, Distributed Denial of Service)在内的大多数网络攻击，确保该网站长期在线，同时提升网站的性能、访问速度以改善访客体验。</p>
+<div style="text-align: right;">-- 摘自<a class="link"   href="https://baike.baidu.com/item/Cloudflare/17359757?fr=ge_ala" >Cloudflare(美国的跨国科技企业) - 百度百科<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></div>
+
+</p>
+
+<p>　　可以看到它的功能是很多的，我主要就用里面的DNS服务、CDN服务，当然一些免费的小组件肯定也是开起来的，不用白不用。</p>
+<blockquote>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3></blockquote>
+<ol>
+<li><p>打开<a class="link"   href="https://dash.cloudflare.com/" >Cloudflare<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>的Dashboard注册登录；</p>
+</li>
+<li><p>Home页中新增配置自己的域名，这个域名就是之前购买的域名，只要顶级域名就行了，不用加www这些。在这步之前，需要先购买自己的域名，详情可见<a href="../hexo-domain-settings"><strong>博客配置域名</strong></a>。<br> 当然，其实那篇文章中的DNS配置可以不配了，到Cloudflare中再配置；</p>
+</li>
+<li><p>选择免费套餐，下一步；</p>
+</li>
+<li><p>在其中配置DNS，ipv4的一定要配置，ipv6的选择性配置，建议也写上。CName这条一定要，因为要重定向到你的网站，yourcount替换为你自己的用户名。</p>
+</li>
+</ol>
+<table style="margin: 0 auto; text-align: center; width: min-content;">
+  <tr>
+    <th>Type</th>
+    <th>Name</th>
+    <th>Content</th>
+  </tr>
+  <tr>
+    <td>CName</td>
+    <td>www</td>
+    <td>yourcount.github.io</td>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>@</td>
+    <td>185.199.108.153</td>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>@</td>
+    <td>185.199.109.153</td>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>@</td>
+    <td>185.199.110.153</td>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>@</td>
+    <td>185.199.111.153</td>
+  </tr>
+  <tr>
+    <td>AAAA</td>
+    <td>@</td>
+    <td>2606:50c0:8000::153</td>
+  </tr>
+  <tr>
+    <td>AAAA</td>
+    <td>@</td>
+    <td>2606:50c0:8001::153</td>
+  </tr>
+  <tr>
+    <td>AAAA</td>
+    <td>@</td>
+    <td>2606:50c0:8002::153</td>
+  </tr>
+  <tr>
+    <td>AAAA</td>
+    <td>@</td>
+    <td>2606:50c0:8003::153</td>
+  </tr>
+</table>
+</p>
+
+<ol start="5">
+<li><p>点击下一步，这时候他会出现如下内容：</p>
+ <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/3.png"
+                      alt="出现内容" style="zoom:50%;"
+                >
+
+<p> 　　这是要你去你购买域名的服务商那里把DNS改为它的DNS服务，这样子才能提供服务。最下面两个云里的链接就是它的DNS服务器。</p>
+</li>
+<li><p>修改DNS服务器地址。我这边以我的阿里云为例，登录后，控制台 - 域名 - 域名列表 - 管理 - DNS管理-DNS修改，然后就将其中的DNS服务器替换成刚才的Cloudflare的DNS服务器链接。提交成功后，等待一段时间，短则几分钟，长则24~48小时。</p>
+</li>
+<li><p>等到相应DNS服务器访问到了你的网站后，刷新页面会有变化</p>
+</li>
+<li><p>打开speed - optimizaiton，把可以打开的全打开，要么就是能保障你的安全性，要么就能加速，要钱就不要开了，够用了。</p>
+</li>
+<li><p>在Hexo下的<code>_config.yml</code>中，加上下面的</p>
+ <div class="code-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">cdn:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">provider:</span> <span class="string">custom</span></span><br><span class="line">    <span class="attr">custom_url:</span> <span class="string">你购买的域名</span></span><br></pre></td></tr></table></figure></div>
+
+<p> 　　记得也要在Hexo的source下面，加一个CNAME文件，里面写你购买的域名就OK，然后部署。</p>
+ <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># source/CNAME</span></span><br><span class="line">www.yourdomain</span><br></pre></td></tr></table></figure></div>
+<p> 　　然后保存后，重新部署</p>
+ <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>测试：等部署成功后一会，再打开你的Cloudflare，在你相应的你的域名的管理条目下找到<code>Speed-Observatory</code>，输入你的url测试一下，跑通了的话，在通过域名访问一下，就成功了。</p>
+</li>
+</ol>
+<p>　　当然中间很有可能要等一段时间。</p>
+
+  <div class="note p-4 mb-4 rounded-small red">
+    <p><i class="fa-solid fa-circle-info"></i>  　Cloudflare配置好后CDN服务是默认开启的，不需要去设置，主要只要把DNS服务配好就行。其他的小组件，也可以自己看看，有安全协议，http重定位https，加速流量包，主要看自己 </p>
+
+  </div>
+
+]]></content>
+      <categories>
+        <category>Technology</category>
+        <category>MyBlog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>CDN</tag>
       </tags>
   </entry>
 </search>
