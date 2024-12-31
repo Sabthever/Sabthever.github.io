@@ -26,6 +26,112 @@
       </tags>
   </entry>
   <entry>
+    <title>Sabthever的博客搭建</title>
+    <url>/2024/12/18/technology/blog/Welcome/</url>
+    <content><![CDATA[<h2 id="Sabthever搭建的第一个博客"><a href="#Sabthever搭建的第一个博客" class="headerlink" title="Sabthever搭建的第一个博客"></a>Sabthever搭建的第一个博客</h2><ul>
+<li><p>博客地址</p>
+<p>  <a class="link"   href="https://www.sabthever.online/" >https://www.sabthever.online<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>  <a class="link"   href="https://sabthever.github.io/" >https://sabthever.github.io/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</li>
+<li><p>部署地址</p>
+<p>  <a class="link"   href="https://github.com/Sabthever/Sabthever.github.io" >https://github.com/Sabthever/Sabthever.github.io<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</li>
+</ul>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><blockquote>
+<h5 id="搭建架构"><a href="#搭建架构" class="headerlink" title="搭建架构"></a>搭建架构</h5></blockquote>
+<ul>
+<li><p>hexo + github</p>
+</li>
+<li><p><a class="link"   href="https://hexo.io/docs/" >hexo文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</li>
+<li><p><a class="link"   href="https://www.github.com/" >github官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</li>
+</ul>
+<blockquote>
+<h5 id="网站搭建参考文献"><a href="#网站搭建参考文献" class="headerlink" title="网站搭建参考文献"></a>网站搭建参考文献</h5></blockquote>
+<p><a class="link"   href="https://blog.csdn.net/weixin_43883917/article/details/143885553" >利用 GitHub 和 Hexo 搭建个人博客【保姆教程】<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<h5 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h5></blockquote>
+<ul>
+<li><p><a class="link"   href="https://github.com/EvanNotFound/hexo-theme-redefine" >正在使用的主题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</li>
+<li><p><a class="link"   href="https://redefine-docs.ohevan.com/zh/introduction" >使用文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</li>
+<li><p>这个作者做的<strong>超级好</strong></p>
+</li>
+</ul>
+<h2 id="How-to-operate"><a href="#How-to-operate" class="headerlink" title="How to operate"></a>How to operate</h2><blockquote>
+<h5 id="Hexo文档地址"><a href="#Hexo文档地址" class="headerlink" title="Hexo文档地址"></a>Hexo文档地址</h5></blockquote>
+<ul>
+<li><p>英文地址：<a class="link"   href="https://hexo.io/docs/" >https://hexo.io/docs/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</li>
+<li><p>中文地址：<a class="link"   href="https://hexo.io/zh-cn/docs/" >https://hexo.io/zh-cn/docs/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</li>
+</ul>
+<blockquote>
+<h5 id="本地预览"><a href="#本地预览" class="headerlink" title="本地预览"></a>本地预览</h5></blockquote>
+<ul>
+<li><code>hexo s[erver]</code></li>
+</ul>
+<blockquote>
+<h5 id="发布与更新"><a href="#发布与更新" class="headerlink" title="发布与更新"></a>发布与更新</h5></blockquote>
+<ul>
+<li><p><code>hexo clean</code>: 不需要每次都执行，只有在遇到生成问题或更改了主题&#x2F;配置文件时使用。</p>
+</li>
+<li><p><code>hexo g[enerate]</code>: 每次更新内容后都需要执行，以生成最新的静态文件。</p>
+</li>
+<li><p><code>hexo d[eploy]</code>: 如果需要发布到远程服务器，执行 hexo d 进行部署。</p>
+</li>
+</ul>
+<blockquote>
+<h5 id="修改网址"><a href="#修改网址" class="headerlink" title="修改网址"></a>修改网址</h5></blockquote>
+<ul>
+<li><p>文件：<code>_config.yml</code></p>
+</li>
+<li><p>字段：修改<code>url</code></p>
+</li>
+</ul>
+<blockquote>
+<h5 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h5></blockquote>
+<ul>
+<li><p>在themes中从<a class="link"   href="https://hexo.io/themes/" >官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>找喜欢的主题，并且git下来</p>
+</li>
+<li><p>然后再<code>_config.yml</code>中修改theme的名字，和themes&#x2F;下的主题文件夹名保持一致</p>
+</li>
+</ul>
+<blockquote>
+<h5 id="建立新的帖子"><a href="#建立新的帖子" class="headerlink" title="建立新的帖子"></a>建立新的帖子</h5></blockquote>
+<ul>
+<li><p>建立：</p>
+<p>  <code>hexo n[ew] &quot;帖子名称&quot;</code></p>
+</li>
+</ul>
+<blockquote>
+<h5 id="子模块的使用"><a href="#子模块的使用" class="headerlink" title="子模块的使用"></a>子模块的使用</h5></blockquote>
+<ul>
+<li><p>缘由</p>
+<p>  我的<code>themes/</code>中的theme是从别人的仓库中拿下来的，可以建立<code>fork</code></p>
+</li>
+<li><p>初期使用</p>
+  <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># fork的方法自己找找，这里没写，就一条命令</span></span><br><span class="line"><span class="built_in">cd</span> themes/my-forked-repo</span><br><span class="line"><span class="comment"># 自己的仓库</span></span><br><span class="line">git remote set-url origin https://github.com/Sabthever/myrepo.git</span><br><span class="line"><span class="comment"># 别人的原始仓库</span></span><br><span class="line">git remote add upstream https://github.com/original-username/original-repo.git</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>后期使用</p>
+  <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从别人的url获取更新</span></span><br><span class="line">git fetch upstream</span><br><span class="line"><span class="comment"># 这会获取原始仓库的所有更新。如果你想将这些更新合并到你本地的 main 分支中，可以运行：</span></span><br><span class="line">git merge upstream/main</span><br><span class="line"><span class="comment"># 或者，如果你希望直接把 upstream/main 的更改应用到你的本地分支，可以使用：</span></span><br><span class="line">git pull upstream main</span><br><span class="line"><span class="comment"># 然后可以回到自己文件夹的位置</span></span><br><span class="line">git commit -m <span class="string">&quot;xxx&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>后面所有<code>theme/other-repo</code>中的修改，都要现在子模块里<code>commit，push</code>一下，再到自己的里面<code>commit，push</code>一下</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Technology</category>
+        <category>MyBlog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>利用Cloudflare管理网站(配置CDN)</title>
     <url>/2024/12/28/technology/blog/cdn_settings/</url>
     <content><![CDATA[<blockquote>
@@ -164,6 +270,135 @@
       </tags>
   </entry>
   <entry>
+    <title>Markdown编写与页面美化</title>
+    <url>/2024/12/29/technology/blog/page-beautify/</url>
+    <content><![CDATA[<h2 id="Markdown通用"><a href="#Markdown通用" class="headerlink" title="Markdown通用"></a>Markdown通用</h2><blockquote>
+<h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4></blockquote>
+<p>　　在Hexo的渲染中，表格顶格写的情况下。</p>
+<p>　　比如下面这段：</p>
+<div class="code-container" data-rel="Markdown"><figure class="iseeu highlight markdown"><table><tr><td class="code"><pre><span class="line">| Name | Age |</span><br><span class="line">| :--: | :--: |       # | :-- | 是靠左</span><br><span class="line">| 张三 | 12 |         # | --: | 是靠右 </span><br><span class="line">| 李四 | 243 |        # -的数量无所谓</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="center">Age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">张三</td>
+<td align="center">12</td>
+</tr>
+<tr>
+<td align="center">李四</td>
+<td align="center">243</td>
+</tr>
+</tbody></table>
+<p>　　我们看到，表格都是拉满的，也没有办法变小一点，不够灵活。</p>
+<p>　　我们可以使用Html插入<code>&lt;table&gt;</code>组件来做到这点，更加灵活，但是在没有专门工具时，还是更加麻烦的。html可以像这样写：</p>
+<div class="code-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">style</span>=<span class="string">&quot;margin: auto; text-align: center; width: min-content;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span>&gt;</span>Name<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span>&gt;</span>Age<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>12<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>243<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>　　效果如下：</p>
+<table style="margin: auto; text-align: center; width: min-content;">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>张三</td>
+    <td>12</td>
+  </tr>
+  <tr>
+    <td>李四</td>
+    <td>243</td>
+  </tr>
+</table>
+</br>
+
+<p>　　可以看到，列宽适应了文字长度。这个是<code>width: min-content;</code>达成的效果。<code>text-align: </code>这儿是文字左右。<code>margin: </code>组件外部间距距离。甚至可以合并单元格，具体可以自己查查table的style。<code>word-break: break-all;</code>可以让长度不够的换行。</p>
+<blockquote>
+<h4 id="其余"><a href="#其余" class="headerlink" title="其余"></a>其余</h4></blockquote>
+<ul>
+<li><p>回车</p>
+<p>  用<code>&lt;/br&gt;</code>来换行</p>
+</li>
+<li><p>以后加</p>
+</li>
+</ul>
+<h2 id="Redefine组件加强"><a href="#Redefine组件加强" class="headerlink" title="Redefine组件加强"></a>Redefine组件加强</h2><p>Redefine就是我在用的主题，是别的大佬开发的，确实美观好用。</p>
+<p>[<a class="link"   href="https://github.com/EvanNotFound/hexo-theme-redefine" >Redefine<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>]　　　[<a class="link"   href="https://redefine-docs.ohevan.com/zh/introduction" >使用文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>]</p>
+<blockquote>
+<h4 id="写作模板使用"><a href="#写作模板使用" class="headerlink" title="写作模板使用"></a>写作模板使用</h4></blockquote>
+<p>　　<a class="link"   href="https://redefine-docs.ohevan.com/zh/modules" >写作模板文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>　　<a class="link"   href="https://fontawesome.com/search" >Fontawsome自定义图标<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h5 id="1-提示块"><a href="#1-提示块" class="headerlink" title="1. 提示块"></a>1. 提示块</h5><div class="code-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% notel [颜色] [可选: 自定义图标] [标题] %&#125;</span><br><span class="line">内容</span><br><span class="line">支持换行</span><br><span class="line">&#123;% endnotel %&#125;</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">&#123;% notel default fa-info 信息 %&#125;</span><br><span class="line">换行测试</span><br><span class="line">换行测试</span><br><span class="line">换行测试</span><br><span class="line">&#123;% endnotel %&#125;</span><br></pre></td></tr></table></figure></div>
+
+  <div class="note-large default">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <i class="notel-icon fa-solid fa-info"></i><p>信息</p>
+
+    </div>
+    <div class="notel-content">
+      <p>换行测试<br>换行测试<br>换行测试</p>
+
+    </div>
+  </div>
+
+<p>上面的提示块变成note，就是去掉l，可以变成没有标题的提示块：</p>
+
+  <div class="note p-4 mb-4 rounded-small default">
+    <p>换行测试<br>换行测试<br>换行测试</p>
+
+  </div>
+
+<h5 id="2-按钮"><a href="#2-按钮" class="headerlink" title="2. 按钮"></a>2. 按钮</h5><div class="code-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% btn [可选大小]::[名称]::[url]::[可选图标] %&#125;</span><br><span class="line"></span><br><span class="line">[可选大小]：</span><br><span class="line">center, regular, large, center large, center regular</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">&#123;% btn regular::百度一下::https://www.baidu.com::fa-solid fa-play-circle %&#125;</span><br></pre></td></tr></table></figure></div>
+
+<a class="button  regular" href='https://www.baidu.com' title='百度一下'><i class='fa-solid fa-play-circle'></i> 百度一下</a>
+
+<h5 id="3-折叠"><a href="#3-折叠" class="headerlink" title="3. 折叠"></a>3. 折叠</h5><div class="code-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% folding [颜色]::[标题] %&#125;</span><br><span class="line">需要写的内容</span><br><span class="line">&#123;% endfolding %&#125;</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">&#123;% folding blue::Folding 测试： 点击查看更多 %&#125;</span><br><span class="line">啊啊啊啊啊</span><br><span class="line">&#123;% note tip  %&#125;</span><br><span class="line">tip 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line">&#123;% endfolding %&#125;</span><br></pre></td></tr></table></figure></div>
+
+<details class="blue" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Folding 测试： 点击查看更多 </summary>
+              <div class='content'>
+              <p>啊啊啊啊啊</p>  <div class="note p-4 mb-4 rounded-small tip">    <p>tip 提示块标签</p>  </div>
+              </div>
+            </details>
+
+<h5 id="4-选项卡"><a href="#4-选项卡" class="headerlink" title="4. 选项卡"></a>4. 选项卡</h5><div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="code"><pre><span class="line">&#123;% tabs 页面内不重复的ID %&#125;</span><br><span class="line"> </span><br><span class="line">&lt;!-- tab 栏目1名称 --&gt;</span><br><span class="line"> </span><br><span class="line">内容</span><br><span class="line"> </span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 栏目2名称 --&gt;</span><br><span class="line"> </span><br><span class="line">内容</span><br><span class="line"> </span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line"> </span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="tabs" id="tab-页面内不重复的id"><ul class="nav-tabs"><li class="tab active"><a class="#页面内不重复的id-1">栏目1名称</a></li><li class="tab"><a class="#页面内不重复的id-2">栏目2名称</a></li></ul><div class="tab-content"><div class="tab-pane active" id="页面内不重复的id-1"><p>内容1</p></div><div class="tab-pane" id="页面内不重复的id-2"><p>内容2</p></div></div></div>
+
+<blockquote>
+<h4 id="页面模板使用"><a href="#页面模板使用" class="headerlink" title="页面模板使用"></a>页面模板使用</h4></blockquote>
+<p>这边的组件是在已经配制好的情况下的使用，详情见 <a class="link"   href="https://redefine-docs.ohevan.com/zh/page_templates" >页面模板文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。</p>
+<h5 id="1-相册组件"><a href="#1-相册组件" class="headerlink" title="1. 相册组件"></a>1. <strong>相册组件</strong></h5><p>在Hexo - source - _data - masonry.yml中加图片</p>
+<div class="code-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">image:</span> <span class="string">图片URL</span></span><br><span class="line">    <span class="attr">title:</span> <span class="string">图片标题</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">描述</span></span><br></pre></td></tr></table></figure></div>
+
+<p>这个图片可以放在我建立的仓库Picture1中，url是<a class="link"   href="https://sabthever.github.io/Pictures1/xxx" >https://sabthever.github.io/Pictures1/xxx<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h5 id="2-Tags和Category组件"><a href="#2-Tags和Category组件" class="headerlink" title="2. Tags和Category组件"></a>2. <strong>Tags和Category组件</strong></h5><p>通过在文章开头加Tags或者Category，提供文章的标签或者分类目录。</p>
+<div class="code-container" data-rel="Markdown"><figure class="iseeu highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 博客配置域名</span><br><span class="line">date: 2024-12-24 14:08:28</span><br><span class="line">tags: [Hexo,DNS]</span><br><span class="line">categories: [Technology,MyBlog]</span><br><span class="line"><span class="section">excerpt: &quot;主要针对于Hexo+Github。先购买域名，然后从本地hexo和在线域名配置，给自己的博客配置域名&quot;</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure></div>
+
+<p>其中tags中的标签都是<strong>并列</strong>的，categories中的标签都是<strong>一层层往下</strong>的</p>
+<h5 id="3-关于和日志"><a href="#3-关于和日志" class="headerlink" title="3. 关于和日志"></a>3. <strong>关于和日志</strong></h5><p>在Hexo - source - about - index.md 中修改关于，增加我的博客修改日志</p>
+<h5 id="4-书签组件"><a href="#4-书签组件" class="headerlink" title="4. 书签组件"></a>4. <strong>书签组件</strong></h5><p>在Hexo - source - _data - bookmarks.yml中加组件</p>
+<div class="code-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">category:</span> <span class="string">分类名称</span></span><br><span class="line">    <span class="attr">icon:</span> <span class="string">fa-folder</span> <span class="comment"># 分类的图标，使用 FontAwesome 图标</span></span><br><span class="line">    <span class="attr">items:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">书签名称</span></span><br><span class="line">        <span class="attr">link:</span> <span class="string">链接地址</span> <span class="comment"># 从 url 改为 link</span></span><br><span class="line">        <span class="attr">description:</span> <span class="string">书签描述</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">图标链接</span> <span class="comment"># 从 icon 改为 image，用于显示网站图标</span></span><br></pre></td></tr></table></figure></div>
+<h5 id="5-Latex启用"><a href="#5-Latex启用" class="headerlink" title="5. Latex启用"></a>5. <strong>Latex启用</strong></h5><p>在文章头部加入<code>mathjax: true</code>即可启用</p>
+<h5 id="6-说说组件"><a href="#6-说说组件" class="headerlink" title="6. 说说组件"></a>6. <strong>说说组件</strong></h5><p>在Hexo - source - _data - essays.yml中加说说，回车要加<code>|</code>才可以</p>
+<div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="code"><pre><span class="line">- content: 2024年要过去啦</span><br><span class="line">  date: 2024-12-31 19:37:02</span><br><span class="line"></span><br><span class="line">- content: |</span><br><span class="line">    愿大家在12月31日的这一天</span><br><span class="line">    告别过去一年的所有遗憾与不快</span><br><span class="line">  date: 2024-12-31 19:39:44</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4></blockquote>
+<p><a class="link"   href="https://redefine-docs.ohevan.com/zh/introduction" >Redefine使用文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+]]></content>
+      <categories>
+        <category>Technology</category>
+        <category>MyBlog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Markdown</tag>
+        <tag>Html</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SRC导航（转载）</title>
     <url>/2024/12/31/technology/security/SRC%E5%AF%BC%E8%88%AA/</url>
     <content><![CDATA[<p>阿里SRC <a class="link"   href="https://security.alibaba.com/" >https://security.alibaba.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
@@ -299,139 +534,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Sabthever的博客搭建</title>
-    <url>/2024/12/18/technology/blog/Welcome/</url>
-    <content><![CDATA[<h2 id="Sabthever搭建的第一个博客"><a href="#Sabthever搭建的第一个博客" class="headerlink" title="Sabthever搭建的第一个博客"></a>Sabthever搭建的第一个博客</h2><ul>
-<li><p>博客地址</p>
-<p>  <a class="link"   href="https://www.sabthever.online/" >https://www.sabthever.online<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>  <a class="link"   href="https://sabthever.github.io/" >https://sabthever.github.io/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</li>
-<li><p>部署地址</p>
-<p>  <a class="link"   href="https://github.com/Sabthever/Sabthever.github.io" >https://github.com/Sabthever/Sabthever.github.io<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</li>
-</ul>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><blockquote>
-<h5 id="搭建架构"><a href="#搭建架构" class="headerlink" title="搭建架构"></a>搭建架构</h5></blockquote>
-<ul>
-<li><p>hexo + github</p>
-</li>
-<li><p><a class="link"   href="https://hexo.io/docs/" >hexo文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</li>
-<li><p><a class="link"   href="https://www.github.com/" >github官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</li>
-</ul>
-<blockquote>
-<h5 id="网站搭建参考文献"><a href="#网站搭建参考文献" class="headerlink" title="网站搭建参考文献"></a>网站搭建参考文献</h5></blockquote>
-<p><a class="link"   href="https://blog.csdn.net/weixin_43883917/article/details/143885553" >利用 GitHub 和 Hexo 搭建个人博客【保姆教程】<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<blockquote>
-<h5 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h5></blockquote>
-<ul>
-<li><p><a class="link"   href="https://github.com/EvanNotFound/hexo-theme-redefine" >正在使用的主题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</li>
-<li><p><a class="link"   href="https://redefine-docs.ohevan.com/zh/introduction" >使用文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</li>
-<li><p>这个作者做的<strong>超级好</strong></p>
-</li>
-</ul>
-<h2 id="How-to-operate"><a href="#How-to-operate" class="headerlink" title="How to operate"></a>How to operate</h2><blockquote>
-<h5 id="Hexo文档地址"><a href="#Hexo文档地址" class="headerlink" title="Hexo文档地址"></a>Hexo文档地址</h5></blockquote>
-<ul>
-<li><p>英文地址：<a class="link"   href="https://hexo.io/docs/" >https://hexo.io/docs/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</li>
-<li><p>中文地址：<a class="link"   href="https://hexo.io/zh-cn/docs/" >https://hexo.io/zh-cn/docs/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</li>
-</ul>
-<blockquote>
-<h5 id="本地预览"><a href="#本地预览" class="headerlink" title="本地预览"></a>本地预览</h5></blockquote>
-<ul>
-<li><code>hexo s[erver]</code></li>
-</ul>
-<blockquote>
-<h5 id="发布与更新"><a href="#发布与更新" class="headerlink" title="发布与更新"></a>发布与更新</h5></blockquote>
-<ul>
-<li><p><code>hexo clean</code>: 不需要每次都执行，只有在遇到生成问题或更改了主题&#x2F;配置文件时使用。</p>
-</li>
-<li><p><code>hexo g[enerate]</code>: 每次更新内容后都需要执行，以生成最新的静态文件。</p>
-</li>
-<li><p><code>hexo d[eploy]</code>: 如果需要发布到远程服务器，执行 hexo d 进行部署。</p>
-</li>
-</ul>
-<blockquote>
-<h5 id="修改网址"><a href="#修改网址" class="headerlink" title="修改网址"></a>修改网址</h5></blockquote>
-<ul>
-<li><p>文件：<code>_config.yml</code></p>
-</li>
-<li><p>字段：修改<code>url</code></p>
-</li>
-</ul>
-<blockquote>
-<h5 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h5></blockquote>
-<ul>
-<li><p>在themes中从<a class="link"   href="https://hexo.io/themes/" >官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>找喜欢的主题，并且git下来</p>
-</li>
-<li><p>然后再<code>_config.yml</code>中修改theme的名字，和themes&#x2F;下的主题文件夹名保持一致</p>
-</li>
-</ul>
-<blockquote>
-<h5 id="建立新的帖子"><a href="#建立新的帖子" class="headerlink" title="建立新的帖子"></a>建立新的帖子</h5></blockquote>
-<ul>
-<li><p>建立：</p>
-<p>  <code>hexo n[ew] &quot;帖子名称&quot;</code></p>
-</li>
-</ul>
-<blockquote>
-<h5 id="子模块的使用"><a href="#子模块的使用" class="headerlink" title="子模块的使用"></a>子模块的使用</h5></blockquote>
-<ul>
-<li><p>缘由</p>
-<p>  我的<code>themes/</code>中的theme是从别人的仓库中拿下来的，可以建立<code>fork</code></p>
-</li>
-<li><p>初期使用</p>
-  <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># fork的方法自己找找，这里没写，就一条命令</span></span><br><span class="line"><span class="built_in">cd</span> themes/my-forked-repo</span><br><span class="line"><span class="comment"># 自己的仓库</span></span><br><span class="line">git remote set-url origin https://github.com/Sabthever/myrepo.git</span><br><span class="line"><span class="comment"># 别人的原始仓库</span></span><br><span class="line">git remote add upstream https://github.com/original-username/original-repo.git</span><br><span class="line"><span class="comment"># 查看</span></span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>后期使用</p>
-  <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从别人的url获取更新</span></span><br><span class="line">git fetch upstream</span><br><span class="line"><span class="comment"># 这会获取原始仓库的所有更新。如果你想将这些更新合并到你本地的 main 分支中，可以运行：</span></span><br><span class="line">git merge upstream/main</span><br><span class="line"><span class="comment"># 或者，如果你希望直接把 upstream/main 的更改应用到你的本地分支，可以使用：</span></span><br><span class="line">git pull upstream main</span><br><span class="line"><span class="comment"># 然后可以回到自己文件夹的位置</span></span><br><span class="line">git commit -m <span class="string">&quot;xxx&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>后面所有<code>theme/other-repo</code>中的修改，都要现在子模块里<code>commit，push</code>一下，再到自己的里面<code>commit，push</code>一下</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Technology</category>
-        <category>MyBlog</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>漏洞赏金平台（转载）</title>
-    <url>/2024/12/31/technology/security/%E6%BC%8F%E6%B4%9E%E8%B5%8F%E9%87%91%E5%B9%B3%E5%8F%B0/</url>
-    <content><![CDATA[<h2 id="1、企业SRC平台导航大全"><a href="#1、企业SRC平台导航大全" class="headerlink" title="1、企业SRC平台导航大全"></a>1、企业SRC平台导航大全</h2><p><a class="link"   href="https://wiki.bafangwy.com/doc/253/" >https://wiki.bafangwy.com/doc/253/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h2 id="2、公益SRC平台"><a href="#2、公益SRC平台" class="headerlink" title="2、公益SRC平台"></a>2、公益SRC平台</h2><p>补天<br><a class="link"   href="https://www.butian.net/" >https://www.butian.net/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>漏洞盒子<br><a class="link"   href="https://www.vulbox.com/" >https://www.vulbox.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h2 id="3、众测平台"><a href="#3、众测平台" class="headerlink" title="3、众测平台"></a>3、众测平台</h2><p>国家信息安全漏洞共享-众测<br><a class="link"   href="https://zc.cnvd.org.cn/project/index" >https://zc.cnvd.org.cn/project/index<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>春秋云测<br><a class="link"   href="https://www.ichunqiu.com/cqyc" >https://www.ichunqiu.com/cqyc<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>360众测<br><a class="link"   href="https://zhongce.360.net/" >https://zhongce.360.net/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>雷神众测<br><a class="link"   href="https://www.bountyteam.com/" >https://www.bountyteam.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h2 id="4、教育SRC"><a href="#4、教育SRC" class="headerlink" title="4、教育SRC"></a>4、教育SRC</h2><p><a class="link"   href="https://src.sjtu.edu.cn/" >https://src.sjtu.edu.cn/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h2 id="5、国外赏金平台"><a href="#5、国外赏金平台" class="headerlink" title="5、国外赏金平台"></a>5、国外赏金平台</h2><p><a class="link"   href="https://www.hackerone.com/" >https://www.hackerone.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.bugcrowd.com/" >https://www.bugcrowd.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.openbugbounty.org/" >https://www.openbugbounty.org/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.intigriti.com/" >https://www.intigriti.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>国外SRC：<br><a class="link"   href="https://security.apple.com/bounty/categories" >https://security.apple.com/bounty/categories<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.facebook.com/whitehat" >https://www.facebook.com/whitehat<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.microsoft.com/en-us/msrc/bounty" >https://www.microsoft.com/en-us/msrc/bounty<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://bughunters.google.com/about" >https://bughunters.google.com/about<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://bounty.github.com/" >https://bounty.github.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<blockquote>
-<p>转载自：<a class="link"   href="https://wiki.bafangwy.com/doc/523/" >https://wiki.bafangwy.com/doc/523/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Technology</category>
-        <category>Security</category>
-      </categories>
-      <tags>
-        <tag>安全</tag>
-        <tag>SRC</tag>
-        <tag>众测</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博客配置域名</title>
     <url>/2024/12/24/technology/blog/hexo-domain-settings/</url>
     <content><![CDATA[<blockquote>
@@ -522,129 +624,30 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown编写与页面美化</title>
-    <url>/2024/12/29/technology/blog/page-beautify/</url>
-    <content><![CDATA[<h2 id="Markdown通用"><a href="#Markdown通用" class="headerlink" title="Markdown通用"></a>Markdown通用</h2><blockquote>
-<h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4></blockquote>
-<p>　　在Hexo的渲染中，表格顶格写的情况下。</p>
-<p>　　比如下面这段：</p>
-<div class="code-container" data-rel="Markdown"><figure class="iseeu highlight markdown"><table><tr><td class="code"><pre><span class="line">| Name | Age |</span><br><span class="line">| :--: | :--: |       # | :-- | 是靠左</span><br><span class="line">| 张三 | 12 |         # | --: | 是靠右 </span><br><span class="line">| 李四 | 243 |        # -的数量无所谓</span><br></pre></td></tr></table></figure></div>
-
-<table>
-<thead>
-<tr>
-<th align="center">Name</th>
-<th align="center">Age</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">张三</td>
-<td align="center">12</td>
-</tr>
-<tr>
-<td align="center">李四</td>
-<td align="center">243</td>
-</tr>
-</tbody></table>
-<p>　　我们看到，表格都是拉满的，也没有办法变小一点，不够灵活。</p>
-<p>　　我们可以使用Html插入<code>&lt;table&gt;</code>组件来做到这点，更加灵活，但是在没有专门工具时，还是更加麻烦的。html可以像这样写：</p>
-<div class="code-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">style</span>=<span class="string">&quot;margin: auto; text-align: center; width: min-content;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span>&gt;</span>Name<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span>&gt;</span>Age<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>12<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>243<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>　　效果如下：</p>
-<table style="margin: auto; text-align: center; width: min-content;">
-  <tr>
-    <th>Name</th>
-    <th>Age</th>
-  </tr>
-  <tr>
-    <td>张三</td>
-    <td>12</td>
-  </tr>
-  <tr>
-    <td>李四</td>
-    <td>243</td>
-  </tr>
-</table>
-</br>
-
-<p>　　可以看到，列宽适应了文字长度。这个是<code>width: min-content;</code>达成的效果。<code>text-align: </code>这儿是文字左右。<code>margin: </code>组件外部间距距离。甚至可以合并单元格，具体可以自己查查table的style。<code>word-break: break-all;</code>可以让长度不够的换行。</p>
+    <title>漏洞赏金平台（转载）</title>
+    <url>/2024/12/31/technology/security/%E6%BC%8F%E6%B4%9E%E8%B5%8F%E9%87%91%E5%B9%B3%E5%8F%B0/</url>
+    <content><![CDATA[<h2 id="1、企业SRC平台导航大全"><a href="#1、企业SRC平台导航大全" class="headerlink" title="1、企业SRC平台导航大全"></a>1、企业SRC平台导航大全</h2><p><a class="link"   href="https://wiki.bafangwy.com/doc/253/" >https://wiki.bafangwy.com/doc/253/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="2、公益SRC平台"><a href="#2、公益SRC平台" class="headerlink" title="2、公益SRC平台"></a>2、公益SRC平台</h2><p>补天<br><a class="link"   href="https://www.butian.net/" >https://www.butian.net/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>漏洞盒子<br><a class="link"   href="https://www.vulbox.com/" >https://www.vulbox.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="3、众测平台"><a href="#3、众测平台" class="headerlink" title="3、众测平台"></a>3、众测平台</h2><p>国家信息安全漏洞共享-众测<br><a class="link"   href="https://zc.cnvd.org.cn/project/index" >https://zc.cnvd.org.cn/project/index<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>春秋云测<br><a class="link"   href="https://www.ichunqiu.com/cqyc" >https://www.ichunqiu.com/cqyc<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>360众测<br><a class="link"   href="https://zhongce.360.net/" >https://zhongce.360.net/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>雷神众测<br><a class="link"   href="https://www.bountyteam.com/" >https://www.bountyteam.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="4、教育SRC"><a href="#4、教育SRC" class="headerlink" title="4、教育SRC"></a>4、教育SRC</h2><p><a class="link"   href="https://src.sjtu.edu.cn/" >https://src.sjtu.edu.cn/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="5、国外赏金平台"><a href="#5、国外赏金平台" class="headerlink" title="5、国外赏金平台"></a>5、国外赏金平台</h2><p><a class="link"   href="https://www.hackerone.com/" >https://www.hackerone.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.bugcrowd.com/" >https://www.bugcrowd.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.openbugbounty.org/" >https://www.openbugbounty.org/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.intigriti.com/" >https://www.intigriti.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>国外SRC：<br><a class="link"   href="https://security.apple.com/bounty/categories" >https://security.apple.com/bounty/categories<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.facebook.com/whitehat" >https://www.facebook.com/whitehat<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.microsoft.com/en-us/msrc/bounty" >https://www.microsoft.com/en-us/msrc/bounty<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://bughunters.google.com/about" >https://bughunters.google.com/about<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://bounty.github.com/" >https://bounty.github.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <blockquote>
-<h4 id="其余"><a href="#其余" class="headerlink" title="其余"></a>其余</h4></blockquote>
-<ul>
-<li><p>回车</p>
-<p>  用<code>&lt;/br&gt;</code>来换行</p>
-</li>
-<li><p>以后加</p>
-</li>
-</ul>
-<h2 id="Redefine组件加强"><a href="#Redefine组件加强" class="headerlink" title="Redefine组件加强"></a>Redefine组件加强</h2><p>Redefine就是我在用的主题，是别的大佬开发的，确实美观好用。</p>
-<p>[<a class="link"   href="https://github.com/EvanNotFound/hexo-theme-redefine" >Redefine<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>]　　　[<a class="link"   href="https://redefine-docs.ohevan.com/zh/introduction" >使用文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>]</p>
-<blockquote>
-<h4 id="写作模板使用"><a href="#写作模板使用" class="headerlink" title="写作模板使用"></a>写作模板使用</h4></blockquote>
-<p>　　<a class="link"   href="https://redefine-docs.ohevan.com/zh/modules" >写作模板文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>　　<a class="link"   href="https://fontawesome.com/search" >Fontawsome自定义图标<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h5 id="1-提示块"><a href="#1-提示块" class="headerlink" title="1. 提示块"></a>1. 提示块</h5><div class="code-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% notel [颜色] [可选: 自定义图标] [标题] %&#125;</span><br><span class="line">内容</span><br><span class="line">支持换行</span><br><span class="line">&#123;% endnotel %&#125;</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">&#123;% notel default fa-info 信息 %&#125;</span><br><span class="line">换行测试</span><br><span class="line">换行测试</span><br><span class="line">换行测试</span><br><span class="line">&#123;% endnotel %&#125;</span><br></pre></td></tr></table></figure></div>
-
-  <div class="note-large default">
-    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
-      <i class="notel-icon fa-solid fa-info"></i><p>信息</p>
-
-    </div>
-    <div class="notel-content">
-      <p>换行测试<br>换行测试<br>换行测试</p>
-
-    </div>
-  </div>
-
-<p>上面的提示块变成note，就是去掉l，可以变成没有标题的提示块：</p>
-
-  <div class="note p-4 mb-4 rounded-small default">
-    <p>换行测试<br>换行测试<br>换行测试</p>
-
-  </div>
-
-<h5 id="2-按钮"><a href="#2-按钮" class="headerlink" title="2. 按钮"></a>2. 按钮</h5><div class="code-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% btn [可选大小]::[名称]::[url]::[可选图标] %&#125;</span><br><span class="line"></span><br><span class="line">[可选大小]：</span><br><span class="line">center, regular, large, center large, center regular</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">&#123;% btn regular::百度一下::https://www.baidu.com::fa-solid fa-play-circle %&#125;</span><br></pre></td></tr></table></figure></div>
-
-<a class="button  regular" href='https://www.baidu.com' title='百度一下'><i class='fa-solid fa-play-circle'></i> 百度一下</a>
-
-<h5 id="3-折叠"><a href="#3-折叠" class="headerlink" title="3. 折叠"></a>3. 折叠</h5><div class="code-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% folding [颜色]::[标题] %&#125;</span><br><span class="line">需要写的内容</span><br><span class="line">&#123;% endfolding %&#125;</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">&#123;% folding blue::Folding 测试： 点击查看更多 %&#125;</span><br><span class="line">啊啊啊啊啊</span><br><span class="line">&#123;% note tip  %&#125;</span><br><span class="line">tip 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line">&#123;% endfolding %&#125;</span><br></pre></td></tr></table></figure></div>
-
-<details class="blue" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Folding 测试： 点击查看更多 </summary>
-              <div class='content'>
-              <p>啊啊啊啊啊</p>  <div class="note p-4 mb-4 rounded-small tip">    <p>tip 提示块标签</p>  </div>
-              </div>
-            </details>
-
-<h5 id="4-选项卡"><a href="#4-选项卡" class="headerlink" title="4. 选项卡"></a>4. 选项卡</h5><div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="code"><pre><span class="line">&#123;% tabs 页面内不重复的ID %&#125;</span><br><span class="line"> </span><br><span class="line">&lt;!-- tab 栏目1名称 --&gt;</span><br><span class="line"> </span><br><span class="line">内容</span><br><span class="line"> </span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab 栏目2名称 --&gt;</span><br><span class="line"> </span><br><span class="line">内容</span><br><span class="line"> </span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line"> </span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure></div>
-<div class="tabs" id="tab-页面内不重复的id"><ul class="nav-tabs"><li class="tab active"><a class="#页面内不重复的id-1">栏目1名称</a></li><li class="tab"><a class="#页面内不重复的id-2">栏目2名称</a></li></ul><div class="tab-content"><div class="tab-pane active" id="页面内不重复的id-1"><p>内容1</p></div><div class="tab-pane" id="页面内不重复的id-2"><p>内容2</p></div></div></div>
-
-<blockquote>
-<h4 id="页面模板使用"><a href="#页面模板使用" class="headerlink" title="页面模板使用"></a>页面模板使用</h4></blockquote>
-<p>这边的组件是在已经配制好的情况下的使用，详情见 <a class="link"   href="https://redefine-docs.ohevan.com/zh/page_templates" >页面模板文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。</p>
-<h5 id="1-相册组件"><a href="#1-相册组件" class="headerlink" title="1. 相册组件"></a>1. <strong>相册组件</strong></h5><p>在Hexo - source - _data - masonry.yml中加图片</p>
-<div class="code-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">image:</span> <span class="string">图片URL</span></span><br><span class="line">    <span class="attr">title:</span> <span class="string">图片标题</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">描述</span></span><br></pre></td></tr></table></figure></div>
-
-<p>这个图片可以放在我建立的仓库Picture1中，url是<a class="link"   href="https://sabthever.github.io/Pictures1/xxx" >https://sabthever.github.io/Pictures1/xxx<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h5 id="2-Tags和Category组件"><a href="#2-Tags和Category组件" class="headerlink" title="2. Tags和Category组件"></a>2. <strong>Tags和Category组件</strong></h5><p>通过在文章开头加Tags或者Category，提供文章的标签或者分类目录。</p>
-<div class="code-container" data-rel="Markdown"><figure class="iseeu highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 博客配置域名</span><br><span class="line">date: 2024-12-24 14:08:28</span><br><span class="line">tags: [Hexo,DNS]</span><br><span class="line">categories: [Technology,MyBlog]</span><br><span class="line"><span class="section">excerpt: &quot;主要针对于Hexo+Github。先购买域名，然后从本地hexo和在线域名配置，给自己的博客配置域名&quot;</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure></div>
-
-<p>其中tags中的标签都是<strong>并列</strong>的，categories中的标签都是<strong>一层层往下</strong>的</p>
-<h5 id="3-关于和日志"><a href="#3-关于和日志" class="headerlink" title="3. 关于和日志"></a>3. <strong>关于和日志</strong></h5><p>在Hexo - source - about - index.md 中修改关于，增加我的博客修改日志</p>
-<h5 id="4-书签组件"><a href="#4-书签组件" class="headerlink" title="4. 书签组件"></a>4. <strong>书签组件</strong></h5><p>在Hexo - source - _data - bookmarks.yml中加组件</p>
-<div class="code-container" data-rel="Yml"><figure class="iseeu highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">category:</span> <span class="string">分类名称</span></span><br><span class="line">    <span class="attr">icon:</span> <span class="string">fa-folder</span> <span class="comment"># 分类的图标，使用 FontAwesome 图标</span></span><br><span class="line">    <span class="attr">items:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">书签名称</span></span><br><span class="line">        <span class="attr">link:</span> <span class="string">链接地址</span> <span class="comment"># 从 url 改为 link</span></span><br><span class="line">        <span class="attr">description:</span> <span class="string">书签描述</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">图标链接</span> <span class="comment"># 从 icon 改为 image，用于显示网站图标</span></span><br></pre></td></tr></table></figure></div>
-<h5 id="5-Latex启用"><a href="#5-Latex启用" class="headerlink" title="5. Latex启用"></a>5. <strong>Latex启用</strong></h5><p>在文章头部加入<code>mathjax: true</code>即可启用</p>
-<blockquote>
-<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4></blockquote>
-<p><a class="link"   href="https://redefine-docs.ohevan.com/zh/introduction" >Redefine使用文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>转载自：<a class="link"   href="https://wiki.bafangwy.com/doc/523/" >https://wiki.bafangwy.com/doc/523/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Technology</category>
-        <category>MyBlog</category>
+        <category>Security</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Markdown</tag>
-        <tag>Html</tag>
+        <tag>安全</tag>
+        <tag>SRC</tag>
+        <tag>众测</tag>
       </tags>
   </entry>
   <entry>
