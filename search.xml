@@ -407,6 +407,17 @@
 
 <p>　　可以看到，列宽适应了文字长度。这个是<code>width: min-content;</code>达成的效果。<code>text-align: </code>这儿是文字左右。<code>margin: </code>组件外部间距距离。甚至可以合并单元格，具体可以自己查查table的style。<code>word-break: break-all;</code>可以让长度不够的换行。</p>
 <blockquote>
+<h4 id="文本靠右和超链接"><a href="#文本靠右和超链接" class="headerlink" title="文本靠右和超链接"></a>文本靠右和超链接</h4></blockquote>
+<div class="code-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;text-align: right;&quot;</span>&gt;</span>-- 摘自<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://baike.baidu.com/item/Cloudflare/17359757?fr=ge_ala&quot;</span>&gt;</span>Cloudflare(美国的跨国科技企业) - 百度百科<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p>效果：</p>
+<div style="text-align: right;">-- 摘自<a class="link"   href="https://baike.baidu.com/item/Cloudflare/17359757?fr=ge_ala" >Cloudflare(美国的跨国科技企业) - 百度百科<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></div>
+</br>
+
+<blockquote>
+<h4 id="图片缩放"><a href="#图片缩放" class="headerlink" title="图片缩放"></a>图片缩放</h4></blockquote>
+<div class="code-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;.\image\25.png&quot;</span> <span class="attr">style</span>=<span class="string">&quot;zoom: 50%;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
 <h4 id="其余"><a href="#其余" class="headerlink" title="其余"></a>其余</h4></blockquote>
 <ul>
 <li><p>回车</p>
@@ -718,6 +729,95 @@
         <tag>安全</tag>
         <tag>比赛</tag>
         <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Dasha Taran</title>
+    <url>/2025/01/02/personal/Dasha/</url>
+    <content><![CDATA[<p>　　Dasha是我超喜欢的一个博主，初中时就看起了，分享一下她美照。</p>
+<p>　　这张图是我最喜欢的一张。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/PhotoShared/32.jpg"
+                      style="zoom: 70%;" 
+                >
+</br>
+
+<p>　　达莎·塔兰 （Dasha Taran），1999年10月12日出生于俄罗斯的沃罗涅日州，俄罗斯籍模特和美妆博主，拥有乌克兰与俄罗斯双重血统。日常分享有关化妆技巧、教程、日常生活和旅行的视频。</p>
+<p>　　让她出名的照片是这张。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/PhotoShared/21.jpg"
+                      style="zoom: 70%;" 
+                >
+</br>
+
+<p>　　但是我不是特别喜欢这个风格的。下面两张我也比较喜欢。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/PhotoShared/29.jpg"
+                      style="zoom: 70%;" 
+                >
+</br>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/PhotoShared/30.jpg"
+                      style="zoom: 100%;" 
+                >
+</br>
+
+<p>　　再分享一些美图，当然我也直接放在相册里了。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/PhotoShared/3.jpg"
+                      style="zoom: 70%;" 
+                >
+</br>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/PhotoShared/4.jpg"
+                      style="zoom: 70%;" 
+                >
+</br>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/PhotoShared/33.png"
+                      style="zoom: 70%;" 
+                >
+</br>
+
+<p>　　她还有很多其他风格的图片，大家可以自己去搜一下。</p>
+<p>　　另外在附上她的一些社交媒体。</p>
+
+  <div class="note p-4 mb-4 rounded-small pink icon-padding">
+    <i class="note-icon fa-solid fa-brands fa-bilibili"></i><p><strong>b站：<a class="link"   href="https://space.bilibili.com/1120258151?spm_id_from=333.337.0.0" >https://space.bilibili.com/1120258151?spm_id_from=333.337.0.0<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></strong></p>
+
+  </div>
+
+
+  <div class="note p-4 mb-4 rounded-small blue icon-padding">
+    <i class="note-icon fa-solid fa-brands fa-instagram"></i><p><strong>ins：@tarankaa</strong></p>
+
+  </div>
+
+
+  <div class="note p-4 mb-4 rounded-small red icon-padding">
+    <i class="note-icon fa-solid fa-brands fa-youtube"></i><p><strong>ins：<a class="link"   href="https://www.youtube.com/@DashaTaranbaby" >https://www.youtube.com/@DashaTaranbaby<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></strong></p>
+
+  </div>]]></content>
+      <categories>
+        <category>Personal</category>
+      </categories>
+      <tags>
+        <tag>Picture</tag>
+        <tag>Beauty</tag>
       </tags>
   </entry>
 </search>
