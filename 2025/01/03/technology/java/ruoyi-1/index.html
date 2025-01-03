@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Sabthever">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://sabthever.online/2025/01/03/technology/java/ruoyi-1/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="若依简单使用">
+<meta property="og:url" content="https://sabthever.online/2025/01/03/technology/java/ruoyi-1/index.html">
+<meta property="og:site_name" content="Sabthever&#39;s Blog">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sabthever.online/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-01-03T06:26:02.000Z">
+<meta property="article:modified_time" content="2025-01-03T11:57:29.486Z">
+<meta property="article:author" content="Sabthever">
+<meta property="article:tag" content="若依">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sabthever.online/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/%E5%A4%B4%E5%83%8F.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/%E5%A4%B4%E5%83%8F.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/%E5%A4%B4%E5%83%8F.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            若依简单使用 | Sabthever&#39;s Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"sabthever.online","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Wecome to my blog!","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/Sabthever","instagram":null,"zhihu":null,"twitter":null,"email":"3175693234@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"说说":{"path":"/essays","icon":"fa-solid fa-message-dots"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"书签":{"icon":"fa-solid fa-bookmark","path":"/bookmarks/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"About":{"icon":"fa-regular fa-user","path":"/about"}},"search":{"enable":true,"preload":true,"path":"search.xml","field":"post","content":true,"format":"html"}},"page_templates":{"friends_column":3,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"说说":{"icon":"fa-solid fa-message-dots","path":"/essays"},"书签":{"icon":"fa-solid fa-bookmark","path":"/bookmarks/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"关于":{"icon":"fa-regular fa-user","path":"/about"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/12/18 15:27:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Sabthever&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/essays"
+                                        >
+                                    <i class="fa-solid fa-message-dots fa-fw"></i>
+                                    说说
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/bookmarks/"
+                                        >
+                                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                                    书签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/masonry/"
+                                        >
+                                    <i class="fa-solid fa-image fa-fw"></i>
+                                    相册
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/about"
+                                        >
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    关于
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/essays"
+                        >
+                            <span>
+                                说说
+                            </span>
+                            
+                                <i class="fa-solid fa-message-dots fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/bookmarks/"
+                        >
+                            <span>
+                                书签
+                            </span>
+                            
+                                <i class="fa-solid fa-bookmark fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/masonry/"
+                        >
+                            <span>
+                                相册
+                            </span>
+                            
+                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/about"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-regular fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/about"
+                        >
+                            <span>关于</span>
+                            <i class="fa-regular fa-user fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">若依简单使用</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/%E5%A4%B4%E5%83%8F.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Sabthever</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-01-03 14:26:02</span>
+        <span class="mobile">2025-01-03 14:26:02</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-01-03 19:57:29</span>
+            <span class="mobile">2025-01-03 19:57:29</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Technology/">Technology</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/Technology/Java/">Java</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E8%8B%A5%E4%BE%9D/">若依</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Java/">Java</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.3k 字</span>
+        </span>
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>　　由于工作需求，后端开发框架都是使用的若依框架，于是自己去学习一下相关的使用。这里我主要使用的是它的前后端分离架构，也就是springboot+vue的架构。</p>
+<p>　　有springboot基础的小伙伴们上手起来应该是很快的，主要就是使用中间的一些注解。大部分内容都是直接参考<a class="link"   target="_blank" rel="noopener" href="https://doc.ruoyi.vip/" >RuoYi官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>的。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>　　<strong>RuoYi-Vue</strong> 是一个 Java EE 企业级快速开发平台，基于经典技术组合（Spring Boot、Spring Security、MyBatis、Jwt、Vue），内置模块如：部门管理、角色用户、菜单及按钮授权、数据权限、系统参数、日志管理、代码生成等。在线定时任务配置；支持集群，支持多数据源，支持分布式事务。</p>
+<h3 id="A-相关链接"><a href="#A-相关链接" class="headerlink" title="A. 相关链接"></a>A. 相关链接</h3><ul>
+<li>若依官网：<a class="link"   target="_blank" rel="noopener" href="http://ruoyi.vip/" >http://ruoyi.vip(opens new window)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>演示地址：<a class="link"   target="_blank" rel="noopener" href="http://vue.ruoyi.vip/" >http://vue.ruoyi.vip(opens new window)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>代码下载：<a class="link"   target="_blank" rel="noopener" href="https://gitee.com/y_project/RuoYi-Vue" >https://gitee.com/y_project/RuoYi-Vue<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li>文档地址：<a class="link"   target="_blank" rel="noopener" href="https://doc.ruoyi.vip/ruoyi-vue/" >https://doc.ruoyi.vip/ruoyi-vue/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+</ul>
+<p>具体就得参考上面的文档中的地址，这边只是记录一些我常用的。</p>
+<h3 id="B-系统需求"><a href="#B-系统需求" class="headerlink" title="B. 系统需求"></a>B. 系统需求</h3><ul>
+<li>JDK &gt;&#x3D; 1.8</li>
+<li>MySQL &gt;&#x3D; 5.7</li>
+<li>Maven &gt;&#x3D; 3.0</li>
+<li>Node &gt;&#x3D; 12</li>
+<li>Redis &gt;&#x3D; 3</li>
+</ul>
+<h3 id="C-特性"><a href="#C-特性" class="headerlink" title="C. 特性"></a>C. 特性</h3><ul>
+<li>完全响应式布局（支持电脑、平板、手机等所有主流设备）</li>
+<li>强大的一键生成功能（包括控制器、模型、视图、菜单等）</li>
+<li>支持多数据源，简单配置即可实现切换。</li>
+<li>支持按钮及数据权限，可自定义部门数据权限。</li>
+<li>对常用js插件进行二次封装，使js代码变得简洁，更加易维护</li>
+<li>完善的XSS防范及脚本过滤，彻底杜绝XSS攻击</li>
+<li>Maven多项目依赖，模块及插件分项目，尽量松耦合，方便模块升级、增减模块。</li>
+<li>国际化支持，服务端及客户端支持</li>
+<li>完善的日志记录体系简单注解即可实现</li>
+<li>支持服务监控，数据监控，缓存监控功能</li>
+</ul>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h3 id="A-代码获取"><a href="#A-代码获取" class="headerlink" title="A. 代码获取"></a>A. 代码获取</h3><p>直接使用<code>git clone</code>把相关的代码拉下来</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitee.com/y_project/RuoYi-Vue.git</span><br></pre></td></tr></table></figure></div>
+
+<p>也可以使用ssh等方式，<a class="link"   target="_blank" rel="noopener" href="https://gitee.com/y_project/RuoYi-Vue" >仓库<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>在这里。</p>
+<h3 id="B-本地部署运行"><a href="#B-本地部署运行" class="headerlink" title="B. 本地部署运行"></a>B. 本地部署运行</h3><p>环境自己准备好，记得把Node等等换源，当然，如果只要后端的话Node就不用了。</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JDK &gt;= 1.8 (推荐1.8版本)</span><br><span class="line">Mysql &gt;= 5.7.0 (推荐5.7版本)</span><br><span class="line">Redis &gt;= 3.0</span><br><span class="line">Maven &gt;= 3.0</span><br><span class="line">Node &gt;= 12</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="一-后端部署"><a href="#一-后端部署" class="headerlink" title="(一) 后端部署"></a>(一) 后端部署</h4><ol>
+<li><p>导入到<code>Eclipse</code>，菜单 <code>File</code> -&gt; <code>Import</code>，然后选择 <code>Maven</code> -&gt; <code>Existing Maven Projects</code>，点击 <code>Next</code>&gt; 按钮，选择工作目录，然后点击 <code>Finish</code> 按钮，即可成功导入。<br><code>Eclipse</code>会自动加载<code>Maven</code>依赖包，初次加载会比较慢（根据自身网络情况而定）</p>
+</li>
+<li><p>创建数据库<code>ry-vue</code>并导入数据脚本<code>ry_2021xxxx.sql</code>，<code>quartz.sql</code></p>
+</li>
+<li><p>在admin-…-resources-application-druid.yml修改master的数据源的相关配置</p>
+<div class="code-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据源配置</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">datasource:</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br><span class="line">        <span class="attr">driverClassName:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">        <span class="attr">druid:</span></span><br><span class="line">            <span class="comment"># 主库数据源</span></span><br><span class="line">            <span class="attr">master:</span></span><br><span class="line">                <span class="attr">url:</span> <span class="string">jdbc:mysql://ip:port/database?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&amp;serverTimezone=GMT%2B8</span></span><br><span class="line">                <span class="attr">username:</span> </span><br><span class="line">                <span class="attr">password:</span> </span><br></pre></td></tr></table></figure></div>
+
+<p>也可以在配置文档中修改相关的端口，默认端口是<code>8080</code></p>
+</li>
+<li><p>打开项目运行<code>com.ruoyi.RuoYiApplication.java</code>，出现如下图表示启动成功。</p>
+</li>
+</ol>
+<div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(♥◠‿◠)ﾉﾞ  若依启动成功   ლ(´ڡ`ლ)ﾞ  </span><br><span class="line"> .-------.       ____     __        </span><br><span class="line"> |  _ _   \      \   \   /  /    </span><br><span class="line"> | ( &#x27; )  |       \  _. /  &#x27;       </span><br><span class="line"> |(_ o _) /        _( )_ .&#x27;         </span><br><span class="line"> | (_,_).&#x27; __  ___(_ o _)&#x27;          </span><br><span class="line"> |  |\ \  |  ||   |(_,_)&#x27;         </span><br><span class="line"> |  | \ `&#x27;   /|   `-&#x27;  /           </span><br><span class="line"> |  |  \    /  \      /           </span><br><span class="line"> &#x27;&#x27;-&#x27;   `&#x27;-&#x27;    `-..-&#x27;    </span><br></pre></td></tr></table></figure></div>
+
+<ol start="5">
+<li>想要看到效果，可以通过两种途径，一个是前端的部署，另一个是<code>Swagger+Knife4j</code>自动生成接口文档</li>
+</ol>
+<p>本段参考：<a class="link"   target="_blank" rel="noopener" href="https://doc.ruoyi.vip/ruoyi-vue/document/hjbs.html#%E5%90%8E%E7%AB%AF%E8%BF%90%E8%A1%8C" >RuoYi-Vue环境部署<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h4 id="二-前端查看"><a href="#二-前端查看" class="headerlink" title="(二) 前端查看"></a>(二) 前端查看</h4><p>　　进入项目下的或者独立出来的ui文件夹，在文件夹下打开终端。</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入项目目录</span></span><br><span class="line"><span class="built_in">cd</span> ruoyi-ui</span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm install</span><br><span class="line"><span class="comment"># 强烈建议不要用直接使用 cnpm 安装，会有各种诡异的 bug，可以通过重新指定 registry 来解决 npm 安装速度慢的问题。</span></span><br><span class="line">npm install --registry=https://registry.npmmirror.com</span><br><span class="line"><span class="comment"># 本地开发 启动项目</span></span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure></div>
+
+<p>　　打开浏览器，输入：(<a class="link"   target="_blank" rel="noopener" href="http://localhost/" >http://localhost:80<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>) 默认账户&#x2F;密码 <code>admin/admin123</code>）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/ruoyi.png"
+                     
+                ></p>
+<h4 id="三-接口文档查看"><a href="#三-接口文档查看" class="headerlink" title="(三) 接口文档查看"></a>(三) 接口文档查看</h4><p>　　ruoyi在拉下来的时候就已经配置了Swagger组件。</p>
+<ul>
+<li>多导入一个knife4j包来增强功能</li>
+</ul>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- knife4j --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.xiaoymin<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>knife4j-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>用@Api(tags &#x3D; “”)来对Controller进行修饰</p>
+<p>用@ApiOperation(value &#x3D; “”)来对类进行修饰</p>
+<p>其他修饰参见SpringBoot里面和Swagger相关的@Apixxx</p>
+</li>
+<li><p>使用 <a href="http://ip:port/doc.html">http://ip:port/doc.html</a> 来看api文档，效果如下</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/image-20250103173354935.png"
+                     
+                ></p>
+</li>
+</ul>
+<h3 id="C-相关注解和使用"><a href="#C-相关注解和使用" class="headerlink" title="C. 相关注解和使用"></a>C. 相关注解和使用</h3><h4 id="一-注解"><a href="#一-注解" class="headerlink" title="(一) 注解"></a>(一) 注解</h4><h5 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h5><p>用于给下面的变量赋值</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;$&#123;fanruan.publicKey&#125;&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String publicKey;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>和直接赋值不同的是，这个值用<code>&quot;$&#123;parameter&#125;&quot;</code>的格式来输入值，可以通过修改application.yml中的参数，方便修改，如下所示</p>
+<ul>
+<li><pre><code class="YAML">fanruan:
+  publicKey: MIIBIjANBgkqhki
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 这样子，上面的`publicKey`中的内容中的`$&#123;fanruan.publicKey&#125;`会被替换为`MIIBIjANBgkqhki`</span><br><span class="line"></span><br><span class="line">##### @Autowired</span><br><span class="line"></span><br><span class="line">自动装配，依赖注入</span><br><span class="line"></span><br><span class="line">```Java</span><br><span class="line">@Autowired</span><br><span class="line">private FeishuService feishuService;</span><br></pre></td></tr></table></figure></div>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>与</strong>**<code>@Qualifier</code>**<strong>注解配合使用</strong>：</p>
+<ul>
+<li>当有多个相同类型的Bean时，可以使用<code>@Qualifier</code>注解与<code>@Autowired</code>注解一起使用，以指定注入哪一个具体的Bean。</li>
+</ul>
+</li>
+</ul>
+<p>例如，如果你有一个<code>FeishuService</code>接口和多个实现类，你可能想要指定注入哪一个实现：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="meta">@Qualifier(&quot;specificFeishuService&quot;)</span></span><br><span class="line"><span class="keyword">private</span> FeishuService feishuService;</span><br></pre></td></tr></table></figure></div>
+
+<p>- </p>
+<p><strong>疑问</strong>：和<code>@Resource</code>有哪些区别呢</p>
+<p><code>@Autowired</code>和<code>@Resource</code>两个注解都用于实现依赖注入，但它们之间存在几个主要区别：</p>
+<ol>
+<li><strong>来源不同</strong>：<ol>
+<li><code>@Autowired</code>是Spring框架提供的注解，而<code>@Resource</code>来自于Java规范，特别是JSR-250。</li>
+</ol>
+</li>
+<li><strong>依赖查找顺序不同</strong>：<ol>
+<li><code>@Autowired</code>默认先按类型（byType）查找，如果存在多个Bean再按名称（byName）查找。</li>
+<li><code>@Resource</code>默认先按名称（byName）查找，如果找不到与名称匹配的Bean，则退回到按类型（byType）查找。</li>
+</ol>
+</li>
+<li><strong>支持的参数不同</strong>：<ol>
+<li><code>@Autowired</code>只支持设置一个参数<code>required</code>，用于指定依赖是否必须。</li>
+<li><code>@Resource</code>支持设置多个参数，如<code>name</code>和<code>type</code>等，提供了更灵活的配置。</li>
+</ol>
+</li>
+<li><strong>依赖注入的用法支持不同</strong>：<ol>
+<li><code>@Autowired</code>支持构造方法注入、属性注入和Setter方法注入。</li>
+<li><code>@Resource</code>主要支持属性注入和Setter方法注入，通常不用于构造方法注入。</li>
+</ol>
+</li>
+<li><strong>编译器IDEA的提示不同</strong>：<ol>
+<li>使用<code>@Autowired</code>时，IDEA可能会出现警告，提示字段注入不被推荐。</li>
+<li>使用<code>@Resource</code>时，IDEA通常不会出现类似的警告</li>
+</ol>
+</li>
+</ol>
+<h5 id="model中的"><a href="#model中的" class="headerlink" title="model中的"></a>model中的</h5><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ApiModel(description = &quot;首页数据查询请求参数&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HomeQueryParam</span> &#123;</span><br><span class="line">    <span class="comment">//  年月</span></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;202404&quot;)</span></span><br><span class="line">    <span class="meta">@NotBlank(message = &quot;年月不能为空&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String month;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 类型（单月/累计）</span></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;单月&quot;,example=&quot;这边是api使用展示值&quot;)</span></span><br><span class="line">    <span class="meta">@NotBlank(message = &quot;类型不能为空&quot;)</span> <span class="comment">// 会在为空的时候给前端返回</span></span><br><span class="line">    <span class="keyword">private</span> String type;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ol>
+<li><strong>@Data</strong>：<ol>
+<li>这是Lombok库提供的一个注解，用于自动为类的字段生成getter和setter方法、<code>equals()</code>、<code>hashCode()</code>和<code>toString()</code>方法。这可以减少模板代码的编写，使代码更加简洁。</li>
+</ol>
+</li>
+<li><strong>@ApiModel</strong>：<ol>
+<li>这是Swagger库提供的一个注解，用于描述一个模型（即一个POJO类）的信息。在这个例子中，<code>@ApiModel</code>注解的<code>description</code>属性被设置为”首页数据查询请求参数”，这意味着这个类是用来封装发送到首页数据查询接口的请求参数的。</li>
+</ol>
+</li>
+<li><strong>@ApiModelProperty</strong>：<ol>
+<li>这也是Swagger库提供的一个注解，用于描述<code>HomeQueryParam</code>类中字段的信息。它可以提供字段的额外信息，比如示例值、描述等，这些信息会在生成的Swagger文档中显示。</li>
+</ol>
+</li>
+<li><strong>@NotBlank</strong>：<ol>
+<li>这是一个验证注解，通常与Spring Validation API一起使用，用于确保字段不为空，即字段的值不是<code>null</code>且不是空白字符。如果字段验证失败，会返回<code>message</code>属性指定的错误信息。</li>
+</ol>
+</li>
+</ol>
+<p>类中的两个字段：</p>
+<ul>
+<li><strong>month</strong>：表示年月，使用了<code>@NotBlank</code>注解确保这个字段在请求中必须被提供，且不能是空白字符。<code>@ApiModelProperty</code>注解提供了一个示例值”202404”。</li>
+<li><strong>type</strong>：表示类型（单月&#x2F;累计），同样使用了<code>@NotBlank</code>注解确保这个字段在请求中必须被提供，且不能是空白字符。<code>@ApiModelProperty</code>注解提供了一个示例值”单月”。</li>
+</ul>
+<h5 id="mapper中"><a href="#mapper中" class="headerlink" title="mapper中"></a>mapper中</h5><ul>
+<li><strong>@Mapper</strong></li>
+</ul>
+<p>标识为mybatis的mapper接口</p>
+<ul>
+<li><strong>@DataSource(DataSourceType.<em>PURCHASING</em>)</strong></li>
+</ul>
+<p>这是若依框架自定义的注解，默认MASTER</p>
+<p>其他数据源可以在common-enum-DataSourceType中新增</p>
+<p>然后实际配置在admin中的application-druid.yml中</p>
+<h5 id="controller中"><a href="#controller中" class="headerlink" title="controller中"></a>controller中</h5><ul>
+<li><strong>@Api(tags &#x3D; “采购-供应商管理-品类分布”)</strong></li>
+</ul>
+<p>Swagger中相当于整体的包，一般在Controller的上注解</p>
+<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Api</span>(tags <span class="operator">=</span> &quot;采购-供应商管理-品类分布&quot;)</span><br><span class="line"><span class="variable">@RestController</span></span><br><span class="line"><span class="variable">@RequestMapping</span>(&quot;/purchasing/supplier-manage/category-distribute&quot;)</span><br><span class="line">public class SmCateDistriController &#123;。。。&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><strong>@ApiOperation</strong></li>
+</ul>
+<p>value为文档中接口名称(一般命名方式都是模块名，用-连接)，notes是接口的描述</p>
+<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@ApiOperation</span>(<span class="keyword">value</span> <span class="operator">=</span> &quot;四大品类分布-品类-数量-占比&quot;, notes <span class="operator">=</span> &quot;传入的参数是date+department，department为空时就返回全部事业部的总值。这个部门或者这个时间没有数据的话就返回空。&quot;)</span><br><span class="line"><span class="variable">@PostMapping</span>(&quot;/cateDistri&quot;)</span><br><span class="line"><span class="variable">@Log</span>(title <span class="operator">=</span> &quot;四大品类分布-品类-数量-占比&quot;, businessType <span class="operator">=</span> BusinessType.SELECT)</span><br><span class="line">public <span class="keyword">Result</span><span class="operator">&lt;</span>CateDistriVo<span class="operator">&gt;</span> selectReplaceRate(<span class="variable">@RequestBody</span> <span class="variable">@Validated</span> SmCatDistriParam param)&#123;</span><br><span class="line">    CateDistriVo cateDistriVo <span class="operator">=</span> smCateDistriService.selectCateDistri(param);</span><br><span class="line">    <span class="keyword">return</span> Result.ok(cateDistriVo);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>@Log在日志中标志</p>
+<ul>
+<li>枚举类传递</li>
+</ul>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiParam(name = &quot;smCatDistriEnum&quot;, value = &quot;切换模块&quot;, required = true)</span></span><br><span class="line"><span class="meta">@RequestParam(&quot;smCatDistriEnum&quot;)</span> <span class="meta">@NotNull(message = &quot;smCatDistriEnum&quot;)</span></span><br><span class="line">SmCatDistriEnum smCatDistriEnum</span><br><span class="line">       </span><br><span class="line">枚举类                                                                </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">SmCatDistriEnum</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 品类分布</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    品类分布(<span class="string">&quot;品类分布&quot;</span>),</span><br><span class="line">    四大品类分布下钻表(<span class="string">&quot;四大品类分布下钻表&quot;</span>),</span><br><span class="line">    品类厂商分布下钻表(<span class="string">&quot;品类厂商分布下钻表&quot;</span>),</span><br><span class="line">    各专业部四大品类分布下钻表(<span class="string">&quot;各专业部四大品类分布下钻表&quot;</span>),</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line"></span><br><span class="line">    SmCatDistriEnum(String description) &#123;</span><br><span class="line">        <span class="built_in">this</span>.description = description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getDescription</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> description;</span><br><span class="line">    &#125; <span class="comment">// 也可以在类上面用@Getter替代</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="二-Result的使用"><a href="#二-Result的使用" class="headerlink" title="(二) Result的使用"></a>(二) Result的使用</h4><ul>
+<li><p>在全限定名：com.cockpit.common.core.domain.Result下</p>
+</li>
+<li><p>代码</p>
+<ul>
+<li><pre><code class="Java">package com.cockpit.common.core.domain;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+/**
+ * 响应结果
+ *
+ * @author liyuqi
+ */
+@Data
+@ApiModel( description = &quot;响应结果&quot; )
+public class Result&lt;T&gt; &#123;
+
+    /**
+     * 响应状态码
+     */
+    @ApiModelProperty( value = &quot;响应状态码&quot;, example = &quot;200&quot; )
+    private int code;
+
+    /**
+     * 响应消息
+     */
+    @ApiModelProperty( value = &quot;响应消息&quot;, example = &quot;参数不合法&quot; )
+    private String msg;
+
+    /**
+     * 响应结果
+     */
+    @ApiModelProperty( value = &quot;响应结果&quot; )
+    private T data;
+
+    /**
+     * 构造方法
+     *
+     * @param code  响应状态
+     * @param msg 响应消息
+     * @param data  响应结果
+     */
+    private Result(int code, String msg, T data) &#123;
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    &#125;
+
+    /**
+     * 构造方法
+     *
+     * @param code  响应状态
+     * @param msg 响应消息
+     */
+    private Result(int code, String msg) &#123;
+        this(code, msg, null );
+    &#125;
+
+    /**
+     * 构造方法
+     */
+    public Result() &#123;
+
+    &#125;
+
+    /**
+     * 返回成功响应对象
+     *
+     * @return 响应对象
+     */
+    public static &lt;T&gt; Result&lt;T&gt; ok( String message, T result ) &#123;
+        return new Result&lt;&gt;( 200, message, result );
+    &#125;
+
+    /**
+     * 返回成功响应结果
+     *
+     * @param result 响应结果
+     * @param &lt;T&gt;    响应结果类型
+     * @return 响应对象
+     */
+    public static &lt;T&gt; Result&lt;T&gt; ok( T result ) &#123;
+        return ok( null, result );
+    &#125;
+
+    /**
+     * 返回成功响应对象
+     *
+     * @return 响应对象
+     */
+    public static Result&lt;Void&gt; ok() &#123;
+        return ok( null );
+    &#125;
+
+    /**
+     * 返回失败响应对象
+     *
+     * @param status  响应状态
+     * @param message 响应消息
+     * @return 响应对象
+     */
+    public static &lt;T&gt; Result&lt;T&gt; fail( int status, String message ) &#123;
+        return new Result&lt;&gt;( status, message );
+    &#125;
+
+&#125;
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 需要包</span><br><span class="line"></span><br><span class="line">```XML</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.swagger&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;swagger-annotations&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.6.2&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></div>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>这时可用<code>Result.ok(xxx)</code>返回json格式内容</p>
+</li>
+</ul>
+<h4 id="三-装载数据源"><a href="#三-装载数据源" class="headerlink" title="(三) 装载数据源"></a>(三) 装载数据源</h4><ol>
+<li><p>在admin相应的sping.datasource.druid.xxx下加，如下</p>
+<div class="code-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">datasource:</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">com.zaxxer.hikari.HikariDataSource</span></span><br><span class="line">        <span class="attr">druid:</span></span><br><span class="line">            <span class="attr">home:</span></span><br><span class="line">                <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 这个不能少</span></span><br><span class="line">                <span class="attr">url:</span> </span><br><span class="line">                <span class="attr">username:</span> </span><br><span class="line">                <span class="attr">password:</span> </span><br><span class="line">                <span class="attr">driverClassName:</span> </span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>在common中找到enums,DataSourceType加相应的枚举类的名字</p>
+</li>
+<li><p>在framework中找到config.DruidConfig，其中要加两处要加</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(&quot;spring.datasource.druid.xxx&quot;)</span></span><br><span class="line"><span class="meta">@ConditionalOnProperty(prefix = &quot;spring.datasource.druid.xxx&quot;, name = &quot;enabled&quot;, havingValue = &quot;true&quot;)</span></span><br><span class="line"><span class="keyword">public</span> DataSource <span class="title function_">homeDataSource</span><span class="params">(DruidProperties druidProperties)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">DruidDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> DruidDataSourceBuilder.create().build();</span><br><span class="line">    <span class="keyword">return</span> druidProperties.dataSource(dataSource);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>以及在dataSource方法中加一句</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setDataSource(targetDataSources, DataSourceType.XXX.name(), <span class="string">&quot;xxxDataSource&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>装配完成，使用的时候只要在Mapper接口上加上<code>@DataSource(DataSourceType.XXX)</code>即可</p>
+</li>
+</ol>
+<h4 id="四-接口调用"><a href="#四-接口调用" class="headerlink" title="(四) 接口调用"></a>(四) 接口调用</h4><p>　　接口调用前都要获取<code>token</code>，获取<code>token</code>的方式可以找<code>Login</code>接口。在admin模块下找controller中的system有一个类为<code>SysLoginController</code>。可以用接口文档的注解方式给它注解，运行后我们能看到如下的接口。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="\images\image-20250103194830561.png"
+                      style="zoom: 70%;" 
+                >
+
+</br>
+
+<p>　　进入调试中，请求头部<code>Authorization</code>是不需要的，请求参数中有如下</p>
+<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;uuid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>　　在此之前可以进入Login函数的server层把验证码验证给去了，code那边放的就是验证码。</p>
+<p>　　然后默认账号<code>admin</code>，默认密码<code>admin123</code>。提交后获得token，放进其他接口的<code>Authorization</code>即可访问其他接口。</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 若依简单使用</li>
+        <li><strong>作者:</strong> Sabthever</li>
+        <li><strong>创建于
+                :</strong> 2025-01-03 14:26:02</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-01-03 19:57:29
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://sabthever.online/2025/01/03/technology/java/ruoyi-1/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E8%8B%A5%E4%BE%9D/">#若依</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Java/">#Java</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/12/31/technology/security/SRC导航/" title="SRC导航（转载）" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="SRC导航（转载）" class="!max-w-none">
+  <span class="title">SRC导航（转载）</span>
+</a><a class="recommended-article-item" href="/2024/12/29/technology/blog/page-beautify/" title="Markdown编写与页面美化" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Markdown编写与页面美化" class="!max-w-none">
+  <span class="title">Markdown编写与页面美化</span>
+</a><a class="recommended-article-item" href="/2024/12/24/technology/blog/hexo-domain-settings/" title="博客配置域名" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="博客配置域名" class="!max-w-none">
+  <span class="title">博客配置域名</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/12/31/technology/security/SRC导航/" title="SRC导航（转载）" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="SRC导航（转载）" class="!max-w-none">
+  <span class="title">SRC导航（转载）</span>
+</a><a class="recommended-article-item" href="/2024/12/29/technology/blog/page-beautify/" title="Markdown编写与页面美化" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Markdown编写与页面美化" class="!max-w-none">
+  <span class="title">Markdown编写与页面美化</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/01/02/personal/Dasha/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Dasha Taran</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">若依简单使用</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-text">A. 相关链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82"><span class="nav-text">B. 系统需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%89%B9%E6%80%A7"><span class="nav-text">C. 特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96"><span class="nav-text">A. 代码获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E8%BF%90%E8%A1%8C"><span class="nav-text">B. 本地部署运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="nav-text">(一) 后端部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-%E5%89%8D%E7%AB%AF%E6%9F%A5%E7%9C%8B"><span class="nav-text">(二) 前端查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E6%9F%A5%E7%9C%8B"><span class="nav-text">(三) 接口文档查看</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%9B%B8%E5%85%B3%E6%B3%A8%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-text">C. 相关注解和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E6%B3%A8%E8%A7%A3"><span class="nav-text">(一) 注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Value"><span class="nav-text">@Value</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#model%E4%B8%AD%E7%9A%84"><span class="nav-text">model中的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mapper%E4%B8%AD"><span class="nav-text">mapper中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#controller%E4%B8%AD"><span class="nav-text">controller中</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-Result%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">(二) Result的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E8%A3%85%E8%BD%BD%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-text">(三) 装载数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B-%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8"><span class="nav-text">(四) 接口调用</span></a></li></ol></li></ol></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Sabthever</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 10 篇文章
+                    </span>
+                    
+                        <span>
+                            共 8.9k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+    
+<script src="/js/build/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/build/plugins/masonry.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+    
+<script src="/js/build/layouts/bookmarkNav.js" type="module"></script>
+
+
+	
+</body>
+
+</html>
