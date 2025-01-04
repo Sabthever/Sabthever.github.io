@@ -90,7 +90,7 @@
       </tags>
   </entry>
   <entry>
-    <title>若依简单使用</title>
+    <title>若依框架的简单使用</title>
     <url>/2025/01/03/technology/java/ruoyi-1/</url>
     <content><![CDATA[<p>　　由于工作需求，后端开发框架都是使用的若依框架，于是自己去学习一下相关的使用。这里我主要使用的是它的前后端分离架构，也就是springboot+vue的架构。</p>
 <p>　　有springboot基础的小伙伴们上手起来应该是很快的，主要就是使用中间的一些注解。大部分内容都是直接参考<a class="link"   href="https://doc.ruoyi.vip/" >RuoYi官网<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>的。</p>
@@ -177,31 +177,27 @@
                 ></p>
 </li>
 </ul>
-<h3 id="C-相关注解和使用"><a href="#C-相关注解和使用" class="headerlink" title="C. 相关注解和使用"></a>C. 相关注解和使用</h3><h4 id="一-注解"><a href="#一-注解" class="headerlink" title="(一) 注解"></a>(一) 注解</h4><h5 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h5><p>用于给下面的变量赋值</p>
+<h3 id="C-相关注解和使用"><a href="#C-相关注解和使用" class="headerlink" title="C. 相关注解和使用"></a>C. 相关注解和使用</h3><h4 id="一-注解"><a href="#一-注解" class="headerlink" title="(一) 注解"></a>(一) 注解</h4><h5 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h5><p>　　用于给下面的变量赋值</p>
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;$&#123;fanruan.publicKey&#125;&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String publicKey;</span><br></pre></td></tr></table></figure></div>
 
-<ul>
-<li><p>和直接赋值不同的是，这个值用<code>&quot;$&#123;parameter&#125;&quot;</code>的格式来输入值，可以通过修改application.yml中的参数，方便修改，如下所示</p>
-<ul>
-<li><pre><code class="YAML">fanruan:
-  publicKey: MIIBIjANBgkqhki
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">  - 这样子，上面的`publicKey`中的内容中的`$&#123;fanruan.publicKey&#125;`会被替换为`MIIBIjANBgkqhki`</span><br><span class="line"></span><br><span class="line">##### @Autowired</span><br><span class="line"></span><br><span class="line">自动装配，依赖注入</span><br><span class="line"></span><br><span class="line">```Java</span><br><span class="line">@Autowired</span><br><span class="line">private FeishuService feishuService;</span><br></pre></td></tr></table></figure></div>
-</code></pre>
-</li>
-</ul>
-</li>
-<li><p><strong>与</strong>**<code>@Qualifier</code>**<strong>注解配合使用</strong>：</p>
-<ul>
-<li>当有多个相同类型的Bean时，可以使用<code>@Qualifier</code>注解与<code>@Autowired</code>注解一起使用，以指定注入哪一个具体的Bean。</li>
-</ul>
-</li>
-</ul>
-<p>例如，如果你有一个<code>FeishuService</code>接口和多个实现类，你可能想要指定注入哪一个实现：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="meta">@Qualifier(&quot;specificFeishuService&quot;)</span></span><br><span class="line"><span class="keyword">private</span> FeishuService feishuService;</span><br></pre></td></tr></table></figure></div>
+<p>　　和直接赋值不同的是，这个值用<code>&quot;$&#123;parameter&#125;&quot;</code>的格式来输入值，可以通过修改application.yml中的参数，方便修改，如下所示</p>
+<div class="code-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">fanruan:</span></span><br><span class="line">  <span class="attr">publicKey:</span> <span class="string">MIIBIjANBgkqhki</span></span><br></pre></td></tr></table></figure></div>
 
-<p>- </p>
-<p><strong>疑问</strong>：和<code>@Resource</code>有哪些区别呢</p>
-<p><code>@Autowired</code>和<code>@Resource</code>两个注解都用于实现依赖注入，但它们之间存在几个主要区别：</p>
+<p>　　这样子，上面的<code>publicKey</code>中的内容中的<code>$&#123;fanruan.publicKey&#125;</code>会被替换为<code>MIIBIjANBgkqhki</code></p>
+<hr>
+<h5 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h5><p>　　自动装配，依赖注入</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> FeishuService feishuService;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p><strong>与</strong>**<code>@Qualifier</code>**<strong>注解配合使用</strong>：</p>
+<p>　　当有多个相同类型的Bean时，可以使用<code>@Qualifier</code>注解与<code>@Autowired</code>注解一起使用，以指定注入哪一个具体的Bean。</p>
+<p>  　　例如，如果你有一个<code>FeishuService</code>接口和多个实现类，你可能想要指定注入哪一个实现：</p>
+  <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="meta">@Qualifier(&quot;specificFeishuService&quot;)</span></span><br><span class="line"><span class="keyword">private</span> FeishuService feishuService;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>疑问</strong>：和<code>@Resource</code>有哪些区别呢</p>
+</li>
+</ul>
+<p>　　<code>@Autowired</code>和<code>@Resource</code>两个注解都用于实现依赖注入，但它们之间存在几个主要区别：</p>
 <ol>
 <li><strong>来源不同</strong>：<ol>
 <li><code>@Autowired</code>是Spring框架提供的注解，而<code>@Resource</code>来自于Java规范，特别是JSR-250。</li>
@@ -228,6 +224,7 @@
 </ol>
 </li>
 </ol>
+<hr>
 <h5 id="model中的"><a href="#model中的" class="headerlink" title="model中的"></a>model中的</h5><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ApiModel(description = &quot;首页数据查询请求参数&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HomeQueryParam</span> &#123;</span><br><span class="line">    <span class="comment">//  年月</span></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;202404&quot;)</span></span><br><span class="line">    <span class="meta">@NotBlank(message = &quot;年月不能为空&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String month;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 类型（单月/累计）</span></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;单月&quot;,example=&quot;这边是api使用展示值&quot;)</span></span><br><span class="line">    <span class="meta">@NotBlank(message = &quot;类型不能为空&quot;)</span> <span class="comment">// 会在为空的时候给前端返回</span></span><br><span class="line">    <span class="keyword">private</span> String type;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <ol>
@@ -253,6 +250,7 @@
 <li><strong>month</strong>：表示年月，使用了<code>@NotBlank</code>注解确保这个字段在请求中必须被提供，且不能是空白字符。<code>@ApiModelProperty</code>注解提供了一个示例值”202404”。</li>
 <li><strong>type</strong>：表示类型（单月&#x2F;累计），同样使用了<code>@NotBlank</code>注解确保这个字段在请求中必须被提供，且不能是空白字符。<code>@ApiModelProperty</code>注解提供了一个示例值”单月”。</li>
 </ul>
+<hr>
 <h5 id="mapper中"><a href="#mapper中" class="headerlink" title="mapper中"></a>mapper中</h5><ul>
 <li><strong>@Mapper</strong></li>
 </ul>
@@ -263,6 +261,7 @@
 <p>这是若依框架自定义的注解，默认MASTER</p>
 <p>其他数据源可以在common-enum-DataSourceType中新增</p>
 <p>然后实际配置在admin中的application-druid.yml中</p>
+<hr>
 <h5 id="controller中"><a href="#controller中" class="headerlink" title="controller中"></a>controller中</h5><ul>
 <li><strong>@Api(tags &#x3D; “采购-供应商管理-品类分布”)</strong></li>
 </ul>
@@ -281,123 +280,20 @@
 </ul>
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ApiParam(name = &quot;smCatDistriEnum&quot;, value = &quot;切换模块&quot;, required = true)</span></span><br><span class="line"><span class="meta">@RequestParam(&quot;smCatDistriEnum&quot;)</span> <span class="meta">@NotNull(message = &quot;smCatDistriEnum&quot;)</span></span><br><span class="line">SmCatDistriEnum smCatDistriEnum</span><br><span class="line">       </span><br><span class="line">枚举类                                                                </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">SmCatDistriEnum</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 品类分布</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    品类分布(<span class="string">&quot;品类分布&quot;</span>),</span><br><span class="line">    四大品类分布下钻表(<span class="string">&quot;四大品类分布下钻表&quot;</span>),</span><br><span class="line">    品类厂商分布下钻表(<span class="string">&quot;品类厂商分布下钻表&quot;</span>),</span><br><span class="line">    各专业部四大品类分布下钻表(<span class="string">&quot;各专业部四大品类分布下钻表&quot;</span>),</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line"></span><br><span class="line">    SmCatDistriEnum(String description) &#123;</span><br><span class="line">        <span class="built_in">this</span>.description = description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getDescription</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> description;</span><br><span class="line">    &#125; <span class="comment">// 也可以在类上面用@Getter替代</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
+<hr>
 <h4 id="二-Result的使用"><a href="#二-Result的使用" class="headerlink" title="(二) Result的使用"></a>(二) Result的使用</h4><ul>
 <li><p>在全限定名：com.cockpit.common.core.domain.Result下</p>
 </li>
 <li><p>代码</p>
-<ul>
-<li><pre><code class="Java">package com.cockpit.common.core.domain;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-
-/**
- * 响应结果
- *
- * @author liyuqi
- */
-@Data
-@ApiModel( description = &quot;响应结果&quot; )
-public class Result&lt;T&gt; &#123;
-
-    /**
-     * 响应状态码
-     */
-    @ApiModelProperty( value = &quot;响应状态码&quot;, example = &quot;200&quot; )
-    private int code;
-
-    /**
-     * 响应消息
-     */
-    @ApiModelProperty( value = &quot;响应消息&quot;, example = &quot;参数不合法&quot; )
-    private String msg;
-
-    /**
-     * 响应结果
-     */
-    @ApiModelProperty( value = &quot;响应结果&quot; )
-    private T data;
-
-    /**
-     * 构造方法
-     *
-     * @param code  响应状态
-     * @param msg 响应消息
-     * @param data  响应结果
-     */
-    private Result(int code, String msg, T data) &#123;
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
-    &#125;
-
-    /**
-     * 构造方法
-     *
-     * @param code  响应状态
-     * @param msg 响应消息
-     */
-    private Result(int code, String msg) &#123;
-        this(code, msg, null );
-    &#125;
-
-    /**
-     * 构造方法
-     */
-    public Result() &#123;
-
-    &#125;
-
-    /**
-     * 返回成功响应对象
-     *
-     * @return 响应对象
-     */
-    public static &lt;T&gt; Result&lt;T&gt; ok( String message, T result ) &#123;
-        return new Result&lt;&gt;( 200, message, result );
-    &#125;
-
-    /**
-     * 返回成功响应结果
-     *
-     * @param result 响应结果
-     * @param &lt;T&gt;    响应结果类型
-     * @return 响应对象
-     */
-    public static &lt;T&gt; Result&lt;T&gt; ok( T result ) &#123;
-        return ok( null, result );
-    &#125;
-
-    /**
-     * 返回成功响应对象
-     *
-     * @return 响应对象
-     */
-    public static Result&lt;Void&gt; ok() &#123;
-        return ok( null );
-    &#125;
-
-    /**
-     * 返回失败响应对象
-     *
-     * @param status  响应状态
-     * @param message 响应消息
-     * @return 响应对象
-     */
-    public static &lt;T&gt; Result&lt;T&gt; fail( int status, String message ) &#123;
-        return new Result&lt;&gt;( status, message );
-    &#125;
-
-&#125;
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 需要包</span><br><span class="line"></span><br><span class="line">```XML</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.swagger&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;swagger-annotations&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.6.2&lt;/version&gt;</span><br><span class="line">    &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></div>
-</code></pre>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cockpit.common.core.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModel;</span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModelProperty;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 响应结果</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> liyuqi</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ApiModel( description = &quot;响应结果&quot; )</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Result</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应状态码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ApiModelProperty( value = &quot;响应状态码&quot;, example = &quot;200&quot; )</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应消息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ApiModelProperty( value = &quot;响应消息&quot;, example = &quot;参数不合法&quot; )</span></span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ApiModelProperty( value = &quot;响应结果&quot; )</span></span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 构造方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> code  响应状态</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> msg 响应消息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> data  响应结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Result</span><span class="params">(<span class="type">int</span> code, String msg, T data)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">        <span class="built_in">this</span>.msg = msg;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 构造方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> code  响应状态</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> msg 响应消息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Result</span><span class="params">(<span class="type">int</span> code, String msg)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>(code, msg, <span class="literal">null</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 构造方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Result</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回成功响应对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 响应对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; Result&lt;T&gt; <span class="title function_">ok</span><span class="params">( String message, T result )</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>&lt;&gt;( <span class="number">200</span>, message, result );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回成功响应结果</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> result 响应结果</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;    响应结果类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 响应对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; Result&lt;T&gt; <span class="title function_">ok</span><span class="params">( T result )</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ok( <span class="literal">null</span>, result );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回成功响应对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 响应对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result&lt;Void&gt; <span class="title function_">ok</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ok( <span class="literal">null</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回失败响应对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> status  响应状态</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> message 响应消息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 响应对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; Result&lt;T&gt; <span class="title function_">fail</span><span class="params">( <span class="type">int</span> status, String message )</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>&lt;&gt;( status, message );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 </li>
-</ul>
+<li><p>需要包</p>
+  <div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.swagger<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>swagger-annotations<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.6.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p>这时可用<code>Result.ok(xxx)</code>返回json格式内容</p>
 </li>
 </ul>
+<hr>
 <h4 id="三-装载数据源"><a href="#三-装载数据源" class="headerlink" title="(三) 装载数据源"></a>(三) 装载数据源</h4><ol>
 <li><p>在admin相应的sping.datasource.druid.xxx下加，如下</p>
 <div class="code-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">datasource:</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">com.zaxxer.hikari.HikariDataSource</span></span><br><span class="line">        <span class="attr">druid:</span></span><br><span class="line">            <span class="attr">home:</span></span><br><span class="line">                <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 这个不能少</span></span><br><span class="line">                <span class="attr">url:</span> </span><br><span class="line">                <span class="attr">username:</span> </span><br><span class="line">                <span class="attr">password:</span> </span><br><span class="line">                <span class="attr">driverClassName:</span> </span><br></pre></td></tr></table></figure></div>
@@ -413,6 +309,7 @@ public class Result&lt;T&gt; &#123;
 <li><p>装配完成，使用的时候只要在Mapper接口上加上<code>@DataSource(DataSourceType.XXX)</code>即可</p>
 </li>
 </ol>
+<hr>
 <h4 id="四-接口调用"><a href="#四-接口调用" class="headerlink" title="(四) 接口调用"></a>(四) 接口调用</h4><p>　　接口调用前都要获取<code>token</code>，获取<code>token</code>的方式可以找<code>Login</code>接口。在admin模块下找controller中的system有一个类为<code>SysLoginController</code>。可以用接口文档的注解方式给它注解，运行后我们能看到如下的接口。</p>
 <img  
                      lazyload
@@ -428,6 +325,7 @@ public class Result&lt;T&gt; &#123;
 
 <p>　　在此之前可以进入Login函数的server层把验证码验证给去了，code那边放的就是验证码。</p>
 <p>　　然后默认账号<code>admin</code>，默认密码<code>admin123</code>。提交后获得token，放进其他接口的<code>Authorization</code>即可访问其他接口。</p>
+<h1 id="结束点"><a href="#结束点" class="headerlink" title="结束点"></a>结束点</h1><p>　　若依框架中还有更多功能，比如自动代码生成，权限分配等等，这些可以自己<a class="link"   href="https://doc.ruoyi.vip/ruoyi-vue/" >参考文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。</p>
 ]]></content>
       <categories>
         <category>Technology</category>
