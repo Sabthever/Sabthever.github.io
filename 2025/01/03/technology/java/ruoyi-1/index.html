@@ -30,10 +30,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sabthever.online/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-01-03T06:26:02.000Z">
-<meta property="article:modified_time" content="2025-01-04T01:46:57.066Z">
+<meta property="article:modified_time" content="2025-01-15T08:31:14.686Z">
 <meta property="article:author" content="Sabthever">
-<meta property="article:tag" content="Java">
 <meta property="article:tag" content="若依">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sabthever.online/images/redefine-og.webp">
     
@@ -412,7 +412,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">19</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -420,7 +420,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">12</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -469,8 +469,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-01-04 09:46:57</span>
-            <span class="mobile">2025-01-04 09:46:57</span>
+            <span class="desktop">2025-01-15 16:31:14</span>
+            <span class="mobile">2025-01-15 16:31:14</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -508,11 +508,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Java/">Java</a>&nbsp;
+                        <a href="/tags/%E8%8B%A5%E4%BE%9D/">若依</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E8%8B%A5%E4%BE%9D/">若依</a>&nbsp;
+                        | <a href="/tags/Java/">Java</a>&nbsp;
                     </li>
                 
             </ul>
@@ -522,7 +522,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.3k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.6k 字</span>
         </span>
     
     
@@ -604,7 +604,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/ruoyi.png"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/ruoyi.png"
                      
                 ></p>
 <h4 id="三-接口文档查看"><a href="#三-接口文档查看" class="headerlink" title="(三) 接口文档查看"></a>(三) 接口文档查看</h4><p>　　ruoyi在拉下来的时候就已经配置了Swagger组件。</p>
@@ -622,7 +622,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/image-20250103173354935.png"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/image-20250103173354935.png"
                      
                 ></p>
 </li>
@@ -764,7 +764,7 @@
 <img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="\images\image-20250103194830561.png"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/image-20250103194830561.png"
                       style="zoom: 70%;" 
                 >
 
@@ -775,6 +775,25 @@
 
 <p>　　在此之前可以进入Login函数的server层把验证码验证给去了，code那边放的就是验证码。</p>
 <p>　　然后默认账号<code>admin</code>，默认密码<code>admin123</code>。提交后获得token，放进其他接口的<code>Authorization</code>即可访问其他接口。</p>
+<h4 id="五-参数传递"><a href="#五-参数传递" class="headerlink" title="(五) 参数传递"></a>(五) 参数传递</h4><p>　　后端接口主要有两种参数接收的方式，</p>
+<ol>
+<li><p><strong>用类封装</strong></p>
+<p>这种方式，前端用Json格式传递到后端，后端可以用类来接收数据，如：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation(&quot;Test1&quot;)</span></span><br><span class="line"><span class="meta">@PostMapping(&quot;/Test1&quot;)</span></span><br><span class="line"><span class="meta">@Log(title = &quot;Test1&quot;, businessType = BusinessType.SELECT)</span></span><br><span class="line"><span class="keyword">public</span> Result&lt;Map&lt;String, Object&gt;&gt; <span class="title function_">getAttributeSupplierInfo</span><span class="params">(<span class="meta">@ApiParam(value = &quot;请求参数&quot;)</span> <span class="meta">@RequestBody</span> AttributeSupplierParam param)</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> Result.ok(supplierAreaService.getAttributeSupplierInfo(param));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>AttributeSupplierParam内部如下</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ApiModel(description = &quot;Test1传参&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AttributeSupplierParam</span> &#123;</span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;部门&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String department;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;年月&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String month;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;省份&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; province;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>那么前端传递过来的参数为json，形如</p>
+<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;department&quot;</span><span class="punctuation">:</span><span class="string">&quot;具体部门名称&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;month&quot;</span><span class="punctuation">:</span><span class="string">&quot;具体年月&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;province&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;省份1&quot;</span><span class="punctuation">,</span><span class="string">&quot;省份2&quot;</span><span class="punctuation">,</span><span class="string">&quot;省份3&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>直接传递</strong></p>
+<p>这种方式，前端用<code>application/x-www-form-urlencoded</code>传递到后端，后端可以用类来接收数据，如：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ApiOperation(&quot;Test2&quot;)</span></span><br><span class="line"><span class="meta">@GetMapping(&quot;/Test2&quot;)</span></span><br><span class="line"><span class="meta">@Log(title = &quot;Test2&quot;, businessType = BusinessType.SELECT)</span></span><br><span class="line"><span class="keyword">public</span> Result&lt;AreaTabListVo&gt; <span class="title function_">selectAreaTabList</span><span class="params">(<span class="meta">@ApiParam(name = &quot;name&quot;, value = &quot;张三&quot;, required = false, example = &quot;张三&quot;)</span></span></span><br><span class="line"><span class="params">                                                         <span class="meta">@RequestParam(value = &quot;name&quot;, required = false)</span> String name)</span> &#123;</span><br><span class="line">    <span class="type">AreaTabListVo</span> <span class="variable">areaTabListVo</span> <span class="operator">=</span> supplierAreaService.selectAreaTabList(name);</span><br><span class="line">    <span class="keyword">return</span> Result.ok(areaTabListVo);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在使用<code>get</code>时，能够直接从url获取相应值，在<code>post</code>时，能够从请求体中获取相应的数据。</p>
+</li>
+</ol>
 <h1 id="结束点"><a href="#结束点" class="headerlink" title="结束点"></a>结束点</h1><p>　　若依框架中还有更多功能，比如自动代码生成，权限分配等等，这些可以自己<a class="link"   target="_blank" rel="noopener" href="https://doc.ruoyi.vip/ruoyi-vue/" >参考文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。</p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
 		</div>
@@ -790,7 +809,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-01-04 09:46:57
+                    :</strong> 2025-01-15 16:31:14
             </li>
         
         <li>
@@ -816,11 +835,11 @@
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/Java/">#Java</a>&nbsp;
+				<a href="/tags/%E8%8B%A5%E4%BE%9D/">#若依</a>&nbsp;
 			</li>
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/%E8%8B%A5%E4%BE%9D/">#若依</a>&nbsp;
+				<a href="/tags/Java/">#Java</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -832,27 +851,27 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/08/technology/java/下钻表导出为Excel/" title="下钻表导出为Excel" rel="bookmark">
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/15/technology/java/Mybatis一对多嵌套查询/" title="Mybatis一对多嵌套查询" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Mybatis一对多嵌套查询" class="!max-w-none">
+  <span class="title">Mybatis一对多嵌套查询</span>
+</a><a class="recommended-article-item" href="/2025/01/08/technology/java/下钻表导出为Excel/" title="下钻表导出为Excel" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="下钻表导出为Excel" class="!max-w-none">
   <span class="title">下钻表导出为Excel</span>
 </a><a class="recommended-article-item" href="/2024/12/18/technology/blog/Welcome/" title="Sabthever的博客搭建" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="Sabthever的博客搭建" class="!max-w-none">
   <span class="title">Sabthever的博客搭建</span>
-</a><a class="recommended-article-item" href="/2024/12/24/technology/blog/hexo-domain-settings/" title="博客配置域名" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="博客配置域名" class="!max-w-none">
-  <span class="title">博客配置域名</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/08/technology/java/下钻表导出为Excel/" title="下钻表导出为Excel" rel="bookmark">
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/15/technology/java/Mybatis一对多嵌套查询/" title="Mybatis一对多嵌套查询" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Mybatis一对多嵌套查询" class="!max-w-none">
+  <span class="title">Mybatis一对多嵌套查询</span>
+</a><a class="recommended-article-item" href="/2025/01/08/technology/java/下钻表导出为Excel/" title="下钻表导出为Excel" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="下钻表导出为Excel" class="!max-w-none">
   <span class="title">下钻表导出为Excel</span>
-</a><a class="recommended-article-item" href="/2024/12/18/technology/blog/Welcome/" title="Sabthever的博客搭建" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="Sabthever的博客搭建" class="!max-w-none">
-  <span class="title">Sabthever的博客搭建</span>
 </a></div>
    </div>
   </div>
@@ -898,7 +917,7 @@
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">若依框架的简单使用</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-text">A. 相关链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82"><span class="nav-text">B. 系统需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%89%B9%E6%80%A7"><span class="nav-text">C. 特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96"><span class="nav-text">A. 代码获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E8%BF%90%E8%A1%8C"><span class="nav-text">B. 本地部署运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="nav-text">(一) 后端部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-%E5%89%8D%E7%AB%AF%E6%9F%A5%E7%9C%8B"><span class="nav-text">(二) 前端查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E6%9F%A5%E7%9C%8B"><span class="nav-text">(三) 接口文档查看</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%9B%B8%E5%85%B3%E6%B3%A8%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-text">C. 相关注解和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E6%B3%A8%E8%A7%A3"><span class="nav-text">(一) 注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Value"><span class="nav-text">@Value</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Autowired"><span class="nav-text">@Autowired</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#model%E4%B8%AD%E7%9A%84"><span class="nav-text">model中的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mapper%E4%B8%AD"><span class="nav-text">mapper中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#controller%E4%B8%AD"><span class="nav-text">controller中</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-Result%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">(二) Result的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E8%A3%85%E8%BD%BD%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-text">(三) 装载数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B-%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8"><span class="nav-text">(四) 接口调用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E7%82%B9"><span class="nav-text">结束点</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-text">A. 相关链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82"><span class="nav-text">B. 系统需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%89%B9%E6%80%A7"><span class="nav-text">C. 特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96"><span class="nav-text">A. 代码获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E8%BF%90%E8%A1%8C"><span class="nav-text">B. 本地部署运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="nav-text">(一) 后端部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-%E5%89%8D%E7%AB%AF%E6%9F%A5%E7%9C%8B"><span class="nav-text">(二) 前端查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E6%9F%A5%E7%9C%8B"><span class="nav-text">(三) 接口文档查看</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%9B%B8%E5%85%B3%E6%B3%A8%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-text">C. 相关注解和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E6%B3%A8%E8%A7%A3"><span class="nav-text">(一) 注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Value"><span class="nav-text">@Value</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Autowired"><span class="nav-text">@Autowired</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#model%E4%B8%AD%E7%9A%84"><span class="nav-text">model中的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mapper%E4%B8%AD"><span class="nav-text">mapper中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#controller%E4%B8%AD"><span class="nav-text">controller中</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-Result%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">(二) Result的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E8%A3%85%E8%BD%BD%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-text">(三) 装载数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B-%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8"><span class="nav-text">(四) 接口调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-text">(五) 参数传递</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E7%82%B9"><span class="nav-text">结束点</span></a></li></ol>
 
 	</div>
 </div>
@@ -925,11 +944,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 11 篇文章
+                        共撰写了 12 篇文章
                     </span>
                     
                         <span>
-                            共 13.3k 字
+                            共 14.5k 字
                         </span>
                     
                 </p>
