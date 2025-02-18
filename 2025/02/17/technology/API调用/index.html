@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sabthever.online/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-02-17T06:57:10.000Z">
-<meta property="article:modified_time" content="2025-02-17T07:00:49.546Z">
+<meta property="article:modified_time" content="2025-02-18T00:56:38.247Z">
 <meta property="article:author" content="Sabthever">
 <meta property="article:tag" content="SDK">
 <meta property="article:tag" content="Webhook">
@@ -422,7 +422,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -471,8 +471,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-02-17 15:49</span>
-            <span class="mobile">2025-02-17 15:49</span>
+            <span class="desktop">2025-02-18 08:56:38</span>
+            <span class="mobile">2025-02-18 08:56:38</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -576,7 +576,7 @@
 <li><h3 id="Java-Web"><a href="#Java-Web" class="headerlink" title="Java Web"></a><strong>Java Web</strong></h3><p>此方法使用的是<code>java.net.HttpURLConnection</code>数据包</p>
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.net.HttpURLConnection;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FeishuPostExample</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">URL</span> <span class="operator">=</span> <span class="string">&quot;https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=user_id&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">AUTHORIZATION</span> <span class="operator">=</span> <span class="string">&quot;Bearer t-g1042h8JMSNCGICKKETF&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">CONTENT_TYPE</span> <span class="operator">=</span> <span class="string">&quot;application/json&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// Create and configure the connection</span></span><br><span class="line">            <span class="type">URL</span> <span class="variable">url</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">URL</span>(URL);</span><br><span class="line">            <span class="type">HttpURLConnection</span> <span class="variable">connection</span> <span class="operator">=</span> (HttpURLConnection) url.openConnection();</span><br><span class="line">            connection.setRequestMethod(<span class="string">&quot;POST&quot;</span>);</span><br><span class="line">            connection.setRequestProperty(<span class="string">&quot;Authorization&quot;</span>, AUTHORIZATION);</span><br><span class="line">            connection.setRequestProperty(<span class="string">&quot;Content-Type&quot;</span>, CONTENT_TYPE);</span><br><span class="line">            connection.setDoOutput(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Write the request body</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">jsonBody</span> <span class="operator">=</span> <span class="string">&quot;&#123;&quot;</span></span><br><span class="line">                    + <span class="string">&quot;\&quot;content\&quot;: \&quot;&#123;\\\&quot;text\\\&quot;:\\\&quot;2-17\\\&quot;&#125;\&quot;,&quot;</span></span><br><span class="line">                    + <span class="string">&quot;\&quot;msg_type\&quot;: \&quot;text\&quot;,&quot;</span></span><br><span class="line">                    + <span class="string">&quot;\&quot;receive_id\&quot;: \&quot;abcd1234\&quot;&#125;&quot;</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> (<span class="type">OutputStream</span> <span class="variable">os</span> <span class="operator">=</span> connection.getOutputStream()) &#123;</span><br><span class="line">                <span class="type">byte</span>[] input = jsonBody.getBytes(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">                os.write(input, <span class="number">0</span>, input.length);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Read the response</span></span><br><span class="line">            <span class="keyword">try</span> (<span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(connection.getInputStream(), <span class="string">&quot;UTF-8&quot;</span>))) &#123;</span><br><span class="line">                <span class="type">StringBuilder</span> <span class="variable">response</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">                String responseLine;</span><br><span class="line">                <span class="keyword">while</span> ((responseLine = br.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">                    response.append(responseLine.trim());</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">&quot;Response: &quot;</span> + response.toString());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p>在Java11+中加入了新的特性，可以使用<code>HttpClient</code>进行访问，或者使用<code>OkHttp</code>库。</p>
+<p>在Java11+中加入了新的特性，可以使用<code>HttpClient</code>进行访问，或者使用<code>OkHttp</code>库。如果要用Springboot中调用相关方法，要注意是否要注册为Bean，具体可参考博客：。</p>
 </li>
 </ol>
 <h2 id="二-SDK"><a href="#二-SDK" class="headerlink" title="二. SDK"></a>二. SDK</h2><p>　　也就是使用飞书官方实现封装号的包进行访问分别使用，Python、Java SDK来给出样例</p>
@@ -607,7 +607,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-02-17 15:00:49
+                    :</strong> 2025-02-18 08:56:38
             </li>
         
         <li>
@@ -660,12 +660,12 @@
     <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/03/technology/java/ruoyi-1/" title="若依框架的简单使用" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架的简单使用" class="!max-w-none">
   <span class="title">若依框架的简单使用</span>
+</a><a class="recommended-article-item" href="/2025/02/18/technology/java/Springboot注册Bean/" title="Springboot注册Bean" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Springboot注册Bean" class="!max-w-none">
+  <span class="title">Springboot注册Bean</span>
 </a><a class="recommended-article-item" href="/2025/01/20/technology/java/利用注解实现AOP/" title="利用注解实现AOP" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="利用注解实现AOP" class="!max-w-none">
   <span class="title">利用注解实现AOP</span>
-</a><a class="recommended-article-item" href="/2025/01/08/technology/java/下钻表导出为Excel/" title="下钻表导出为Excel" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="下钻表导出为Excel" class="!max-w-none">
-  <span class="title">下钻表导出为Excel</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
@@ -675,15 +675,27 @@
    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/03/technology/java/ruoyi-1/" title="若依框架的简单使用" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架的简单使用" class="!max-w-none">
   <span class="title">若依框架的简单使用</span>
-</a><a class="recommended-article-item" href="/2025/01/20/technology/java/利用注解实现AOP/" title="利用注解实现AOP" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="利用注解实现AOP" class="!max-w-none">
-  <span class="title">利用注解实现AOP</span>
+</a><a class="recommended-article-item" href="/2025/02/18/technology/java/Springboot注册Bean/" title="Springboot注册Bean" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Springboot注册Bean" class="!max-w-none">
+  <span class="title">Springboot注册Bean</span>
 </a></div>
    </div>
   </div>
 
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/02/18/technology/java/Springboot%E6%B3%A8%E5%86%8CBean/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Springboot注册Bean</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
@@ -738,11 +750,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 14 篇文章
+                        共撰写了 15 篇文章
                     </span>
                     
                         <span>
-                            共 19.2k 字
+                            共 20.8k 字
                         </span>
                     
                 </p>
