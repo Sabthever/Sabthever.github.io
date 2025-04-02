@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sabthever.online/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-01-03T06:26:02.000Z">
-<meta property="article:modified_time" content="2025-01-15T08:31:14.686Z">
+<meta property="article:modified_time" content="2025-04-02T08:07:05.596Z">
 <meta property="article:author" content="Sabthever">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="若依">
@@ -412,7 +412,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">25</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -420,7 +420,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">17</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -469,8 +469,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-01-15 16:31:14</span>
-            <span class="mobile">2025-01-15 16:31:14</span>
+            <span class="desktop">2025-04-02 16:07:05</span>
+            <span class="mobile">2025-04-02 16:07:05</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -522,7 +522,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.6k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4.8k 字</span>
         </span>
     
     
@@ -794,6 +794,88 @@
 <p>在使用<code>get</code>时，能够直接从url获取相应值，在<code>post</code>时，能够从请求体中获取相应的数据。</p>
 </li>
 </ol>
+<h1 id="代码工具"><a href="#代码工具" class="headerlink" title="代码工具"></a>代码工具</h1><h2 id="1-JsonUtils"><a href="#1-JsonUtils" class="headerlink" title="1.JsonUtils"></a>1.JsonUtils</h2><blockquote>
+<p>若依框架自己封装了相关的Json工具，可以自由转换</p>
+</blockquote>
+<ul>
+<li><p>包来源</p>
+<p><code>com.cockpit.common.utils.json.JsonUtils</code></p>
+</li>
+<li><p>可使用工具</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JsonUtils.toList(groupLevelString, String.class); <span class="comment">// string转List&lt;String&gt;</span></span><br><span class="line">JsonUtils.toJsonString(parm.getDataSourceList()); <span class="comment">// List&lt;String&gt;转string</span></span><br><span class="line"><span class="comment">// 还有toMap toJsonNode等等方法</span></span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h2 id="2-SecurityUtils"><a href="#2-SecurityUtils" class="headerlink" title="2.SecurityUtils"></a>2.SecurityUtils</h2><p>系统用户信息</p>
+<blockquote>
+<ul>
+<li>若依框架中的<code>SecurityUtils</code>是一个用于简化用户身份验证和权限管理的工具类，尤其在前后端分离版本中扮演了核心角色。</li>
+<li><strong>获取当前用户信息</strong>：<code>SecurityUtils</code>提供静态方法直接获取当前登录用户的基本信息（如用户名、用户ID等），无需手动解析安全上下文。例如，<code>SecurityUtils.getUsername()</code>可直接返回当前会话的用户</li>
+<li><strong>权限验证</strong>：结合Shiro或Spring Security框架，<code>SecurityUtils</code>可快速验证用户是否具备特定角色或权限，例如通过<code>hasRole()</code>方法判断用户角色</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>该类主要是通过用户登录后的token去访问Redis，获取预先存放在Redis中的数据。</p>
+</li>
+<li><p>包来源</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.cockpit.common.utils.SecurityUtils;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>可使用工具</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SecurityUtils.getAuthentication(); <span class="comment">// 得到用户信心</span></span><br><span class="line">SecurityUtils.getLoginUser(); <span class="comment">// 得到当前用户完整的用户信息</span></span><br><span class="line"><span class="comment">// SecurityUtils.getLoginUser()相当于SecurityUtils.getAuthentication().getPrincipal();</span></span><br><span class="line">SecurityUtils.getDeptId();</span><br><span class="line">SecurityUtils.etUsername();</span><br><span class="line">SecurityUtils.getUserId();</span><br></pre></td></tr></table></figure></div>
+
+<p>roleIds获取</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">LoginUser</span> <span class="variable">loginUser</span> <span class="operator">=</span> SecurityUtils.getLoginUser();</span><br><span class="line"><span class="type">SysUser</span> <span class="variable">user</span> <span class="operator">=</span> loginUser.getUser();</span><br><span class="line">Set&lt;Long&gt; roleIds = user.getRoles().stream().map(SysRole::getRoleId).collect(Collectors.toSet());</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h2 id="3-Mybatis-plus"><a href="#3-Mybatis-plus" class="headerlink" title="3.Mybatis-plus"></a>3.Mybatis-plus</h2><p>　　<code>mybatis-plus</code>主要针对于单表的CRUD操作。</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询字段</span></span><br><span class="line">QueryWrapper&lt;EmpInfoEntity&gt; wrapper = <span class="keyword">new</span> <span class="title class_">QueryWrapper</span>&lt;&gt;();</span><br><span class="line">wrapper.isNotNull(<span class="string">&quot;post_sequence&quot;</span>).groupBy(<span class="string">&quot;post_sequence&quot;</span>)</span><br><span class="line">    .select(<span class="string">&quot;post_sequence&quot;</span>).orderByAsc(<span class="string">&quot;post_sequence&quot;</span>);</span><br><span class="line">List&lt;Object&gt; postSequences = empInfoMapper.selectObjs(wrapper);</span><br><span class="line"></span><br><span class="line">postBasicInfoMapper</span><br><span class="line">    .selectList(Wrappers</span><br><span class="line">                .lambdaQuery(AdsRaPostBasicInfoDfEntity.class)</span><br><span class="line">                .eq(AdsRaPostBasicInfoDfEntity::getPostSequence, entity.getPostSequence())</span><br><span class="line">               );</span><br></pre></td></tr></table></figure></div>
+<p>还可以<code>selectOne</code>、<code>selectById</code>等</p>
+<ul>
+<li><p>在此之前需要在mapper层继承<code>BaseMapper&lt;T&gt;</code>，其中的T是你数据库映射的类</p>
+</li>
+<li><p>数据库映射类，需要做表和字段的映射，举例</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableName(value =&quot;t_emp_info&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpInfoEntity</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 主键自增</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableId(type = IdType.AUTO)</span></span><br><span class="line">    <span class="meta">@TableField(&quot;id&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 工号（唯一）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField(&quot;emp_no&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String empNo;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h2 id="4-分页工具"><a href="#4-分页工具" class="headerlink" title="4.分页工具"></a>4.分页工具</h2><p>　　分页有两种方式，一种是数据库分页，一种是读到内存来分页。</p>
+<h3 id="4-1-数据存放类Page"><a href="#4-1-数据存放类Page" class="headerlink" title="4.1.数据存放类Page"></a>4.1.数据存放类<code>Page</code></h3><p>　　首先我先说一种存放分页数据的类，是mybatis-plus自带的一个专门存放分页数据的类<code>Page</code>，是<code>IPage</code>的实现类。</p>
+<p>　　包括了如下的变量</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Page</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">IPage</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">8545996863226528798L</span>;</span><br><span class="line">    <span class="keyword">protected</span> List&lt;T&gt; records;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">long</span> total;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">long</span> size;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">long</span> current;</span><br><span class="line">    <span class="keyword">protected</span> List&lt;OrderItem&gt; orders;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">boolean</span> optimizeCountSql;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">boolean</span> searchCount;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">boolean</span> optimizeJoinOfCountSql;</span><br><span class="line">    <span class="keyword">protected</span> String countId;</span><br><span class="line">    <span class="keyword">protected</span> Long maxLimit;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br><span class="line">IPage中还有个pages</span><br></pre></td></tr></table></figure></div>
+
+<p>　　其中<code>records</code>就是存放数据的地方，<code>total</code>是数据总数，size是页面大小，<code>pages</code>是总页数，<code>current</code>是当前页。</p>
+<h3 id="4-2-参数类PageDomain"><a href="#4-2-参数类PageDomain" class="headerlink" title="4.2.参数类PageDomain"></a>4.2.参数类<code>PageDomain</code></h3><blockquote>
+<p>该类是若依管理的一个类，用于传入分页相关参数</p>
+</blockquote>
+<ul>
+<li><p>包来源</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.cockpit.common.core.page.PageDomain</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>变量</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PageDomain</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/** 当前记录起始索引 */</span></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;页数&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer pageNum;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 每页显示记录数 */</span></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;分页大小&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer pageSize;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 排序列 */</span></span><br><span class="line">    <span class="keyword">private</span> String orderByColumn;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 排序的方向desc或者asc */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">isAsc</span> <span class="operator">=</span> <span class="string">&quot;asc&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 分页参数合理化 */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">Boolean</span> <span class="variable">reasonable</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">    。。。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们可以在自己的参数类上<strong>继承这个类</strong>：</p>
+<p><code>public class MyParam extends PageDomain</code></p>
+</li>
+</ul>
+<h3 id="4-3-分页"><a href="#4-3-分页" class="headerlink" title="4.3.分页"></a>4.3.分页</h3><blockquote>
+<p>前面提到有两种分页方式。数据库自带的分页，是用的自带的分页工具<code>PageHelper</code>;内存中分页是用的若依的类<code>PageUtils</code>，但是这个类功能不够强大，在这边加了一个类用于分页。</p>
+</blockquote>
+<h4 id="A-PageHelper"><a href="#A-PageHelper" class="headerlink" title="A.PageHelper"></a>A.<code>PageHelper</code></h4><p>sysRoles读出来就是已经分好页的</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PageHelper.startPage(param.getPageNum(), param.getPageSize());</span><br><span class="line">List&lt;SysRole&gt; sysRoles = permissionConfigMapper.selectRoleAll();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取分页信息</span></span><br><span class="line">PageInfo&lt;SysRole&gt; pageInfo = <span class="keyword">new</span> <span class="title class_">PageInfo</span>&lt;&gt;(sysRoles);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取总记录数</span></span><br><span class="line"><span class="type">long</span> <span class="variable">total</span> <span class="operator">=</span> pageInfo.getTotal();</span><br><span class="line"><span class="type">int</span> <span class="variable">totalPages</span> <span class="operator">=</span> pageInfo.getPages();</span><br><span class="line">Page&lt;RoleListResult&gt; page = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(param.getPageNum(), param.getPageSize());</span><br><span class="line">page.setTotal(total);</span><br><span class="line">page.setRecords(roleListResults);</span><br><span class="line">page.setPages(totalPages);</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="B-PageUtils"><a href="#B-PageUtils" class="headerlink" title="B. PageUtils"></a>B. <code>PageUtils</code></h4><p>　　加上自己在内存中分页的方法</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 集合分页</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; List&lt;T&gt; <span class="title function_">getPaginatedList</span><span class="params">(List&lt;T&gt; list, <span class="type">int</span> pageNumber, <span class="type">int</span> pageSize)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">totalItems</span> <span class="operator">=</span> list.size();</span><br><span class="line">    <span class="type">int</span> <span class="variable">startIndex</span> <span class="operator">=</span> (pageNumber - <span class="number">1</span>) * pageSize;</span><br><span class="line">    <span class="comment">// 处理越界情况</span></span><br><span class="line">    <span class="keyword">if</span> (startIndex &gt;= totalItems || pageNumber &lt; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">endIndex</span> <span class="operator">=</span> Math.min(startIndex + pageSize, totalItems);</span><br><span class="line">    <span class="keyword">return</span> list.subList(startIndex, endIndex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>使用</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">List&lt;RoleListResult&gt; data = PageUtils.getPaginatedList(roleListResults, param.getPageNum(), param.getPageSize());</span><br><span class="line"></span><br><span class="line">Page&lt;RoleListResult&gt; page = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(param.getPageNum(), param.getPageSize());</span><br><span class="line"><span class="comment">// 序号</span></span><br><span class="line"><span class="type">int</span> <span class="variable">indexTemp</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(RoleListResult single: data)&#123;</span><br><span class="line">    single.setIndex((param.getPageNum()-<span class="number">1</span>)*param.getPageSize()+indexTemp++);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">page.setTotal(roleListResults.size());</span><br><span class="line">page.setRecords(data);</span><br><span class="line">page.setPages(roleListResults.size()/param.getPageSize());</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="5-BaseException"><a href="#5-BaseException" class="headerlink" title="5.BaseException"></a>5.<code>BaseException</code></h2><blockquote>
+<p>若依框架用Result.ok()输出结果时，有个msg，有的时候有错误，判断参数等等的时候没有data，只要返回500的msg可以用该方法抛出</p>
+</blockquote>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BaseException</span>(<span class="string">&quot;ssssss&quot;</span>);</span><br><span class="line"><span class="comment">// 抛出的ssssss会在Json的msg中显示</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="6-手动切换数据源"><a href="#6-手动切换数据源" class="headerlink" title="6.手动切换数据源"></a>6.手动切换数据源</h2><blockquote>
+<p>不推荐使用，一般还是用若依自带的<code>@DataSource(DataSourceType.Master)</code>这样的方式</p>
+</blockquote>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DynamicDataSourceContextHolder.setDataSourceType(DataSourceType.SLAVE.name());</span><br></pre></td></tr></table></figure></div>
+
+<p>　　利用上下文对于当前线程的数据源进行手动切换。</p>
 <h1 id="结束点"><a href="#结束点" class="headerlink" title="结束点"></a>结束点</h1><p>　　若依框架中还有更多功能，比如自动代码生成，权限分配等等，这些可以自己<a class="link"   target="_blank" rel="noopener" href="https://doc.ruoyi.vip/ruoyi-vue/" >参考文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。</p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
 		</div>
@@ -809,7 +891,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-01-15 16:31:14
+                    :</strong> 2025-04-02 16:07:05
             </li>
         
         <li>
@@ -917,7 +999,7 @@
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">若依框架的简单使用</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-text">A. 相关链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82"><span class="nav-text">B. 系统需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%89%B9%E6%80%A7"><span class="nav-text">C. 特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96"><span class="nav-text">A. 代码获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E8%BF%90%E8%A1%8C"><span class="nav-text">B. 本地部署运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="nav-text">(一) 后端部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-%E5%89%8D%E7%AB%AF%E6%9F%A5%E7%9C%8B"><span class="nav-text">(二) 前端查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E6%9F%A5%E7%9C%8B"><span class="nav-text">(三) 接口文档查看</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%9B%B8%E5%85%B3%E6%B3%A8%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-text">C. 相关注解和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E6%B3%A8%E8%A7%A3"><span class="nav-text">(一) 注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Value"><span class="nav-text">@Value</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Autowired"><span class="nav-text">@Autowired</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#model%E4%B8%AD%E7%9A%84"><span class="nav-text">model中的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mapper%E4%B8%AD"><span class="nav-text">mapper中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#controller%E4%B8%AD"><span class="nav-text">controller中</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-Result%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">(二) Result的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E8%A3%85%E8%BD%BD%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-text">(三) 装载数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B-%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8"><span class="nav-text">(四) 接口调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-text">(五) 参数传递</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E7%82%B9"><span class="nav-text">结束点</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-text">A. 相关链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82"><span class="nav-text">B. 系统需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%89%B9%E6%80%A7"><span class="nav-text">C. 特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96"><span class="nav-text">A. 代码获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E8%BF%90%E8%A1%8C"><span class="nav-text">B. 本地部署运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="nav-text">(一) 后端部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-%E5%89%8D%E7%AB%AF%E6%9F%A5%E7%9C%8B"><span class="nav-text">(二) 前端查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E6%9F%A5%E7%9C%8B"><span class="nav-text">(三) 接口文档查看</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%9B%B8%E5%85%B3%E6%B3%A8%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-text">C. 相关注解和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E6%B3%A8%E8%A7%A3"><span class="nav-text">(一) 注解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Value"><span class="nav-text">@Value</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Autowired"><span class="nav-text">@Autowired</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#model%E4%B8%AD%E7%9A%84"><span class="nav-text">model中的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mapper%E4%B8%AD"><span class="nav-text">mapper中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#controller%E4%B8%AD"><span class="nav-text">controller中</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-Result%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">(二) Result的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E8%A3%85%E8%BD%BD%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-text">(三) 装载数据源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B-%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8"><span class="nav-text">(四) 接口调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-text">(五) 参数传递</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%B7%A5%E5%85%B7"><span class="nav-text">代码工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JsonUtils"><span class="nav-text">1.JsonUtils</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SecurityUtils"><span class="nav-text">2.SecurityUtils</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Mybatis-plus"><span class="nav-text">3.Mybatis-plus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%88%86%E9%A1%B5%E5%B7%A5%E5%85%B7"><span class="nav-text">4.分页工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%95%B0%E6%8D%AE%E5%AD%98%E6%94%BE%E7%B1%BBPage"><span class="nav-text">4.1.数据存放类Page</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%8F%82%E6%95%B0%E7%B1%BBPageDomain"><span class="nav-text">4.2.参数类PageDomain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E5%88%86%E9%A1%B5"><span class="nav-text">4.3.分页</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-PageHelper"><span class="nav-text">A.PageHelper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-PageUtils"><span class="nav-text">B. PageUtils</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-BaseException"><span class="nav-text">5.BaseException</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%89%8B%E5%8A%A8%E5%88%87%E6%8D%A2%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-text">6.手动切换数据源</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E7%82%B9"><span class="nav-text">结束点</span></a></li></ol>
 
 	</div>
 </div>
@@ -944,11 +1026,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 16 篇文章
+                        共撰写了 17 篇文章
                     </span>
                     
                         <span>
-                            共 22.6k 字
+                            共 24.1k 字
                         </span>
                     
                 </p>
