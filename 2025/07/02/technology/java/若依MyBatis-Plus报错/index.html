@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://sabthever.online/404.html"/>
+    <link rel="canonical" href="https://sabthever.online/2025/07/02/technology/java/若依mybatis-plus报错/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -22,14 +22,19 @@
     
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Page Not Found">
-<meta property="og:url" content="https://sabthever.online/404.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转载：若依框架使用MyBatis-Plus中的baseMapper的方法报错Invalid bound statement (not found):">
+<meta property="og:url" content="https://sabthever.online/2025/07/02/technology/java/%E8%8B%A5%E4%BE%9DMyBatis-Plus%E6%8A%A5%E9%94%99/index.html">
 <meta property="og:site_name" content="Sabthever&#39;s Blog">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sabthever.online/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-07-02T05:46:35.000Z">
+<meta property="article:modified_time" content="2025-07-02T06:12:41.920Z">
 <meta property="article:author" content="Sabthever">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="若依">
+<meta property="article:tag" content="转载">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sabthever.online/images/redefine-og.webp">
     
@@ -43,7 +48,7 @@
     
     <title>
         
-            Page Not Found | Sabthever&#39;s Blog
+            转载：若依框架使用MyBatis-Plus中的baseMapper的方法报错Invalid bound statement (not found): | Sabthever&#39;s Blog
         
     </title>
 
@@ -433,28 +438,254 @@
 			
 
 			<div class="main-content">
-				<div class="page-template-container">
-	
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
 
-	
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">转载：若依框架使用MyBatis-Plus中的baseMapper的方法报错Invalid bound statement (not found):</h1>
+			</div>
+			
+		</div>
 
-	<div class="page-template-content markdown-body">
 		
-		<h1>Page Not Found</h1>
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/%E5%A4%B4%E5%83%8F.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Sabthever</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-07-02 13:46:35</span>
+        <span class="mobile">2025-07-02 13:46:35</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-07-02 14:12:41</span>
+            <span class="mobile">2025-07-02 14:12:41</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Technology/">Technology</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/Technology/Java/">Java</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Java/">Java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E8%8B%A5%E4%BE%9D/">若依</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>247 字</span>
+        </span>
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
 		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p><strong>报错信息如下：</strong></p>
+<blockquote>
+<p>Invalid bound statement (not found): com.ruoyi.system.mapper.hc.HcOrderMapper.selectList </p>
+</blockquote>
+<p><strong>原因:</strong><br>若依框架本身就使用了mybatis，因此在配置类中有个mybatisConfig，里面是创建了SqlSessionFactoryBean 这个bean，这个bean它仅支持原生 MyBatis，而不能使用 MyBatis-Plus 的功能。因此，BaseMapper 中的 CRUD 方法（如 selectById、insert 等）无法正常工作，因为这些是 MyBatis-Plus 提供的增强功能，只有 MybatisSqlSessionFactoryBean 才能识别和处理这些功能。</p>
+<p>因此我们要使用能够支持MybatisPlus的bean，也就是MybatisSqlSessionFactoryBean ，这个bean能够使用MybatisPlus的增强功能，而且<strong>只做增强，不做侵入</strong>！</p>
+<p>因此不用担心原有的mybatis功能无法使用</p>
+<p>解决方案如下：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.sabthever.online/Pictures1/Blog_Base_Resouces/21795f9f5a7b496c93ecc407e05511ae.png"
+                     
+                ></p>
+<p><strong>代码如下：</strong></p>
+<pre><code>    MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
+</code></pre>
+<p>————————————————<br>版权声明：本文为CSDN博主「泰山小张只吃荷园」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/csdn3043663729/article/details/146454994" >https://blog.csdn.net/csdn3043663729/article/details/146454994<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 转载：若依框架使用MyBatis-Plus中的baseMapper的方法报错Invalid bound statement (not found):</li>
+        <li><strong>作者:</strong> Sabthever</li>
+        <li><strong>创建于
+                :</strong> 2025-07-02 13:46:35</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-07-02 14:12:41
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://sabthever.online/2025/07/02/technology/java/若依MyBatis-Plus报错/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Java/">#Java</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E8%8B%A5%E4%BE%9D/">#若依</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E8%BD%AC%E8%BD%BD/">#转载</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/03/technology/java/ruoyi-1/" title="若依框架的简单使用" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架的简单使用" class="!max-w-none">
+  <span class="title">若依框架的简单使用</span>
+</a><a class="recommended-article-item" href="/2025/01/20/technology/java/利用注解实现AOP/" title="利用注解实现AOP" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="利用注解实现AOP" class="!max-w-none">
+  <span class="title">利用注解实现AOP</span>
+</a><a class="recommended-article-item" href="/2025/06/03/technology/java/若依框架免token访问/" title="若依框架免token访问" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架免token访问" class="!max-w-none">
+  <span class="title">若依框架免token访问</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/03/technology/java/ruoyi-1/" title="若依框架的简单使用" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架的简单使用" class="!max-w-none">
+  <span class="title">若依框架的简单使用</span>
+</a><a class="recommended-article-item" href="/2025/01/20/technology/java/利用注解实现AOP/" title="利用注解实现AOP" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="利用注解实现AOP" class="!max-w-none">
+  <span class="title">利用注解实现AOP</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/06/03/technology/java/idea%E5%A4%9A%E5%BC%80%E7%A8%8B%E5%BA%8F/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">idea多开程序</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
 
 		
 	</div>
 
-	<div class="page-template-comments">
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">转载：若依框架使用MyBatis-Plus中的baseMapper的方法报错Invalid bound statement (not found):</div>
 		
+
 	</div>
 </div>
-
-<div class="paginator">
+	</div>
 	
 </div>
-  
 			</div>
 
 			
@@ -538,6 +769,22 @@
 		</div>
 	</div>
 
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
 	
 
 	<div class="right-side-tools-container">
@@ -641,6 +888,7 @@
         containers: ["#swup"],
     });
 </script>
+
 
 
 
