@@ -609,6 +609,47 @@
       </tags>
   </entry>
   <entry>
+    <title>Mybatis一对多嵌套查询</title>
+    <url>/2025/01/15/technology/java/Mybatis%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%B5%8C%E5%A5%97%E6%9F%A5%E8%AF%A2/</url>
+    <content><![CDATA[<p>　　Mybatis中如何用一次调用做到嵌套查询，把数据放入嵌套的实例对象中？这里以省份-城市为例，看</p>
+<p>　　查省份后查城市，实际只要调用查省份的接口就会自动查省份+城市，转位json最后效果如下</p>
+<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;上海市&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;上海市&quot;</span><span class="punctuation">,</span>                                                                      </span><br><span class="line">        <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;上海城区&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;上海城区&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;内蒙古自治区&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;内蒙古自治区&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;鄂尔多斯市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;鄂尔多斯市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;北京市&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;北京市&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;北京城区&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;北京城区&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;吉林省&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;吉林省&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;吉林市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;吉林市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;四平市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;四平市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;白城市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;白城市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;辽源市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;辽源市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;长春市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;长春市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<blockquote>
+<h4 id="AreaRegionListResult-java"><a href="#AreaRegionListResult-java" class="headerlink" title="AreaRegionListResult.java"></a>AreaRegionListResult.java</h4></blockquote>
+<p>　　接收收据实体类</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sabthever.model.result.supplier;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModel;</span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModelProperty;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ApiModel(description = &quot;省市下拉框返回参数&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AreaRegionListResult</span> &#123;</span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;值&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String value;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;标签&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String label;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;子结构&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;AreaRegionListResult&gt; children;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h4 id="Mapper-java中"><a href="#Mapper-java中" class="headerlink" title="Mapper.java中"></a>Mapper.java中</h4></blockquote>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sabthever.mapper;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SupplierAreaMapper</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;AreaRegionListResult&gt; <span class="title function_">selectProvinces</span><span class="params">(<span class="meta">@Param(&quot;department&quot;)</span> String department)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;AreaRegionListResult&gt; <span class="title function_">selectCities</span><span class="params">(<span class="meta">@Param(&quot;department&quot;)</span> String department,<span class="meta">@Param(&quot;province&quot;)</span> String province)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h4 id="Mapper-xml中"><a href="#Mapper-xml中" class="headerlink" title="Mapper.xml中"></a>Mapper.xml中</h4></blockquote>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.sabthever.mapper.SupplierAreaMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 查城市 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;cityMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.sabthever.model.result.supplier.AreaRegionListResult&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;value&quot;</span> <span class="attr">column</span>=<span class="string">&quot;city&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;label&quot;</span> <span class="attr">column</span>=<span class="string">&quot;city&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectCities&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;cityMap&quot;</span>&gt;</span></span><br><span class="line">        select distinct city from table</span><br><span class="line">        where business_name=#&#123;department&#125; and shengfen=#&#123;province&#125;</span><br><span class="line">        order by city;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 查省份 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;provinceMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.sabthever.model.result.supplier.AreaRegionListResult&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;value&quot;</span> <span class="attr">column</span>=<span class="string">&quot;province&quot;</span> /&gt;</span>  <span class="comment">&lt;!-- 查出来的province同时放到类中两个属性 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;label&quot;</span> <span class="attr">column</span>=<span class="string">&quot;province&quot;</span> /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 根据column传入的两个参数(方法参数=查出来字段名),用select中的方法取值，传入类的children的List，中间的数据类为AreaRegionListResult --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">&quot;children&quot;</span> <span class="attr">ofType</span>=<span class="string">&quot;com.sabthever.model.result.supplier.AreaRegionListResult&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">select</span>=<span class="string">&quot;com.sabthever.mapper.SupplierAreaMapper.selectCities&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">column</span>=<span class="string">&quot;&#123;department=department, province=province&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectProvinces&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;provinceMap&quot;</span>&gt;</span></span><br><span class="line">        select shengfen as province,#&#123;department&#125; as department from table</span><br><span class="line">        where business_name=#&#123;department&#125; group by province order by province;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h4 id="ServiceImpl-java中"><a href="#ServiceImpl-java中" class="headerlink" title="ServiceImpl.java中"></a>ServiceImpl.java中</h4></blockquote>
+<p>　　这边就放了实现类，接口自己加一个</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cockpit.service.impl;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SupplierAreaServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">SupplierAreaService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SupplierAreaMapper areaMapper;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;AreaRegionListResult&gt; <span class="title function_">selectAreaTabList</span><span class="params">(String department)</span> &#123;</span><br><span class="line">        List&lt;AreaRegionListResult&gt; site = areaMapper.selectProvinces(department)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> site;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4></blockquote>
+<p>　　Controller层的东西就自己来了，调用Mapper层的不需要selectCities就可以获得相应数据</p>
+<p>　　欧了！拜拜！！</p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <categories>
+        <category>Technology</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>博客配置域名</title>
     <url>/2024/12/24/technology/blog/hexo-domain-settings/</url>
     <content><![CDATA[<blockquote>
@@ -943,6 +984,216 @@
       </tags>
   </entry>
   <entry>
+    <title>漏洞赏金平台</title>
+    <url>/2024/12/31/technology/security/%E6%BC%8F%E6%B4%9E%E8%B5%8F%E9%87%91%E5%B9%B3%E5%8F%B0/</url>
+    <content><![CDATA[<h2 id="1、企业SRC平台导航大全"><a href="#1、企业SRC平台导航大全" class="headerlink" title="1、企业SRC平台导航大全"></a>1、企业SRC平台导航大全</h2><p><a class="link"   href="https://wiki.bafangwy.com/doc/253/" >https://wiki.bafangwy.com/doc/253/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="2、公益SRC平台"><a href="#2、公益SRC平台" class="headerlink" title="2、公益SRC平台"></a>2、公益SRC平台</h2><p>补天<br><a class="link"   href="https://www.butian.net/" >https://www.butian.net/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>漏洞盒子<br><a class="link"   href="https://www.vulbox.com/" >https://www.vulbox.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="3、众测平台"><a href="#3、众测平台" class="headerlink" title="3、众测平台"></a>3、众测平台</h2><p>国家信息安全漏洞共享-众测<br><a class="link"   href="https://zc.cnvd.org.cn/project/index" >https://zc.cnvd.org.cn/project/index<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>春秋云测<br><a class="link"   href="https://www.ichunqiu.com/cqyc" >https://www.ichunqiu.com/cqyc<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>360众测<br><a class="link"   href="https://zhongce.360.net/" >https://zhongce.360.net/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>雷神众测<br><a class="link"   href="https://www.bountyteam.com/" >https://www.bountyteam.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="4、教育SRC"><a href="#4、教育SRC" class="headerlink" title="4、教育SRC"></a>4、教育SRC</h2><p><a class="link"   href="https://src.sjtu.edu.cn/" >https://src.sjtu.edu.cn/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="5、国外赏金平台"><a href="#5、国外赏金平台" class="headerlink" title="5、国外赏金平台"></a>5、国外赏金平台</h2><p><a class="link"   href="https://www.hackerone.com/" >https://www.hackerone.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.bugcrowd.com/" >https://www.bugcrowd.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.openbugbounty.org/" >https://www.openbugbounty.org/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.intigriti.com/" >https://www.intigriti.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>国外SRC：<br><a class="link"   href="https://security.apple.com/bounty/categories" >https://security.apple.com/bounty/categories<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.facebook.com/whitehat" >https://www.facebook.com/whitehat<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.microsoft.com/en-us/msrc/bounty" >https://www.microsoft.com/en-us/msrc/bounty<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://bughunters.google.com/about" >https://bughunters.google.com/about<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://bounty.github.com/" >https://bounty.github.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<p>转载自：<a class="link"   href="https://wiki.bafangwy.com/doc/523/" >https://wiki.bafangwy.com/doc/523/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</blockquote>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <categories>
+        <category>Technology</category>
+        <category>Security</category>
+      </categories>
+      <tags>
+        <tag>转载</tag>
+        <tag>安全</tag>
+        <tag>SRC</tag>
+        <tag>众测</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL枚举排序</title>
+    <url>/2025/04/02/technology/java/SQL%E6%9E%9A%E4%B8%BE%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<p>　　在SQL取值最后排序的时候，我们有这样的一个业务需求，按照特定的字段值进行排序，针对这种情况简单讲述一下SQL的枚举排序。</p>
+<p>　　这边以MySQL为例，有3种方法。</p>
+<h3 id="1-case-when-then-end"><a href="#1-case-when-then-end" class="headerlink" title="1.case when ... then ...  end"></a>1.<code>case when ... then ...  end</code></h3><p>（最通用，所有数据库支持）</p>
+<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> categories</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">CASE</span> seniority_category</span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;0-1年&#x27;</span> <span class="keyword">THEN</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;1-2年&#x27;</span> <span class="keyword">THEN</span> <span class="number">2</span></span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;2-3年&#x27;</span> <span class="keyword">THEN</span> <span class="number">3</span></span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;3-5年&#x27;</span> <span class="keyword">THEN</span> <span class="number">4</span></span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;5-10年&#x27;</span> <span class="keyword">THEN</span> <span class="number">5</span></span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;10年以上&#x27;</span> <span class="keyword">THEN</span> <span class="number">6</span></span><br><span class="line">    <span class="keyword">ELSE</span> <span class="number">7</span> <span class="comment">-- 处理未列出的值（可选）</span></span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="2-FIELD函数"><a href="#2-FIELD函数" class="headerlink" title="2.FIELD函数"></a>2.<code>FIELD函数</code></h3><p>（MySQL 特有）</p>
+<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> categories</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> FIELD(seniority_category, <span class="string">&#x27;0-1年&#x27;</span>, <span class="string">&#x27;1-2年&#x27;</span>, <span class="string">&#x27;2-3年&#x27;</span>, <span class="string">&#x27;3-5年&#x27;</span>, <span class="string">&#x27;5-10年&#x27;</span>, <span class="string">&#x27;10年以上&#x27;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="3-字符串定位函数LOCATE"><a href="#3-字符串定位函数LOCATE" class="headerlink" title="3.字符串定位函数LOCATE"></a>3.<code>字符串定位函数LOCATE</code></h3><p>（通用性较好）</p>
+<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> categories</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> LOCATE(</span><br><span class="line">    CONCAT(<span class="string">&#x27;,&#x27;</span>, seniority_category, <span class="string">&#x27;,&#x27;</span>), </span><br><span class="line">    <span class="string">&#x27;,0-1年,1-2年,2-3年,3-5年,5-10年,10年以上,&#x27;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="三种方案的对比："><a href="#三种方案的对比：" class="headerlink" title="三种方案的对比："></a>三种方案的对比：</h3><table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">优点</th>
+<th align="center">缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>FIELD()</code></td>
+<td align="center">简洁直观（MySQL专用）</td>
+<td align="center">数据库兼容性差</td>
+</tr>
+<tr>
+<td align="center"><code>LOCATE()</code></td>
+<td align="center">无需硬编码数字，可动态调整顺序</td>
+<td align="center">需处理字符串拼接，可能有性能损耗</td>
+</tr>
+<tr>
+<td align="center"><code>CASE WHEN</code></td>
+<td align="center">所有数据库通用，可读性强</td>
+<td align="center">需要手动维护数字映射</td>
+</tr>
+</tbody></table>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>本章就到这里了，Bye！！</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/%E5%AD%A6%E5%BA%9F%E4%BA%862.jpeg"
+                     
+                ></p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <categories>
+        <category>Technology</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网络安全相关竞赛比赛</title>
+    <url>/2024/12/31/technology/security/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E7%AB%9E%E8%B5%9B%E6%AF%94%E8%B5%9B/</url>
+    <content><![CDATA[<p>转载文章，网络安全相关竞赛比赛</p>
+<h2 id="赛事日历（包含全国所有网络安全竞赛）"><a href="#赛事日历（包含全国所有网络安全竞赛）" class="headerlink" title="赛事日历（包含全国所有网络安全竞赛）"></a>赛事日历（包含全国所有网络安全竞赛）</h2><p><a class="link"   href="https://datacon.qianxin.com/competition/competitions" >https://datacon.qianxin.com/competition/competitions<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link"   href="https://www.ichunqiu.com/competition/all" >https://www.ichunqiu.com/competition/all<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>在线CTF靶场<br><a class="link"   href="https://wiki.bafangwy.com/doc/207/" >https://wiki.bafangwy.com/doc/207/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="全国网络安全竞赛"><a href="#全国网络安全竞赛" class="headerlink" title="全国网络安全竞赛"></a>全国网络安全竞赛</h2><table style="margin: auto; text-align: center; word-break: break-all;">
+    <tr>
+        <th>名称</th>
+        <th>链接</th>
+    </tr>
+    <tr>
+        <td>全国大学生信息安全竞赛</td>
+        <td><a class="link"   href="http://www.ciscn.cn/"  target="_blank">http://www.ciscn.cn/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+    </tr>
+    <tr>
+        <td>信息安全与对抗技术竞赛（Information Security and Countermeasures Contest，简称ISCC）</td>
+        <td><a class="link"   href="https://www.isclab.org.cn/iscc_0/"  target="_blank">https://www.isclab.org.cn/iscc_0/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+    </tr>
+    <tr>
+        <td>网鼎杯（公安部）</td>
+        <td><a class="link"   href="https://www.wangdingcup.com/"  target="_blank">https://www.wangdingcup.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+    </tr>
+    <tr>
+        <td>强网杯（全国网络安全挑战赛）</td>
+        <td><a class="link"   href="https://www.qiangwangbei.com/"  target="_blank">https://www.qiangwangbei.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+    </tr>
+    <tr>
+        <td>奇安信 蓝帽杯（全国大学生网络安全技能大赛）</td>
+        <td><a class="link"   href="https://www.qianxin.com/bluehatcup/2023"  target="_blank">https://www.qianxin.com/bluehatcup/2023<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+    </tr>
+    <tr>
+        <td>陇剑杯（公安部）</td>
+        <td><a class="link"   href="http://www.longjiancup.cn"  target="_blank">www.longjiancup.cn<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+    </tr>
+    <tr>
+        <td>第二届全国技能大赛-网络安全项目</td>
+        <td><a class="link"   href="http://www.mohrss.gov.cn/SYrlzyhshbzb/ztzl/zhrmghgdejzyjnds/qjgs/202309/t20230925_506897.html"  target="_blank">http://www.mohrss.gov.cn/SYrlzyhshbzb/ztzl/zhrmghgdejzyjnds/qjgs/202309/t20230925_506897.html<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
+    </tr>
+</table>
+
+<h2 id="省级网络安全竞赛"><a href="#省级网络安全竞赛" class="headerlink" title="省级网络安全竞赛"></a>省级网络安全竞赛</h2><p>湖湘杯<br>湖南省委网信办联合省教育厅、省广播电视局、省政务管理服务局、省通信管理局、长沙市人民政府等6家单位共同主办<br>（往期报名信息）<br><a class="link"   href="http://gxt.hunan.gov.cn/hnxcy/xcyxwzx/xcytzgg/202209/t20220921_29011688.html" >http://gxt.hunan.gov.cn/hnxcy/xcyxwzx/xcytzgg/202209/t20220921_29011688.html<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>湖南省“网安湘军杯”</p>
+<p>吉林省祥云杯<br><a class="link"   href="https://xiangyuncup.ichunqiu.com/" >https://xiangyuncup.ichunqiu.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>郑州市绿城杯</p>
+<p>浙江省大学生网络与信息安全竞赛</p>
+<h2 id="企业级"><a href="#企业级" class="headerlink" title="企业级"></a>企业级</h2><p>全国网络安全行业职业技能大赛<br><a class="link"   href="https://inspc.org.cn/" >https://inspc.org.cn/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>教育部认可的大学生学科竞赛网站链接（2023版）<br><a class="link"   href="http://cxcy.usst.edu.cn/2023/0418/c10804a291961/page.htm" >http://cxcy.usst.edu.cn/2023/0418/c10804a291961/page.htm<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<p>转载自：<a class="link"   href="https://wiki.bafangwy.com/doc/233/" >https://wiki.bafangwy.com/doc/233/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</blockquote>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <categories>
+        <category>Technology</category>
+        <category>Security</category>
+      </categories>
+      <tags>
+        <tag>转载</tag>
+        <tag>安全</tag>
+        <tag>比赛</tag>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Springboot注册Bean</title>
+    <url>/2025/02/18/technology/java/Springboot%E6%B3%A8%E5%86%8CBean/</url>
+    <content><![CDATA[<p>在 Spring Boot 项目中使用 Maven 来调用 SDK 时，是否需要注册 Bean 取决于 SDK 的特性和使用场景。下面为你详细介绍调用 SDK 的通用步骤以及注册 Bean 的相关情况。</p>
+<h2 id="一-Bean简介"><a href="#一-Bean简介" class="headerlink" title="一. Bean简介"></a>一. Bean简介</h2><p>　　Bean是Spring框架（包括Spring Boot）中的一个核心概念。</p>
+<h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h3><p>　　在 Spring 里，Bean 指的是由 Spring IoC（Inversion of Control，控制反转）容器所创建、管理的对象。IoC 是一种设计原则，通过它将对象的创建、依赖关系的管理等控制权从应用代码转移到 Spring 容器中。简单来说，Spring 容器负责创建、配置和管理这些 Bean 对象，而不是由开发者在代码里显式地使用 <code>new</code> 关键字去创建对象。</p>
+<h3 id="２-特点"><a href="#２-特点" class="headerlink" title="２.特点"></a>２.特点</h3><ul>
+<li><strong>可配置性</strong>：可以通过多种方式（如 XML 配置文件、Java 配置类、注解等）对 Bean 进行详细的配置，包括 Bean 的作用域、生命周期回调方法、依赖注入等。</li>
+<li><strong>依赖注入</strong>：Spring 容器会自动处理 Bean 之间的依赖关系，通过依赖注入（Dependency Injection，DI）的方式将所需的对象注入到 Bean 中，降低了代码的耦合度。</li>
+<li><strong>生命周期管理</strong>：Spring 容器管理着 Bean 的整个生命周期，从创建、初始化到销毁，开发者可以指定在特定的生命周期阶段执行自定义的操作。</li>
+</ul>
+<h3 id="３-创建Bean的方式"><a href="#３-创建Bean的方式" class="headerlink" title="３.创建Bean的方式"></a>３.创建Bean的方式</h3><h4 id="3-1-基于-XML-配置"><a href="#3-1-基于-XML-配置" class="headerlink" title="3.1 基于 XML 配置"></a>3.1 基于 XML 配置</h4><p>　　在早期的 Spring 开发中，常使用 XML 配置文件来定义 Bean。示例如下：</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">                           http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.service.UserService&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 可以在这里配置属性注入 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>　　上述代码中，定义了一个名为 <code>userService</code> 的 Bean，其对应的类是 <code>com.example.service.UserService</code>。</p>
+<h4 id="3-2-基于-Java-配置类"><a href="#3-2-基于-Java-配置类" class="headerlink" title="3.2 基于 Java 配置类"></a>3.2 基于 Java 配置类</h4><p>　　在 Spring 3.0 及以后，推荐使用 Java 配置类来定义 Bean。示例如下：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> com.example.service.UserService;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> UserService <span class="title function_">userService</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">UserService</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>　　这里使用 <code>@Configuration</code> 注解将 <code>AppConfig</code> 类标记为配置类，<code>@Bean</code> 注解用于定义一个 Bean。</p>
+<h4 id="3-3基于注解扫描"><a href="#3-3基于注解扫描" class="headerlink" title="3.3基于注解扫描"></a>3.3基于注解扫描</h4><p>　　通过 <code>@Component</code> 及其派生注解（如 <code>@Service</code>、<code>@Repository</code>、<code>@Controller</code>），Spring 可以自动扫描并将带有这些注解的类注册为 Bean。示例如下：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="comment">// 类的具体实现</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>　　同时，需要在配置类上添加 <code>@ComponentScan</code> 注解来指定扫描的包路径：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan(basePackages = &quot;com.example.service&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppConfig</span> &#123;</span><br><span class="line">    <span class="comment">// 配置类的其他内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Bean-的生命周期"><a href="#Bean-的生命周期" class="headerlink" title="Bean 的生命周期"></a>Bean 的生命周期</h3><p>　　Spring 管理的 Bean 有其完整的生命周期，主要包括以下几个阶段：</p>
+<ol>
+<li><strong>实例化</strong>：Spring 容器根据配置信息创建 Bean 的实例。</li>
+<li><strong>属性注入</strong>：将 Bean 所依赖的其他对象注入进来。</li>
+<li><strong>初始化</strong>：调用初始化方法，可以通过实现 <code>InitializingBean</code> 接口的 <code>afterPropertiesSet</code> 方法，或者使用 <code>@PostConstruct</code> 注解指定初始化方法。</li>
+<li><strong>使用</strong>：Bean 可以被应用程序正常使用。</li>
+<li><strong>销毁</strong>：当 Spring 容器关闭时，会调用销毁方法，可以通过实现 <code>DisposableBean</code> 接口的 <code>destroy</code> 方法，或者使用 <code>@PreDestroy</code> 注解指定销毁方法。</li>
+</ol>
+<h3 id="Bean-的管理"><a href="#Bean-的管理" class="headerlink" title="Bean 的管理"></a>Bean 的管理</h3><p>　　Spring 容器负责管理 Bean 的整个生命周期和依赖关系，开发者可以通过容器获取所需的 Bean 实例。在 Spring Boot 中，可以使用依赖注入的方式获取 Bean，示例如下：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">UserController</span><span class="params">(UserService userService)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.userService = userService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 控制器的其他方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>　　上述代码中，通过构造函数注入的方式将 <code>UserService</code> Bean 注入到 <code>UserController</code> 中。</p>
+<h2 id="二-Bean注册"><a href="#二-Bean注册" class="headerlink" title="二. Bean注册"></a>二. Bean注册</h2><p>　　步骤一，要在<code>pom.xml</code>文件里添加 SDK 的依赖。假设 SDK 的坐标信息如下，可以按照如下方式添加：</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里是你的SDK依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example.sdk<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sdk-library<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>　　将上述代码中的<code>groupId</code>、<code>artifactId</code>和<code>version</code>替换为实际使用的 SDK 的对应信息。</p>
+<p>　　步骤二，判断是否需要注册 Bean。这主要依据 SDK 的使用方式来确定。</p>
+<h3 id="１-不需要注册-Bean"><a href="#１-不需要注册-Bean" class="headerlink" title="１.不需要注册 Bean"></a>１.不需要注册 Bean</h3><p>　　如果 SDK 提供的是<strong>静态方法</strong>，或者每次使用时都要创建新的实例，那么通常无需将其注册为 Bean。以下是一个简单示例：</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.sdk.StaticSDKUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SDKUsageController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/use-sdk-static&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">useSDKStaticMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 直接调用SDK的静态方法</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> StaticSDKUtils.doSomething();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>　　在这个例子中，<code>StaticSDKUtils</code>类包含静态方法<code>doSomething</code>，可以直接调用，无需注册为 Bean。</p>
+<h3 id="２-需要注册-Bean"><a href="#２-需要注册-Bean" class="headerlink" title="２.需要注册 Bean"></a>２.需要注册 Bean</h3><p>　　若 SDK 的实例创建过程较为复杂，需要进行一些<strong>初始化配置</strong>，或者<strong>该实例需要在多个组件间共享使用</strong>，那么建议将其注册为 Bean。以下是详细步骤：</p>
+<h4 id="2-1-创建配置类注册-Bean"><a href="#2-1-创建配置类注册-Bean" class="headerlink" title="2.1 创建配置类注册 Bean"></a>2.1 创建配置类注册 Bean</h4><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.sdk.SDKClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SDKConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SDKClient <span class="title function_">sdkClient</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 进行SDKClient的初始化配置</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">apiKey</span> <span class="operator">=</span> <span class="string">&quot;your-api-key&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">secret</span> <span class="operator">=</span> <span class="string">&quot;your-secret&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SDKClient</span>(apiKey, secret);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>　　在上述代码中，<code>SDKConfig</code>类使用<code>@Configuration</code>注解表明这是一个配置类，<code>@Bean</code>注解将<code>SDKClient</code>实例注册到 Spring 容器中。</p>
+<h4 id="2-2-在服务或控制器中使用注册的-Bean"><a href="#2-2-在服务或控制器中使用注册的-Bean" class="headerlink" title="2.2 在服务或控制器中使用注册的 Bean"></a>2.2 在服务或控制器中使用注册的 Bean</h4><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.sdk.SDKClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SDKUsageController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> SDKClient sdkClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SDKUsageController</span><span class="params">(SDKClient sdkClient)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.sdkClient = sdkClient;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/use-sdk-client&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">useSDKClient</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 调用SDKClient的方法</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> sdkClient.performTask();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>　　这里通过构造函数注入的方式获取<code>SDKClient</code>实例，并调用其方法。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>　　是否注册 Bean 取决于 SDK 的设计和使用方式。如果 SDK 使用简单，直接调用即可；若 SDK 初始化复杂或需共享实例，注册为 Bean 是更好的选择。</p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <categories>
+        <category>Technology</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SRC导航</title>
     <url>/2024/12/31/technology/security/SRC%E5%AF%BC%E8%88%AA/</url>
     <content><![CDATA[<p>阿里SRC <a class="link"   href="https://security.alibaba.com/" >https://security.alibaba.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
@@ -1076,257 +1327,6 @@
         <tag>转载</tag>
         <tag>安全</tag>
         <tag>SRC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网络安全相关竞赛比赛</title>
-    <url>/2024/12/31/technology/security/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E7%AB%9E%E8%B5%9B%E6%AF%94%E8%B5%9B/</url>
-    <content><![CDATA[<p>转载文章，网络安全相关竞赛比赛</p>
-<h2 id="赛事日历（包含全国所有网络安全竞赛）"><a href="#赛事日历（包含全国所有网络安全竞赛）" class="headerlink" title="赛事日历（包含全国所有网络安全竞赛）"></a>赛事日历（包含全国所有网络安全竞赛）</h2><p><a class="link"   href="https://datacon.qianxin.com/competition/competitions" >https://datacon.qianxin.com/competition/competitions<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p><a class="link"   href="https://www.ichunqiu.com/competition/all" >https://www.ichunqiu.com/competition/all<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>在线CTF靶场<br><a class="link"   href="https://wiki.bafangwy.com/doc/207/" >https://wiki.bafangwy.com/doc/207/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h2 id="全国网络安全竞赛"><a href="#全国网络安全竞赛" class="headerlink" title="全国网络安全竞赛"></a>全国网络安全竞赛</h2><table style="margin: auto; text-align: center; word-break: break-all;">
-    <tr>
-        <th>名称</th>
-        <th>链接</th>
-    </tr>
-    <tr>
-        <td>全国大学生信息安全竞赛</td>
-        <td><a class="link"   href="http://www.ciscn.cn/"  target="_blank">http://www.ciscn.cn/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
-    </tr>
-    <tr>
-        <td>信息安全与对抗技术竞赛（Information Security and Countermeasures Contest，简称ISCC）</td>
-        <td><a class="link"   href="https://www.isclab.org.cn/iscc_0/"  target="_blank">https://www.isclab.org.cn/iscc_0/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
-    </tr>
-    <tr>
-        <td>网鼎杯（公安部）</td>
-        <td><a class="link"   href="https://www.wangdingcup.com/"  target="_blank">https://www.wangdingcup.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
-    </tr>
-    <tr>
-        <td>强网杯（全国网络安全挑战赛）</td>
-        <td><a class="link"   href="https://www.qiangwangbei.com/"  target="_blank">https://www.qiangwangbei.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
-    </tr>
-    <tr>
-        <td>奇安信 蓝帽杯（全国大学生网络安全技能大赛）</td>
-        <td><a class="link"   href="https://www.qianxin.com/bluehatcup/2023"  target="_blank">https://www.qianxin.com/bluehatcup/2023<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
-    </tr>
-    <tr>
-        <td>陇剑杯（公安部）</td>
-        <td><a class="link"   href="http://www.longjiancup.cn"  target="_blank">www.longjiancup.cn<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
-    </tr>
-    <tr>
-        <td>第二届全国技能大赛-网络安全项目</td>
-        <td><a class="link"   href="http://www.mohrss.gov.cn/SYrlzyhshbzb/ztzl/zhrmghgdejzyjnds/qjgs/202309/t20230925_506897.html"  target="_blank">http://www.mohrss.gov.cn/SYrlzyhshbzb/ztzl/zhrmghgdejzyjnds/qjgs/202309/t20230925_506897.html<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></td>
-    </tr>
-</table>
-
-<h2 id="省级网络安全竞赛"><a href="#省级网络安全竞赛" class="headerlink" title="省级网络安全竞赛"></a>省级网络安全竞赛</h2><p>湖湘杯<br>湖南省委网信办联合省教育厅、省广播电视局、省政务管理服务局、省通信管理局、长沙市人民政府等6家单位共同主办<br>（往期报名信息）<br><a class="link"   href="http://gxt.hunan.gov.cn/hnxcy/xcyxwzx/xcytzgg/202209/t20220921_29011688.html" >http://gxt.hunan.gov.cn/hnxcy/xcyxwzx/xcytzgg/202209/t20220921_29011688.html<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>湖南省“网安湘军杯”</p>
-<p>吉林省祥云杯<br><a class="link"   href="https://xiangyuncup.ichunqiu.com/" >https://xiangyuncup.ichunqiu.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>郑州市绿城杯</p>
-<p>浙江省大学生网络与信息安全竞赛</p>
-<h2 id="企业级"><a href="#企业级" class="headerlink" title="企业级"></a>企业级</h2><p>全国网络安全行业职业技能大赛<br><a class="link"   href="https://inspc.org.cn/" >https://inspc.org.cn/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>教育部认可的大学生学科竞赛网站链接（2023版）<br><a class="link"   href="http://cxcy.usst.edu.cn/2023/0418/c10804a291961/page.htm" >http://cxcy.usst.edu.cn/2023/0418/c10804a291961/page.htm<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<blockquote>
-<p>转载自：<a class="link"   href="https://wiki.bafangwy.com/doc/233/" >https://wiki.bafangwy.com/doc/233/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</blockquote>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <categories>
-        <category>Technology</category>
-        <category>Security</category>
-      </categories>
-      <tags>
-        <tag>转载</tag>
-        <tag>安全</tag>
-        <tag>比赛</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mybatis一对多嵌套查询</title>
-    <url>/2025/01/15/technology/java/Mybatis%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%B5%8C%E5%A5%97%E6%9F%A5%E8%AF%A2/</url>
-    <content><![CDATA[<p>　　Mybatis中如何用一次调用做到嵌套查询，把数据放入嵌套的实例对象中？这里以省份-城市为例，看</p>
-<p>　　查省份后查城市，实际只要调用查省份的接口就会自动查省份+城市，转位json最后效果如下</p>
-<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;上海市&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;上海市&quot;</span><span class="punctuation">,</span>                                                                      </span><br><span class="line">        <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;上海城区&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;上海城区&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;内蒙古自治区&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;内蒙古自治区&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;鄂尔多斯市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;鄂尔多斯市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;北京市&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;北京市&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;北京城区&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;北京城区&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;吉林省&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;吉林省&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;吉林市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;吉林市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;四平市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;四平市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;白城市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;白城市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;辽源市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;辽源市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="string">&quot;长春市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;长春市&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;children&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure></div>
-
-
-
-<blockquote>
-<h4 id="AreaRegionListResult-java"><a href="#AreaRegionListResult-java" class="headerlink" title="AreaRegionListResult.java"></a>AreaRegionListResult.java</h4></blockquote>
-<p>　　接收收据实体类</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sabthever.model.result.supplier;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModel;</span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModelProperty;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ApiModel(description = &quot;省市下拉框返回参数&quot;)</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AreaRegionListResult</span> &#123;</span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;值&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String value;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;标签&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String label;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;子结构&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;AreaRegionListResult&gt; children;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<h4 id="Mapper-java中"><a href="#Mapper-java中" class="headerlink" title="Mapper.java中"></a>Mapper.java中</h4></blockquote>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sabthever.mapper;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SupplierAreaMapper</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;AreaRegionListResult&gt; <span class="title function_">selectProvinces</span><span class="params">(<span class="meta">@Param(&quot;department&quot;)</span> String department)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;AreaRegionListResult&gt; <span class="title function_">selectCities</span><span class="params">(<span class="meta">@Param(&quot;department&quot;)</span> String department,<span class="meta">@Param(&quot;province&quot;)</span> String province)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<h4 id="Mapper-xml中"><a href="#Mapper-xml中" class="headerlink" title="Mapper.xml中"></a>Mapper.xml中</h4></blockquote>
-<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.sabthever.mapper.SupplierAreaMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 查城市 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;cityMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.sabthever.model.result.supplier.AreaRegionListResult&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;value&quot;</span> <span class="attr">column</span>=<span class="string">&quot;city&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;label&quot;</span> <span class="attr">column</span>=<span class="string">&quot;city&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectCities&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;cityMap&quot;</span>&gt;</span></span><br><span class="line">        select distinct city from table</span><br><span class="line">        where business_name=#&#123;department&#125; and shengfen=#&#123;province&#125;</span><br><span class="line">        order by city;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 查省份 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;provinceMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.sabthever.model.result.supplier.AreaRegionListResult&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;value&quot;</span> <span class="attr">column</span>=<span class="string">&quot;province&quot;</span> /&gt;</span>  <span class="comment">&lt;!-- 查出来的province同时放到类中两个属性 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;label&quot;</span> <span class="attr">column</span>=<span class="string">&quot;province&quot;</span> /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 根据column传入的两个参数(方法参数=查出来字段名),用select中的方法取值，传入类的children的List，中间的数据类为AreaRegionListResult --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">&quot;children&quot;</span> <span class="attr">ofType</span>=<span class="string">&quot;com.sabthever.model.result.supplier.AreaRegionListResult&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">select</span>=<span class="string">&quot;com.sabthever.mapper.SupplierAreaMapper.selectCities&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">column</span>=<span class="string">&quot;&#123;department=department, province=province&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectProvinces&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;provinceMap&quot;</span>&gt;</span></span><br><span class="line">        select shengfen as province,#&#123;department&#125; as department from table</span><br><span class="line">        where business_name=#&#123;department&#125; group by province order by province;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<h4 id="ServiceImpl-java中"><a href="#ServiceImpl-java中" class="headerlink" title="ServiceImpl.java中"></a>ServiceImpl.java中</h4></blockquote>
-<p>　　这边就放了实现类，接口自己加一个</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cockpit.service.impl;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SupplierAreaServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">SupplierAreaService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SupplierAreaMapper areaMapper;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;AreaRegionListResult&gt; <span class="title function_">selectAreaTabList</span><span class="params">(String department)</span> &#123;</span><br><span class="line">        List&lt;AreaRegionListResult&gt; site = areaMapper.selectProvinces(department)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> site;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4></blockquote>
-<p>　　Controller层的东西就自己来了，调用Mapper层的不需要selectCities就可以获得相应数据</p>
-<p>　　欧了！拜拜！！</p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <categories>
-        <category>Technology</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL枚举排序</title>
-    <url>/2025/04/02/technology/java/SQL%E6%9E%9A%E4%B8%BE%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<p>　　在SQL取值最后排序的时候，我们有这样的一个业务需求，按照特定的字段值进行排序，针对这种情况简单讲述一下SQL的枚举排序。</p>
-<p>　　这边以MySQL为例，有3种方法。</p>
-<h3 id="1-case-when-then-end"><a href="#1-case-when-then-end" class="headerlink" title="1.case when ... then ...  end"></a>1.<code>case when ... then ...  end</code></h3><p>（最通用，所有数据库支持）</p>
-<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> categories</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">CASE</span> seniority_category</span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;0-1年&#x27;</span> <span class="keyword">THEN</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;1-2年&#x27;</span> <span class="keyword">THEN</span> <span class="number">2</span></span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;2-3年&#x27;</span> <span class="keyword">THEN</span> <span class="number">3</span></span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;3-5年&#x27;</span> <span class="keyword">THEN</span> <span class="number">4</span></span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;5-10年&#x27;</span> <span class="keyword">THEN</span> <span class="number">5</span></span><br><span class="line">    <span class="keyword">WHEN</span> <span class="string">&#x27;10年以上&#x27;</span> <span class="keyword">THEN</span> <span class="number">6</span></span><br><span class="line">    <span class="keyword">ELSE</span> <span class="number">7</span> <span class="comment">-- 处理未列出的值（可选）</span></span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="2-FIELD函数"><a href="#2-FIELD函数" class="headerlink" title="2.FIELD函数"></a>2.<code>FIELD函数</code></h3><p>（MySQL 特有）</p>
-<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> categories</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> FIELD(seniority_category, <span class="string">&#x27;0-1年&#x27;</span>, <span class="string">&#x27;1-2年&#x27;</span>, <span class="string">&#x27;2-3年&#x27;</span>, <span class="string">&#x27;3-5年&#x27;</span>, <span class="string">&#x27;5-10年&#x27;</span>, <span class="string">&#x27;10年以上&#x27;</span>);</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="3-字符串定位函数LOCATE"><a href="#3-字符串定位函数LOCATE" class="headerlink" title="3.字符串定位函数LOCATE"></a>3.<code>字符串定位函数LOCATE</code></h3><p>（通用性较好）</p>
-<div class="code-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> categories</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> LOCATE(</span><br><span class="line">    CONCAT(<span class="string">&#x27;,&#x27;</span>, seniority_category, <span class="string">&#x27;,&#x27;</span>), </span><br><span class="line">    <span class="string">&#x27;,0-1年,1-2年,2-3年,3-5年,5-10年,10年以上,&#x27;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="三种方案的对比："><a href="#三种方案的对比：" class="headerlink" title="三种方案的对比："></a>三种方案的对比：</h3><table>
-<thead>
-<tr>
-<th align="center">方法</th>
-<th align="center">优点</th>
-<th align="center">缺点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><code>FIELD()</code></td>
-<td align="center">简洁直观（MySQL专用）</td>
-<td align="center">数据库兼容性差</td>
-</tr>
-<tr>
-<td align="center"><code>LOCATE()</code></td>
-<td align="center">无需硬编码数字，可动态调整顺序</td>
-<td align="center">需处理字符串拼接，可能有性能损耗</td>
-</tr>
-<tr>
-<td align="center"><code>CASE WHEN</code></td>
-<td align="center">所有数据库通用，可读性强</td>
-<td align="center">需要手动维护数字映射</td>
-</tr>
-</tbody></table>
-<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>本章就到这里了，Bye！！</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/%E5%AD%A6%E5%BA%9F%E4%BA%862.jpeg"
-                     
-                ></p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <categories>
-        <category>Technology</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>漏洞赏金平台</title>
-    <url>/2024/12/31/technology/security/%E6%BC%8F%E6%B4%9E%E8%B5%8F%E9%87%91%E5%B9%B3%E5%8F%B0/</url>
-    <content><![CDATA[<h2 id="1、企业SRC平台导航大全"><a href="#1、企业SRC平台导航大全" class="headerlink" title="1、企业SRC平台导航大全"></a>1、企业SRC平台导航大全</h2><p><a class="link"   href="https://wiki.bafangwy.com/doc/253/" >https://wiki.bafangwy.com/doc/253/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h2 id="2、公益SRC平台"><a href="#2、公益SRC平台" class="headerlink" title="2、公益SRC平台"></a>2、公益SRC平台</h2><p>补天<br><a class="link"   href="https://www.butian.net/" >https://www.butian.net/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>漏洞盒子<br><a class="link"   href="https://www.vulbox.com/" >https://www.vulbox.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h2 id="3、众测平台"><a href="#3、众测平台" class="headerlink" title="3、众测平台"></a>3、众测平台</h2><p>国家信息安全漏洞共享-众测<br><a class="link"   href="https://zc.cnvd.org.cn/project/index" >https://zc.cnvd.org.cn/project/index<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>春秋云测<br><a class="link"   href="https://www.ichunqiu.com/cqyc" >https://www.ichunqiu.com/cqyc<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>360众测<br><a class="link"   href="https://zhongce.360.net/" >https://zhongce.360.net/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>雷神众测<br><a class="link"   href="https://www.bountyteam.com/" >https://www.bountyteam.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h2 id="4、教育SRC"><a href="#4、教育SRC" class="headerlink" title="4、教育SRC"></a>4、教育SRC</h2><p><a class="link"   href="https://src.sjtu.edu.cn/" >https://src.sjtu.edu.cn/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h2 id="5、国外赏金平台"><a href="#5、国外赏金平台" class="headerlink" title="5、国外赏金平台"></a>5、国外赏金平台</h2><p><a class="link"   href="https://www.hackerone.com/" >https://www.hackerone.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.bugcrowd.com/" >https://www.bugcrowd.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.openbugbounty.org/" >https://www.openbugbounty.org/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.intigriti.com/" >https://www.intigriti.com<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>国外SRC：<br><a class="link"   href="https://security.apple.com/bounty/categories" >https://security.apple.com/bounty/categories<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.facebook.com/whitehat" >https://www.facebook.com/whitehat<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://www.microsoft.com/en-us/msrc/bounty" >https://www.microsoft.com/en-us/msrc/bounty<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://bughunters.google.com/about" >https://bughunters.google.com/about<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   href="https://bounty.github.com/" >https://bounty.github.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<blockquote>
-<p>转载自：<a class="link"   href="https://wiki.bafangwy.com/doc/523/" >https://wiki.bafangwy.com/doc/523/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</blockquote>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <categories>
-        <category>Technology</category>
-        <category>Security</category>
-      </categories>
-      <tags>
-        <tag>转载</tag>
-        <tag>安全</tag>
-        <tag>SRC</tag>
-        <tag>众测</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Springboot注册Bean</title>
-    <url>/2025/02/18/technology/java/Springboot%E6%B3%A8%E5%86%8CBean/</url>
-    <content><![CDATA[<p>在 Spring Boot 项目中使用 Maven 来调用 SDK 时，是否需要注册 Bean 取决于 SDK 的特性和使用场景。下面为你详细介绍调用 SDK 的通用步骤以及注册 Bean 的相关情况。</p>
-<h2 id="一-Bean简介"><a href="#一-Bean简介" class="headerlink" title="一. Bean简介"></a>一. Bean简介</h2><p>　　Bean是Spring框架（包括Spring Boot）中的一个核心概念。</p>
-<h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h3><p>　　在 Spring 里，Bean 指的是由 Spring IoC（Inversion of Control，控制反转）容器所创建、管理的对象。IoC 是一种设计原则，通过它将对象的创建、依赖关系的管理等控制权从应用代码转移到 Spring 容器中。简单来说，Spring 容器负责创建、配置和管理这些 Bean 对象，而不是由开发者在代码里显式地使用 <code>new</code> 关键字去创建对象。</p>
-<h3 id="２-特点"><a href="#２-特点" class="headerlink" title="２.特点"></a>２.特点</h3><ul>
-<li><strong>可配置性</strong>：可以通过多种方式（如 XML 配置文件、Java 配置类、注解等）对 Bean 进行详细的配置，包括 Bean 的作用域、生命周期回调方法、依赖注入等。</li>
-<li><strong>依赖注入</strong>：Spring 容器会自动处理 Bean 之间的依赖关系，通过依赖注入（Dependency Injection，DI）的方式将所需的对象注入到 Bean 中，降低了代码的耦合度。</li>
-<li><strong>生命周期管理</strong>：Spring 容器管理着 Bean 的整个生命周期，从创建、初始化到销毁，开发者可以指定在特定的生命周期阶段执行自定义的操作。</li>
-</ul>
-<h3 id="３-创建Bean的方式"><a href="#３-创建Bean的方式" class="headerlink" title="３.创建Bean的方式"></a>３.创建Bean的方式</h3><h4 id="3-1-基于-XML-配置"><a href="#3-1-基于-XML-配置" class="headerlink" title="3.1 基于 XML 配置"></a>3.1 基于 XML 配置</h4><p>　　在早期的 Spring 开发中，常使用 XML 配置文件来定义 Bean。示例如下：</p>
-<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">                           http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.example.service.UserService&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 可以在这里配置属性注入 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>　　上述代码中，定义了一个名为 <code>userService</code> 的 Bean，其对应的类是 <code>com.example.service.UserService</code>。</p>
-<h4 id="3-2-基于-Java-配置类"><a href="#3-2-基于-Java-配置类" class="headerlink" title="3.2 基于 Java 配置类"></a>3.2 基于 Java 配置类</h4><p>　　在 Spring 3.0 及以后，推荐使用 Java 配置类来定义 Bean。示例如下：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> com.example.service.UserService;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> UserService <span class="title function_">userService</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">UserService</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>　　这里使用 <code>@Configuration</code> 注解将 <code>AppConfig</code> 类标记为配置类，<code>@Bean</code> 注解用于定义一个 Bean。</p>
-<h4 id="3-3基于注解扫描"><a href="#3-3基于注解扫描" class="headerlink" title="3.3基于注解扫描"></a>3.3基于注解扫描</h4><p>　　通过 <code>@Component</code> 及其派生注解（如 <code>@Service</code>、<code>@Repository</code>、<code>@Controller</code>），Spring 可以自动扫描并将带有这些注解的类注册为 Bean。示例如下：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="comment">// 类的具体实现</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>　　同时，需要在配置类上添加 <code>@ComponentScan</code> 注解来指定扫描的包路径：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan(basePackages = &quot;com.example.service&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppConfig</span> &#123;</span><br><span class="line">    <span class="comment">// 配置类的其他内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="Bean-的生命周期"><a href="#Bean-的生命周期" class="headerlink" title="Bean 的生命周期"></a>Bean 的生命周期</h3><p>　　Spring 管理的 Bean 有其完整的生命周期，主要包括以下几个阶段：</p>
-<ol>
-<li><strong>实例化</strong>：Spring 容器根据配置信息创建 Bean 的实例。</li>
-<li><strong>属性注入</strong>：将 Bean 所依赖的其他对象注入进来。</li>
-<li><strong>初始化</strong>：调用初始化方法，可以通过实现 <code>InitializingBean</code> 接口的 <code>afterPropertiesSet</code> 方法，或者使用 <code>@PostConstruct</code> 注解指定初始化方法。</li>
-<li><strong>使用</strong>：Bean 可以被应用程序正常使用。</li>
-<li><strong>销毁</strong>：当 Spring 容器关闭时，会调用销毁方法，可以通过实现 <code>DisposableBean</code> 接口的 <code>destroy</code> 方法，或者使用 <code>@PreDestroy</code> 注解指定销毁方法。</li>
-</ol>
-<h3 id="Bean-的管理"><a href="#Bean-的管理" class="headerlink" title="Bean 的管理"></a>Bean 的管理</h3><p>　　Spring 容器负责管理 Bean 的整个生命周期和依赖关系，开发者可以通过容器获取所需的 Bean 实例。在 Spring Boot 中，可以使用依赖注入的方式获取 Bean，示例如下：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">UserController</span><span class="params">(UserService userService)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.userService = userService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 控制器的其他方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>　　上述代码中，通过构造函数注入的方式将 <code>UserService</code> Bean 注入到 <code>UserController</code> 中。</p>
-<h2 id="二-Bean注册"><a href="#二-Bean注册" class="headerlink" title="二. Bean注册"></a>二. Bean注册</h2><p>　　步骤一，要在<code>pom.xml</code>文件里添加 SDK 的依赖。假设 SDK 的坐标信息如下，可以按照如下方式添加：</p>
-<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里是你的SDK依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example.sdk<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sdk-library<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>　　将上述代码中的<code>groupId</code>、<code>artifactId</code>和<code>version</code>替换为实际使用的 SDK 的对应信息。</p>
-<p>　　步骤二，判断是否需要注册 Bean。这主要依据 SDK 的使用方式来确定。</p>
-<h3 id="１-不需要注册-Bean"><a href="#１-不需要注册-Bean" class="headerlink" title="１.不需要注册 Bean"></a>１.不需要注册 Bean</h3><p>　　如果 SDK 提供的是<strong>静态方法</strong>，或者每次使用时都要创建新的实例，那么通常无需将其注册为 Bean。以下是一个简单示例：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.sdk.StaticSDKUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SDKUsageController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/use-sdk-static&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">useSDKStaticMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 直接调用SDK的静态方法</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> StaticSDKUtils.doSomething();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>　　在这个例子中，<code>StaticSDKUtils</code>类包含静态方法<code>doSomething</code>，可以直接调用，无需注册为 Bean。</p>
-<h3 id="２-需要注册-Bean"><a href="#２-需要注册-Bean" class="headerlink" title="２.需要注册 Bean"></a>２.需要注册 Bean</h3><p>　　若 SDK 的实例创建过程较为复杂，需要进行一些<strong>初始化配置</strong>，或者<strong>该实例需要在多个组件间共享使用</strong>，那么建议将其注册为 Bean。以下是详细步骤：</p>
-<h4 id="2-1-创建配置类注册-Bean"><a href="#2-1-创建配置类注册-Bean" class="headerlink" title="2.1 创建配置类注册 Bean"></a>2.1 创建配置类注册 Bean</h4><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.sdk.SDKClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SDKConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SDKClient <span class="title function_">sdkClient</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 进行SDKClient的初始化配置</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">apiKey</span> <span class="operator">=</span> <span class="string">&quot;your-api-key&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">secret</span> <span class="operator">=</span> <span class="string">&quot;your-secret&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SDKClient</span>(apiKey, secret);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>　　在上述代码中，<code>SDKConfig</code>类使用<code>@Configuration</code>注解表明这是一个配置类，<code>@Bean</code>注解将<code>SDKClient</code>实例注册到 Spring 容器中。</p>
-<h4 id="2-2-在服务或控制器中使用注册的-Bean"><a href="#2-2-在服务或控制器中使用注册的-Bean" class="headerlink" title="2.2 在服务或控制器中使用注册的 Bean"></a>2.2 在服务或控制器中使用注册的 Bean</h4><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.sdk.SDKClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SDKUsageController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> SDKClient sdkClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SDKUsageController</span><span class="params">(SDKClient sdkClient)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.sdkClient = sdkClient;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/use-sdk-client&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">useSDKClient</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 调用SDKClient的方法</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> sdkClient.performTask();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>　　这里通过构造函数注入的方式获取<code>SDKClient</code>实例，并调用其方法。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>　　是否注册 Bean 取决于 SDK 的设计和使用方式。如果 SDK 使用简单，直接调用即可；若 SDK 初始化复杂或需共享实例，注册为 Bean 是更好的选择。</p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <categories>
-        <category>Technology</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
@@ -2100,38 +2100,6 @@
       </tags>
   </entry>
   <entry>
-    <title>转载：若依框架使用MyBatis-Plus中的baseMapper的方法报错Invalid bound statement (not found):</title>
-    <url>/2025/07/02/technology/java/%E8%8B%A5%E4%BE%9DMyBatis-Plus%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<p><strong>报错信息如下：</strong></p>
-<blockquote>
-<p>Invalid bound statement (not found): com.ruoyi.system.mapper.hc.HcOrderMapper.selectList </p>
-</blockquote>
-<p><strong>原因:</strong><br>若依框架本身就使用了mybatis，因此在配置类中有个mybatisConfig，里面是创建了SqlSessionFactoryBean 这个bean，这个bean它仅支持原生 MyBatis，而不能使用 MyBatis-Plus 的功能。因此，BaseMapper 中的 CRUD 方法（如 selectById、insert 等）无法正常工作，因为这些是 MyBatis-Plus 提供的增强功能，只有 MybatisSqlSessionFactoryBean 才能识别和处理这些功能。</p>
-<p>因此我们要使用能够支持MybatisPlus的bean，也就是MybatisSqlSessionFactoryBean ，这个bean能够使用MybatisPlus的增强功能，而且<strong>只做增强，不做侵入</strong>！</p>
-<p>因此不用担心原有的mybatis功能无法使用</p>
-<p>解决方案如下：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://www.sabthever.online/Pictures1/Blog_Base_Resouces/21795f9f5a7b496c93ecc407e05511ae.png"
-                     
-                ></p>
-<p><strong>代码如下：</strong></p>
-<pre><code>    MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
-</code></pre>
-<p>————————————————<br>版权声明：本文为CSDN博主「泰山小张只吃荷园」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a class="link"   href="https://blog.csdn.net/csdn3043663729/article/details/146454994" >https://blog.csdn.net/csdn3043663729/article/details/146454994<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
-      <categories>
-        <category>Technology</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>转载</tag>
-        <tag>若依</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>利用注解实现AOP</title>
     <url>/2025/01/20/technology/java/%E5%88%A9%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0AOP/</url>
     <content><![CDATA[<p>　　AOP（面向切面编程）。AOP是一种编程范式，旨在通过预编译和运行期动态代理来增强方法，而注解在AOP中主要用于定义切面（Aspect）、切入点（Pointcut）和通知（Advice）。</p>
@@ -2453,6 +2421,38 @@
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>若依</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>转载：若依框架使用MyBatis-Plus中的baseMapper的方法报错Invalid bound statement (not found):</title>
+    <url>/2025/07/02/technology/java/%E8%8B%A5%E4%BE%9DMyBatis-Plus%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<p><strong>报错信息如下：</strong></p>
+<blockquote>
+<p>Invalid bound statement (not found): com.ruoyi.system.mapper.hc.HcOrderMapper.selectList </p>
+</blockquote>
+<p><strong>原因:</strong><br>若依框架本身就使用了mybatis，因此在配置类中有个mybatisConfig，里面是创建了SqlSessionFactoryBean 这个bean，这个bean它仅支持原生 MyBatis，而不能使用 MyBatis-Plus 的功能。因此，BaseMapper 中的 CRUD 方法（如 selectById、insert 等）无法正常工作，因为这些是 MyBatis-Plus 提供的增强功能，只有 MybatisSqlSessionFactoryBean 才能识别和处理这些功能。</p>
+<p>因此我们要使用能够支持MybatisPlus的bean，也就是MybatisSqlSessionFactoryBean ，这个bean能够使用MybatisPlus的增强功能，而且<strong>只做增强，不做侵入</strong>！</p>
+<p>因此不用担心原有的mybatis功能无法使用</p>
+<p>解决方案如下：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.sabthever.online/Pictures1/Blog_Base_Resouces/21795f9f5a7b496c93ecc407e05511ae.png"
+                     
+                ></p>
+<p><strong>代码如下：</strong></p>
+<pre><code>    MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
+</code></pre>
+<p>————————————————<br>版权声明：本文为CSDN博主「泰山小张只吃荷园」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a class="link"   href="https://blog.csdn.net/csdn3043663729/article/details/146454994" >https://blog.csdn.net/csdn3043663729/article/details/146454994<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      <categories>
+        <category>Technology</category>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>转载</tag>
         <tag>若依</tag>
       </tags>
   </entry>
