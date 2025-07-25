@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Sabthever">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://sabthever.online/2025/07/25/technology/嵌套接口测试脚本/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用脚本进行接口测试">
+<meta property="og:url" content="https://sabthever.online/2025/07/25/technology/%E5%B5%8C%E5%A5%97%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:site_name" content="Sabthever&#39;s Blog">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sabthever.online/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-07-25T05:29:39.000Z">
+<meta property="article:modified_time" content="2025-07-25T05:52:48.505Z">
+<meta property="article:author" content="Sabthever">
+<meta property="article:tag" content="API">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sabthever.online/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/%E5%A4%B4%E5%83%8F.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/%E5%A4%B4%E5%83%8F.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/%E5%A4%B4%E5%83%8F.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            利用脚本进行接口测试 | Sabthever&#39;s Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"sabthever.online","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Wecome to my blog!","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn?encode=utf-8&c=a&c=b&c=d&c=e&c=f&c=g&c=h&c=i&c=k"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":3000,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/Sabthever","instagram":null,"zhihu":null,"twitter":null,"email":"3175693234@qq.com"},"qrs":{"weixin":null,"fa-brands fa-qq":"/images/qq.jpg"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"},"mindmap":{"enable":true}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"说说":{"path":"/essays","icon":"fa-solid fa-message-dots"},"Archives":{"path":"/archives","icon":"fa-solid fa-archive"},"书签":{"icon":"fa-solid fa-bookmark","path":"/bookmarks/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"About":{"icon":"fa-solid fa-user","path":"/about"}},"search":{"enable":true,"preload":true,"path":"search.xml","field":"post","content":true,"format":"html"}},"page_templates":{"friends_column":3,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"公告：暂无告示","show_on_mobile":true,"links":{"说说":{"icon":"fa-solid fa-message-dots","path":"/essays"},"书签":{"icon":"fa-solid fa-bookmark","path":"/bookmarks/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"关于":{"icon":"fa-solid fa-user","path":"/about"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/12/18 15:27:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Sabthever&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-solid fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/essays"
+                                        >
+                                    <i class="fa-solid fa-message-dots fa-fw"></i>
+                                    说说
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-solid fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/bookmarks/"
+                                        >
+                                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                                    书签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/masonry/"
+                                        >
+                                    <i class="fa-solid fa-image fa-fw"></i>
+                                    相册
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/about"
+                                        >
+                                    <i class="fa-solid fa-user fa-fw"></i>
+                                    关于
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-solid fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/essays"
+                        >
+                            <span>
+                                说说
+                            </span>
+                            
+                                <i class="fa-solid fa-message-dots fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-solid fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/bookmarks/"
+                        >
+                            <span>
+                                书签
+                            </span>
+                            
+                                <i class="fa-solid fa-bookmark fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/masonry/"
+                        >
+                            <span>
+                                相册
+                            </span>
+                            
+                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/about"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-solid fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/about"
+                        >
+                            <span>关于</span>
+                            <i class="fa-solid fa-user fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">利用脚本进行接口测试</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/%E5%A4%B4%E5%83%8F.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Sabthever</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-07-25 13:29:39</span>
+        <span class="mobile">2025-07-25 13:29:39</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-07-25 13:52:48</span>
+            <span class="mobile">2025-07-25 13:52:48</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Technology/">Technology</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/API/">API</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.1k 字</span>
+        </span>
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>当接口写完需要测试时，我们可以在接口文档或者用postman单独调用某个接口来进行测试。<br>但是，有的时候我们需要多次调用某个接口，或者嵌套调用多个接口。比如接口A调用后返回的一个数组，其中的值作为接口B的某个参数，并且多次调用。<br>这种时候单独调用一个接口就很难做到了，要利用脚本进行测试。这边，讲解两种嵌套调用接口的方式，一种是<strong>postman+javascript</strong>的方式，一种是<strong>python</strong>的方式。单独用javascript的方式可以通过第一种方式类推一下。</p>
+<h2 id="问题：接口A返回内容，给接口B循环调用"><a href="#问题：接口A返回内容，给接口B循环调用" class="headerlink" title="问题：接口A返回内容，给接口B循环调用"></a>问题：接口A返回内容，给接口B循环调用</h2><p>我先来介绍一下手动执行的方法。</p>
+<p>对于获取部门的接口A：<code>http://localhost:8095/unit</code>，需要请求头和请求体如下。</p>
+<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求头</span></span><br><span class="line">Authorization<span class="punctuation">:</span>xxx</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请求体</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;area&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;userId&quot;</span><span class="punctuation">:</span> <span class="number">702</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>然后获取的数据如下</p>
+<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;请求成功&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;AS-M&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;AD-H&quot;</span><span class="punctuation">,</span></span><br><span class="line">        ……</span><br><span class="line">           <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>对于上面获取的数据的data就是我接口B根据部门获取相应数据的其中一个参数<code>combatUnit</code>，而接口B每次只能接收一个，所以要多次调用：<code>http://localhost:8095/areaData</code>。该接口的请求头和请求体如下：</p>
+<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求头</span></span><br><span class="line">Authorization<span class="punctuation">:</span>xxx</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请求体</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;attribute1&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;businessTab&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;combatUnit&quot;</span><span class="punctuation">:</span> <span class="string">&quot;AS-M&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;region&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;4&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;subsidiary&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>这时，B中的参数要一个个放入<code>combatUnit</code>中调用，返回结果如下。对于有些部门调用接口B的时候会出现其中的<code>list</code>为null的情况，我要找出这些部门。</p>
+<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;请求成功&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;area&quot;</span><span class="punctuation">:</span> <span class="string">&quot;中东&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;point&quot;</span><span class="punctuation">:</span> <span class="string">&quot;[54.458379258595116, 24.388822399734615]&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;color&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#00B87A&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;centerPoint&quot;</span><span class="punctuation">:</span> <span class="string">&quot;[81.106187,6.629154]&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>如果一个个调用接口B，几百次调用对于手动来说不仅慢还易错，因此就需要使用脚本来测试。</p>
+<h2 id="一-postman-javascript"><a href="#一-postman-javascript" class="headerlink" title="一.  postman+javascript"></a>一.  postman+javascript</h2><p>在postman配置一个接口中有一个Scripts，点进去后有个<code>Post-response</code>我们可以把内容写在这里。当我们对此接口send的时候，在这边的脚本就会执行。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.sabthever.online/Pictures1/Blog_Base_Resouces/image-20250722161922979.png"
+                      alt="image-20250722161922979"
+                ></p>
+<p>这个脚本中用的是javascripts脚本，在当前调用<code>pm.response</code>可以调取到当前接口的返回值。上面说了接口A返回的值形如</p>
+<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span> <span class="number">200</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;请求成功&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;AS-M&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;AD-H&quot;</span><span class="punctuation">,</span></span><br><span class="line">        ……</span><br><span class="line">           <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>因此可以用<code>pm.response.json().data</code>获取整个数组，当然这个脚本得在接口A的<code>Scripts</code>中编写才能获得到数据。<br>准备好共用的请求头，然后请求体和请求的数据放入循环中，将data中的数据逐一放入并访问，然后判断B返回的<code>data.list</code>字段是否为空。完整js如下：</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 先拿到接口 A 的 data 数组</span></span><br><span class="line"><span class="keyword">const</span> aData = pm.<span class="property">response</span>.<span class="title function_">json</span>().<span class="property">data</span>;          <span class="comment">// 假设是 [&#123;combatUnit:&#x27;ES-C&#x27;, ...&#125;, ...]</span></span><br><span class="line">aData.<span class="title function_">push</span>(<span class="string">&quot;ccc-T&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 公共请求头（按需写）</span></span><br><span class="line"><span class="keyword">const</span> headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;authorization&#x27;</span>: <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 轮询调接口 B</span></span><br><span class="line">aData.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> cu = item;</span><br><span class="line">    <span class="keyword">if</span> (!cu) <span class="keyword">return</span>;    <span class="comment">// 空值跳过</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> body = &#123;</span><br><span class="line">        <span class="attr">attribute1</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="attr">businessTab</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="attr">combatUnit</span>: cu,</span><br><span class="line">        <span class="attr">region</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="attr">role</span>: <span class="string">&#x27;4&#x27;</span>,</span><br><span class="line">        <span class="attr">subsidiary</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    pm.<span class="title function_">sendRequest</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>: <span class="string">&#x27;http://localhost:8095/areaData&#x27;</span>,</span><br><span class="line">        <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">        <span class="attr">header</span>: headers,</span><br><span class="line">        <span class="attr">body</span>: &#123;</span><br><span class="line">            <span class="attr">mode</span>: <span class="string">&#x27;raw&#x27;</span>,</span><br><span class="line">            <span class="attr">raw</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(body)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="function">(<span class="params">err, res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;请求失败&#x27;</span>, cu, err);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> json = res.<span class="title function_">json</span>();</span><br><span class="line">        <span class="keyword">if</span> (!json.<span class="property">data</span> || !json.<span class="property">data</span>.<span class="property">list</span> || json.<span class="property">data</span>.<span class="property">list</span>.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`⚠️  <span class="subst">$&#123;cu&#125;</span> 返回 list 为 null/空`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div>
+
+<p>然后因为上面全部测试都是有<code>list</code>的，所以我加了一个<code>aData.**push**(&quot;ccc-T&quot;)</code>，这个数据绝对是没有的，所以send这个接口以后，可以再左下角的Console中看到：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.sabthever.online/Pictures1/Blog_Base_Resouces/image-20250723134955912.png"
+                      alt="image-20250723134955912"
+                ></p>
+<h2 id="二-Python-单线程"><a href="#二-Python-单线程" class="headerlink" title="二. Python-单线程"></a>二. Python-单线程</h2><p>python作为一门编程语言，在写脚本上有其独特的优势，具体过程和<code>javascript</code>在postman中是一样的，但是区别在于接口A需要自己调用一下，区别也不大。</p>
+<p>python中的网络编程可以使用<code>requests</code>包，没有的话可以<code>pip install requests</code>下载一下。具体代码如下：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 公共请求头</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorization&quot;</span>: <span class="string">&quot;xxx&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 模拟接口 A 返回的数据</span></span><br><span class="line">body_first = &#123;</span><br><span class="line">    <span class="string">&quot;area&quot;</span>: <span class="literal">None</span>,</span><br><span class="line">    <span class="string">&quot;userId&quot;</span>: <span class="number">702</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">url_first = <span class="string">&quot;http://localhost:8095/unit&quot;</span></span><br><span class="line"></span><br><span class="line">a_data = [<span class="string">&quot;nothing&quot;</span>]          <span class="comment"># 原始 data 数组</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    resp = requests.post(url_first, headers=headers, data=json.dumps(body_first), timeout=<span class="number">5</span>)</span><br><span class="line">    resp.raise_for_status()</span><br><span class="line">    a_data = resp.json()</span><br><span class="line">    <span class="keyword">if</span> a_data:</span><br><span class="line">        a_data = a_data.get(<span class="string">&quot;data&quot;</span>,&#123;&#125;)</span><br><span class="line"><span class="keyword">except</span> requests.RequestException <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;请求失败&quot;</span>,  e)</span><br><span class="line">a_data.append(<span class="string">&quot;ccc-T&quot;</span>)                     <span class="comment"># 再塞一条</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 轮询调接口 B</span></span><br><span class="line">url = <span class="string">&quot;http://localhost:8095/areaData&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> a_data:</span><br><span class="line">    <span class="comment"># 兼容 item 可能是 dict 或 str</span></span><br><span class="line">    cu = item.get(<span class="string">&quot;combatUnit&quot;</span>) <span class="keyword">if</span> <span class="built_in">isinstance</span>(item, <span class="built_in">dict</span>) <span class="keyword">else</span> item</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> cu:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    body = &#123;</span><br><span class="line">        <span class="string">&quot;attribute1&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;businessTab&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;combatUnit&quot;</span>: cu,</span><br><span class="line">        <span class="string">&quot;region&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;role&quot;</span>: <span class="string">&quot;4&quot;</span>,</span><br><span class="line">        <span class="string">&quot;subsidiary&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        resp = requests.post(url, headers=headers, data=json.dumps(body), timeout=<span class="number">5</span>)</span><br><span class="line">        resp.raise_for_status()</span><br><span class="line">        data = resp.json()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data.get(<span class="string">&quot;data&quot;</span>, &#123;&#125;).get(<span class="string">&quot;list&quot;</span>):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;⚠️  <span class="subst">&#123;cu&#125;</span> 返回 list 为 null/空&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;cu&#125;</span> 查询成功&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.RequestException <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;请求失败&quot;</span>, cu, e)</span><br></pre></td></tr></table></figure></div>
+
+<p>最终查询结果如下。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.sabthever.online/Pictures1/Blog_Base_Resouces/image-20250723140325946.png"
+                      alt="image-20250723140325946"
+                ></p>
+<h2 id="三-Python-多线程"><a href="#三-Python-多线程" class="headerlink" title="三. Python-多线程"></a>三. Python-多线程</h2><p>上面python写完后我发现，这个访问实在是慢，postman只要6s，但这python要30s，这能忍？那不得搞个多线程访问一下？</p>
+<p>首先先说明一下，我们可以用以下代码计算时间：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"><span class="comment"># ……其他代码</span></span><br><span class="line">end = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;耗时: <span class="subst">&#123;end - start:<span class="number">.2</span>f&#125;</span> 秒&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>多线程所用的包<code>concurrent.futures</code>是原生python自带的，因此不需要pip。注意代码中的等待时间可以稍微设置长一点<code>timeout=15</code>，我之前5s，结果老有现成执行不完。</p>
+<p>完整的多线程代码如下：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> concurrent.futures <span class="keyword">import</span> ThreadPoolExecutor, as_completed</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 线程数：可根据 CPU/IO 情况调整</span></span><br><span class="line">MAX_WORKERS = <span class="number">8</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authorization&quot;</span>: <span class="string">&quot;xxx&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">query_one</span>(<span class="params">combat_unit: <span class="built_in">str</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;单个 combatUnit 的请求逻辑&quot;&quot;&quot;</span></span><br><span class="line">    body = &#123;</span><br><span class="line">        <span class="string">&quot;attribute1&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;businessTab&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;combatUnit&quot;</span>: combat_unit,</span><br><span class="line">        <span class="string">&quot;region&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;role&quot;</span>: <span class="string">&quot;4&quot;</span>,</span><br><span class="line">        <span class="string">&quot;subsidiary&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        r = requests.post(</span><br><span class="line">            <span class="string">&quot;http://localhost:8095/areaData&quot;</span>,</span><br><span class="line">            headers=headers,</span><br><span class="line">            data=json.dumps(body),</span><br><span class="line">            timeout=<span class="number">15</span></span><br><span class="line">        )</span><br><span class="line">        r.raise_for_status()</span><br><span class="line">        data = r.json()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data.get(<span class="string">&quot;data&quot;</span>, &#123;&#125;).get(<span class="string">&quot;list&quot;</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">f&quot;⚠️  <span class="subst">&#123;combat_unit&#125;</span> 返回 list 为 null/空&quot;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">f&quot;<span class="subst">&#123;combat_unit&#125;</span> 查询成功&quot;</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;请求失败 <span class="subst">&#123;combat_unit&#125;</span> <span class="subst">&#123;e&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 先拿到接口 A 的数据（同你原来的写法）</span></span><br><span class="line">body_first = &#123;<span class="string">&quot;area&quot;</span>: <span class="literal">None</span>, <span class="string">&quot;userId&quot;</span>: <span class="number">702</span>&#125;</span><br><span class="line">resp = requests.post(</span><br><span class="line">    <span class="string">&quot;http://localhost:8095/unit&quot;</span>,</span><br><span class="line">    headers=headers,</span><br><span class="line">    data=json.dumps(body_first),</span><br><span class="line">    timeout=<span class="number">5</span></span><br><span class="line">)</span><br><span class="line">resp.raise_for_status()</span><br><span class="line">a_data = resp.json().get(<span class="string">&quot;data&quot;</span>, [])</span><br><span class="line">a_data.append(<span class="string">&quot;ccc-T&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 把 a_data 转成纯 combatUnit 字符串列表</span></span><br><span class="line">units = [</span><br><span class="line">    (item.get(<span class="string">&quot;combatUnit&quot;</span>) <span class="keyword">if</span> <span class="built_in">isinstance</span>(item, <span class="built_in">dict</span>) <span class="keyword">else</span> item)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> a_data</span><br><span class="line">    <span class="keyword">if</span> item</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 多线程并发调用</span></span><br><span class="line"><span class="keyword">with</span> ThreadPoolExecutor(max_workers=MAX_WORKERS) <span class="keyword">as</span> pool:</span><br><span class="line">    futures = [pool.submit(query_one, u) <span class="keyword">for</span> u <span class="keyword">in</span> units <span class="keyword">if</span> u]</span><br><span class="line">    <span class="keyword">for</span> fut <span class="keyword">in</span> as_completed(futures):</span><br><span class="line">        <span class="built_in">print</span>(fut.result())</span><br><span class="line"></span><br><span class="line">end = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;耗时: <span class="subst">&#123;end - start:<span class="number">.2</span>f&#125;</span> 秒&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>最终结果如下：</p>
+<div align="center">
+    <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://www.sabthever.online/Pictures1/Blog_Base_Resouces/image-20250723140514080.png"
+                      alt="image-20250723140514080" 
+                >
+</div>
+
+<p>这样子就能很快的运行了，如果把<code>MAX_WORKERS</code>调大，在我的计算机上可以到20为止，都是上涨的，可以在2.5s左右就运行完，具体得看电脑配置。</p>
+<h2 id="四-总结"><a href="#四-总结" class="headerlink" title="四. 总结"></a>四. 总结</h2><p>Postman 的脚本之所以 6 s 左右就跑完，而 Python 却要 30 s，本质差异在于<strong>并发</strong>。</p>
+<ol>
+<li>Postman<br><code>pm.sendRequest()</code> 是 <strong>异步非阻塞</strong> 的：<br>· 循环里只是把请求“发出去”就立即继续下一轮，<br>· 所有请求几乎同时到达服务器，<br>· 因此耗时 ≈ 最慢的那一次 RTT（往返时延）≈ 6 s。</li>
+<li>Python-单线程<br>我们用的是 <strong>串行阻塞</strong> 的 <code>requests.post(...)</code>：<br>· 一次请求发出去之后，脚本会<strong>阻塞</strong>在原地等服务器返回，<br>· 下一次请求要等上一次完全结束才开始，<br>· 假设一次 RTT 也是 6 s，10 条数据就是 10×6 s ≈ 60 s；<br>· 现在 30 s，说明可能只有 5 条数据，或者 RTT 在 3 s 左右。</li>
+</ol>
+<p>结论：<strong>Python 没有并发，请求依次排队，于是总耗时&#x3D;单条耗时×条数</strong>。</p>
+<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 利用脚本进行接口测试</li>
+        <li><strong>作者:</strong> Sabthever</li>
+        <li><strong>创建于
+                :</strong> 2025-07-25 13:29:39</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-07-25 13:52:48
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://sabthever.online/2025/07/25/technology/嵌套接口测试脚本/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/API/">#API</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/02/17/technology/API调用/" title="API调用(webhook/sdk)" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="API调用(webhook/sdk)" class="!max-w-none">
+  <span class="title">API调用(webhook/sdk)</span>
+</a><a class="recommended-article-item" href="/2025/01/03/technology/java/ruoyi-1/" title="若依框架的简单使用" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架的简单使用" class="!max-w-none">
+  <span class="title">若依框架的简单使用</span>
+</a><a class="recommended-article-item" href="/2025/01/08/technology/java/下钻表导出为Excel/" title="下钻表导出为Excel" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="下钻表导出为Excel" class="!max-w-none">
+  <span class="title">下钻表导出为Excel</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/02/17/technology/API调用/" title="API调用(webhook/sdk)" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="API调用(webhook/sdk)" class="!max-w-none">
+  <span class="title">API调用(webhook/sdk)</span>
+</a><a class="recommended-article-item" href="/2025/01/03/technology/java/ruoyi-1/" title="若依框架的简单使用" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架的简单使用" class="!max-w-none">
+  <span class="title">若依框架的简单使用</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/07/02/technology/java/%E8%8B%A5%E4%BE%9DMyBatis-Plus%E6%8A%A5%E9%94%99/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">转载：若依框架使用MyBatis-Plus中的baseMapper的方法报错Invalid bound statement (not found):</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">利用脚本进行接口测试</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A%E6%8E%A5%E5%8F%A3A%E8%BF%94%E5%9B%9E%E5%86%85%E5%AE%B9%EF%BC%8C%E7%BB%99%E6%8E%A5%E5%8F%A3B%E5%BE%AA%E7%8E%AF%E8%B0%83%E7%94%A8"><span class="nav-text">问题：接口A返回内容，给接口B循环调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-postman-javascript"><span class="nav-text">一.  postman+javascript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-Python-%E5%8D%95%E7%BA%BF%E7%A8%8B"><span class="nav-text">二. Python-单线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-Python-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-text">三. Python-多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E6%80%BB%E7%BB%93"><span class="nav-text">四. 总结</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Sabthever</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 21 篇文章
+                    </span>
+                    
+                        <span>
+                            共 29k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            <div class="customize-info my-1">本站所有内容完全免费！不得将本站内容用于商业或者非法用途！</div>
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+    
+<script src="/js/build/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/build/plugins/masonry.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+    
+<script src="/js/build/layouts/bookmarkNav.js" type="module"></script>
+
+
+	
+</body>
+
+</html>
