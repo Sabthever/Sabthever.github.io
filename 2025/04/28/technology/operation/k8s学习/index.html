@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://sabthever.cn/2025/06/03/technology/java/idea多开程序/"/>
+    <link rel="canonical" href="https://sabthever.cn/2025/04/28/technology/operation/k8s学习/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -23,16 +23,17 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="idea多开程序">
-<meta property="og:url" content="https://sabthever.cn/2025/06/03/technology/java/idea%E5%A4%9A%E5%BC%80%E7%A8%8B%E5%BA%8F/index.html">
+<meta property="og:title" content="k8s学习">
+<meta property="og:url" content="https://sabthever.cn/2025/04/28/technology/operation/k8s%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Sabthever&#39;s Blog">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sabthever.cn/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-06-03T09:10:34.000Z">
-<meta property="article:modified_time" content="2025-07-30T07:03:17.852Z">
+<meta property="article:published_time" content="2025-04-28T00:57:10.000Z">
+<meta property="article:modified_time" content="2025-07-31T07:34:39.150Z">
 <meta property="article:author" content="Sabthever">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="k8s">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sabthever.cn/images/redefine-og.webp">
     
@@ -46,7 +47,7 @@
     
     <title>
         
-            idea多开程序 | Sabthever&#39;s Blog
+            k8s学习 | Sabthever&#39;s Blog
         
     </title>
 
@@ -442,7 +443,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">idea多开程序</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">k8s学习</h1>
 			</div>
 			
 		</div>
@@ -461,15 +462,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-06-03 17:10:34</span>
-        <span class="mobile">2025-06-03 17:10:34</span>
+        <span class="desktop">2025-04-28 08:57:10</span>
+        <span class="mobile">2025-04-28 08:57:10</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-07-30 15:03:17</span>
-            <span class="mobile">2025-07-30 15:03:17</span>
+            <span class="desktop">2025-07-31 15:34:39</span>
+            <span class="mobile">2025-07-31 15:34:39</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -493,7 +494,7 @@
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/Technology/Java/">Java</a>&nbsp;
+                            <a href="/categories/Technology/O-M/">O&amp;M</a>&nbsp;
                         </li>
                     
                     
@@ -507,7 +508,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Java/">Java</a>&nbsp;
+                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/k8s/">k8s</a>&nbsp;
                     </li>
                 
             </ul>
@@ -517,7 +522,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>871 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.2k 字</span>
         </span>
     
     
@@ -537,132 +542,219 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h1 id="一-问题"><a href="#一-问题" class="headerlink" title="一. 问题"></a>一. 问题</h1><p>idea运行的时候，有时需要多开一个程序，其中可能遇到一些问题。比如端口需要不一样，不然有可能冲突；比如某一个程序需要一直保持，不需要随着代码改动重新编译。</p>
-<h1 id="二-解决方法"><a href="#二-解决方法" class="headerlink" title="二. 解决方法"></a>二. 解决方法</h1><p>本文解决的就是这两个问题，都可以通过右上角执行的程序中修改配置来解决。</p>
-<p>找到上面靠右的run左边的配置点击，然后在下拉框中选择<code>edit configuration</code>。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://www.sabthever.cn/Pictures1/Blog_Base_Resouces/image-20250604095838798.png"
-                      alt="image-20250604095838798"
-                ></p>
-<p>在左侧选择自己想要的进程，也可以按左上的<code>+-</code>来添加和配置更多进程，达到多开的效果。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://www.sabthever.cn/Pictures1/Blog_Base_Resouces/image-20250604100009087.png"
-                      alt="image-20250604100009087" style="zoom:67%;" 
-                >
-
-<p>然后可以选择<code>Modify options</code>中的<code>vm option</code>，在新出现的文本框中就可以输入程序运行的临时参数。</p>
-<p>针对于上述的两个问题，可以由以下两个参数解决：</p>
+			<h2 id="一-介绍"><a href="#一-介绍" class="headerlink" title="一. 介绍"></a>一. 介绍</h2><p>　　kubernetes，简称K8s，是用8代替名字中间的8个字符“ubernete”而成的缩写。是一个开源的，用于管理云平台中多个主机上的容器化的应用，Kubernetes的目标是让部署容器化的应用简单并且高效（powerful）,Kubernetes提供了应用部署，规划，更新，维护的一种机制。<a href="#anchor1">[1]</a></p>
+<p>　　详细作用有：</p>
 <ol>
-<li>禁用<code>devtools</code>的代码修改后立刻编译重启：<code>-Dspring.devtools.restart.enabled=false</code></li>
-<li>修改该进程端口 <code>-Dserver.port=9093</code></li>
+<li><strong>容器编排</strong></li>
 </ol>
-<p>如果要使用多个参数，只要各个参数之间用<strong>空格</strong>隔开。<br>现在用的这两个都是<code>-D</code>开头，这个参数就告诉我们后面跟的相当于<code>application.yml</code>中的参数，优先级是高于<code>application.yml</code>中的。</p>
-<h1 id="三-拓展"><a href="#三-拓展" class="headerlink" title="三. 拓展"></a>三. 拓展</h1><p>除此以外，<code>vm options</code>中还可以有如下的参数。</p>
-<h3 id="1-内存相关参数"><a href="#1-内存相关参数" class="headerlink" title="1. 内存相关参数"></a>1. <strong>内存相关参数</strong></h3><ul>
-<li>**<code>-Xms</code>**：设置Java堆的初始大小。<ul>
-<li>示例：<code>-Xms512m</code>（初始堆大小为512MB）</li>
+<ul>
+<li><strong>自动化部署</strong>：k8s 可以自动部署容器化应用程序到集群中的节点上，无需手动干预。</li>
+<li><strong>自动扩展</strong>：根据应用程序的负载自动扩展或缩减容器的数量，以满足业务需求。</li>
+<li><strong>自动重启</strong>：在容器失败或节点宕机时，自动重启容器或重新调度到其他健康节点上。</li>
 </ul>
+<ol start="2">
+<li><strong>服务发现和负载均衡</strong></li>
+</ol>
+<ul>
+<li><strong>服务发现</strong>：k8s 提供内置的服务发现机制，使得容器间可以方便地通信。</li>
+<li><strong>负载均衡</strong>：自动在多个容器间分配流量，确保应用程序的高可用性和性能。</li>
+</ul>
+<ol start="3">
+<li><strong>存储编排</strong></li>
+</ol>
+<ul>
+<li><strong>动态存储管理</strong>：支持动态分配和管理存储卷，适用于有状态应用程序的数据存储需求。</li>
+<li><strong>多种存储支持</strong>：可以与多种存储后端（如本地存储、云存储等）集成。</li>
+</ul>
+<ol start="4">
+<li><strong>配置和密钥管理</strong></li>
+</ol>
+<ul>
+<li><strong>集中配置管理</strong>：将应用程序的配置与镜像分离，方便统一管理和更新。</li>
+<li><strong>安全密钥管理</strong>：安全地存储和管理敏感信息（如密码、密钥等），并将其注入到容器中。</li>
+</ul>
+<ol start="5">
+<li><strong>资源管理</strong></li>
+</ol>
+<ul>
+<li><strong>资源调度</strong>：根据资源需求（如 CPU、内存）智能调度容器到合适的节点上。</li>
+<li><strong>资源配额</strong>：限制资源使用，避免单个应用程序占用过多资源影响其他应用。</li>
+</ul>
+<ol start="6">
+<li><strong>高可用性和容错性</strong></li>
+</ol>
+<ul>
+<li><strong>多副本运行</strong>：通过运行多个副本确保服务的高可用性。</li>
+<li><strong>自我修复</strong>：自动检测和替换不健康的容器或节点，确保系统始终处于期望状态。</li>
+</ul>
+<ol start="7">
+<li><strong>滚动更新和回滚</strong></li>
+</ol>
+<ul>
+<li><strong>平滑更新</strong>：支持滚动更新，逐步替换旧版本容器，避免服务中断。</li>
+<li><strong>快速回滚</strong>：如果更新出现问题，可以快速回滚到之前的稳定版本。</li>
+</ul>
+<ol start="8">
+<li><strong>跨环境一致性和移植性</strong></li>
+</ol>
+<ul>
+<li><strong>环境一致性</strong>：在开发、测试和生产环境中保持一致的部署体验。</li>
+<li><strong>云移植性</strong>：支持在多种云平台（如 AWS、Azure、GCP）和本地数据中心之间移植应用程序。</li>
+</ul>
+<ol start="9">
+<li><strong>多租户支持</strong></li>
+</ol>
+<ul>
+<li><strong>资源隔离</strong>：在共享集群中，能够隔离不同租户的资源，确保安全性和性能。</li>
+<li><strong>命名空间管理</strong>：使用命名空间对资源进行逻辑隔离，方便多团队或项目管理。</li>
+</ul>
+<h2 id="二-k8s部署"><a href="#二-k8s部署" class="headerlink" title="二.k8s部署"></a>二.k8s部署</h2><p>　　这里主要配置的k8s三台设备的集群，是终端型k8s（无UI），在三台Centos7环境下进行配置，本篇部署参考<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/QsFavour/p/18626833" >[2]《适合新手的K8s完整部署教程》<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。这边是在相应虚拟机里进行部署，需要一定的Linux基础，并且是在学习环境中的(局域网中)，生产环境的话要打通相应的网络，做好防护。</p>
+<ol>
+<li><p><strong>yum换源</strong></p>
+<p>需要给Centos7提前换源，否则会失败，换源方法自己查查，具体有wget下载、网上下载导入等方法。有<code>wget</code>可以直接执行如下：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份原来镜像源</span></span><br><span class="line"><span class="built_in">mv</span> /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更换阿里云的镜像源</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建yum 元数据缓存</span></span><br><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure></div>
 </li>
-<li>**<code>-Xmx</code>**：设置Java堆的最大大小。<ul>
-<li>示例：<code>-Xmx2g</code>（最大堆大小为2GB）</li>
-</ul>
+<li><p><strong>初始化相应CentOS7配置，固定好IP并改好DNS</strong></p>
+<p>进入&#96;&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33&#96;&#96;</p>
+<p>&#96;&#96;BOOTPROTO<code>改为</code>“static”&#96;</p>
+<p><code>IPADDR</code>改为自己的ip地址</p>
+<p>配置好相应DNS和网关</p>
 </li>
-<li>**<code>-XX:MaxPermSize=</code>**：设置永久代（PermGen）的最大大小（适用于Java 7及以下版本）。<ul>
-<li>示例：<code>-XX:MaxPermSize=256m</code></li>
-</ul>
+<li><p><strong>做好IP映射</strong></p>
+<p>进入<code>/etc/hosts</code>，把三台设备的路由跟在后面，如我本地</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.179.150 k8s01</span><br><span class="line">192.168.179.151 k8s02</span><br><span class="line">192.168.179.152 k8s03</span><br></pre></td></tr></table></figure></div>
+
+<p>其中150的是我的master机器。</p>
 </li>
-<li>**<code>-XX:MaxMetaspaceSize=</code>**：设置元空间（Metaspace）的最大大小（适用于Java 8及以上版本）。<ul>
-<li>示例：<code>-XX:MaxMetaspaceSize=512m</code></li>
-</ul>
+<li><p><strong>三台机器需要执行以下操作(非生产环境)</strong></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># a:安装epel-release源</span></span><br><span class="line">yum -y install epel-release</span><br><span class="line"></span><br><span class="line"><span class="comment"># b:关于防火墙和selinx，避免与docker容器的防火墙规则出现冲突</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure></div>
 </li>
-</ul>
-<h3 id="2-垃圾回收相关参数"><a href="#2-垃圾回收相关参数" class="headerlink" title="2. 垃圾回收相关参数"></a>2. <strong>垃圾回收相关参数</strong></h3><ul>
-<li>**<code>-XX:+UseG1GC</code>**：启用G1垃圾回收器。</li>
-<li>**<code>-XX:+UseParallelGC</code>**：启用并行垃圾回收器。</li>
-<li>**<code>-XX:+UseConcMarkSweepGC</code>**：启用并发标记-清除垃圾回收器。</li>
-<li>**<code>-XX:GCTimeRatio=</code>**：设置垃圾回收时间占总运行时间的比例。<ul>
-<li>示例：<code>-XX:GCTimeRatio=19</code>（默认值为99，表示垃圾回收时间占总运行时间的1%）</li>
-</ul>
+<li><p><strong>开始部署master主机，可随意选择一台作为根主机</strong></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># a：安装etcd和kubernetes-master</span></span><br><span class="line">yum install etcd</span><br><span class="line">yum install kubernetes-master</span><br><span class="line"></span><br><span class="line"><span class="comment"># b：编辑/etc/etcd/etcd.conf文件</span></span><br><span class="line">vi /etc/etcd/etcd.conf</span><br><span class="line"><span class="comment"># 编辑如下:</span></span><br><span class="line">ETCD_NAME=default</span><br><span class="line">ETCD_DATA_DIR=<span class="string">&quot;/var/lib/etcd/default.etcd&quot;</span></span><br><span class="line">ETCD_LISTEN_CLIENT_URLS=<span class="string">&quot;http://0.0.0.0:2379&quot;</span></span><br><span class="line">ETCD_ADVERTISE_CLIENT_URLS=<span class="string">&quot;http://localhost:2379&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># c：编辑/etc/kubernetes/apiserver文件</span></span><br><span class="line">vi /etc/kubernetes/apiserver</span><br><span class="line"><span class="comment"># 编辑如下：　　</span></span><br><span class="line">KUBE_API_ADDRESS=<span class="string">&quot;--insecure-bind-address=0.0.0.0&quot;</span></span><br><span class="line">KUBE_API_PORT=<span class="string">&quot;--port=8080&quot;</span></span><br><span class="line">KUBELET_PORT=<span class="string">&quot;--kubelet-port=10250&quot;</span></span><br><span class="line">KUBE_ETCD_SERVERS=<span class="string">&quot;--etcd-servers=http://127.0.0.1:2379&quot;</span></span><br><span class="line">KUBE_SERVICE_ADDRESSES=<span class="string">&quot;--service-cluster-ip-range=10.254.0.0/16&quot;</span></span><br><span class="line">KUBE_ADMISSION_CONTROL=<span class="string">&quot;--admission-　　　　　　　　                 control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota&quot;</span></span><br><span class="line">KUBE_API_ARGS=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># d：启动并设置开机启动etcd、kube-apiserver、kube-controller-manager、kube-scheduler等服务</span></span><br><span class="line"><span class="keyword">for</span> SERVICES <span class="keyword">in</span> etcd kube-apiserver kube-controller-manager kube-scheduler; <span class="keyword">do</span></span><br><span class="line">    systemctl restart <span class="variable">$SERVICES</span></span><br><span class="line">    systemctl <span class="built_in">enable</span> <span class="variable">$SERVICES</span></span><br><span class="line">    systemctl status <span class="variable">$SERVICES</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment"># 这段代码需完整复制到命令行进行执行</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># e：etcd中定义flannel网络</span></span><br><span class="line">etcdctl mk /atomic.io/network/config <span class="string">&#x27;&#123;&quot;Network&quot;:&quot;172.17.0.0/16&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure></div>
 </li>
-</ul>
-<h3 id="3-性能优化参数"><a href="#3-性能优化参数" class="headerlink" title="3. 性能优化参数"></a>3. <strong>性能优化参数</strong></h3><ul>
-<li>**<code>-XX:+AggressiveOpts</code>**：启用激进的性能优化选项。</li>
-<li>**<code>-XX:+TieredCompilation</code>**：启用分层编译（默认启用）。</li>
-<li>**<code>-XX:CompileThreshold=</code>**：设置方法被编译的调用次数阈值。<ul>
-<li>示例：<code>-XX:CompileThreshold=10000</code></li>
-</ul>
+<li><p><strong>以下操作在node1和node2节点进行操作</strong></p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、yum安装flannel和kubernetes-node</span></span><br><span class="line">yum install -y flannel</span><br><span class="line">yum install -y kubernetes-node</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、为flannel网络指定etcd服务</span></span><br><span class="line"><span class="comment"># a：修改 /etc/sysconfig/flanneld文件</span></span><br><span class="line">vi /etc/sysconfig/flanneld</span><br><span class="line"><span class="comment">#修改如下(如果没有的话就新增上去):</span></span><br><span class="line">FLANNEL_ETCD=<span class="string">&quot;http://192.168.179.150:2379&quot;</span></span><br><span class="line">FLANNEL_ETCD_KEY=<span class="string">&quot;/atomic.io/network&quot;</span></span><br><span class="line"><span class="comment"># 注意：这里的192.168.179.150是我们的master主机的IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># b：修改/etc/kubernetes/config文件　　</span></span><br><span class="line">vi /etc/kubernetes/config</span><br><span class="line"><span class="comment">#修改如下:</span></span><br><span class="line">KUBE_LOGTOSTDERR=<span class="string">&quot;--logtostderr=true&quot;</span></span><br><span class="line">KUBE_LOG_LEVEL=<span class="string">&quot;--v=0&quot;</span></span><br><span class="line">KUBE_ALLOW_PRIV=<span class="string">&quot;--allow-privileged=false&quot;</span></span><br><span class="line">KUBE_MASTER=<span class="string">&quot;--master=http://192.168.179.150:8080&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># c：修改对应node的配置文件/etc/kubernetes/kubelet</span></span><br><span class="line"><span class="comment">#Node1的修改如下:</span></span><br><span class="line">KUBELET_ADDRESS=<span class="string">&quot;--address=0.0.0.0&quot;</span></span><br><span class="line">KUBELET_PORT=<span class="string">&quot;--port=10250&quot;</span></span><br><span class="line">KUBELET_HOSTNAME=<span class="string">&quot;--hostname-override=192.168.179.151&quot;</span> <span class="comment">#修改成Node1的IP</span></span><br><span class="line">KUBELET_API_SERVER=<span class="string">&quot;--api-servers=http://192.168.179.150:8080&quot;</span> <span class="comment">#指定Master节点的 API Server</span></span><br><span class="line">KUBELET_POD_INFRA_CONTAINER=<span class="string">&quot;--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest&quot;</span></span><br><span class="line">KUBELET_ARGS=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Node2:修改如下:</span></span><br><span class="line">KUBELET_ADDRESS=<span class="string">&quot;--address=0.0.0.0&quot;</span></span><br><span class="line">KUBELET_PORT=<span class="string">&quot;--port=10250&quot;</span></span><br><span class="line">KUBELET_HOSTNAME=<span class="string">&quot;--hostname-override=192.168.179.152&quot;</span> <span class="comment">#修改成Node2的IP</span></span><br><span class="line">KUBELET_API_SERVER=<span class="string">&quot;--api-servers=http://192.168.179.150:8080&quot;</span> <span class="comment">#指定Master节点的 API Server</span></span><br><span class="line">KUBELET_POD_INFRA_CONTAINER=<span class="string">&quot;--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest&quot;</span></span><br><span class="line">KUBELET_ARGS=<span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、在Node1和Node2上同时执行以下代码进行启动kube-proxy,kebelet,docker,flanneld等服务，并且设置开机启动</span></span><br><span class="line"><span class="keyword">for</span> SERVICES <span class="keyword">in</span> kube-proxy kubelet docker flanneld; <span class="keyword">do</span></span><br><span class="line">    systemctl restart <span class="variable">$SERVICES</span></span><br><span class="line">    systemctl <span class="built_in">enable</span> <span class="variable">$SERVICES</span></span><br><span class="line">    systemctl status <span class="variable">$SERVICES</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment"># 以上代码需要复制到命令行中完整执行</span></span><br></pre></td></tr></table></figure></div>
 </li>
-</ul>
-<h3 id="4-调试相关参数"><a href="#4-调试相关参数" class="headerlink" title="4. 调试相关参数"></a>4. <strong>调试相关参数</strong></h3><ul>
-<li>**<code>-Xdebug</code>**：启用调试模式（已废弃，使用<code>-agentlib:jdwp</code>替代）。</li>
-<li>**<code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=\*:5005</code>**：启用远程调试。<ul>
-<li>示例：<code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005</code>（监听5005端口）</li>
-</ul>
-</li>
-<li>**<code>-XX:+PrintGCDetails</code>**：打印详细的垃圾回收日志。</li>
-<li>**<code>-XX:+PrintGCDateStamps</code>**：在垃圾回收日志中打印时间戳。</li>
-<li>**<code>-XX:+PrintGCTimeStamps</code>**：在垃圾回收日志中打印时间戳。</li>
-<li>**<code>-XX:LogFile=</code>**：设置垃圾回收日志文件路径。<ul>
-<li>示例：<code>-XX:LogFile=gc.log</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="5-线程相关参数"><a href="#5-线程相关参数" class="headerlink" title="5. 线程相关参数"></a>5. <strong>线程相关参数</strong></h3><ul>
-<li>**<code>-Xss</code>**：设置每个线程的栈大小。<ul>
-<li>示例：<code>-Xss1m</code>（每个线程的栈大小为1MB）</li>
-</ul>
-</li>
-<li>**<code>-XX:ParallelGCThreads=</code>**：设置并行垃圾回收器的线程数。<ul>
-<li>示例：<code>-XX:ParallelGCThreads=4</code></li>
-</ul>
-</li>
-<li>**<code>-XX:ConcGCThreads=</code>**：设置并发垃圾回收器的线程数。<ul>
-<li>示例：<code>-XX:ConcGCThreads=2</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="6-其他常用参数"><a href="#6-其他常用参数" class="headerlink" title="6. 其他常用参数"></a>6. <strong>其他常用参数</strong></h3><ul>
-<li>**<code>-D=</code>**：设置系统属性。<ul>
-<li>示例：<code>-Dserver.port=9093</code>（设置Spring Boot的服务器端口号）</li>
-</ul>
-</li>
-<li>**<code>-XX:+HeapDumpOnOutOfMemoryError</code>**：在发生<code>OutOfMemoryError</code>时生成堆转储文件。</li>
-<li>**<code>-XX:HeapDumpPath=</code>**：设置堆转储文件的路径。<ul>
-<li>示例：<code>-XX:HeapDumpPath=/var/log/heapdump.hprof</code></li>
-</ul>
-</li>
-<li>**<code>-XX:+DisableExplicitGC</code>**：禁用<code>System.gc()</code>的显式调用。</li>
-<li>**<code>-XX:+UseStringDeduplication</code>**：启用字符串去重（需要启用G1垃圾回收器）。</li>
-</ul>
+<li><p><strong>进行验证</strong></p>
+<p>在Master节点上执行</p>
+<p><code>kubectl get node</code></p>
+<p>出现如下内容，表示部署完毕。</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://www.sabthever.cn/Pictures1/Blog_Base_Resouces/%E5%AD%A6%E5%BA%9F%E4%BA%861.jpeg"
-                     
+                     data-src="/k8s%E5%AD%A6%E4%B9%A0/image-20250428095133431.png"
+                      alt="image-20250428095133431"
                 ></p>
-<script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
+</li>
+<li><p>部署完毕</p>
+</li>
+</ol>
+<h2 id="三-k8s使用"><a href="#三-k8s使用" class="headerlink" title="三. k8s使用"></a>三. k8s使用</h2><p><code>kubectl</code>是控制k8s集群的命令。</p>
+<h3 id="常规操作"><a href="#常规操作" class="headerlink" title="常规操作"></a>常规操作</h3><ul>
+<li><strong>查看集群信息</strong><ul>
+<li><code>kubectl cluster-info</code>：查看集群的主节点信息等。</li>
+</ul>
+</li>
+<li><strong>获取资源列表</strong><ul>
+<li><code>kubectl get &lt;资源类型&gt;</code>：查看指定资源的列表。例如：<ul>
+<li><code>kubectl get nodes</code>：查看节点列表。</li>
+<li><code>kubectl get pods</code>：查看 Pod 列表。</li>
+<li><code>kubectl get services</code>：查看服务列表。</li>
+<li><code>kubectl get deployments</code>：查看部署列表。</li>
+<li><code>kubectl get all</code>：查看所有资源。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>查看资源详细信息</strong><ul>
+<li><code>kubectl describe &lt;资源类型&gt; &lt;资源名称&gt;</code>：查看指定资源的详细信息。例如：<ul>
+<li><code>kubectl describe pod </code>：查看 Pod 的详细信息。</li>
+<li><code>kubectl describe node </code>：查看节点的详细信息。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>创建资源</strong><ul>
+<li><code>kubectl create -f &lt;文件路径&gt;</code>：根据 YAML 文件创建资源。</li>
+</ul>
+</li>
+<li><strong>删除资源</strong><ul>
+<li><code>kubectl delete &lt;资源类型&gt; &lt;资源名称&gt;</code>：删除指定资源。例如：<ul>
+<li><code>kubectl delete pod </code>：删除 Pod。</li>
+<li><code>kubectl delete deployment </code>：删除部署。</li>
+</ul>
+</li>
+<li><code>kubectl delete -f &lt;文件路径&gt;</code>：根据 YAML 文件删除资源。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Pod-操作"><a href="#Pod-操作" class="headerlink" title="Pod 操作"></a>Pod 操作</h3><ul>
+<li><strong>进入 Pod</strong><ul>
+<li><code>kubectl exec -it  -- /bin/sh</code> 或 <code>kubectl exec -it  -- /bin/bash</code>：进入 Pod 的 Shell。</li>
+</ul>
+</li>
+<li><strong>查看 Pod 日志</strong><ul>
+<li><code>kubectl logs </code>：查看 Pod 的日志。</li>
+<li><code>kubectl logs -f </code>：实时查看 Pod 的日志。</li>
+</ul>
+</li>
+</ul>
+<h3 id="部署操作"><a href="#部署操作" class="headerlink" title="部署操作"></a>部署操作</h3><ul>
+<li><strong>更新部署</strong><ul>
+<li><code>kubectl set image deployment/ &lt;容器名称&gt;=&lt;新镜像&gt;</code>：更新部署中的镜像。</li>
+</ul>
+</li>
+<li><strong>查看部署状态</strong><ul>
+<li><code>kubectl rollout status deployment/</code>：查看部署的更新状态。</li>
+</ul>
+</li>
+</ul>
+<h3 id="服务操作"><a href="#服务操作" class="headerlink" title="服务操作"></a>服务操作</h3><ul>
+<li><strong>查看服务</strong><ul>
+<li><code>kubectl get svc</code>：查看服务列表。</li>
+</ul>
+</li>
+<li><strong>访问服务</strong><ul>
+<li><code>kubectl port-forward svc/&lt;服务名称&gt; &lt;本地端口&gt;:&lt;服务端口&gt;</code>：将服务端口转发到本地端口。</li>
+</ul>
+</li>
+</ul>
+<h3 id="命名空间操作"><a href="#命名空间操作" class="headerlink" title="命名空间操作"></a>命名空间操作</h3><ul>
+<li><strong>查看命名空间</strong><ul>
+<li><code>kubectl get namespaces</code>：查看命名空间列表。</li>
+</ul>
+</li>
+<li><strong>切换命名空间</strong><ul>
+<li><code>kubectl config set-context --current --namespace=&lt;命名空间名称&gt;</code>：切换到指定的命名空间。</li>
+</ul>
+</li>
+</ul>
+<p>详情学习请参考<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/2301_78183285/article/details/138656873" >[3]《K8S详解(5万字详细教程)》<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。</p>
+<h2 id="四-基于k8s的后端开发"><a href="#四-基于k8s的后端开发" class="headerlink" title="四. 基于k8s的后端开发"></a>四. 基于k8s的后端开发</h2><p>（尽请期待）</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><hr>
+<p><a id="anchor1">[1]</a> <a class="link"   target="_blank" rel="noopener" href="https://baike.baidu.com/reference/22864162/533aYdO6cr3_z3kATPOCyqilYyfCNt6uueHSULtzzqIP0XOpTIHmScY59dU67PliAA7Y_pdwZ5gWmKf4CExbtrNNLQ" >K8s简介<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/QsFavour/p/18626833" >[2]《适合新手的K8s完整部署教程》<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/2301_78183285/article/details/138656873" >[3]《K8S详解(5万字详细教程)》<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>以上文献</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
 		</div>
 
 		
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> idea多开程序</li>
+        <li><strong>标题:</strong> k8s学习</li>
         <li><strong>作者:</strong> Sabthever</li>
         <li><strong>创建于
-                :</strong> 2025-06-03 17:10:34</li>
+                :</strong> 2025-04-28 08:57:10</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-07-30 15:03:17
+                    :</strong> 2025-07-31 15:34:39
             </li>
         
         <li>
-            <strong>链接:</strong> https://sabthever.cn/2025/06/03/technology/java/idea多开程序/
+            <strong>链接:</strong> https://sabthever.cn/2025/04/28/technology/operation/k8s学习/
         </li>
         <li>
             <strong>
@@ -684,7 +776,11 @@
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/Java/">#Java</a>&nbsp;
+				<a href="/tags/Linux/">#Linux</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/k8s/">#k8s</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -696,24 +792,24 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/06/03/technology/java/若依框架免token访问/" title="若依框架免token访问" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架免token访问" class="!max-w-none">
-  <span class="title">若依框架免token访问</span>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/12/18/technology/blog/Welcome/" title="Sabthever的博客搭建" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Sabthever的博客搭建" class="!max-w-none">
+  <span class="title">Sabthever的博客搭建</span>
 </a><a class="recommended-article-item" href="/2025/01/03/technology/java/ruoyi-1/" title="若依框架的简单使用" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架的简单使用" class="!max-w-none">
   <span class="title">若依框架的简单使用</span>
-</a><a class="recommended-article-item" href="/2025/01/20/technology/java/利用注解实现AOP/" title="利用注解实现AOP" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="利用注解实现AOP" class="!max-w-none">
-  <span class="title">利用注解实现AOP</span>
+</a><a class="recommended-article-item" href="/2024/12/24/technology/blog/hexo-domain-settings/" title="博客配置域名" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="博客配置域名" class="!max-w-none">
+  <span class="title">博客配置域名</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/06/03/technology/java/若依框架免token访问/" title="若依框架免token访问" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架免token访问" class="!max-w-none">
-  <span class="title">若依框架免token访问</span>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2024/12/18/technology/blog/Welcome/" title="Sabthever的博客搭建" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Sabthever的博客搭建" class="!max-w-none">
+  <span class="title">Sabthever的博客搭建</span>
 </a><a class="recommended-article-item" href="/2025/01/03/technology/java/ruoyi-1/" title="若依框架的简单使用" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架的简单使用" class="!max-w-none">
   <span class="title">若依框架的简单使用</span>
@@ -725,12 +821,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/07/02/technology/java/%E8%8B%A5%E4%BE%9DMyBatis-Plus%E6%8A%A5%E9%94%99/">
+				<a class="prev" rel="prev" href="/2025/06/03/technology/java/%E8%8B%A5%E4%BE%9D%E6%A1%86%E6%9E%B6%E5%85%8Dtoken%E8%AE%BF%E9%97%AE/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">转载：若依框架使用MyBatis-Plus中的baseMapper的方法报错Invalid bound statement (not found):</span>
+						<span class="post-nav-title-item">若依框架免token访问</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -738,9 +834,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/06/03/technology/java/%E8%8B%A5%E4%BE%9D%E6%A1%86%E6%9E%B6%E5%85%8Dtoken%E8%AE%BF%E9%97%AE/">
+				<a class="next" rel="next" href="/2025/04/02/technology/java/SQL%E6%9E%9A%E4%B8%BE%E6%8E%92%E5%BA%8F/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">若依框架免token访问</span>
+						<span class="post-nav-title-item">SQL枚举排序</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -761,8 +857,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">idea多开程序</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E9%97%AE%E9%A2%98"><span class="nav-text">一. 问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">二. 解决方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-%E6%8B%93%E5%B1%95"><span class="nav-text">三. 拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0"><span class="nav-text">1. 内存相关参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0"><span class="nav-text">2. 垃圾回收相关参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%8F%82%E6%95%B0"><span class="nav-text">3. 性能优化参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%B0%83%E8%AF%95%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0"><span class="nav-text">4. 调试相关参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0"><span class="nav-text">5. 线程相关参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="nav-text">6. 其他常用参数</span></a></li></ol></li></ol></li></ol>
+		<div class="page-title">k8s学习</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E4%BB%8B%E7%BB%8D"><span class="nav-text">一. 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-k8s%E9%83%A8%E7%BD%B2"><span class="nav-text">二.k8s部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-k8s%E4%BD%BF%E7%94%A8"><span class="nav-text">三. k8s使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%84%E6%93%8D%E4%BD%9C"><span class="nav-text">常规操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pod-%E6%93%8D%E4%BD%9C"><span class="nav-text">Pod 操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E6%93%8D%E4%BD%9C"><span class="nav-text">部署操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E6%93%8D%E4%BD%9C"><span class="nav-text">服务操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E6%93%8D%E4%BD%9C"><span class="nav-text">命名空间操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%9F%BA%E4%BA%8Ek8s%E7%9A%84%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91"><span class="nav-text">四. 基于k8s的后端开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-text">最后</span></a>
 
 	</div>
 </div>
