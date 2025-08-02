@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sabthever.cn/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-08-01T01:37:02.000Z">
-<meta property="article:modified_time" content="2025-08-01T02:19:14.259Z">
+<meta property="article:modified_time" content="2025-08-01T09:09:22.670Z">
 <meta property="article:author" content="Sabthever">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="运维">
@@ -470,8 +470,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-08-01 10:19:14</span>
-            <span class="mobile">2025-08-01 10:19:14</span>
+            <span class="desktop">2025-08-01 17:09:22</span>
+            <span class="mobile">2025-08-01 17:09:22</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -527,7 +527,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>894 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>903 字</span>
         </span>
     
     
@@ -570,12 +570,12 @@
 </li>
 <li><p><strong>配置镜像源</strong></p>
 <p>创建或修改 <em>&#x2F;etc&#x2F;docker&#x2F;daemon.json</em> 文件，添加国内可用的镜像源地址：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line"><span class="string">&quot;https://registry.docker-cn.com&quot;</span>,</span><br><span class="line"><span class="string">&quot;http://hub-mirror.c.163.com&quot;</span>,</span><br><span class="line"><span class="string">&quot;https://docker.m.daocloud.io&quot;</span>,</span><br><span class="line"><span class="string">&quot;https://mirror.ccs.tencentyun.com&quot;</span>,</span><br><span class="line"><span class="string">&quot;https://registry.cn-hangzhou.aliyuncs.com&quot;</span></span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></div>
-
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line"><span class="string">&quot;https://docker.m.daocloud.io&quot;</span>, </span><br><span class="line"><span class="string">&quot;https://hub-mirror.c.163.com&quot;</span>,</span><br><span class="line"><span class="string">&quot;https://mirror.baidubce.com&quot;</span>,</span><br><span class="line"><span class="string">&quot;https://registry.cn-hangzhou.aliyuncs.com&quot;</span> // 阿里云镜像（需替换为你的专属加速地址）</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></div></li>
+</ol>
 <blockquote>
 <p><strong>注意：建议保留 2-3 个稳定的镜像源，过多可能影响速度。</strong></p>
 </blockquote>
-</li>
+<ol start="3">
 <li><p><strong>重启Docker服务</strong></p>
 <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl daemon-reload</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart docker</span><br></pre></td></tr></table></figure></div>
 </li>
@@ -675,7 +675,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-08-01 10:19:14
+                    :</strong> 2025-08-01 17:09:22
             </li>
         
         <li>
@@ -818,7 +818,7 @@
                     </span>
                     
                         <span>
-                            共 33.1k 字
+                            共 33.3k 字
                         </span>
                     
                 </p>

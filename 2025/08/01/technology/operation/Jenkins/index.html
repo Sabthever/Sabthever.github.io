@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sabthever.cn/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-08-01T02:16:38.000Z">
-<meta property="article:modified_time" content="2025-08-01T07:26:46.013Z">
+<meta property="article:modified_time" content="2025-08-02T05:50:21.969Z">
 <meta property="article:author" content="Sabthever">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="运维">
@@ -469,8 +469,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-08-01 15:26:46</span>
-            <span class="mobile">2025-08-01 15:26:46</span>
+            <span class="desktop">2025-08-02 13:50:21</span>
+            <span class="mobile">2025-08-02 13:50:21</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -522,7 +522,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>815 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>962 字</span>
         </span>
     
     
@@ -563,7 +563,7 @@
 <li><strong>CI</strong>：像“自动质检流水线”，每次提交代码都检查是否“次品”。</li>
 <li><strong>CD</strong>：像“自动发货”，质检通过后，直接发到用户手中（或先放到仓库等待人工确认）。</li>
 </ul>
-<h1 id="二-Jenkins安装"><a href="#二-Jenkins安装" class="headerlink" title="二. Jenkins安装"></a>二. Jenkins安装</h1><p>提供两种方法，一种是镜像部署，一种是手动部署。<br>不管是哪一种在之前要安装好JDK，详细安装方式请参考。</p>
+<h1 id="二-Jenkins安装"><a href="#二-Jenkins安装" class="headerlink" title="二. Jenkins安装"></a>二. Jenkins安装</h1><p>提供两种方法，一种是镜像部署，一种是手动部署。</p>
 <h2 id="Ⅰ-镜像部署"><a href="#Ⅰ-镜像部署" class="headerlink" title="Ⅰ. 镜像部署"></a>Ⅰ. 镜像部署</h2><p>首先要安装配置好docker，详情可参考<a class="link"   target="_blank" rel="noopener" href="https://www.sabthever.cn/2025/08/01/technology/operation/Docker/" >Docker安装和使用<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <ol>
 <li><p><strong>拉取Jenkins镜像</strong></p>
@@ -606,7 +606,8 @@
 </ul>
 </li>
 </ol>
-<h2 id="Ⅱ-手动部署"><a href="#Ⅱ-手动部署" class="headerlink" title="Ⅱ. 手动部署"></a>Ⅱ. 手动部署</h2><blockquote>
+<h2 id="Ⅱ-手动部署"><a href="#Ⅱ-手动部署" class="headerlink" title="Ⅱ. 手动部署"></a>Ⅱ. 手动部署</h2><p>手动部署要先安装好JDK，详细安装方式请参考<a class="link"   target="_blank" rel="noopener" href="https://www.sabthever.cn/2025/08/01/technology/operation/JDK/" >JDK下载（绿色版)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。还有git、maven自己都要下载。</p>
+<blockquote>
 <p>太懒待写 或者参考文章<a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2085003" >Jenkins教程(自动化部署)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>^[1]^</p>
 </blockquote>
 <h1 id="三-Jenkins初始化"><a href="#三-Jenkins初始化" class="headerlink" title="三. Jenkins初始化"></a>三. Jenkins初始化</h1><ol>
@@ -653,9 +654,41 @@
 </li>
 <li><p>Jenkins中配置JDK路径</p>
 <p>Dashboard-&gt;系统管理-&gt;全局工具配置-&gt;JDK-&gt;新增JDK</p>
+<p>其中JAVA_HOME要与之前配置的JDK名一致。用docker配置的话位置默认为<code>/opt/java/openjdk</code>，自己安装Jenkins的话位置看自己配置的JDK。<br>下面普遍用</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/image-20250801162703107.png"
+                      alt="image-20250801162703107"
+                ></p>
+<p>演示安装Maven。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/image-20250802121819396.png"
+                      alt="image-20250802121819396"
+                ></p>
+</li>
+<li><p>如果要部署Maven项目要下载Maven插件</p>
+<p>Dashboard-&gt;系统管理-&gt;插件管理-&gt;Available plugins</p>
+<p>搜索<code>Maven Integration</code>安装插件</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/image-20250802122039553.png"
+                      alt="image-20250802122039553"
+                ></p>
+<p><a class="link"   target="_blank" rel="noopener" href="http://192.168.179.180:8080/restart%E9%87%8D%E5%90%AFJenkins%EF%BC%8C%E7%84%B6%E5%90%8E%E7%82%B9%E5%87%BB**%E6%96%B0%E5%BB%BA**%E5%B0%B1%E8%83%BD%E7%9C%8B%E5%88%B0Maven%E9%A1%B9%E7%9B%AE%E9%80%89%E9%A1%B9%E3%80%82" >http://192.168.179.180:8080/restart重启Jenkins，然后点击**新建**就能看到Maven项目选项。<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/image-20250802122320798.png"
+                      alt="image-20250802122320798"
+                ></p>
 </li>
 </ol>
-<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2085003" >[1] Jenkins教程(自动化部署)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h1 id="四-Jenkins的使用"><a href="#四-Jenkins的使用" class="headerlink" title="四. Jenkins的使用"></a>四. Jenkins的使用</h1><p>尽情期待</p>
+<p>引用的那篇文章确实挺完善，可以去看看</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2085003" >[1] Jenkins教程(自动化部署)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
 		</div>
 
@@ -670,7 +703,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-08-01 15:26:46
+                    :</strong> 2025-08-02 13:50:21
             </li>
         
         <li>
@@ -718,9 +751,9 @@
 </a><a class="recommended-article-item" href="/2025/04/28/technology/operation/k8s学习/" title="k8s学习" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="k8s学习" class="!max-w-none">
   <span class="title">k8s学习</span>
-</a><a class="recommended-article-item" href="/2025/01/03/technology/java/ruoyi-1/" title="若依框架的简单使用" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="若依框架的简单使用" class="!max-w-none">
-  <span class="title">若依框架的简单使用</span>
+</a><a class="recommended-article-item" href="/2025/08/01/technology/operation/JDK/" title="JDK下载（绿色版）" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="JDK下载（绿色版）" class="!max-w-none">
+  <span class="title">JDK下载（绿色版）</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
@@ -778,7 +811,7 @@
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">Jenkins教程及安装手册</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-Jenkins%E4%BB%8B%E7%BB%8D"><span class="nav-text">一. Jenkins介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-CD-%E6%9C%89%E4%B8%A4%E7%A7%8D%E8%A7%A3%E9%87%8A%EF%BC%88%E6%A0%B9%E6%8D%AE%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8C%BA%E5%88%86%EF%BC%89%EF%BC%9A"><span class="nav-text">2️⃣ CD 有两种解释（根据上下文区分）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8C%B0-%E7%94%9F%E6%B4%BB%E5%8C%96%E6%AF%94%E5%96%BB"><span class="nav-text">🌰 生活化比喻</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-Jenkins%E5%AE%89%E8%A3%85"><span class="nav-text">二. Jenkins安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%85%A0-%E9%95%9C%E5%83%8F%E9%83%A8%E7%BD%B2"><span class="nav-text">Ⅰ. 镜像部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%85%A1-%E6%89%8B%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="nav-text">Ⅱ. 手动部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-Jenkins%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">三. Jenkins初始化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-text">参考文档</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-Jenkins%E4%BB%8B%E7%BB%8D"><span class="nav-text">一. Jenkins介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-CD-%E6%9C%89%E4%B8%A4%E7%A7%8D%E8%A7%A3%E9%87%8A%EF%BC%88%E6%A0%B9%E6%8D%AE%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8C%BA%E5%88%86%EF%BC%89%EF%BC%9A"><span class="nav-text">2️⃣ CD 有两种解释（根据上下文区分）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8C%B0-%E7%94%9F%E6%B4%BB%E5%8C%96%E6%AF%94%E5%96%BB"><span class="nav-text">🌰 生活化比喻</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-Jenkins%E5%AE%89%E8%A3%85"><span class="nav-text">二. Jenkins安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%85%A0-%E9%95%9C%E5%83%8F%E9%83%A8%E7%BD%B2"><span class="nav-text">Ⅰ. 镜像部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%85%A1-%E6%89%8B%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="nav-text">Ⅱ. 手动部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-Jenkins%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">三. Jenkins初始化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-Jenkins%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">四. Jenkins的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-text">引用</span></a></li></ol>
 
 	</div>
 </div>
@@ -809,7 +842,7 @@
                     </span>
                     
                         <span>
-                            共 33.1k 字
+                            共 33.3k 字
                         </span>
                     
                 </p>
