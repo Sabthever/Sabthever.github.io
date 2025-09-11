@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Sabthever">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://sabthever.cn/2025/09/11/technology/bigdata/hadoop5-离线项目/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据学习笔记5-离线项目学习">
+<meta property="og:url" content="https://sabthever.cn/2025/09/11/technology/bigdata/Hadoop5-%E7%A6%BB%E7%BA%BF%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="Sabthever&#39;s Blog">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sabthever.cn/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-09-11T02:28:34.000Z">
+<meta property="article:modified_time" content="2025-09-11T06:28:35.160Z">
+<meta property="article:author" content="Sabthever">
+<meta property="article:tag" content="Bigdata">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sabthever.cn/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/%E5%A4%B4%E5%83%8F.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/%E5%A4%B4%E5%83%8F.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/%E5%A4%B4%E5%83%8F.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            大数据学习笔记5-离线项目学习 | Sabthever&#39;s Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"sabthever.cn","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Wecome to my blog!","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn?encode=utf-8&c=a&c=b&c=d&c=e&c=f&c=g&c=h&c=i&c=k"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":3000,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/Sabthever","instagram":null,"zhihu":null,"twitter":null,"email":"3175693234@qq.com"},"qrs":{"weixin":null,"fa-brands fa-qq":"/images/qq.jpg"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"},"mindmap":{"enable":true}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"说说":{"path":"/essays","icon":"fa-solid fa-message-dots"},"Archives":{"path":"/archives","icon":"fa-solid fa-archive"},"书签":{"icon":"fa-solid fa-bookmark","path":"/bookmarks/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"About":{"icon":"fa-solid fa-user","path":"/about"}},"search":{"enable":true,"preload":true,"path":"search.xml","field":"post","content":true,"format":"html"}},"page_templates":{"friends_column":3,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"域名变更。从即日起域名变更为https://www.sabthever.cn/ ，这个域名后期会长期使用。原域名https://www.sabthever.online/将会维护到2025-12-25，请保存新的地址。","show_on_mobile":true,"links":{"说说":{"icon":"fa-solid fa-message-dots","path":"/essays"},"书签":{"icon":"fa-solid fa-bookmark","path":"/bookmarks/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"关于":{"icon":"fa-solid fa-user","path":"/about"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/12/18 15:27:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Sabthever&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-solid fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/essays"
+                                        >
+                                    <i class="fa-solid fa-message-dots fa-fw"></i>
+                                    说说
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-solid fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/bookmarks/"
+                                        >
+                                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                                    书签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/masonry/"
+                                        >
+                                    <i class="fa-solid fa-image fa-fw"></i>
+                                    相册
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/about"
+                                        >
+                                    <i class="fa-solid fa-user fa-fw"></i>
+                                    关于
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-solid fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/essays"
+                        >
+                            <span>
+                                说说
+                            </span>
+                            
+                                <i class="fa-solid fa-message-dots fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-solid fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/bookmarks/"
+                        >
+                            <span>
+                                书签
+                            </span>
+                            
+                                <i class="fa-solid fa-bookmark fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/masonry/"
+                        >
+                            <span>
+                                相册
+                            </span>
+                            
+                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/about"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-solid fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/about"
+                        >
+                            <span>关于</span>
+                            <i class="fa-solid fa-user fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">36</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">32</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">大数据学习笔记5-离线项目学习</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/%E5%A4%B4%E5%83%8F.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Sabthever</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-09-11 10:28:34</span>
+        <span class="mobile">2025-09-11 10:28:34</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-09-11 14:28:35</span>
+            <span class="mobile">2025-09-11 14:28:35</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Technology/">Technology</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/Technology/Bigdata/">Bigdata</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Bigdata/">Bigdata</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>8.5k 字</span>
+        </span>
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="十一-一个离线项目"><a href="#十一-一个离线项目" class="headerlink" title="十一.一个离线项目"></a>十一.一个离线项目</h1><h2 id="一-前期"><a href="#一-前期" class="headerlink" title="(一).前期"></a>(一).前期</h2><h3 id="1-目标"><a href="#1-目标" class="headerlink" title="1.目标"></a>1.目标</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240731093941095.png"
+                      alt="image-20240731093941095"
+                ></p>
+<h3 id="2-一些技术了解"><a href="#2-一些技术了解" class="headerlink" title="2.一些技术了解"></a>2.一些技术了解</h3><ul>
+<li><p>数据湖是吞吐大量数据的存储空间。数据湖国外用Apache Hudi</p>
+</li>
+<li><p>数仓是有目标的</p>
+</li>
+<li><p>技术栈</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240731094533700.png"
+                      alt="image-20240731094533700"
+                ></p>
+<p>Security中关于安全传输的内容。DataGovernance用于元数据管理</p>
+<p>中间的Pig太老了，被Hive替代，Storm被Flink替代</p>
+<p>阿里clickHouse也是一个Data Storage，可以自学一下。</p>
+<p>Administration管理器还有K8S</p>
+</li>
+</ul>
+<h2 id="二-项目过程"><a href="#二-项目过程" class="headerlink" title="(二).项目过程"></a>(二).项目过程</h2><ul>
+<li>这是学习用方案</li>
+</ul>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240801134455424.png"
+                      alt="image-20240801134455424" style="zoom:67%;" 
+                >
+
+<blockquote>
+<p>这边用这种方案</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<ul>
+<li>工作用方案</li>
+</ul>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240801134642564.png"
+                      alt="image-20240801134642564" style="zoom:67%;" 
+                >
+
+<h3 id="1-虚拟机配置"><a href="#1-虚拟机配置" class="headerlink" title="1.虚拟机配置"></a>1.虚拟机配置</h3><ul>
+<li><p>本机配置，200G硬盘，20G内存，12核</p>
+</li>
+<li><p>在分区配置过程，自己分区，点击进入done超链接，删掉&#x2F;home的位置空间，swap32GiB，&#x2F;给167GiB，算出来的。建议swap是内存的两倍</p>
+<blockquote>
+<p>i will configure partitioning</p>
+</blockquote>
+</li>
+<li><p>配置基础，jdk，mysql，hadoop，hive，zeppelin，hbase，spark</p>
+</li>
+</ul>
+<h3 id="2-Scala数据探索"><a href="#2-Scala数据探索" class="headerlink" title="2.Scala数据探索"></a>2.Scala数据探索</h3><ul>
+<li>在本地建立quickstart，idea项目名discovery</li>
+<li>写个trait用于不同表的探索，探索类交叉</li>
+<li>最后制作成文档用于展示探索结果，以及业务的交涉</li>
+</ul>
+<h3 id="3-数据拉取"><a href="#3-数据拉取" class="headerlink" title="3.数据拉取"></a>3.数据拉取</h3><p>A.通过Flume传输，但是hdfs没这么高吞吐量中间用个Kafka</p>
+<p>Flume-&gt;Kafka-&gt;</p>
+<h4 id="A-Flume传到Kafka"><a href="#A-Flume传到Kafka" class="headerlink" title="A.Flume传到Kafka"></a>A.Flume传到Kafka</h4><p>先开启kafka</p>
+<p>每个文件要先看行数用于最后判断是否争取，首行是什么作为正则筛选，最长一行字节数作为参数设置</p>
+<ul>
+<li><p>&#x2F;opt&#x2F;flumecfg&#x2F;event_uf.conf</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">a1.sources = r1</span><br><span class="line">a1.channels = c1</span><br><span class="line">a1.sinks = k1</span><br><span class="line"></span><br><span class="line">a1.sources.r1.type = spooldir</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.spoolDir = /opt/data/user_friends</span><br><span class="line">a1.sources.r1.deserializer.maxLineLength = 60000	#该文件最大长度超过50000</span><br><span class="line"></span><br><span class="line">a1.sources.r1.interceptors = i1</span><br><span class="line">a1.sources.r1.interceptors.i1.type = regex_filter</span><br><span class="line">a1.sources.r1.interceptors.i1.excludeEvents = true</span><br><span class="line">a1.sources.r1.interceptors.i1.regex= ^user\,friends$ # 正则匹配也会影响效率</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a1.channels.c1.type = file</span><br><span class="line">a1.channels.c1.checkpointDir = /opt/flumeck/eventuf/checkpoint</span><br><span class="line">a1.channels.c1.dataDirs = /opt/flumeck/eventuf/data</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.channel = c1</span><br><span class="line">a1.sinks.k1.type = org.apache.flume.sink.kafka.KafkaSink</span><br><span class="line">a1.sinks.k1.kafka.topic = orgin_uf</span><br><span class="line">a1.sinks.k1.kafka.bootstrap.servers = 192.168.179.140:9092</span><br><span class="line">a1.sinks.k1.kafka.flumeBatchSize = 20</span><br><span class="line">a1.sinks.k1.kafka.producer.acks = 1</span><br><span class="line">a1.sinks.k1.kafka.producer.linger.ms = 1</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>&#x2F;opt&#x2F;flumecfg&#x2F;event_users.conf</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">a1.sources = r1</span><br><span class="line">a1.channels = c1</span><br><span class="line">a1.sinks = k1</span><br><span class="line"></span><br><span class="line">a1.sources.r1.type = spooldir</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.spoolDir = /opt/data/users</span><br><span class="line"></span><br><span class="line">a1.sources.r1.interceptors = i1</span><br><span class="line">a1.sources.r1.interceptors.i1.type = regex_filter</span><br><span class="line">a1.sources.r1.interceptors.i1.excludeEvents = true</span><br><span class="line">a1.sources.r1.interceptors.i1.regex= .*locale\,birthyear\,gender.*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a1.channels.c1.type = file</span><br><span class="line">a1.channels.c1.checkpointDir = /opt/flumeck/eventuser/checkpoint</span><br><span class="line">a1.channels.c1.dataDirs = /opt/flumeck/eventuser/data</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.channel = c1</span><br><span class="line">a1.sinks.k1.type = org.apache.flume.sink.kafka.KafkaSink</span><br><span class="line">a1.sinks.k1.kafka.topic = users</span><br><span class="line">a1.sinks.k1.kafka.bootstrap.servers = 192.168.179.140:9092</span><br><span class="line">a1.sinks.k1.kafka.flumeBatchSize = 20</span><br><span class="line">a1.sinks.k1.kafka.producer.acks = 1</span><br><span class="line">a1.sinks.k1.kafka.producer.linger.ms = 1</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>启动消费端监控</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-consumer.sh --bootstrap-server 192.168.179.140:9092 --topic users</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>运行flume</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent -n a1 -f /opt/flumecfg/event_users.conf -c /opt/soft/flume160/conf/ -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+</ul>
+<h4 id="B-Java转传Kafka"><a href="#B-Java转传Kafka" class="headerlink" title="B.Java转传Kafka"></a>B.Java转传Kafka</h4><ul>
+<li><p>读比较小的数据</p>
+</li>
+<li><p>甲方不让我们在服务器上下载flume的情况</p>
+</li>
+<li><p>代码</p>
+<ol>
+<li><p>quickstart，这边工程文件为readfiletoKafka</p>
+</li>
+<li><p>导包</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.kafka<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>kafka-clients<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div></li>
+</ol>
+</li>
+</ul>
+<h3 id="4-数据从Kafka到Kafka进行简单清理"><a href="#4-数据从Kafka到Kafka进行简单清理" class="headerlink" title="4.数据从Kafka到Kafka进行简单清理"></a>4.数据从Kafka到Kafka进行简单清理</h3><h3 id="5-从Kafka到Hbase去重-同时相当于保存在了HDFS中"><a href="#5-从Kafka到Hbase去重-同时相当于保存在了HDFS中" class="headerlink" title="5.从Kafka到Hbase去重(同时相当于保存在了HDFS中)"></a>5.从Kafka到Hbase去重(同时相当于保存在了HDFS中)</h3><ul>
+<li><p>幂等性</p>
+</li>
+<li><p>工程文件ka2ka</p>
+</li>
+<li><h5 id="也可以kafka导入到doris"><a href="#也可以kafka导入到doris" class="headerlink" title="也可以kafka导入到doris"></a>也可以kafka导入到doris</h5><p>用UNIQUE数据模型，功能类似Hbase，速度远超hbase，但是jdbc方式是不太行的。</p>
+</li>
+</ul>
+<h3 id="6-Hive映射数据"><a href="#6-Hive映射数据" class="headerlink" title="6.Hive映射数据"></a>6.Hive映射数据</h3><h3 id="7-离线数仓四层结构"><a href="#7-离线数仓四层结构" class="headerlink" title="7.离线数仓四层结构"></a>7.离线数仓四层结构</h3><ul>
+<li><p>第一第二层哪些数据不能少，即使多了或者少了也要知道原因</p>
+<p>对于全是特征的的数据进行聚类分组形成表</p>
+</li>
+<li><p>第一层ADS映射和放数据</p>
+</li>
+<li><p>第二层DWD数据清洗</p>
+<ol>
+<li>创建DWD数据库</li>
+<li>映射ods层的train表到dwd层<ol>
+<li>清洗用户表—2.1 制作一个临时表将locale所有的变化都进行编号</li>
+<li>清洗用户表—2.2 制作一个临时表计算用户年份的中位数年份</li>
+<li>清洗用户表—2.3 制作一个性别生成函数</li>
+<li>清洗用户表—生成timezone数据对照临时表</li>
+<li>清洗用户表</li>
+</ol>
+</li>
+<li>压缩events表</li>
+<li>导入eventAttendees表</li>
+<li>压缩UserFriends表</li>
+<li>创建eventgroup表</li>
+</ol>
+</li>
+<li><p>第三层做宽表思考业务相关性的简单指标</p>
+<p>做成单独表</p>
+<p>思考特征，后期要机器学习</p>
+<p>此处思考的特征：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">train_interested_y							------------- train</span><br><span class="line">train_eventid								------------- train</span><br><span class="line">train_userid								------------- train</span><br><span class="line">train_invited								------------- train</span><br><span class="line">train_ts									------------- train</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">event_userid								------------- events</span><br><span class="line">event_starttime								------------- events</span><br><span class="line">event_lat									------------- events</span><br><span class="line">event_lng									------------- events</span><br><span class="line">event_group(算)								------------- events+eventgroup</span><br><span class="line">event_month(统)								------------- events</span><br><span class="line">event_hour(统)								------------- events</span><br><span class="line">event_dayofweek(统)							------------- events</span><br><span class="line">event_city_level(统)						------------- events</span><br><span class="line">event_state_level(统)						------------- events</span><br><span class="line">event_country_level(统)						------------- events</span><br><span class="line"></span><br><span class="line">users_birthyear_age							------------- users</span><br><span class="line">users_gender								------------- users</span><br><span class="line">users_joinedday								------------- users</span><br><span class="line">users_location								------------- users</span><br><span class="line">users_zone									------------- users</span><br><span class="line">users_localid								------------- users</span><br><span class="line"></span><br><span class="line">uf_train_creator_isfriend(统)				------------- train+userfriend+events</span><br><span class="line"></span><br><span class="line">event_user_similar(统)						------------- events+train+users</span><br><span class="line"></span><br><span class="line">uf_friendcount(统)							------------- userFriends</span><br><span class="line">uf_ea_yes_count(统)							------------- userFriends+train+eventAttendees</span><br><span class="line">uf_ea_no_count(统)							------------- userFriends+train+eventAttendees</span><br><span class="line">uf_ea_maybe_count(统)						------------- userFriends+train+eventAttendees</span><br><span class="line">uf_ea_invited_count(统)						------------- userFriends+train+eventAttendees</span><br><span class="line">uf_ea_yes_count_prec(统)					------------- userFriends+train+eventAttendees</span><br><span class="line">uf_ea_no_count_prec(统)						------------- userFriends+train+eventAttendees</span><br><span class="line">uf_ea_maybe_count_prec(统)					------------- userFriends+train+eventAttendees</span><br><span class="line">uf_ea_invited_count_prec(统)				------------- userFriends+train+eventAttendees</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">user_ea_yes_count(统)						------------- train+user+eventAttendees</span><br><span class="line">user_ea_no_count(统)						------------- train+user+eventAttendees</span><br><span class="line">user_ea_maybe_count(统)						------------- train+user+eventAttendees</span><br><span class="line">user_ea_invited_count(统)					------------- train+user+eventAttendees</span><br><span class="line">user_ea_count(统)							------------- train+user+eventAttendees</span><br><span class="line">user_ea_yes_count_prec(统)					------------- train+user+eventAttendees</span><br><span class="line">user_ea_maybe_prec(统)						------------- train+user+eventAttendees</span><br><span class="line">user_ea_invited_prec(统)					------------- train+user+eventAttendees</span><br><span class="line"></span><br><span class="line">#user_ea_avg_isArrive(统)					------------- died</span><br></pre></td></tr></table></figure></div>
+
+<ol>
+<li><p>创建dws_interested数据库</p>
+</li>
+<li><p>创建雪花模型-事实表(train)</p>
+</li>
+<li><p>将会议表和会议组表结合成1张表 降维</p>
+</li>
+<li><p>创建雪花模型-维度表(users)</p>
+</li>
+<li><p>训练集用户是否是会议主持人的朋友</p>
+</li>
+<li><p>会议和用户是否同城</p>
+</li>
+<li><p>训练集用户自身参会及反馈统计</p>
+</li>
+<li><p>训练集用户朋友在本次会议中答复情况的统计</p>
+<p>三张表join了以后数据条数10亿以上，内存不够，关掉mapjoin也不行，于是多做中间表，尽量把表变小留下必要数据，join时变少</p>
+</li>
+<li><p>训练集用户朋友在本次会议中答复情况的统计2</p>
+</li>
+<li><p>统计每个用户朋友的数量</p>
+</li>
+<li><p>计算每个城市、省份、国家等级</p>
+</li>
+<li><p>会议lat lng max_min值</p>
+</li>
+</ol>
+</li>
+<li><p>第四层进行合并成宽表</p>
+<p>机器学习 机器学习的工程文件夹，spkmodel</p>
+</li>
+</ul>
+<h3 id="8-统计过程中需要对数字很大的列进行归一化"><a href="#8-统计过程中需要对数字很大的列进行归一化" class="headerlink" title="8.统计过程中需要对数字很大的列进行归一化"></a>8.统计过程中需要对数字很大的列进行归一化</h3><ul>
+<li><p>法一<br>$$<br>Y&#x3D;\frac {X-min}{max-min}<br>$$</p>
+</li>
+<li><p>法二</p>
+<p><strong>Z-core归一化</strong></p>
+</li>
+</ul>
+<p>$$<br>Y&#x3D;\frac {X-mean}{std}<br>$$</p>
+<h3 id="9-对于宽表用模型计算"><a href="#9-对于宽表用模型计算" class="headerlink" title="9.对于宽表用模型计算"></a>9.对于宽表用模型计算</h3><ul>
+<li>这边用的分类模型中的随机森林模型</li>
+<li>将计算好的模型保存</li>
+</ul>
+<h3 id="10-test集转化为需要的宽表格式"><a href="#10-test集转化为需要的宽表格式" class="headerlink" title="10.test集转化为需要的宽表格式"></a>10.test集转化为需要的宽表格式</h3><ul>
+<li>这边用spark做各种清理和数据的传输</li>
+<li><strong>工程文件名<code>scalaProject/eventpred</code></strong></li>
+<li>工程结构：</li>
+</ul>
+<h4 id="A-读写"><a href="#A-读写" class="headerlink" title="A.读写"></a>A.读写</h4><ul>
+<li><p>工程中用了三种，1是文件读写，2是Kafka的读取，3是Hive的读取</p>
+</li>
+<li><p>用了一个特质ReadSource，下面用三个特质来继承，相当于Java中接口和实现，分别为</p>
+<ol>
+<li>FileReadSource</li>
+<li>HiveReadSource</li>
+<li>KafkaReadSource</li>
+</ol>
+</li>
+<li><p>下面用了一个类ReadDataSource来进行动态混入。Test对象用于引用，做实例化.</p>
+</li>
+<li><p>这些读取的数据最后放到某个文件夹中，当作仓库，ods层。不需要处理的就直接放到dwd层</p>
+</li>
+<li><p>当然，如果内存够用，可以四层处理全部放在内存中，不落盘。</p>
+</li>
+<li><p>ReadSource中只有一个接口</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span></span>(param:<span class="type">Map</span>[<span class="type">String</span>,<span class="type">String</span>],spark:<span class="type">SparkSession</span>):<span class="type">DataFrame</span></span><br></pre></td></tr></table></figure></div>
+
+<p>用Map传递参数，因为各种类型不一样</p>
+<p>各种参数名用一个来存储对象，这边的对象名叫FinalSourceConfig</p>
+</li>
+<li><p><strong>其中知识点</strong>：动态混入，读写spark，有无头，文件、Hive、Kafka读写。Map来传递参数，参数对象。对象来进行枚举。</p>
+</li>
+</ul>
+<h4 id="B-数据清洗"><a href="#B-数据清洗" class="headerlink" title="B.数据清洗"></a>B.数据清洗</h4><ul>
+<li><p>需要的数据直接拉取过来，每一层都用来一个对象来处理，但是实际上一层用一个对象太乱了，最好每一个表的处理都单独出来</p>
+</li>
+<li><p>没有OPS是因为，前面拉取数据相当于是这步操作了，有些不需要处理的直接放到dwd文件夹中</p>
+</li>
+<li><p>DWDEvent</p>
+</li>
+<li><p>DWSEvent</p>
+<ul>
+<li>文件读写都要用，因此用高级函数放在中间，这是需要改变的部分</li>
+<li>其中知识点：高级函数，SparkSQL，文件的读写。SparkSQL中的udf函数。udf中有scala的三元表达式。select中一个指定了来自哪个表，其他的也要指定。写如何只写成一个，而不会一行一个文件</li>
+<li>参数用Map来存储，然后调用对象取静态的枚举值。</li>
+</ul>
+</li>
+<li><p>ADSEvent</p>
+<ul>
+<li><p>数据取出来的名字和顺序都要和训练的时候一模一样。</p>
+<p>List同时给多val赋值</p>
+<p>数据存入mysql</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="11-宽表放入之前训练好的模型中预测"><a href="#11-宽表放入之前训练好的模型中预测" class="headerlink" title="11.宽表放入之前训练好的模型中预测"></a>11.宽表放入之前训练好的模型中预测</h3><ul>
+<li>宽表的数据也要变成模型需要的数据，要有label</li>
+<li>预测也在了eventpred的ADSEvent中</li>
+<li>预测结果保存在Mysql中，也可以放在ClickHouse、Doris等等。同时把维度表也放进去</li>
+</ul>
+<h3 id="12-用帆软等工具进行数据展示"><a href="#12-用帆软等工具进行数据展示" class="headerlink" title="12.用帆软等工具进行数据展示"></a>12.用帆软等工具进行数据展示</h3><ul>
+<li>用帆软访问数据库数据，但是复杂语句特别慢，应该在mysql中建起相应表，帆软只做简单查询</li>
+</ul>
+<ol start="13">
+<li></li>
+</ol>
+<h2 id="三-归纳总结"><a href="#三-归纳总结" class="headerlink" title="(三).归纳总结"></a>(三).归纳总结</h2><ul>
+<li><p>spark中cast()中间变化要Type：<code>$&quot;birthyear&quot;.cast(IntegerType)</code></p>
+</li>
+<li><p><code>df.select(&quot;locale&quot;).rdd.filter</code>rdd出<code>RDD[row]</code></p>
+</li>
+<li><p>可以吹：</p>
+<ul>
+<li>数据倾斜，排序的时候空最多，直接去掉空，然后最后加上一个-1个空排序就会在最后，而且减去了大量的数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="四-其中知识点"><a href="#四-其中知识点" class="headerlink" title="(四).其中知识点"></a>(四).其中知识点</h2><h3 id="1-spark性能调优"><a href="#1-spark性能调优" class="headerlink" title="1.spark性能调优"></a>1.spark性能调优</h3><ol>
+<li><p>语句可以用exits，distinct，collect_list等等来缩</p>
+</li>
+<li><p>增大内存</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> spark = <span class="type">SparkSession</span>.builder()</span><br><span class="line">.master(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line">.config(<span class="string">&quot;spark.driver.memory&quot;</span>,<span class="string">&quot;16g&quot;</span>)</span><br><span class="line">.config(<span class="string">&quot;spark.executor.memory&quot;</span>,<span class="string">&quot;16g&quot;</span>)</span><br><span class="line">.appName(<span class="string">&quot;disc&quot;</span>)</span><br><span class="line">.getOrCreate()</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>分段计算</p>
+</li>
+</ol>
+<h1 id="十二-Flume架构"><a href="#十二-Flume架构" class="headerlink" title="十二.Flume架构"></a>十二.Flume架构</h1><ul>
+<li><p>Flume用于将多种来源的日志以流的方式传输至Hadoop或者其它目的地</p>
+<ul>
+<li>一种可靠、可用的高效分布式数据收集服务</li>
+</ul>
+</li>
+<li><p>Flume拥有基于数据流上的简单灵活架构，支持容错、故障转移与恢复</p>
+</li>
+<li><p>由Cloudera 2009年捐赠给Apache，现为Apache顶级项目</p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://flume.apache.org/releases/content/1.11.0/FlumeUserGuide.html" >用户指南文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>黑体就是一定要填的数据，黄色背景是示例</p>
+</li>
+<li><p><strong>阿里系：DataX</strong></p>
+</li>
+</ul>
+<h2 id="一-Flume架构"><a href="#一-Flume架构" class="headerlink" title="(一)Flume架构"></a>(一)Flume架构</h2><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240801135233952.png"
+                      alt="image-20240801135233952" style="zoom: 50%;" 
+                >
+
+<p><strong>sink是输出，channel是配置载体，source配置来源</strong>。还有其他组件，这三个是组成部分</p>
+<ul>
+<li><p>例子</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240801135348837.png"
+                      alt="image-20240801135348837" style="zoom:50%;" 
+                >
+
+<ul>
+<li><p>前面的名随意，示例名。</p>
+</li>
+<li><p>source:</p>
+<p> Taildir Source可传输实时的数据</p>
+<p>netcat命令终端nc传递的数据</p>
+<p>spoolDir是离线传输文件数据</p>
+</li>
+<li><p>channel:</p>
+<p>Memory 内存管道，速度快，但是容易丢</p>
+<p>File 类似于检查点，会保存成文件，稳定性高。但是可能多传文件</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二-安装"><a href="#二-安装" class="headerlink" title="(二).安装"></a>(二).安装</h2><ul>
+<li><p>准备好<code>flume-ng-1.6.0-cdh5.14.2.tar.gz</code></p>
+</li>
+<li><pre><code class="sh">cd /opt
+tar -zxf flume-ng-1.6.0-cdh5.14.2.tar.gz
+mv apache-flume-1.6.0-cdh5.14.2-bin/ soft/flume160
+cd soft/flume160/conf/
+cp flume-env.sh.template flume-env.sh
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">vim flume-env.sh</span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">改</span><br><span class="line">export JAVA_HOME=/opt/soft/jdk180</span><br></pre></td></tr></table></figure></div>
+
+vim /etc/profile
+
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Flume</span></span><br><span class="line"><span class="built_in">export</span> FLUME_HOME=/opt/soft/flume160</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$FLUME_HOME</span>/bin</span><br></pre></td></tr></table></figure></div>
+
+source /etc/profile
+</code></pre>
+</li>
+</ul>
+<h2 id="三-使用"><a href="#三-使用" class="headerlink" title="(三)使用"></a>(三)使用</h2><ul>
+<li>使用后读的文件会有个后缀，后缀去掉才能再读</li>
+</ul>
+<h3 id="1-第一次使用netcat"><a href="#1-第一次使用netcat" class="headerlink" title="1.第一次使用netcat"></a>1.第一次使用netcat</h3><div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line"><span class="built_in">mkdir</span> flumecfg</span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="built_in">touch</span> firstnetcat.conf</span><br><span class="line">vim firstnetcat.conf</span><br></pre></td></tr></table></figure></div>
+
+<p>然后到<a class="link"   target="_blank" rel="noopener" href="https://flume.apache.org/releases/content/1.11.0/FlumeUserGuide.html" >用户指南文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>找channel和Source这边是netcat source 和memory</p>
+<p>还有很多其他参数</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim firstnetcat.conf</span></span><br><span class="line"><span class="comment"># 三样组件的自定义实例名 a1 r1 c1 k1这些都是可以改的</span></span><br><span class="line">a1.sources = r1</span><br><span class="line">a1.channels = c1</span><br><span class="line">a1.sinks = k1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面的实例名字要和上面的一样</span></span><br><span class="line">a1.sources.r1.type = netcat        <span class="comment"># 来源类型netcat</span></span><br><span class="line">a1.sources.r1.bind = 192.168.179.140 <span class="comment"># 来源ip</span></span><br><span class="line">a1.sources.r1.port = 6666			<span class="comment"># 来源端口</span></span><br><span class="line">a1.sources.r1.channels = c1			<span class="comment"># 来源传递媒介(通道)</span></span><br><span class="line"></span><br><span class="line">a1.channels.c1.type = memory		<span class="comment"># 传递媒介(通道)类型</span></span><br><span class="line"></span><br><span class="line">a1.sinks.k1.type = logger			<span class="comment"># 传递目标类型</span></span><br><span class="line">a1.sinks.k1.channel = c1			<span class="comment"># 传递到目标的媒介(通道)</span></span><br></pre></td></tr></table></figure></div>
+
+<p>先启动这个</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent -n a1 -f /opt/flumecfg/firstnetcat.conf -c /opt/soft/flume160/conf/ -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure></div>
+
+<p><code>-n</code>后是实例名称</p>
+<p><code>yum install -y nc</code>，用于测试 <code>nc ip地址 6666</code>先启动这个</p>
+<p>然后在nc这边输入，另一边有反应</p>
+<h3 id="2-文件读到控制台离线"><a href="#2-文件读到控制台离线" class="headerlink" title="2.文件读到控制台离线"></a>2.文件读到控制台离线</h3><ul>
+<li><p>源：Spooling Directory Source</p>
+</li>
+<li><p><code>/opt/flumecfg/secfolder.conf</code></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">a1.sources = r1</span><br><span class="line">a1.channels = c1</span><br><span class="line">a1.sinks = k1</span><br><span class="line"></span><br><span class="line">a1.sources.r1.type = spooldir</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.spoolDir = /opt/eventdata/train</span><br><span class="line">a1.sources.r1.interceptors = i1</span><br><span class="line">a1.sources.r1.interceptors.i1.type = regex_filter</span><br><span class="line">a1.sources.r1.interceptors.i1.excludeEvents = true</span><br><span class="line">a1.sources.r1.interceptors.i1.regex= ^user.*$	// 正则筛选掉表头</span><br><span class="line"></span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line"></span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>读取</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent -n a1 -f /opt/flumecfg/secfolder.conf -c /opt/soft/flume160/conf/ -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="3-文件读到控制台实时"><a href="#3-文件读到控制台实时" class="headerlink" title="3.文件读到控制台实时"></a>3.文件读到控制台实时</h3><ul>
+<li><p>&#x2F;opt&#x2F;flumecfg&#x2F;thirddnyc.conf</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a1.sources = r1</span><br><span class="line">a1.channels = c1</span><br><span class="line">a1.sinks = k1</span><br><span class="line"></span><br><span class="line">a1.sources.r1.type = TAILDIR</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.positionFile = /var/log/flume/taildir_position.json</span><br><span class="line">a1.sources.r1.filegroups = f1				<span class="comment"># 可以多个</span></span><br><span class="line">a1.sources.r1.filegroups.f1 = /opt/data/train/abc <span class="comment"># 监控的文件</span></span><br><span class="line"></span><br><span class="line">a1.channels.c1.type = memory</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line">a1.sinks.k1.channel = c1</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>对于</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent -n a1 -f /opt/flumecfg/thirddnyc.conf -c /opt/soft/flume160/conf/ -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="4-读取没有的源-自定义"><a href="#4-读取没有的源-自定义" class="headerlink" title="4.读取没有的源(自定义)"></a>4.读取没有的源(自定义)</h3><ul>
+<li><p>Custom Source</p>
+</li>
+<li><p>比如数据库</p>
+</li>
+<li><p>过程(这边是取mysql的数据)</p>
+<ol>
+<li><p>新建maven项目调好</p>
+</li>
+<li><p>包</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.flume<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>flume-ng-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>往进程中塞数据</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.njupt.custflume;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.flume.Context;</span><br><span class="line"><span class="keyword">import</span> org.apache.flume.Event;</span><br><span class="line"><span class="keyword">import</span> org.apache.flume.EventDeliveryException;</span><br><span class="line"><span class="keyword">import</span> org.apache.flume.PollableSource;</span><br><span class="line"><span class="keyword">import</span> org.apache.flume.conf.Configurable;</span><br><span class="line"><span class="keyword">import</span> org.apache.flume.event.SimpleEvent;</span><br><span class="line"><span class="keyword">import</span> org.apache.flume.source.AbstractSource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MySource</span> <span class="keyword">extends</span> <span class="title class_">AbstractSource</span></span><br><span class="line">    <span class="keyword">implements</span> <span class="title class_">Configurable</span>, PollableSource &#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> String tablename;</span><br><span class="line">    Connection connection;</span><br><span class="line">    ResultSet rs;</span><br><span class="line">    PreparedStatement pstat;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当source没有数据可以封装时，会让source所在的线程休息一会</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">long</span> <span class="title function_">getBackOffSleepIncrement</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当source没有数据可以封装时，会让source所在的线程休息的最大时间</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">long</span> <span class="title function_">getMaxBackOffSleepInterval</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">stop</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 每次process执行完后执行一次</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            rs.close();</span><br><span class="line">            pstat.close();</span><br><span class="line">            connection.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">super</span>.stop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Status <span class="title function_">process</span><span class="params">()</span> <span class="keyword">throws</span> EventDeliveryException &#123;</span><br><span class="line">        <span class="comment">//改方法中的会被反复执行</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//            List&lt;Event&gt; lst = new ArrayList&lt;&gt;();</span></span><br><span class="line">            <span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;userid&quot;</span>)+<span class="string">&quot;,&quot;</span></span><br><span class="line">                        +rs.getString(<span class="string">&quot;username&quot;</span>)+<span class="string">&quot;,&quot;</span></span><br><span class="line">                        +rs.getString(<span class="string">&quot;birthday&quot;</span>);</span><br><span class="line">                <span class="type">SimpleEvent</span> <span class="variable">event</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleEvent</span>();</span><br><span class="line">                event.setBody(line.getBytes());</span><br><span class="line">                <span class="built_in">this</span>.getChannelProcessor().processEvent(event); <span class="comment">// 会反复调用</span></span><br><span class="line"><span class="comment">//                this.getChannelProcessor().processEventBatch(); // 其中传List可以按批传输</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Status.READY;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            <span class="keyword">return</span> Status.BACKOFF;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(Context context)</span> &#123;</span><br><span class="line">        <span class="comment">// 该方法中的内容在一开始执行一次</span></span><br><span class="line">        <span class="built_in">this</span>.url = context.getString(<span class="string">&quot;dburl&quot;</span>);</span><br><span class="line">        <span class="comment">// key,default</span></span><br><span class="line">        <span class="built_in">this</span>.username=context.getString(<span class="string">&quot;dbname&quot;</span>,<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        <span class="built_in">this</span>.password=context.getString(<span class="string">&quot;dbpwd&quot;</span>,<span class="string">&quot;ok&quot;</span>);</span><br><span class="line">        <span class="built_in">this</span>.tablename=context.getString(<span class="string">&quot;table&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">            <span class="built_in">this</span>.connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">            pstat = connection.prepareStatement(<span class="string">&quot;select * from &quot;</span> + tablename);</span><br><span class="line">            rs = pstat.executeQuery();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>打包放入 <code>/opt/soft/flume160/lib</code>同时要把mysql驱动jar也方进这个文件夹中，这边时mysql5，因此用<code>mysql-connector-java-5</code></p>
+</li>
+<li><p><code>.1.38.jar</code></p>
+</li>
+<li><p>写flume配置</p>
+<p>下面配置中的参数名要和java程序中的对应好</p>
+<p><code>/opt/flumecfg/fourcust.conf</code></p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  a1.sources = r1</span><br><span class="line">  a1.channels = c1</span><br><span class="line">  a1.sinks = k1</span><br><span class="line">  </span><br><span class="line">  a1.sources.r1.type = com.njupt.custflume.MySource</span><br><span class="line">  a1.sources.r1.dburl = jdbc:mysql://192.168.179.140:3306/mydemo</span><br><span class="line">  a1.sources.r1.table = userinfos</span><br><span class="line">  </span><br><span class="line">  a1.channels.c1.type = memory</span><br><span class="line">  </span><br><span class="line">  a1.sinks.k1.type = logger</span><br><span class="line">  a1.sources.r1.channels = c1</span><br><span class="line">a1.sinks.k1.channel = c1</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>执行</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng agent -n a1 -f /opt/flumecfg/fourcust.conf -c /opt/soft/flume160/conf/ -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+</li>
+</ul>
+<h3 id="5-文件通过文件读到logger"><a href="#5-文件通过文件读到logger" class="headerlink" title="5.文件通过文件读到logger"></a>5.文件通过文件读到logger</h3><ul>
+<li><p><code>/opt/flumecfg/fivefile.conf</code></p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">a1.sources = r1</span><br><span class="line">a1.channels = c1</span><br><span class="line">a1.sinks = k1</span><br><span class="line"></span><br><span class="line">a1.sources.r1.type = spooldir</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.spoolDir = /opt/data/events</span><br><span class="line"></span><br><span class="line">a1.sources.r1.interceptors = i1</span><br><span class="line">a1.sources.r1.interceptors.i1.type = regex_filter</span><br><span class="line">a1.sources.r1.interceptors.i1.excludeEvents = <span class="literal">true</span></span><br><span class="line">a1.sources.r1.interceptors.i1.regex= .*event_id.*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a1.sinks.k1.type = logger</span><br><span class="line">a1.channels.c1.type = file</span><br><span class="line">a1.channels.c1.checkpointDir = /opt/flumeck/checkpoint</span><br><span class="line">a1.channels.c1.dataDirs = /opt/flumeck/data</span><br><span class="line"></span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="6-文件通过文件读到hdfs"><a href="#6-文件通过文件读到hdfs" class="headerlink" title="6.文件通过文件读到hdfs"></a>6.文件通过文件读到hdfs</h3><p>但实际上hdfs读写速度慢，撑不住Flume大量的写入，因此需要中间件Kafka</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">a1.channels = c1</span><br><span class="line">a1.sinks = k1</span><br><span class="line"></span><br><span class="line">a1.sources.r1.type = spooldir</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.spoolDir = /opt/data/events</span><br><span class="line"></span><br><span class="line">a1.sources.r1.interceptors = i1</span><br><span class="line">a1.sources.r1.interceptors.i1.type = regex_filter</span><br><span class="line">a1.sources.r1.interceptors.i1.excludeEvents = <span class="literal">true</span></span><br><span class="line">a1.sources.r1.interceptors.i1.regex= .*event_id.*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a1.channels.c1.type = file</span><br><span class="line">a1.channels.c1.checkpointDir = /opt/flumeck/checkpoint</span><br><span class="line">a1.channels.c1.dataDirs = /opt/flumeck/data</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.type = hdfs</span><br><span class="line">a1.sinks.k1.channel = c1</span><br><span class="line">a1.sinks.k1.hdfs.path = hdfs://192.168.179.140:9000/flume/events/%Y-%m-%d/%H%M/%S</span><br><span class="line">a1.sinks.k1.hdfs.filePrefix = events-</span><br><span class="line">a1.sinks.k1.hdfs.round = <span class="literal">true</span></span><br><span class="line">a1.sinks.k1.hdfs.roundValue = 30</span><br><span class="line">a1.sinks.k1.hdfs.roundUnit = second</span><br><span class="line">a1.sinks.k1.hdfs.rollInterval = 0</span><br><span class="line">a1.sinks.k1.hdfs.rollSize = 0</span><br><span class="line">a1.sinks.k1.hdfs.rollCount = 0</span><br><span class="line">a1.sinks.k1.hdfs.useLocalTimeStamp = <span class="literal">true</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<h1 id="十三-Kafka-重要"><a href="#十三-Kafka-重要" class="headerlink" title="十三.Kafka###重要"></a>十三.<a class="link"   target="_blank" rel="noopener" href="https://github.com/Sabthever/Pictures1/blob/main/Download_Resources/Kafka.doc" >Kafka<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>###重要</h1><h2 id="一-前期-1"><a href="#一-前期-1" class="headerlink" title="(一)前期"></a>(一)前期</h2><ul>
+<li>是消息队列</li>
+<li>为了<strong>处理数据洪峰</strong></li>
+<li>吞吐量最厉害的软件之一</li>
+<li>上述的flume速度远大于HDFS，flume导入数据用Kafka作为中间件</li>
+<li>需要内存，相当于一个漏斗，一个通道，临时存放数据</li>
+<li>Apache</li>
+<li>存到Kafka中的内容默认只能存在7天</li>
+<li>后续传输的位置大概率是Hbase、Redis一类东西。并解决自动提交去重方式</li>
+</ul>
+<h3 id="1-消息中间件-MQ"><a href="#1-消息中间件-MQ" class="headerlink" title="1.消息中间件(MQ)"></a>1.消息中间件(MQ)</h3><ul>
+<li>异步调用<br>同步变异步</li>
+<li>应用解耦<br>提供基于数据的接口层</li>
+<li>流量削峰<br>缓解瞬时高流量压力</li>
+</ul>
+<h3 id="2-消息中间件中的术语"><a href="#2-消息中间件中的术语" class="headerlink" title="2.消息中间件中的术语"></a>2.消息中间件中的术语</h3><ul>
+<li>Broker:消息服务器，提供核心服务</li>
+<li>Producer:消息生产者</li>
+<li>Consumer:消息消费者</li>
+<li>Topic:主题，发布订阅模式下的消息统一汇集地，一个消息可以开好多队列来存储(分区)</li>
+<li>Queue:队列，P2P模式下的消息队列</li>
+</ul>
+<h3 id="3-消息中间件工作模式"><a href="#3-消息中间件工作模式" class="headerlink" title="3.消息中间件工作模式"></a>3.消息中间件工作模式</h3><ul>
+<li>p2p和广播</li>
+</ul>
+<h3 id="4-常见中间件"><a href="#4-常见中间件" class="headerlink" title="4.常见中间件"></a>4.常见中间件</h3><ul>
+<li>ActiveMQ</li>
+<li>RabbitMQ</li>
+<li>RocketMQ</li>
+<li><strong>Kafka</strong></li>
+<li><strong>Redis</strong></li>
+<li>……</li>
+<li>Redis更便宜，在相对数量不大时，用Redis，大了用Kafka</li>
+</ul>
+<h3 id="5-Apache-Kafka"><a href="#5-Apache-Kafka" class="headerlink" title="5.Apache Kafka"></a>5.Apache Kafka</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240802102623524.png"
+                      alt="image-20240802102623524"
+                ></p>
+<h2 id="二-安装-1"><a href="#二-安装-1" class="headerlink" title="(二)安装"></a>(二)安装</h2><ol>
+<li><p>要装好了zookeeper，准备好<code>kafka_2.11-2.0.0.tgz</code>放opt中</p>
+</li>
+<li><pre><code class="sh">cd /opt
+tar -zxf kafka_2.11-2.0.0.tgz
+mv kafka_2.11-2.0.0 soft/kafka200
+cd soft/kafka200/config/
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">   </span><br><span class="line">3. vim server.properties</span><br><span class="line">   - 这个中broker.id是集群的编号</span><br><span class="line">   - log.retention.bytes:数据保留时间</span><br><span class="line"></span><br><span class="line">​```properties</span><br><span class="line">listeners=PLAINTEXT://192.168.179.140:9092</span><br><span class="line">log.dirs=/opt/soft/kafka200/logs	#日志位置</span><br><span class="line">zookeeper.connect=localhost:2181 # 要自己的</span><br></pre></td></tr></table></figure></div>
+</code></pre>
+</li>
+<li><p>vim &#x2F;etc&#x2F;profile</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Kafka</span></span><br><span class="line"><span class="built_in">export</span> KAFKA_HOME=/opt/soft/kafka200</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$KAFKA_HOME</span>/bin</span><br></pre></td></tr></table></figure></div>
+
+<p>source &#x2F;etc&#x2F;profile</p>
+</li>
+</ol>
+<h2 id="三-使用-1"><a href="#三-使用-1" class="headerlink" title="(三)使用"></a>(三)使用</h2><h3 id="1-第一次使用"><a href="#1-第一次使用" class="headerlink" title="1.第一次使用"></a>1.第一次使用</h3><ul>
+<li><p>zookeeper要先启动</p>
+</li>
+<li><p><strong>终端上启动kafka</strong></p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kafka-server-start.sh /opt/soft/kafka200/config/server.properties</span><br><span class="line"><span class="built_in">nohup</span> kafka-server-start.sh /opt/soft/kafka200/config/server.properties &gt; /root/kafka.log 2&gt;&amp;1 &amp;    </span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>查看是否有消息队列</strong></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-topics.sh --zookeeper 192.168.179.140:2181 --list</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>创建消息队列</strong></p>
+<p><code>kafka-topics.sh --zookeeper 192.168.179.140:2181 --create --topic mydemo --replication-factor 1 --partitions 1</code></p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kafka-topics.sh --create \</span><br><span class="line">--zookeeper 你的zookeeper的IP:2181 \ 			</span><br><span class="line">--replication-factor 副本数 \</span><br><span class="line">--partitions 分区数 \</span><br><span class="line">--topic 消息队列名</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>查看队列里是否有数据</strong></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list 192.168.179.140:9092 --topic mydemo --time -1</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>结果</strong>：mydemo:0:0。<code>消息队列名:消息队列中第几个队列:这个消息队列有几条消息</code></p>
+<p>-1是用时间戳代表最新的偏移量</p>
+</li>
+<li><p>控制台<strong>生产端</strong>下达命令</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-producer.sh --topic mydemo --broker-list 192.168.179.140:9092</span><br></pre></td></tr></table></figure></div>
+
+<p>然后可以输入数据</p>
+</li>
+<li><p><strong>消费端开启</strong></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-consumer.sh --bootstrap-server 192.168.179.140:9092 --topic mydemo</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>生产端输入数据</p>
+</li>
+<li><p>输入完后消费端出现数据，进入logs文件夹会出现很多很多游标和消息队列</p>
+<p> <strong>zkCli.sh可以查看zookeeper中内容</strong></p>
+</li>
+<li><p>手工删除消息队列，要在logs中删除，再到zookeeper &#x2F;brokers&#x2F;topics中删掉</p>
+<p><strong>命令删除消息队列</strong>，要在<code>server.properties</code>加入<code>Delete.topic.enable=true</code></p>
+<p>然后命令</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-topics.sh --delete --zookeeper 192.168.179.140:2181 --topic mydemo</span><br></pre></td></tr></table></figure></div>
+
+<p>删除过程会十分缓慢</p>
+</li>
+<li><p>初始化指针位置</p>
+ <div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-consumer-groups.sh --bootstrap-server 192.168.179.140:9092 --group cm --reset-offsets --to-earliest --topic mydemo --execute</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>查看组</p>
+ <div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-consumer-groups.sh --bootstrap-server &lt;kafka-broker&gt;:9092 --list</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>查看数据</p>
+ <div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-consumer.sh --bootstrap-server hadoopproject:9092 --topic carpass --from-beginning</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="2-三个分区"><a href="#2-三个分区" class="headerlink" title="2.三个分区"></a>2.三个分区</h3><ol>
+<li><p><code>kafka-topics.sh --create --zookeeper 192.168.179.140:2181 --topic mydemo --replication-factor 1 --partitions 3</code></p>
+<p>会看到</p>
+<p><code>kafka-console-consumer.sh --bootstrap-server 192.168.179.140:9092 --topic mydemo</code></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mydemo:0:0</span><br><span class="line">mydemo:1:0</span><br><span class="line">mydemo:2:0</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>输入数据</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-producer.sh --topic mydemo --broker-list 192.168.179.140:9092</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>kafka-console-consumer.sh --bootstrap-server 192.168.179.140:9092 --topic mydemo</code>查看，会发现放入数据是<strong>轮询</strong>的方式</p>
+<p><strong>Kafka顺序和效率的互斥性</strong></p>
+<ul>
+<li>分区无法保证输入输出数据的顺序</li>
+<li>但能加快吞吐数据。</li>
+<li>因此要顺序就开单分区</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-Flume数据输入Kafka-数据丢失与重复问题"><a href="#3-Flume数据输入Kafka-数据丢失与重复问题" class="headerlink" title="3.Flume数据输入Kafka(数据丢失与重复问题)"></a>3.Flume数据输入Kafka(数据丢失与重复问题)</h3><ul>
+<li><p>Flume参数</p>
+<ul>
+<li><p>生产端ack应答机制：</p>
+<p>0不等待回应</p>
+<p>1等待leader接收到消息</p>
+<p>-1 等待所有副本确认。速度很慢，但能保证数据不丢。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>ISR(In-Sync Replicas)机制</strong>要保证leader和所有副本中数据一致。</p>
+<p>leader接收到数据先不落盘，先写日志。再通知follow节点，这些节点全部落盘后，leader才会落盘</p>
+<p>Kafka中本身要-1才会干活，单Flume可以在这三种情况下继续传数据</p>
+<p>-1就是ISR机制</p>
+</li>
+<li><p>生产端安全性，丢数据的问题，用ack应答机制-1等到所有副本应答后再传输。</p>
+</li>
+<li><p><strong>幂等性</strong></p>
+<p>  重复性问题：传数据，断电。没收到ack，再传一样的，后来连续两次收到一样的。</p>
+<p>  生产者无论想broker发送多少次重复的数据，broker都只持久化一条</p>
+<p>  方法：再kafka配置文件中开启enable.idempotence。默认为true，false关闭</p>
+<p>  只能保证单会话单分区内不重复，内存内直接会把重复的数据去掉。开启事务必须开启幂等性。</p>
+</li>
+<li><p><strong>数据丢失</strong></p>
+<ul>
+<li>生产端数据丢失	使用ack应答机制-1</li>
+<li>消费端数据丢失 由于自动提交偏移量，可以用手动</li>
+</ul>
+</li>
+<li><p><strong>数据重复</strong></p>
+<ul>
+<li>生产端数据重复	开启幂等性</li>
+<li>消费端数据重复 手动提交偏移量时，可以通过Hbase、redis等去重（对于允许去重的）。对于本身的重复不能舍去时，可以对Hbase的行键进行一定的组合</li>
+</ul>
+</li>
+<li><p>Flume配置文件内容</p>
+<p>&#x2F;opt&#x2F;flumecfg&#x2F;event_users.conf</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">a1.sources = r1</span><br><span class="line">a1.channels = c1</span><br><span class="line">a1.sinks = k1</span><br><span class="line"></span><br><span class="line">a1.sources.r1.type = spooldir</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line">a1.sources.r1.spoolDir = /opt/data/users</span><br><span class="line"></span><br><span class="line">a1.sources.r1.interceptors = i1</span><br><span class="line">a1.sources.r1.interceptors.i1.type = regex_filter</span><br><span class="line">a1.sources.r1.interceptors.i1.excludeEvents = true</span><br><span class="line">a1.sources.r1.interceptors.i1.regex= .*locale\,birthyear\,gender.*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a1.channels.c1.type = file</span><br><span class="line">a1.channels.c1.checkpointDir = /opt/flumeck/eventuser/checkpoint</span><br><span class="line">a1.channels.c1.dataDirs = /opt/flumeck/eventuser/data</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.channel = c1</span><br><span class="line">a1.sinks.k1.type = org.apache.flume.sink.kafka.KafkaSink</span><br><span class="line">a1.sinks.k1.kafka.topic = users</span><br><span class="line">a1.sinks.k1.kafka.bootstrap.servers = 192.168.179.140:9092</span><br><span class="line">a1.sinks.k1.kafka.flumeBatchSize = 20</span><br><span class="line">a1.sinks.k1.kafka.producer.acks = 1</span><br><span class="line">a1.sinks.k1.kafka.producer.linger.ms = 1</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>启动消费端监控</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-consumer.sh --bootstrap-server 192.168.179.140:9092 --topic users</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>运行flume</p>
+  <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flume-ng -n a1 -f /opt/flumecfg/event_users.conf -c /opt/soft/flume160/conf/ -Dflume.root.logger=INFO,console</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h2 id="四-学习"><a href="#四-学习" class="headerlink" title="(四)学习"></a>(四)学习</h2><h3 id="1-ZooKeeper再Kafka中的作用"><a href="#1-ZooKeeper再Kafka中的作用" class="headerlink" title="1.ZooKeeper再Kafka中的作用"></a>1.ZooKeeper再Kafka中的作用</h3><p>zookeeper中内容会和Kafka紧密关联</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240802105625288.png"
+                      alt="image-20240802105625288"
+                ></p>
+<h2 id="五-核心原理"><a href="#五-核心原理" class="headerlink" title="(五)核心原理"></a>(五)核心原理</h2><ul>
+<li><p>单对单</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240802111649341.png"
+                      alt="image-20240802111649341"
+                ></p>
+<p>内部有队列，同一组(group)的只有一根游标offset</p>
+<p>一次读完后想再读有两个选择：</p>
+<ol>
+<li>换个组</li>
+<li>通过命令将offset置位</li>
+</ol>
+</li>
+<li><p>多台broker构成集群，这些中要有一台leader和多台follow</p>
+</li>
+</ul>
+<h2 id="六-API应用"><a href="#六-API应用" class="headerlink" title="(六)API应用"></a>(六)API应用</h2><h3 id="1-Java转传Kafka-生产者"><a href="#1-Java转传Kafka-生产者" class="headerlink" title="1.Java转传Kafka(生产者)"></a>1.Java转传Kafka(生产者)</h3><ul>
+<li><p>读比较小的数据</p>
+</li>
+<li><p>甲方不让我们在服务器上下载flume的情况</p>
+</li>
+<li><p><strong>图片中的配置有点老了，可以看代码中的新的</strong></p>
+</li>
+<li><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240803090636616.png"
+                      alt="image-20240803090636616"
+                ></p>
+<p>KafkaProducer中K，V，K相当于可以指定分区，同样K的会被分到同一个分区，V是一行数据</p>
+</li>
+<li><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240803110519525.png"
+                      alt="image-20240803110519525"
+                ></p>
+</li>
+<li><p>代码</p>
+<ol>
+<li><p>quickstart，这边工程文件为readfiletoKafka</p>
+</li>
+<li><p>导包</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.kafka<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>kafka-clients<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240803133415093.png"
+                      alt="image-20240803133415093"
+                ></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RRWKafkaUtilsImpl</span> <span class="keyword">implements</span> <span class="title class_">RWKafkaUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Properties prop;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String,String&gt; topics;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">RRWKafkaUtilsImpl</span><span class="params">(Properties properties, Map&lt;String, String&gt; tps)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.prop = properties;</span><br><span class="line">        <span class="built_in">this</span>.topics = tps;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">writeKafka</span><span class="params">(Map&lt;String, List&lt;String&gt;&gt; data)</span> &#123;</span><br><span class="line">        <span class="comment">// 开启线程池</span></span><br><span class="line">        <span class="type">ExecutorService</span> <span class="variable">pool</span> <span class="operator">=</span> Executors.newFixedThreadPool(data.size());</span><br><span class="line">        <span class="keyword">for</span> (String key : data.keySet()) &#123;</span><br><span class="line">            <span class="keyword">final</span> List&lt;String&gt; ctx = data.get(key);</span><br><span class="line">            <span class="keyword">final</span> <span class="type">String</span> <span class="variable">topic</span> <span class="operator">=</span>topics.get(key);</span><br><span class="line">            pool.execute(()-&gt;&#123;</span><br><span class="line">                KafkaProducer&lt;String, String&gt; producer = <span class="keyword">new</span> <span class="title class_">KafkaProducer</span>&lt;&gt;(prop);</span><br><span class="line">                <span class="keyword">for</span> (String line : ctx) &#123;</span><br><span class="line">                    ProducerRecord&lt;String, String&gt; record = <span class="keyword">new</span> <span class="title class_">ProducerRecord</span>&lt;&gt;(topic,line);</span><br><span class="line">                    producer.send(record);</span><br><span class="line">                &#125;</span><br><span class="line">                producer.close();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        pool.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.njupt.readfiletokafka.commons;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.njupt.readfiletokafka.commons.handimpl.StringDataHandlerImp;</span><br><span class="line"><span class="keyword">import</span> com.njupt.readfiletokafka.commons.kafkaimpl.RRWKafkaUtilsImpl;</span><br><span class="line"><span class="keyword">import</span> com.njupt.readfiletokafka.commons.readimpl.ReadCSVFileUtil;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.producer.ProducerConfig;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyTest</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="type">ReadFileUtils</span> <span class="variable">rcfu</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReadCSVFileUtil</span>();</span><br><span class="line">    <span class="keyword">static</span> <span class="type">DataHandler</span> <span class="variable">dh</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringDataHandlerImp</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        prop.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,<span class="string">&quot;192.168.179.140:9092&quot;</span>);</span><br><span class="line">        prop.put(ProducerConfig.ACKS_CONFIG, <span class="string">&quot;all&quot;</span>);</span><br><span class="line">        prop.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,<span class="string">&quot;org.apache.kafka.common.serialization.StringSerializer&quot;</span>);</span><br><span class="line">        prop.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,<span class="string">&quot;org.apache.kafka.common.serialization.StringSerializer&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Map&lt;String,String&gt; topics = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        topics.put(<span class="string">&quot;train.csv&quot;</span>,<span class="string">&quot;train&quot;</span>);</span><br><span class="line">        topics.put(<span class="string">&quot;test.csv&quot;</span>,<span class="string">&quot;test&quot;</span>);</span><br><span class="line">        topics.put(<span class="string">&quot;time_zone.csv&quot;</span>,<span class="string">&quot;timezone&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Map&lt;String, List&lt;String&gt;&gt; mp = rcfu.read(<span class="string">&quot;E:\\ProgramFile\\BigDataStudy\\data\\scalaProject\\temp&quot;</span>);</span><br><span class="line">            HashMap&lt;String, Boolean&gt; header = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">            header.put(<span class="string">&quot;train.csv&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">            header.put(<span class="string">&quot;test.csv&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">            header.put(<span class="string">&quot;time_zone.csv&quot;</span>,<span class="literal">false</span>);</span><br><span class="line">            Map&lt;String,List&lt;String&gt;&gt; newMp = dh.handler(mp, header);</span><br><span class="line">            <span class="type">RWKafkaUtils</span> <span class="variable">rw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RRWKafkaUtilsImpl</span>(prop,topics);</span><br><span class="line">            rw.writeKafka(newMp);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+</li>
+<li><p>上面这个代码中是一行一行塞入的，效率显然有点低，找找一批一批的方式。</p>
+<p>好像找不到</p>
+</li>
+</ul>
+<h3 id="2-Kafka读出-消费者"><a href="#2-Kafka读出-消费者" class="headerlink" title="2.Kafka读出(消费者)"></a>2.Kafka读出(消费者)</h3><ul>
+<li>消费者的读过程是一个死循环</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240803140904235.png"
+                      alt="image-20240803140904235"
+                ></p>
+<ul>
+<li><p>参数”enable.auto.commit”是设置是否自动提交。</p>
+<p>自动提交会导致重复数据，手动提交重复数据后接Hbase或者Redis去重</p>
+</li>
+<li><p>poll里面的时间要算好，吞吐量要符合要求。现在用Deration填充值，是多长时间给一次数据。</p>
+</li>
+<li><p>这边的类是反序列化</p>
+</li>
+<li><pre><code class="Java">rprop.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,&quot;false&quot;); // 开启手动提交
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 一个组共用一个offset，到最后就不能读了，因此只能读一次。</span><br><span class="line"></span><br><span class="line">  有两个方法继续读：</span><br><span class="line"></span><br><span class="line">  1. 新开一组</span><br><span class="line"></span><br><span class="line">     参数`ConsumerConfig.GROUP_ID_CONFIG`改组</span><br><span class="line"></span><br><span class="line">  2. 将偏移量归0</span><br><span class="line"></span><br><span class="line">     命令行下命令</span><br><span class="line"></span><br><span class="line">     `kafka-consumer-groups.sh --bootstrap-server 192.168.179.140:9092 --group cm --reset-offsets --to-earliest --topic mydemo --execute`</span><br><span class="line"></span><br><span class="line">     将某组的某个topic的offset设置为0，只能在该组没人使用的时候才能执行</span><br><span class="line"></span><br><span class="line">- 演示代码</span><br><span class="line"></span><br><span class="line">  - 包和前面一致</span><br><span class="line"></span><br><span class="line">  - 代码</span><br><span class="line"></span><br><span class="line">    ```Java</span><br><span class="line">    public class ReadKafkaImpl implements ReadKafka &#123;</span><br><span class="line">        Properties prop;</span><br><span class="line">        public ReadKafkaImpl(Properties properties)&#123;</span><br><span class="line">            this.prop = properties;</span><br><span class="line">        &#125;</span><br><span class="line">        @Override</span><br><span class="line">        public void read(String topic) &#123;</span><br><span class="line">            KafkaConsumer&lt;String, String&gt; consumer = new KafkaConsumer&lt;String, String&gt;(prop);</span><br><span class="line">            consumer.subscribe(Arrays.asList(topic));</span><br><span class="line">            while (true) &#123;</span><br><span class="line">                ConsumerRecords&lt;String, String&gt; re = consumer.poll(Duration.ofSeconds(5));	// 当没有数据过来时，轮询的时间</span><br><span class="line">    //            System.out.println(System.currentTimeMillis()+&quot;======&quot;+ re.count());</span><br><span class="line">                for (ConsumerRecord&lt;String, String&gt; record : re) &#123;</span><br><span class="line">                    System.out.println(record.value());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    public class MyTest &#123;</span><br><span class="line">        // 从kafka读出去</span><br><span class="line">        public static void main(String[] args) &#123;</span><br><span class="line">            Properties prop = new Properties();</span><br><span class="line">            prop.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,&quot;192.168.179.140:9092&quot;);</span><br><span class="line">            prop.put(ConsumerConfig.GROUP_ID_CONFIG, &quot;cm&quot;);</span><br><span class="line">            prop.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,&quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);</span><br><span class="line">            prop.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,&quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);</span><br><span class="line">            prop.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG,&quot;1000&quot;); // 配置一批出去多少数据，默认四五百</span><br><span class="line">            prop.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, &quot;earliest&quot;);</span><br><span class="line">            ReadKafkaImpl rki = new ReadKafkaImpl(prop);</span><br><span class="line">            rki.read(&quot;events&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+- 获取的值要用value()来展示
+
+- 如果使用Spark要在读出for循环上面加个
+
+  <div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala.collection.<span class="type">JavaConversions</span>._</span><br></pre></td></tr></table></figure></div>
+</code></pre>
+</li>
+</ul>
+<h3 id="3-Kafka到kafka-手动提交"><a href="#3-Kafka到kafka-手动提交" class="headerlink" title="3.Kafka到kafka(手动提交)"></a>3.Kafka到kafka(手动提交)</h3><ul>
+<li><p>用于处理数据</p>
+</li>
+<li><p><strong>这边的读过程就是消费者过程用手动提交——offset偏移自己来，不会少数据，但可能会重复消费：消费者挂掉了！此时offset还未提交呢，那么当服务重启时，还是会拉取相同的一批数据重复处理！造成消息重复消费</strong>。因此后续最好接上一个幂等性的数据库来去重。比如Hbase，但Hbase速度比Kafka慢，而且行键要进行盐+hash</p>
+<ul>
+<li><p>同步提交</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consumer.commitSync();</span><br></pre></td></tr></table></figure></div>
+
+<p>同步率低，速度慢，因为会等</p>
+</li>
+<li><p>异步提交</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consumer.commitAsync();</span><br></pre></td></tr></table></figure></div>
+
+<p>重复率高，速度快</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="A-Java"><a href="#A-Java" class="headerlink" title="A.Java"></a>A.Java</h4><ul>
+<li><p>包</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.kafka<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>kafka-clients<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>程序</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">KafkaDataHandlerUtils</span> &#123;</span><br><span class="line">    Properties readProp;</span><br><span class="line">    Properties writeProp;</span><br><span class="line">    <span class="keyword">private</span> String readTopic;</span><br><span class="line">    <span class="keyword">private</span> String writeTopic;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">KafkaDataHandlerUtils</span><span class="params">(Properties readProp, Properties writeProp, String readTopic, String writeTopic)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.readProp = readProp;</span><br><span class="line">        <span class="built_in">this</span>.writeProp = writeProp;</span><br><span class="line">        <span class="built_in">this</span>.readTopic = readTopic;</span><br><span class="line">        <span class="built_in">this</span>.writeTopic = writeTopic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">rwHandler</span><span class="params">(DataHandler dh)</span> &#123;</span><br><span class="line">        KafkaConsumer&lt;String,String&gt; consumer = <span class="keyword">new</span> <span class="title class_">KafkaConsumer</span>&lt;&gt;(readProp);</span><br><span class="line">        consumer.subscribe(Arrays.asList(readTopic));</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            ConsumerRecords&lt;String, String&gt; records = consumer.poll(Duration.ofMillis(<span class="number">1200</span>)); <span class="comment">// 1.2S轮询时间</span></span><br><span class="line">            KafkaProducer&lt;String,String&gt; producer = <span class="keyword">new</span> <span class="title class_">KafkaProducer</span>&lt;&gt;(writeProp);</span><br><span class="line">            <span class="keyword">for</span> (ConsumerRecord&lt;String, String&gt; record : records) &#123;</span><br><span class="line">                List&lt;String&gt; datas = dh.handler(record.value());</span><br><span class="line">                <span class="keyword">for</span> (String line : datas) &#123;</span><br><span class="line">                    ProducerRecord&lt;String, String&gt; pr = <span class="keyword">new</span> <span class="title class_">ProducerRecord</span>&lt;&gt;(writeTopic, line);</span><br><span class="line">                    producer.send(pr);</span><br><span class="line">                &#125;</span><br><span class="line">                consumer.commitSync(); <span class="comment">// 同步提交，手动提交</span></span><br><span class="line">            &#125;</span><br><span class="line">            producer.close();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyMain</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Properties</span> <span class="variable">wprop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        wprop.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,<span class="string">&quot;192.168.179.140:9092&quot;</span>);</span><br><span class="line">        wprop.put(ProducerConfig.ACKS_CONFIG, <span class="string">&quot;all&quot;</span>);</span><br><span class="line">        wprop.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,<span class="string">&quot;org.apache.kafka.common.serialization.StringSerializer&quot;</span>);</span><br><span class="line">        wprop.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,<span class="string">&quot;org.apache.kafka.common.serialization.StringSerializer&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Properties</span> <span class="variable">rprop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">        rprop.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,<span class="string">&quot;192.168.179.140:9092&quot;</span>);</span><br><span class="line">        rprop.put(ConsumerConfig.GROUP_ID_CONFIG, <span class="string">&quot;cm001&quot;</span>);</span><br><span class="line">        rprop.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,<span class="string">&quot;org.apache.kafka.common.serialization.StringDeserializer&quot;</span>);</span><br><span class="line">        rprop.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,<span class="string">&quot;org.apache.kafka.common.serialization.StringDeserializer&quot;</span>);</span><br><span class="line">        rprop.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG,<span class="string">&quot;400&quot;</span>); <span class="comment">// 107513B*400大概50M左右，虚拟机设置的速度有限制LSI logic最高传输速度为按机械硬盘算</span></span><br><span class="line">        rprop.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, <span class="string">&quot;earliest&quot;</span>);</span><br><span class="line">        rprop.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,<span class="string">&quot;false&quot;</span>); <span class="comment">// 开启手动提交</span></span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">rtopic</span> <span class="operator">=</span> <span class="string">&quot;orgin_ea&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">wtopic</span> <span class="operator">=</span> <span class="string">&quot;eventAttendees&quot;</span>;</span><br><span class="line">        <span class="type">KafkaDataHandlerUtils</span> <span class="variable">ku</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">KafkaDataHandlerUtils</span>(rprop, wprop, rtopic, wtopic);</span><br><span class="line">        ku.rwHandler(<span class="keyword">new</span> <span class="title class_">EventAttendeesDataHandler</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="4-Kafka读到Hbase"><a href="#4-Kafka读到Hbase" class="headerlink" title="4.Kafka读到Hbase"></a>4.Kafka读到Hbase</h3><ul>
+<li><pre><code class="java">public class EventsImpl implements HbaseDataHandler &#123;
+    @Override
+    public Put change(String line) &#123;
+        String[] infos = line.split(&quot;,&quot;,-1);
+        Put put = new Put(infos[0].getBytes()); // 用hashcode会让效率更高，分布更均匀，但是在大量的数据下可能会导致出的hash值相同
+        put.addColumn(&quot;base&quot;.getBytes(), &quot;eventid&quot;.getBytes(), infos[0].getBytes());
+        put.addColumn(&quot;base&quot;.getBytes(), &quot;userid&quot;.getBytes(), infos[1].getBytes());
+        put.addColumn(&quot;base&quot;.getBytes(), &quot;starttime&quot;.getBytes(), infos[2].getBytes());
+        put.addColumn(&quot;base&quot;.getBytes(), &quot;city&quot;.getBytes(), infos[3].getBytes());
+        put.addColumn(&quot;base&quot;.getBytes(), &quot;state&quot;.getBytes(), infos[4].getBytes());
+        put.addColumn(&quot;base&quot;.getBytes(), &quot;zip&quot;.getBytes(), infos[5].getBytes());
+        put.addColumn(&quot;base&quot;.getBytes(), &quot;country&quot;.getBytes(), infos[6].getBytes());
+        put.addColumn(&quot;base&quot;.getBytes(), &quot;lat&quot;.getBytes(), infos[7].getBytes());
+        put.addColumn(&quot;base&quot;.getBytes(), &quot;lng&quot;.getBytes(), infos[8].getBytes());
+
+        for (int i = 1; i &lt;= 101; i++) &#123;
+            put.addColumn(&quot;base&quot;.getBytes(), (&quot;c&quot; + i).getBytes(), infos[i + 8].getBytes());
+        &#125;
+        return put;
+    &#125;
+&#125;
+
+public class KafkaToHabase &#123;
+    private Properties readProp;
+    private String topic;
+    private String zookeeperAddr;
+    private String hbaseTableName;
+
+    public KafkaToHabase(Properties readProp, String topic, String zookeeperAddr, String hbaseTableName) &#123;
+        this.readProp = readProp;
+        this.topic = topic;
+        this.zookeeperAddr = zookeeperAddr;
+        this.hbaseTableName = hbaseTableName;
+    &#125;
+
+    public void dataTranscation(HbaseDataHandler hdh) throws Exception&#123;
+        KafkaConsumer&lt;String, String&gt; consumer = new KafkaConsumer&lt;&gt;(readProp);
+        consumer.subscribe(Arrays.asList(topic));
+        Configuration conf = HBaseConfiguration.create();
+        conf.set(&quot;hbase.zookeeper.quorum&quot;,zookeeperAddr);
+        Connection connection = ConnectionFactory.createConnection(conf);
+
+        BufferedMutatorParams bmp = new BufferedMutatorParams(TableName.valueOf(hbaseTableName));
+        bmp.writeBufferSize(5 * 1024 * 1024);
+        bmp.setWriteBufferPeriodicFlushTimerTickMs(2000);
+        final BufferedMutator bm = connection.getBufferedMutator(bmp);
+        while (true) &#123;
+            ConsumerRecords&lt;String, String&gt; records = consumer.poll(Duration.ofMillis(1000));
+            List&lt;Put&gt; puts = new ArrayList&lt;&gt;();
+            for(ConsumerRecord&lt;String,String&gt; record:records)&#123;
+                Put put = hdh.change(record.value());
+                puts.add(put);
+            &#125;
+            System.out.println(&quot;=========&quot;+puts.size());
+            bm.mutate(puts);
+            bm.flush();
+            puts.clear();
+            consumer.commitSync();
+        &#125;
+    &#125;
+&#125;
+
+public class NewMain &#123;
+    public static void main(String[] args) throws Exception&#123;
+        Properties prop = new Properties();
+        prop.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,&quot;192.168.179.140:9092&quot;);
+        prop.put(ConsumerConfig.GROUP_ID_CONFIG, &quot;cm011&quot;);
+        prop.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,&quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
+        prop.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,&quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
+        prop.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG,&quot;2600&quot;);
+        prop.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, &quot;earliest&quot;);
+        prop.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,&quot;false&quot;); // 开启手动提交
+
+        String topic = &quot;events&quot;;
+        String zkAddr = &quot;192.168.179.140:2181&quot;;
+        String hbaseTable = &quot;interested:events&quot;;
+
+        KafkaToHabase kth = new KafkaToHabase(prop, topic, zkAddr, hbaseTable);
+        kth.dataTranscation(new EventsImpl());
+    &#125;
+&#125;
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## (七)进阶学习</span><br><span class="line"></span><br><span class="line">### 1.#重要#判断kafka输出的对象的接收速度</span><br><span class="line"></span><br><span class="line">- 通过</span><br><span class="line"></span><br><span class="line">  ```java</span><br><span class="line">  prop.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG,&quot;2600&quot;); // Kafka每一次拉取数据的大小</span><br><span class="line">  </span><br><span class="line">  bmp.writeBufferSize(5 * 1024 * 1024); //hbase buffer中超过这个量传一次数据5M</span><br><span class="line">  bmp.setWriteBufferPeriodicFlushTimerTickMs(2000); //hbase buffer中每2秒再传一次数据</span><br><span class="line">  </span><br><span class="line">  ConsumerRecords&lt;String, String&gt; records = consumer.poll(Duration.ofMillis(1000)); // Kafka每1秒拉取一次数据</span><br></pre></td></tr></table></figure></div>
+
+可以先把`prop.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG,&quot;2600&quot;);`量拉大，看最大能多少，然后发现吞吐量大小。然后2600/1算出值大概比前面最大的来小一点。大一点会更快，但是会导致
+</code></pre>
+</li>
+<li><pre><code>ConsumerRecords&lt;String, String&gt; records = consumer.poll(Duration.ofMillis(1000));
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  这里的“1秒”（1000毫秒）并不是指消费者每1秒读取一次数据，而是指`poll`方法在没有新数据到达的情况下等待的时间。换句话说，如果在这1秒内没有新的消息到达，`poll`方法会返回一个空的结果，然后你的代码可能会再次调用`poll`方法，继续等待新的消息。</span><br><span class="line"></span><br><span class="line">  如果在这1秒内确实有新的消息到达，`poll`方法会立即返回这些消息，而不需要等待完整的1秒。因此，消费者的读取频率取决于消息到达的频率，而不是固定的每1秒读取一次。</span><br><span class="line"></span><br><span class="line">  当数据都在Kafka中的时候，这个1秒可以看作读取数据的时间间隔</span><br><span class="line"></span><br><span class="line"># 十四.Spark Streaming</span><br><span class="line"></span><br><span class="line">- 流的特点是有头无尾</span><br><span class="line"></span><br><span class="line">## (一)开始</span><br><span class="line"></span><br><span class="line">### 1.常见流处理框架</span><br><span class="line"></span><br><span class="line">- Apache Spark Streaming</span><br><span class="line">- Apache Flink</span><br><span class="line">- Confluent</span><br><span class="line">- Apache Storm</span><br><span class="line"></span><br><span class="line">### 2.Spark Streaming简介</span><br><span class="line"></span><br><span class="line">- 我们这儿用的Spark是2.3.4</span><br><span class="line"></span><br><span class="line">- ![image-20240804222117058](https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240804222117058.png)</span><br><span class="line"></span><br><span class="line">  dashboards是面板，相当于是那些软件</span><br><span class="line"></span><br><span class="line">- 真的实时流要来一条处理一条，不能设置时间</span><br><span class="line"></span><br><span class="line">- Spark Streaming相当于**微批处理**，是**伪实时流**。最小可以1ms为窗口，一般情况下是10ms</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">### 3.Spark Streaming 流数据处理架构</span><br><span class="line"></span><br><span class="line">- 典型架构</span><br><span class="line"></span><br><span class="line">- 流式数仓</span><br><span class="line"></span><br><span class="line">  ![image-20240804222315305](https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240804222315305.png)</span><br><span class="line"></span><br><span class="line">- 实时数仓为了追求效率，一般层数很少。而且层数基本是按硬件来分的，中间的Kafka和Flume那相当于是</span><br><span class="line"></span><br><span class="line">### 4.Spark Streaming 内部工作流程</span><br><span class="line"></span><br><span class="line">- 微批处理：输入-&gt;分批处理-&gt;结果集</span><br><span class="line"></span><br><span class="line">  - 以离散流的形式传入数据(DStream:Discretized Streams)</span><br><span class="line">  - 流被分成微批次(1-10s)，每一个微批都是一个RDD</span><br><span class="line"></span><br><span class="line">  ![image-20240804222805041](https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240804222805041.png)</span><br><span class="line"></span><br><span class="line">### 5.内建流式数据源</span><br><span class="line"></span><br><span class="line">![image-20240804225231503](https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240804225231503.png)</span><br><span class="line"></span><br><span class="line">### 6.DStream支持的转换算子</span><br><span class="line"></span><br><span class="line">- &lt;img src=&quot;https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240804225332570.png&quot; alt=&quot;image-20240804225332570&quot; style=&quot;zoom: 33%;&quot; /&gt;</span><br><span class="line">- updateStateByKey</span><br><span class="line"></span><br><span class="line">## (二)使用</span><br><span class="line"></span><br><span class="line">![image-20240804222850035](https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240804222850035.png)</span><br><span class="line"></span><br><span class="line">### 1.流处理输出数据</span><br><span class="line"></span><br><span class="line">- 终端上`nc -lk 19999`打开端口监控，手动输入数据</span><br><span class="line"></span><br><span class="line">- 在java这儿每五秒展示一次终端上输入的数据</span><br><span class="line"></span><br><span class="line">  ```scala</span><br><span class="line">  object MyStream &#123;</span><br><span class="line">      def main(args: Array[String]): Unit = &#123;</span><br><span class="line">          val conf = new SparkConf().setMaster(&quot;local[*]&quot;).setAppName(&quot;mystream&quot;)</span><br><span class="line">          val ssc = new StreamingContext(conf, Seconds(5))</span><br><span class="line">          val ds = ssc.socketTextStream(&quot;192.168.179.140&quot;, 19999)</span><br><span class="line">          ds.print()</span><br><span class="line">          //    ds.foreachRDD(rdd=&gt;println(rdd))</span><br><span class="line">          ssc.start();</span><br><span class="line">          ssc.awaitTermination();</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+</code></pre>
+</li>
+</ul>
+<p>导入的包</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spark-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-sql_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spark-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-streaming_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spark-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>停止程序会报错，但是没事，因为流有头无尾，是非正常状态的退出</li>
+</ul>
+<h3 id="2-Spark-Streaming读Kafka"><a href="#2-Spark-Streaming读Kafka" class="headerlink" title="2.Spark Streaming读Kafka"></a>2.Spark Streaming读Kafka</h3><ul>
+<li><p>代码</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">object MyStream &#123;</span><br><span class="line">    def <span class="title function_">main</span><span class="params">(args: Array[String])</span>: Unit = &#123;</span><br><span class="line">        <span class="type">val</span> <span class="variable">conf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SparkConf</span>().setMaster(<span class="string">&quot;local[*]&quot;</span>).setAppName(<span class="string">&quot;mystream&quot;</span>)</span><br><span class="line">            <span class="type">val</span> <span class="variable">ssc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StreamingContext</span>(conf, Seconds(<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line">            <span class="comment">/*    val ds = ssc.socketTextStream(&quot;192.168.179.140&quot;, 19999)</span></span><br><span class="line"><span class="comment">    ds.print()</span></span><br><span class="line"><span class="comment">    ds.foreachRDD(rdd=&gt;println(rdd))*/</span></span><br><span class="line">            <span class="type">val</span> <span class="variable">param</span> <span class="operator">=</span> Map[String, String](</span><br><span class="line">            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG-&gt; <span class="string">&quot;192.168.179.140:9092&quot;</span>,</span><br><span class="line">            ConsumerConfig.GROUP_ID_CONFIG -&gt;   <span class="string">&quot;cmm&quot;</span>,</span><br><span class="line">            ConsumerConfig.AUTO_OFFSET_RESET_CONFIG-&gt;<span class="string">&quot;earliest&quot;</span>,</span><br><span class="line">            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG-&gt;classOf[StringDeserializer].getName,</span><br><span class="line">            ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG-&gt;classOf[StringDeserializer].getName)</span><br><span class="line">            <span class="type">var</span> <span class="variable">topics</span> <span class="operator">=</span> Array(<span class="string">&quot;events&quot;</span>).toList</span><br><span class="line">            <span class="keyword">var</span> ds=KafkaUtils.createDirectStream[String,String](</span><br><span class="line">            ssc,LocationStrategies.PreferConsistent,</span><br><span class="line">            ConsumerStrategies.Subscribe[String,String](topics,param)</span><br><span class="line">        ).map(_.value()).print()</span><br><span class="line">            ssc.start();</span><br><span class="line">        ssc.awaitTermination();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 大数据学习笔记5-离线项目学习</li>
+        <li><strong>作者:</strong> Sabthever</li>
+        <li><strong>创建于
+                :</strong> 2025-09-11 10:28:34</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-09-11 14:28:35
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://sabthever.cn/2025/09/11/technology/bigdata/Hadoop5-离线项目/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Bigdata/">#Bigdata</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/02/17/technology/bigdata/Hadoop2-Hive-Hbase/" title="大数据学习笔记1-Hive、Hbase" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="大数据学习笔记1-Hive、Hbase" class="!max-w-none">
+  <span class="title">大数据学习笔记1-Hive、Hbase</span>
+</a><a class="recommended-article-item" href="/2025/07/08/technology/bigdata/Hadoop4-Spark/" title="大数据学习笔记4-Spark" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="大数据学习笔记4-Spark" class="!max-w-none">
+  <span class="title">大数据学习笔记4-Spark</span>
+</a><a class="recommended-article-item" href="/2025/01/11/technology/bigdata/Hadoop1/" title="大数据学习笔记1-Hadoop" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="大数据学习笔记1-Hadoop" class="!max-w-none">
+  <span class="title">大数据学习笔记1-Hadoop</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/02/17/technology/bigdata/Hadoop2-Hive-Hbase/" title="大数据学习笔记1-Hive、Hbase" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="大数据学习笔记1-Hive、Hbase" class="!max-w-none">
+  <span class="title">大数据学习笔记1-Hive、Hbase</span>
+</a><a class="recommended-article-item" href="/2025/07/08/technology/bigdata/Hadoop4-Spark/" title="大数据学习笔记4-Spark" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="大数据学习笔记4-Spark" class="!max-w-none">
+  <span class="title">大数据学习笔记4-Spark</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/09/11/technology/bigdata/Hadoop6-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">大数据学习笔记6</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">大数据学习笔记5-离线项目学习</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%B8%80-%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E9%A1%B9%E7%9B%AE"><span class="nav-text">十一.一个离线项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%89%8D%E6%9C%9F"><span class="nav-text">(一).前期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%9B%AE%E6%A0%87"><span class="nav-text">1.目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF%E4%BA%86%E8%A7%A3"><span class="nav-text">2.一些技术了解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E9%A1%B9%E7%9B%AE%E8%BF%87%E7%A8%8B"><span class="nav-text">(二).项目过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE"><span class="nav-text">1.虚拟机配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Scala%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2"><span class="nav-text">2.Scala数据探索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%95%B0%E6%8D%AE%E6%8B%89%E5%8F%96"><span class="nav-text">3.数据拉取</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-Flume%E4%BC%A0%E5%88%B0Kafka"><span class="nav-text">A.Flume传到Kafka</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-Java%E8%BD%AC%E4%BC%A0Kafka"><span class="nav-text">B.Java转传Kafka</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%95%B0%E6%8D%AE%E4%BB%8EKafka%E5%88%B0Kafka%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E6%B8%85%E7%90%86"><span class="nav-text">4.数据从Kafka到Kafka进行简单清理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%BB%8EKafka%E5%88%B0Hbase%E5%8E%BB%E9%87%8D-%E5%90%8C%E6%97%B6%E7%9B%B8%E5%BD%93%E4%BA%8E%E4%BF%9D%E5%AD%98%E5%9C%A8%E4%BA%86HDFS%E4%B8%AD"><span class="nav-text">5.从Kafka到Hbase去重(同时相当于保存在了HDFS中)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B9%9F%E5%8F%AF%E4%BB%A5kafka%E5%AF%BC%E5%85%A5%E5%88%B0doris"><span class="nav-text">也可以kafka导入到doris</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Hive%E6%98%A0%E5%B0%84%E6%95%B0%E6%8D%AE"><span class="nav-text">6.Hive映射数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E7%A6%BB%E7%BA%BF%E6%95%B0%E4%BB%93%E5%9B%9B%E5%B1%82%E7%BB%93%E6%9E%84"><span class="nav-text">7.离线数仓四层结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E7%BB%9F%E8%AE%A1%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%9C%80%E8%A6%81%E5%AF%B9%E6%95%B0%E5%AD%97%E5%BE%88%E5%A4%A7%E7%9A%84%E5%88%97%E8%BF%9B%E8%A1%8C%E5%BD%92%E4%B8%80%E5%8C%96"><span class="nav-text">8.统计过程中需要对数字很大的列进行归一化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E5%AF%B9%E4%BA%8E%E5%AE%BD%E8%A1%A8%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AE%A1%E7%AE%97"><span class="nav-text">9.对于宽表用模型计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-test%E9%9B%86%E8%BD%AC%E5%8C%96%E4%B8%BA%E9%9C%80%E8%A6%81%E7%9A%84%E5%AE%BD%E8%A1%A8%E6%A0%BC%E5%BC%8F"><span class="nav-text">10.test集转化为需要的宽表格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-%E8%AF%BB%E5%86%99"><span class="nav-text">A.读写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97"><span class="nav-text">B.数据清洗</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%AE%BD%E8%A1%A8%E6%94%BE%E5%85%A5%E4%B9%8B%E5%89%8D%E8%AE%AD%E7%BB%83%E5%A5%BD%E7%9A%84%E6%A8%A1%E5%9E%8B%E4%B8%AD%E9%A2%84%E6%B5%8B"><span class="nav-text">11.宽表放入之前训练好的模型中预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E7%94%A8%E5%B8%86%E8%BD%AF%E7%AD%89%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA"><span class="nav-text">12.用帆软等工具进行数据展示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%BD%92%E7%BA%B3%E6%80%BB%E7%BB%93"><span class="nav-text">(三).归纳总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%85%B6%E4%B8%AD%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-text">(四).其中知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-spark%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98"><span class="nav-text">1.spark性能调优</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C-Flume%E6%9E%B6%E6%9E%84"><span class="nav-text">十二.Flume架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-Flume%E6%9E%B6%E6%9E%84"><span class="nav-text">(一)Flume架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%89%E8%A3%85"><span class="nav-text">(二).安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E4%BD%BF%E7%94%A8"><span class="nav-text">(三)使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8netcat"><span class="nav-text">1.第一次使用netcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E7%A6%BB%E7%BA%BF"><span class="nav-text">2.文件读到控制台离线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%AE%9E%E6%97%B6"><span class="nav-text">3.文件读到控制台实时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%AF%BB%E5%8F%96%E6%B2%A1%E6%9C%89%E7%9A%84%E6%BA%90-%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="nav-text">4.读取没有的源(自定义)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%96%87%E4%BB%B6%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%AF%BB%E5%88%B0logger"><span class="nav-text">5.文件通过文件读到logger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%96%87%E4%BB%B6%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E8%AF%BB%E5%88%B0hdfs"><span class="nav-text">6.文件通过文件读到hdfs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%B8%89-Kafka-%E9%87%8D%E8%A6%81"><span class="nav-text">十三.Kafka###重要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%89%8D%E6%9C%9F-1"><span class="nav-text">(一)前期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6-MQ"><span class="nav-text">1.消息中间件(MQ)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%9C%AF%E8%AF%AD"><span class="nav-text">2.消息中间件中的术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.消息中间件工作模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-text">4.常见中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Apache-Kafka"><span class="nav-text">5.Apache Kafka</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%89%E8%A3%85-1"><span class="nav-text">(二)安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E4%BD%BF%E7%94%A8-1"><span class="nav-text">(三)使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8"><span class="nav-text">1.第一次使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%89%E4%B8%AA%E5%88%86%E5%8C%BA"><span class="nav-text">2.三个分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Flume%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5Kafka-%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E4%B8%8E%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98"><span class="nav-text">3.Flume数据输入Kafka(数据丢失与重复问题)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AD%A6%E4%B9%A0"><span class="nav-text">(四)学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ZooKeeper%E5%86%8DKafka%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">1.ZooKeeper再Kafka中的作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">(五)核心原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-API%E5%BA%94%E7%94%A8"><span class="nav-text">(六)API应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Java%E8%BD%AC%E4%BC%A0Kafka-%E7%94%9F%E4%BA%A7%E8%80%85"><span class="nav-text">1.Java转传Kafka(生产者)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Kafka%E8%AF%BB%E5%87%BA-%E6%B6%88%E8%B4%B9%E8%80%85"><span class="nav-text">2.Kafka读出(消费者)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Kafka%E5%88%B0kafka-%E6%89%8B%E5%8A%A8%E6%8F%90%E4%BA%A4"><span class="nav-text">3.Kafka到kafka(手动提交)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-Java"><span class="nav-text">A.Java</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Kafka%E8%AF%BB%E5%88%B0Hbase"><span class="nav-text">4.Kafka读到Hbase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Spark-Streaming%E8%AF%BBKafka"><span class="nav-text">2.Spark Streaming读Kafka</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-text">最后</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Sabthever</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 32 篇文章
+                    </span>
+                    
+                        <span>
+                            共 85.6k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            <div class="customize-info my-1">本站所有内容完全免费！不得将本站内容用于商业或者非法用途！</div>
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+    
+<script src="/js/build/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/build/plugins/masonry.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+    
+<script src="/js/build/layouts/bookmarkNav.js" type="module"></script>
+
+
+	
+</body>
+
+</html>

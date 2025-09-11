@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Sabthever">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://sabthever.cn/2025/07/08/technology/bigdata/hadoop4-spark/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据学习笔记4-Spark">
+<meta property="og:url" content="https://sabthever.cn/2025/07/08/technology/bigdata/Hadoop4-Spark/index.html">
+<meta property="og:site_name" content="Sabthever&#39;s Blog">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sabthever.cn/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-07-08T12:02:34.000Z">
+<meta property="article:modified_time" content="2025-09-11T06:27:30.946Z">
+<meta property="article:author" content="Sabthever">
+<meta property="article:tag" content="Bigdata">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sabthever.cn/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/%E5%A4%B4%E5%83%8F.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/%E5%A4%B4%E5%83%8F.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/%E5%A4%B4%E5%83%8F.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            大数据学习笔记4-Spark | Sabthever&#39;s Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"sabthever.cn","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":6,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Wecome to my blog!","subtitle":{"text":["Loading..."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn?encode=utf-8&c=a&c=b&c=d&c=e&c=f&c=g&c=h&c=i&c=k"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":3000,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/Sabthever","instagram":null,"zhihu":null,"twitter":null,"email":"3175693234@qq.com"},"qrs":{"weixin":null,"fa-brands fa-qq":"/images/qq.jpg"}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"},"mindmap":{"enable":true}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-house"},"说说":{"path":"/essays","icon":"fa-solid fa-message-dots"},"Archives":{"path":"/archives","icon":"fa-solid fa-archive"},"书签":{"icon":"fa-solid fa-bookmark","path":"/bookmarks/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"About":{"icon":"fa-solid fa-user","path":"/about"}},"search":{"enable":true,"preload":true,"path":"search.xml","field":"post","content":true,"format":"html"}},"page_templates":{"friends_column":3,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"域名变更。从即日起域名变更为https://www.sabthever.cn/ ，这个域名后期会长期使用。原域名https://www.sabthever.online/将会维护到2025-12-25，请保存新的地址。","show_on_mobile":true,"links":{"说说":{"icon":"fa-solid fa-message-dots","path":"/essays"},"书签":{"icon":"fa-solid fa-bookmark","path":"/bookmarks/"},"相册":{"icon":"fa-solid fa-image","path":"/masonry/"},"关于":{"icon":"fa-solid fa-user","path":"/about"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/12/18 15:27:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Sabthever&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-solid fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/essays"
+                                        >
+                                    <i class="fa-solid fa-message-dots fa-fw"></i>
+                                    说说
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-solid fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/bookmarks/"
+                                        >
+                                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                                    书签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/masonry/"
+                                        >
+                                    <i class="fa-solid fa-image fa-fw"></i>
+                                    相册
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/about"
+                                        >
+                                    <i class="fa-solid fa-user fa-fw"></i>
+                                    关于
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-solid fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/essays"
+                        >
+                            <span>
+                                说说
+                            </span>
+                            
+                                <i class="fa-solid fa-message-dots fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-solid fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/bookmarks/"
+                        >
+                            <span>
+                                书签
+                            </span>
+                            
+                                <i class="fa-solid fa-bookmark fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/masonry/"
+                        >
+                            <span>
+                                相册
+                            </span>
+                            
+                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/about"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-solid fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/about"
+                        >
+                            <span>关于</span>
+                            <i class="fa-solid fa-user fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">36</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">32</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">大数据学习笔记4-Spark</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/%E5%A4%B4%E5%83%8F.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Sabthever</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-07-08 20:02:34</span>
+        <span class="mobile">2025-07-08 20:02:34</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-09-11 14:27:30</span>
+            <span class="mobile">2025-09-11 14:27:30</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Technology/">Technology</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/Technology/Bigdata/">Bigdata</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Bigdata/">Bigdata</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Spark/">Spark</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>8.5k 字</span>
+        </span>
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>Hadoop4</p>
+<h1 id="十-Spark"><a href="#十-Spark" class="headerlink" title="十.Spark"></a>十.Spark</h1><p>这边用2.3.4</p>
+<h2 id="一-前期"><a href="#一-前期" class="headerlink" title="(一)前期"></a>(一)前期</h2><ul>
+<li>MapReduce速度慢，因此用Spark速度比MapRduce快100倍，实际上10倍差不多</li>
+<li>计算引擎，不启动Hadoop也能干活</li>
+<li>分布式计算引擎</li>
+<li>离线数据分析</li>
+</ul>
+<h3 id="1-使用原因"><a href="#1-使用原因" class="headerlink" title="1.使用原因"></a>1.使用原因</h3><ul>
+<li>MapReduce编程模型的局限性<ul>
+<li>繁杂<ul>
+<li>只有Map和Reduce两个操作，复杂的逻辑需要大量的样板代码</li>
+</ul>
+</li>
+<li>处理效率低:、<ul>
+<li>Map中间结果写磁盘，Reduce写HDFS，多个Map通过HDFS交换数据</li>
+<li>任务调度与启动开销大</li>
+</ul>
+</li>
+<li>不适合迭代处理、交互式处理和流式处理</li>
+</ul>
+</li>
+<li><strong>Spark是类Hadoop MapReduce的通用并行框架</strong><ul>
+<li>Job中间输出结果可以保存在内存，不再需要读写HDFS，优先占内存</li>
+<li>比MapReduce平均快10倍以上</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Spark简介"><a href="#2-Spark简介" class="headerlink" title="2.Spark简介"></a>2.Spark简介</h3><ul>
+<li>加州大学伯克利分校AMP实验室，基于<strong>内存的分布式计算框架</strong></li>
+<li>发展<ul>
+<li>2014.5正式Spark 1.0</li>
+<li>2016 1.6、2.x版本</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Spark优势"><a href="#3-Spark优势" class="headerlink" title="3.Spark优势"></a>3.Spark优势</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240726135746868.png"
+                      alt="image-20240726135746868"
+                ></p>
+<ul>
+<li>spark streaming伪实时流，不怎么用</li>
+<li>三种提交方式<ul>
+<li>本地提交</li>
+<li>YARN提交：中间还有两种</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-Spark技术栈"><a href="#4-Spark技术栈" class="headerlink" title="4.Spark技术栈"></a>4.Spark技术栈</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240726140808334.png"
+                      alt="image-20240726140808334"
+                ></p>
+<h2 id="二-内容介绍"><a href="#二-内容介绍" class="headerlink" title="(二)内容介绍"></a>(二)内容介绍</h2><h3 id="1-Spark运行架构"><a href="#1-Spark运行架构" class="headerlink" title="1.Spark运行架构"></a>1.<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/636284371?page=20" >Spark运行架构<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240726145529956.png"
+                      alt="image-20240726145529956"
+                ></p>
+<ul>
+<li><p>在Spark的Driver节点中，主要运行我们提交的程序，程序的入口就是SparkContext。Driver节点会加载Spark的执行环境SparkEnv, 统计Spark执行过程信息，向Cluster Manager 申请Task需要的资源节点等。Driver在执行提交的程序时，会根据Action算子提交Job。 一个Action算子提交一个Job，并将其交给DAGScheduler, DAGScheduler在submitJob时会从后向前根据血缘关系遍历，如果一个RDD是ShuffleRDD, 会将其前后分为两个Stage。之后，会将TaskSets提交给TaskScheduler, 并封装为TaskManager。最后在Worker节点上启动Executor进程，并将Task分发给Worker节点执行。</p>
+<p>程序的提交执行，为一个Application, 其会通过Driver节点向Cluster Manager申请资源，然后在Worker节点启动一批Executor。每一个Executor是一个进程，其只服务于当前申请的Application。一个Worker节点上会存在多个Application申请的Executor进程，它们之间资源是相互隔离的。当分区Task（执行逻辑）分发到当前Worker的Executor上，则会在其上启动一个线程进行执行Task任务。Executor中包含一个blockManager,由于迭代计算会产生很多中间结果，可以将其存储在这个模块中，减少io操作，提高性能。</p>
+</li>
+<li><p>client端不一定和Driver在一起</p>
+</li>
+<li><p>Driver是将来运行提交代码的那台服务器</p>
+</li>
+<li><p>SparkContext作为核心，一个集群里只有一个，是程序的入口</p>
+</li>
+<li><p>每台机器每个节点相当于Worker Node。一个节点默认一个Executor</p>
+</li>
+<li><p>Executor是自动开辟的空间，有核有内存</p>
+</li>
+<li><p>Task的数量由分配给Executor的内核数量决定。是众算子分出来的一个个小任务</p>
+</li>
+<li><p>算子交付给每一个Executor，方法分配到Task上执行，算子给有数据的机器</p>
+</li>
+<li><p>MapReduce在Shuffle阶段是Reduce把Mapper拉取过来，影响效率。因此就把算子复制传到节点上并赋予编号，减少数据的传输。通过Yarn来交付，是把程序发过去。过程尽量放内存不落盘。</p>
+</li>
+<li><p>每一个算子都是一个Task，甚至多个Task。一个Executor可以处理一段算子</p>
+</li>
+<li><p>Cache是节点间用来传输少量的数据</p>
+</li>
+<li><p>通过repartition改分区数量。一个Task对应一个RDD分区。假设三台服务器，每台服务器2核。那么repartition(6)就会占用各两个核，超过的话会等某个结束计算后，再让它计算。</p>
+</li>
+</ul>
+<h3 id="2-Spark架构核心组件"><a href="#2-Spark架构核心组件" class="headerlink" title="2.Spark架构核心组件"></a>2.Spark架构核心组件</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240726151437724.png"
+                      alt="image-20240726151437724"
+                ></p>
+<ul>
+<li><p>Spark一般部署再Hadoop服务器上，方便找Yarn，也方便找数据。Master最好不要放在集群上，防止崩溃</p>
+</li>
+<li><p>如一个map算子可能会在多节点查数据，所以可能会出现多个Task</p>
+</li>
+<li><p>一个Job代表一串算子</p>
+</li>
+<li><p>一个Job分成多组Task，称为Stage。即从一串转换算子到一个行动算子就是一个Stage</p>
+</li>
+<li><p>一个分区要占用一个核</p>
+</li>
+<li><p>网上解释</p>
+<ol>
+<li><strong>Job</strong>：<ul>
+<li>一个Job是由Spark应用程序中的一个行动（Action）触发的。行动是那些返回数据并触发计算的操作，如<code>count()</code>、<code>collect()</code>、<code>save()</code>等。</li>
+<li>一个Job可以包含一个或多个Stage。</li>
+</ul>
+</li>
+<li><strong>Stage</strong>：<ul>
+<li>Stage是Job的一个阶段，代表了一组可以并行执行的任务集合。</li>
+<li>Stage之间存在依赖关系，通常分为两类：窄依赖（Narrow Dependency）和宽依赖（Wide Dependency）。</li>
+<li>窄依赖意味着子RDD的每个分区只依赖于父RDD的一个或少数几个分区，不需要进行数据的shuffle操作。</li>
+<li>宽依赖则意味着子RDD的每个分区可能依赖于父RDD的所有分区，需要进行数据的shuffle操作。</li>
+<li>一个Job从逻辑上被划分为多个Stage，每个Stage的结束标志着一个依赖的完成。</li>
+<li>需要传数据了就是一个阶段</li>
+</ul>
+</li>
+<li><strong>Task</strong>：<ul>
+<li>Task是Stage中的基本执行单元，每个Task负责处理数据的一个分区。</li>
+<li>Stage中的所有Task都是并行执行的，每个Task对应RDD的一个分区。</li>
+<li>Task的执行是实际的计算工作，它们读取数据、执行转换操作，并产生结果。</li>
+</ul>
+</li>
+</ol>
+<p>这三个概念之间的关系可以用以下方式描述：</p>
+<ul>
+<li>当Spark应用程序执行一个行动操作时，它首先触发一个Job。</li>
+<li>Spark的DAG（Directed Acyclic Graph，有向无环图）调度器会根据RDD之间的依赖关系将Job分解为一个或多个Stage。</li>
+<li>每个Stage进一步被分解为多个Task，这些Task在集群中的不同节点上并行执行。</li>
+<li><strong>窄依赖</strong>：在窄依赖的情况下，子RDD的每个分区只依赖于父RDD的一个或少数几个分区。这种情况下，一个Task确实对应处理一个分区的数据。</li>
+<li><strong>宽依赖</strong>：在宽依赖的情况下，子RDD的每个分区可能依赖于父RDD的所有分区，需要进行数据的shuffle操作。在这种情况下，一个Task可能需要处理来自多个分区的数据。</li>
+<li>父RDD中的一个Task就是一个分区</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Spark-API"><a href="#3-Spark-API" class="headerlink" title="3.Spark API"></a>3.Spark API</h3><ul>
+<li><em><strong>RDD</strong></em><ul>
+<li>Spark核心，主要数据抽象</li>
+<li>类似数组</li>
+<li>弹性分布式数据集</li>
+<li>存储的是算子，相当于高级方法</li>
+</ul>
+</li>
+<li><em><strong>Dataset</strong></em><ul>
+<li>从Spark1.6开始引入的新的抽象，特定<strong>领域对象</strong>中的强类型集合，它可以使用函数或者相关操作并行地进行转换等操作</li>
+<li>类似对象数组</li>
+</ul>
+</li>
+<li><em><strong>DataFrame</strong></em><ul>
+<li>DataFrame是特殊的Dataset</li>
+<li>结构化的RDD</li>
+<li>长的像表</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-RDD"><a href="#4-RDD" class="headerlink" title="4.RDD"></a>4.RDD</h3><h4 id="A-解释"><a href="#A-解释" class="headerlink" title="A.解释"></a>A.解释</h4><ul>
+<li>简单的解释<ul>
+<li>RDD是将数据项拆分为多个分区的集合，存储在集群的工作节点上的内存和磁盘中，并执行正确的操作</li>
+</ul>
+</li>
+<li>复杂的解释<ul>
+<li>RDD是用于数据转换的接口</li>
+<li>RDD指向了存储在HDFS、Cassandra、HBase等、或缓存(内存、内存+磁盘、仅磁盘等)，或在故障或缓存收回时重新计算其他RDD分区中的数据</li>
+</ul>
+</li>
+<li><strong>RDD中是<em>没有数据</em>的，里面只有算子和指引对象(数据地址)，是分区集合</strong></li>
+<li>是spark核心</li>
+</ul>
+<h4 id="B-完整解释-重要"><a href="#B-完整解释-重要" class="headerlink" title="B.完整解释(重要)"></a>B.完整解释(重要)</h4><ul>
+<li><strong>RDD是弹性分布式数据集(Resilient Distributed Datasets)</strong><ul>
+<li>分布式数据集<ul>
+<li>RDD是<strong>只读的</strong>、分区记录的集合，每个分区分布在集群的不同节点上</li>
+<li>RDD并<strong>不存储</strong>真正的数据，只是对数据和操作的描述</li>
+</ul>
+</li>
+<li>弹性<ul>
+<li>RDD<strong>默认存放</strong>在内存中，当内存不足，Spark自动将RDD写入磁盘</li>
+</ul>
+</li>
+<li>容错性<ul>
+<li>根据数据血统(设置检查点ckeckpoint)，可以<strong>自动</strong>从节点失败中恢复分区</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="C-DAG"><a href="#C-DAG" class="headerlink" title="C.DAG"></a>C.DAG</h4><ul>
+<li>有向无环图，算子是不能成环的</li>
+</ul>
+<h4 id="D-特性"><a href="#D-特性" class="headerlink" title="D.特性"></a>D.特性</h4><ul>
+<li>一系列的**分区(分片)**信息，每个任务处理一个分区</li>
+<li>每个分区上都有<strong>compute函数</strong>，计算该分区中的数据</li>
+<li>RDD之间有一系列的<strong>依赖</strong></li>
+<li><strong>分区器</strong>决定数据(key-value)分配至哪个分区</li>
+<li><strong>优先位置列表</strong>，将计算任务分派到其所在处理数据块的存储位置</li>
+</ul>
+<h4 id="E-RDD的使用"><a href="#E-RDD的使用" class="headerlink" title="E.RDD的使用"></a>E.RDD的使用</h4><h5 id="a-使用集合创建"><a href="#a-使用集合创建" class="headerlink" title="a.使用集合创建"></a>a.使用集合创建</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/13a5ff67-ed29-4a8f-ac9f-27a4fafe04a5.png"
+                      alt="13a5ff67-ed29-4a8f-ac9f-27a4fafe04a5"
+                ></p>
+<p><code>parallelize</code>是用于变成RDD的</p>
+<p><code>makeRDD</code></p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">MyPartition</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setAppName(<span class="string">&quot;part&quot;</span>).setMaster(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line">    <span class="keyword">val</span> sc = <span class="type">SparkContext</span>.getOrCreate(conf)</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Seq</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>))</span><br><span class="line">    <span class="keyword">val</span> size = rdd.partitions.size</span><br><span class="line">    println(size)</span><br><span class="line">    sc.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 我的电脑16，因为16核，*改多少最后就会输出多少，也可以在parallelized最后多加一个数字</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>查看实际的分区</p>
+<p><code>mapPartitionsWithIndex</code></p>
+</li>
+</ul>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">MyPartition</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setAppName(<span class="string">&quot;part&quot;</span>).setMaster(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line">    <span class="keyword">val</span> sc = <span class="type">SparkContext</span>.getOrCreate(conf)</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Seq</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>),<span class="number">4</span>)</span><br><span class="line">      .mapPartitionsWithIndex((x,iter)=&gt;&#123;</span><br><span class="line">        <span class="keyword">val</span> str=iter.toIterator.toList.mkString(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">        <span class="type">List</span>(<span class="string">s&quot;分区号:<span class="subst">$&#123;x&#125;</span>,分区数据:<span class="subst">$&#123;str&#125;</span>&quot;</span>).toIterator</span><br><span class="line">      &#125;).foreach(println);</span><br><span class="line">    sc.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">分区号:<span class="number">1</span>,分区数据:<span class="number">2</span>,<span class="number">3</span></span><br><span class="line">分区号:<span class="number">3</span>,分区数据:<span class="number">6</span>,<span class="number">7</span></span><br><span class="line">分区号:<span class="number">2</span>,分区数据:<span class="number">4</span>,<span class="number">5</span></span><br><span class="line">分区号:<span class="number">0</span>,分区数据:<span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>自己来进行分区，<strong>分区一定要用键值对，要重写分区的方法</strong></p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">MyPartition</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setAppName(<span class="string">&quot;part&quot;</span>).setMaster(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line">    <span class="keyword">val</span> sc = <span class="type">SparkContext</span>.getOrCreate(conf)</span><br><span class="line">    <span class="keyword">val</span> rdd = sc.parallelize(<span class="type">Seq</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>),<span class="number">4</span>)</span><br><span class="line">      .map(x=&gt;(x,x))</span><br><span class="line">      .partitionBy(<span class="keyword">new</span> <span class="type">MyPart</span>(<span class="number">4</span>))</span><br><span class="line">      .mapPartitionsWithIndex((x,iter)=&gt;&#123;</span><br><span class="line">        <span class="keyword">val</span> str=iter.toIterator.toList.mkString(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">        <span class="type">List</span>(<span class="string">s&quot;分区号:<span class="subst">$&#123;x&#125;</span>,分区数据:<span class="subst">$&#123;str&#125;</span>&quot;</span>).toIterator</span><br><span class="line">      &#125;).foreach(println);</span><br><span class="line">    sc.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPart</span>(<span class="params">n:<span class="type">Int</span></span>) <span class="keyword">extends</span> <span class="title">Partitioner</span></span>&#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">numPartitions</span></span>: <span class="type">Int</span> = n</span><br><span class="line"></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">getPartition</span></span>(key: <span class="type">Any</span>): <span class="type">Int</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> keyNum = key.toString.toInt</span><br><span class="line">    keyNum%numPartitions</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h5 id="b-通过加载文件产生RDD"><a href="#b-通过加载文件产生RDD" class="headerlink" title="b.通过加载文件产生RDD"></a>b.通过加载文件产生RDD</h5><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240726173911665.png"
+                      alt="image-20240726173911665"
+                ></p>
+<h5 id="c-RDD操作-重要"><a href="#c-RDD操作-重要" class="headerlink" title="c.RDD操作(重要)"></a>c.RDD操作(重要)</h5><ul>
+<li><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/b7debef9-c276-4998-a8f6-b4f0338d9996.png"
+                      alt="b7debef9-c276-4998-a8f6-b4f0338d9996"
+                ></p>
+</li>
+<li><p>转换算子一开始都不干活，直到遇到一个行动算子</p>
+</li>
+<li><p>简而言之，如果你在Spark程序中看到一个操作返回一个新的RDD，那么它很可能是一个转换算子。如果一个操作返回一个值（如整数、列表等），那么它很可能是一个行动算子。</p>
+</li>
+<li><p><strong>转换算子</strong></p>
+<ul>
+<li><p><code>map</code></p>
+</li>
+<li><p><code>filter</code></p>
+</li>
+<li><p><code>mapValues</code></p>
+<p>原RDD中的Key保持不变，与新的Value一起组成新的RDD中的元素，仅适用于PairRDD</p>
+</li>
+<li><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240727100517510.png"
+                      alt="image-20240727100517510" style="zoom:33%;" 
+                >
+</li>
+<li><p><code>makeRDD</code></p>
+</li>
+<li><p><code>cache</code></p>
+</li>
+<li><p><code>persist</code></p>
+</li>
+</ul>
+</li>
+<li><p><strong>动作算子</strong></p>
+<ul>
+<li><p><code>count</code></p>
+</li>
+<li><p><code>collect</code></p>
+<p>但是这个collect不是scala那个。是以Array形式返回RDD所有数据，十分危险，要消耗大量内存。<code>collect</code>可以从RDD变为Array</p>
+</li>
+<li><p><code>take</code></p>
+<p>take后的是Array不是RDD，可再用<code>parallelize</code>转为RDD就可以继续了，也可以用makeRDD</p>
+</li>
+<li><p><code>reduce</code></p>
+</li>
+<li><p><code>foreach</code></p>
+</li>
+<li><p><code>lookup</code></p>
+<p>用于PairRDD，返回K对应的所有V值</p>
+</li>
+<li><p><code>最值</code></p>
+</li>
+<li><p><code>saveAsTextFile</code></p>
+<p>单反是save都是行动算子，RDD有。落盘文件数量按分区来。如果放在一个文件中，那么就用makeRDD(arr,1)或者使用repartition来设置一个分区</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> rdd = sc.textFile(<span class="string">&quot;E:\\ProgramFile\\BigDataStudy\\data\\customers.csv&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> arr = rdd.map(line =&gt; &#123;</span><br><span class="line">  <span class="keyword">val</span> infos = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">  <span class="comment">//      (infos(2),infos(1))</span></span><br><span class="line">  (infos(<span class="number">1</span>), infos(<span class="number">2</span>))</span><br><span class="line">&#125;).groupByKey().mapValues(_.toList.size)</span><br><span class="line">  .repartition(<span class="number">1</span>).sortBy(-_._2).take(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">sc.makeRDD(arr,<span class="number">1</span>).saveAsTextFile(<span class="string">&quot;e:/Temp/ttt&quot;</span>)</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+</ul>
+<h4 id="F-RDD持久化"><a href="#F-RDD持久化" class="headerlink" title="F.RDD持久化"></a>F.RDD持久化</h4><h5 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h5><ul>
+<li><p><strong>cache和persist是减少重复计算</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/d406eadf-0eb6-4bcd-bbd7-294dd14ea5cc.png"
+                      alt="d406eadf-0eb6-4bcd-bbd7-294dd14ea5cc"
+                ></p>
+</li>
+<li><p>姓名全部排序输出，用cache()把转换算子的结果放入<code>cache()</code>来提高效率，重复用的变量尽量都要cache().也得碰到行动算子才会运行</p>
+</li>
+</ul>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Exp01</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setMaster(<span class="string">&quot;local[*]&quot;</span>).setAppName(<span class="string">&quot;exp01&quot;</span>)</span><br><span class="line">    <span class="keyword">val</span> sc = <span class="type">SparkContext</span>.getOrCreate(conf)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> rdd = sc.textFile(<span class="string">&quot;E:\\ProgramFile\\BigDataStudy\\data\\customers.csv&quot;</span>)</span><br><span class="line">    <span class="keyword">val</span> arr = rdd.map(line =&gt; &#123;</span><br><span class="line">      <span class="keyword">val</span> infos = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">      (infos(<span class="number">1</span>), infos(<span class="number">2</span>))</span><br><span class="line">    &#125;).cache()</span><br><span class="line">    <span class="keyword">val</span> arr1 = arr.map(x=&gt;(x._2,x._1))</span><br><span class="line">    countRes(arr)</span><br><span class="line">    countRes(arr1)</span><br><span class="line">    sc.stop()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">countRes</span></span>(rdd:<span class="type">RDD</span>[(<span class="type">String</span>,<span class="type">String</span>)])=&#123;</span><br><span class="line">    rdd.groupByKey().mapValues(_.toList.size)</span><br><span class="line">      .repartition(<span class="number">1</span>).sortBy(-_._2).take(<span class="number">10</span>).foreach(println)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>但是内存很有可能没这么打，用<code>persist</code>，自动cache内存不够自动落盘</p>
+<ul>
+<li><h4 id="persist中写缓存策略"><a href="#persist中写缓存策略" class="headerlink" title="persist中写缓存策略"></a>persist中写缓存策略</h4><ul>
+<li><code>MEMORY_ONLY</code>只放内存</li>
+<li><code>DISK_ONLY</code>只存硬盘</li>
+<li><code>MEMORY_AND_DISK</code>先内存再硬盘</li>
+<li><code>MEMORY_AND_DISK_SER</code>序列化存储，提高效率</li>
+<li><code>MEMORY_AND_DISK_2</code> 内存和落盘都有两个副本（吃内存，不推荐）</li>
+</ul>
+</li>
+<li><p>改为</p>
+</li>
+</ul>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> arr = rdd.map(line =&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> infos = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">    (infos(<span class="number">1</span>), infos(<span class="number">2</span>))</span><br><span class="line">&#125;).persist(<span class="type">StorageLevel</span>.<span class="type">MEMORY_ONLY</span>)</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h5 id="检查点"><a href="#检查点" class="headerlink" title="检查点"></a>检查点</h5><ul>
+<li><p><strong>检查点</strong> 使用来保存相关配置，用于崩溃重启读取处理。一般放在大型计算之前做检查点</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240727115041305.png"
+                      alt="image-20240727115041305"
+                ></p>
+</li>
+<li><p>改为 不管血统，只保留结果数据。碰到行动算子才会干活</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置检查点目录</span></span><br><span class="line">sc.setCheckpointDir(<span class="string">&quot;e:/Temp/ckpt&quot;</span>) <span class="comment">// 检查点文件</span></span><br><span class="line"><span class="keyword">val</span> rdd = sc.textFile(<span class="string">&quot;E:\\ProgramFile\\BigDataStudy\\data\\customers.csv&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> arr = rdd.map(line =&gt; &#123;</span><br><span class="line">  <span class="keyword">val</span> infos = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">  (infos(<span class="number">1</span>), infos(<span class="number">2</span>))</span><br><span class="line">&#125;)</span><br><span class="line">arr.checkpoint() <span class="comment">// 做个检查点</span></span><br><span class="line">arr</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h4 id="G-RDD共享变量"><a href="#G-RDD共享变量" class="headerlink" title="G.RDD共享变量"></a>G.RDD共享变量</h4><h5 id="广播变量"><a href="#广播变量" class="headerlink" title="广播变量"></a>广播变量</h5><ul>
+<li><p><strong>广播变量</strong>:允许开发者将一个只读变量(Driver端)缓存到每个节点(Executor)上，而不是每个任务传递一个副本</p>
+</li>
+<li><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240727151925528.png"
+                      alt="image-20240727151925528"
+                ></p>
+<p><strong>只能针对于能够序列化的对象</strong></p>
+</li>
+<li><p>广播变量，只读不改</p>
+</li>
+<li><p>设备温度监控</p>
+<ol>
+<li><p><strong>普通</strong></p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">TemperatureWatch</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setMaster(<span class="string">&quot;local[*]&quot;</span>).setAppName(<span class="string">&quot;tw&quot;</span>)</span><br><span class="line">    <span class="keyword">val</span> sc = <span class="type">SparkContext</span>.getOrCreate(conf)</span><br><span class="line">    <span class="comment">// 读阈值文件 某台节点上</span></span><br><span class="line">    <span class="keyword">val</span> threshold = sc.textFile(<span class="string">&quot;e:/Temp/thread.txt&quot;</span>).cache()</span><br><span class="line">    <span class="comment">// 读设备温度监控数据 某几个节点上</span></span><br><span class="line">    <span class="keyword">val</span> macdata = sc.textFile(<span class="string">&quot;e:/Temp/mactemp.csv&quot;</span>).cache()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将阈值文件转为Map(机器部位编号,(最低温度，最高温度))</span></span><br><span class="line">    <span class="keyword">val</span> thresholdMap:<span class="type">Map</span>[<span class="type">String</span>,(<span class="type">Int</span>,<span class="type">Int</span>)] = threshold.map(line =&gt; &#123;</span><br><span class="line">      <span class="keyword">val</span> infos = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">      (infos(<span class="number">0</span>), (infos(<span class="number">1</span>).toInt, infos(<span class="number">2</span>).toInt))</span><br><span class="line">    &#125;).collect().toMap</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据设备监控数据和阈值文件将超过阈值的数据过滤出来</span></span><br><span class="line">    macdata.map(line=&gt;&#123;</span><br><span class="line">      <span class="keyword">val</span> infos = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">      <span class="comment">// 根据阈值Map找到机器对应部位的最高最低温度</span></span><br><span class="line">      <span class="keyword">val</span> (minTemp,maxTemp):(<span class="type">Int</span>,<span class="type">Int</span>)=thresholdMap.get(infos(<span class="number">0</span>)).get</span><br><span class="line">      <span class="keyword">if</span>(infos(<span class="number">1</span>).toInt&lt;minTemp || infos(<span class="number">1</span>).toInt&gt;maxTemp) &#123;</span><br><span class="line">        (infos(<span class="number">0</span>),infos(<span class="number">1</span>).toInt,infos(<span class="number">2</span>),<span class="string">&quot;温度异常&quot;</span>)</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        (infos(<span class="number">0</span>),infos(<span class="number">1</span>).toInt,infos(<span class="number">2</span>),<span class="string">&quot;温度正常&quot;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;).foreach(println)</span><br><span class="line"></span><br><span class="line">    sc.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们会发现阈值文件特别小，就要放进内存，但是本来就是放到内存中的。但是，Spark是把算子交给有数据的节点，读进内存只是当前的节点。而执行<code>val (minTemp,maxTemp):(Int,Int)=thresholdMap.get(infos(0)).get</code>这条语句的时候要拉取该节点内存数据，大文件节点拉小文件没问题，但要是是小文件拉大文件，资源消耗太大，要让小文件存到大文件所在的节点中。因此用2的方法</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240727151524247.png"
+                      alt="image-20240727151524247"
+                ></p>
+</li>
+<li><p><strong>广播变量方式</strong></p>
+<p><strong>共享变量</strong>，把小的数据发送到每一个要用的节点中。这句加在取值后</p>
+<p>读取的时候一定要先用<code>.value</code>读出来</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">     <span class="comment">// 将阈值Map存放到共享变量中</span></span><br><span class="line"><span class="keyword">val</span> tm = sc.broadcast(thresholdMap)</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> thresholdMap:<span class="type">Map</span>[<span class="type">String</span>,(<span class="type">Int</span>,<span class="type">Int</span>)] = threshold.map(line =&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> infos = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">    (infos(<span class="number">0</span>), (infos(<span class="number">1</span>).toInt, infos(<span class="number">2</span>).toInt))</span><br><span class="line">&#125;).collect().toMap</span><br><span class="line"><span class="comment">// 将阈值Map存放到共享变量中</span></span><br><span class="line"><span class="keyword">val</span> tm = sc.broadcast(thresholdMap) <span class="comment">// ------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据设备监控数据和阈值文件将超过阈值的数据过滤出来</span></span><br><span class="line">macdata.map(line=&gt;&#123;</span><br><span class="line">    <span class="keyword">val</span> infos = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">    <span class="comment">// 通过共享变量获取map</span></span><br><span class="line">    <span class="keyword">val</span> tmap = tm.value <span class="comment">// ------------------</span></span><br><span class="line">    <span class="comment">// 根据阈值Map找到机器对应部位的最高最低温度</span></span><br><span class="line">    <span class="keyword">val</span> (minTemp,maxTemp):(<span class="type">Int</span>,<span class="type">Int</span>)=tmap.get(infos(<span class="number">0</span>)).get <span class="comment">// ---------</span></span><br><span class="line">    <span class="keyword">if</span>(infos(<span class="number">1</span>).toInt&lt;minTemp || infos(<span class="number">1</span>).toInt&gt;maxTemp) &#123;</span><br><span class="line">        (infos(<span class="number">0</span>),infos(<span class="number">1</span>).toInt,infos(<span class="number">2</span>),<span class="string">&quot;温度异常&quot;</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        (infos(<span class="number">0</span>),infos(<span class="number">1</span>).toInt,infos(<span class="number">2</span>),<span class="string">&quot;温度正常&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).foreach(println)</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+</li>
+</ul>
+<h5 id="累加器"><a href="#累加器" class="headerlink" title="累加器"></a>累加器</h5><ul>
+<li><p>只允许added操作，常用于实现计数</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240727155526138.png"
+                      alt="image-20240727155526138" style="zoom:50%;" 
+                >
+</li>
+<li><p>类似于一种原子的操作</p>
+</li>
+<li><p>例子</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setAppName(<span class="string">&quot;part&quot;</span>).setMaster(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> sc = <span class="type">SparkContext</span>.getOrCreate(conf)</span><br><span class="line"><span class="comment">//    var cnt=0</span></span><br><span class="line"><span class="keyword">var</span> cnt=sc.accumulator(<span class="number">0</span>,<span class="string">&quot;cnt&quot;</span>)</span><br><span class="line">sc.makeRDD(<span class="type">List</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>)).foreach(n=&gt;cnt+=n)</span><br><span class="line">println(cnt.value)</span><br><span class="line"></span><br><span class="line">sc.stop()</span><br><span class="line"><span class="comment">// 输出55，用ctn=0的方式就不行，出0。因为RDD的操作是在服务器上的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//现在都这么用</span></span><br><span class="line"><span class="keyword">val</span> res = sc.makeRDD(<span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>)).reduce(_ + _)</span><br><span class="line">println(res)</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h4 id="H-RDD分区设计"><a href="#H-RDD分区设计" class="headerlink" title="H.RDD分区设计"></a>H.RDD分区设计</h4><ul>
+<li>分区大小限制为2GB</li>
+<li>分区太少<ul>
+<li>不利于并发</li>
+<li>更容易受数据倾斜影响</li>
+<li>groupBy,reduceByKey,sortByKey等内存压力增大</li>
+</ul>
+</li>
+<li>分区过多<ul>
+<li>Shuffle开销越大</li>
+<li>创建任务开销越大</li>
+</ul>
+</li>
+<li>经验<ul>
+<li>每个分区大约128MB</li>
+<li>如果分区小于但接近2000，则设置为大于2000</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-Spark-WordCount运行原理"><a href="#5-Spark-WordCount运行原理" class="headerlink" title="5.Spark WordCount运行原理"></a>5.Spark WordCount运行原理</h3><ul>
+<li><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240727104815941.png"
+                      alt="image-20240727104815941"
+                ></li>
+<li>一旦出现shuffle就分stage(阶段)，往往是有By操作时</li>
+</ul>
+<h4 id="A-划分stage原因"><a href="#A-划分stage原因" class="headerlink" title="A.划分stage原因"></a>A.划分stage原因</h4><ul>
+<li>数据本地化<ul>
+<li>移动计算，而不是移动数据</li>
+<li>保证一个Stage内不会发生数据移动</li>
+</ul>
+</li>
+</ul>
+<h4 id="B-Spark-Shuffle过程"><a href="#B-Spark-Shuffle过程" class="headerlink" title="B.Spark Shuffle过程"></a>B.Spark Shuffle过程</h4><ul>
+<li>宽依赖就要shuffle</li>
+<li>数据在shuffle中很有可能落盘</li>
+<li>在分区之间重新分配数据<ul>
+<li>父RDD中同一分区中的数据按照算子要求重新进入子RDD的不同分区中</li>
+<li><strong>中间结果写入磁盘</strong></li>
+<li>由<strong>子RDD拉取数据，而不是由父RDD推送</strong></li>
+<li>默认情况下，Shuffle不会改变分区数量</li>
+</ul>
+</li>
+</ul>
+<h4 id="C-依赖关系"><a href="#C-依赖关系" class="headerlink" title="C.依赖关系"></a>C.依赖关系</h4><ul>
+<li><strong>Lineage：血统、遗传</strong></li>
+<li>记录了RDD之前的转换操作和依赖关系</li>
+<li><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240727105552098.png"
+                      alt="image-20240727105552098"
+                ></li>
+<li>需要shuffle的都是<strong>宽依赖</strong>，<strong>带By的都是宽</strong>，join有可能宽有可能窄，distinct宽但有可能不是，要让内部的By不运行</li>
+<li>要自己去改算子的先后以及其他方式提高效率。窄依赖的效率高</li>
+<li>血统信息包括转换操作，依赖关系，数据流，执行计划，内存和磁盘的使用</li>
+</ul>
+<h3 id="6-数据倾斜"><a href="#6-数据倾斜" class="headerlink" title="6.数据倾斜"></a>6.数据倾斜</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240727161815648.png"
+                      alt="image-20240727161815648"
+                ></p>
+<p>加盐加在前面，否则按照字典排序还是分不开</p>
+<h2 id="三-安装"><a href="#三-安装" class="headerlink" title="(三)安装"></a>(三)安装</h2><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/Sabthever/Pictures1/blob/main/Download_Resources/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%85%AB%E4%B9%8BSpark%E5%AE%89%E8%A3%85.docx" >服务器安装<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="1-服务器安装（单机版）"><a href="#1-服务器安装（单机版）" class="headerlink" title="1.服务器安装（单机版）"></a>1.服务器安装（单机版）</h3><ul>
+<li>该例子中所用的spark版本为<code>spark-2.3.4-bin-hadoop2.6.tgz</code></li>
+</ul>
+<ol>
+<li><p>把相应包放到<code>/opt</code>中</p>
+</li>
+<li><p>命令执行</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line">tar -zxf spark-2.3.4-bin-hadoop2.6.tgz</span><br><span class="line"><span class="built_in">mv</span> spark-2.3.4-bin-hadoop2.6 soft/spark234</span><br><span class="line"><span class="built_in">cd</span> soft/spark234/conf</span><br><span class="line"><span class="built_in">cp</span> slaves.template slaves</span><br><span class="line"><span class="built_in">cp</span> spark-env.sh.template spark-env.sh</span><br></pre></td></tr></table></figure></div>
+
+<p><code>vim spark-env.sh</code></p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> SPARK_MASTER_HOST=192.168.179.139</span><br><span class="line"><span class="built_in">export</span> SPARK_MASTER_PORT=7077</span><br><span class="line"><span class="built_in">export</span> SPARK_WORKER_CORES=2</span><br><span class="line"><span class="built_in">export</span> SPARK_WORKER_MEMORY=3g</span><br><span class="line"><span class="built_in">export</span> SPARK_MASTER_WEBUI_PORT=8888</span><br></pre></td></tr></table></figure></div>
+
+<p><code>vim ../sbin/spark-config.sh</code>最后加</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/opt/soft/jdk180</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>在<code>/opt/soft/spark234/sbin</code>中有启动的脚本，和Hadoop的脚本名重复</p>
+</li>
+<li><p>启动与关闭</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/soft/spark234/sbin</span><br><span class="line">./start-all.sh</span><br><span class="line"><span class="comment"># 多出了Master和Worker</span></span><br><span class="line">./stop-all.sh</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h2 id="四-使用"><a href="#四-使用" class="headerlink" title="(四)使用"></a>(四)使用</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240726141101384.png"
+                      alt="image-20240726141101384"
+                ></p>
+<h3 id="1-第一次使用-idea-无环境"><a href="#1-第一次使用-idea-无环境" class="headerlink" title="1.第一次使用(idea&#x2F;无环境)"></a>1.第一次使用(idea&#x2F;无环境)</h3><h4 id="A-导入包"><a href="#A-导入包" class="headerlink" title="A.导入包"></a>A.导入包</h4><div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-sql_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="B-导入scala的库"><a href="#B-导入scala的库" class="headerlink" title="B.导入scala的库"></a>B.导入scala的库</h4><ul>
+<li><p>可以用之前的方法导入</p>
+</li>
+<li><p>也可以用这种方法</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.scala-lang<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>scala-library<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.11.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>这边用原本的方法</p>
+</li>
+</ul>
+<h4 id="C-使用Scala统计字数"><a href="#C-使用Scala统计字数" class="headerlink" title="C.使用Scala统计字数"></a>C.使用Scala统计字数</h4><ul>
+<li>正式写代码，最好使用.getOrCreate来建立，<code>val sc = SparkContext.getOrCreate(conf)</code></li>
+</ul>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">WordCount</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="comment">// 1.开启Spark配置</span></span><br><span class="line">    <span class="comment">// Master设置模式(Yarn/K8S)(管内存的是谁)</span></span><br><span class="line">    <span class="comment">// *代表利用计算机上所有的资源 数字就是调用多少核</span></span><br><span class="line">    <span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setMaster(<span class="string">&quot;local[*]&quot;</span>).setAppName(<span class="string">&quot;wc&quot;</span>)</span><br><span class="line">    <span class="comment">// 2.获取核心对象</span></span><br><span class="line">    <span class="comment">// 由谁来指挥</span></span><br><span class="line">    <span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)</span><br><span class="line">    <span class="comment">// 3.读文件进行单词统计</span></span><br><span class="line">    sc.textFile(<span class="string">&quot;e:/Temp/word.txt&quot;</span>)</span><br><span class="line">      .flatMap(_.split(<span class="string">&quot; &quot;</span>))</span><br><span class="line">      .map((_,<span class="number">1</span>))</span><br><span class="line">      .reduceByKey(_+_).foreach(println)</span><br><span class="line">      <span class="comment">// 上面那个函数按键分组，按值相加</span></span><br><span class="line">    <span class="comment">// 4.关闭核心</span></span><br><span class="line">    sc.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="D-使用Java统计字数"><a href="#D-使用Java统计字数" class="headerlink" title="D.使用Java统计字数"></a>D.使用Java统计字数</h4><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.SparkConf;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.api.java.JavaRDD;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.api.java.JavaSparkContext;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.api.java.function.Function;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyWordCount</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">SparkConf</span> <span class="variable">conf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SparkConf</span>().setAppName(<span class="string">&quot;wc&quot;</span>)</span><br><span class="line">                .setMaster(<span class="string">&quot;local[*]&quot;</span>);</span><br><span class="line">        <span class="type">JavaSparkContext</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JavaSparkContext</span>(conf);</span><br><span class="line">        JavaRDD&lt;String&gt; words = sc.textFile(<span class="string">&quot;e:/Temp/word.txt&quot;</span>);</span><br><span class="line">         <span class="comment">// 只接受迭代器</span></span><br><span class="line">        words.flatMap(line-&gt; Arrays.asList(line.split(<span class="string">&quot; &quot;</span>)).iterator())</span><br><span class="line">                .groupBy(x-&gt;x)</span><br><span class="line">                .mapValues(iter-&gt;&#123; <span class="comment">// 这里面是个迭代器没有size</span></span><br><span class="line">                    Iterator&lt;String&gt; itor = iter.iterator();</span><br><span class="line">                    <span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">for</span>(;itor.hasNext();itor.next())&#123;</span><br><span class="line">                        count++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span> count;</span><br><span class="line">                &#125;)</span><br><span class="line">                .foreach(x-&gt; System.out.println(x));</span><br><span class="line">        sc.stop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>核心的那条语句可以改成</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">words.flatMap(line-&gt; Arrays.asList(line.split(<span class="string">&quot; &quot;</span>)).iterator())</span><br><span class="line">    .mapToPair(word-&gt;<span class="keyword">new</span> <span class="title class_">Tuple2</span>&lt;String,Integer&gt;(word,<span class="number">1</span>))</span><br><span class="line">    .reduceByKey((x,y)-&gt;x+y)</span><br><span class="line">    .foreach(x-&gt; System.out.println(x));</span><br></pre></td></tr></table></figure></div>
+
+<p>其中mapToPair可以告诉JVM我出了元组</p>
+<h3 id="2-程序提交服务器-发布"><a href="#2-程序提交服务器-发布" class="headerlink" title="2.程序提交服务器(发布)"></a>2.程序提交服务器(发布)</h3><ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42326851/article/details/140298182" >提交参数详解<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</li>
+<li><p>两种模式</p>
+<ol>
+<li>Standalone</li>
+<li>yarn提交</li>
+</ol>
+</li>
+</ul>
+<h4 id="A-Standalone"><a href="#A-Standalone" class="headerlink" title="A.Standalone"></a>A.Standalone</h4><ul>
+<li><p>Standalone ： 无yarn操作</p>
+<ol>
+<li>Client通知Master提交任务</li>
+<li>Master将work资源推荐给Client</li>
+<li>Client找到WorkNode节点</li>
+<li>WorkNode开启一个Executor</li>
+<li>资源不足则WorkNode会通知Client再找Master要新的资源</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240730134342873.png"
+                      alt="image-20240730134342873"
+                ></p>
+</li>
+<li><p>操作</p>
+<ol>
+<li><p>建立相关Scala相关工程，写好相关代码</p>
+<p>(不全的)</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">scala.version</span>&gt;</span>2.11<span class="tag">&lt;/<span class="name">scala.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spark.version</span>&gt;</span>2.3.4<span class="tag">&lt;/<span class="name">spark.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_$&#123;scala.version&#125;<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spark.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-sql_$&#123;scala.version&#125;<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spark.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>再pom.xml中build里面的全删了，在里面加入，这是用来打包瘦包的 </p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.scala-tools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-scala-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.15.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>testCompile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>或者 用来打胖包的</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.alchim31.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>scala-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;<span class="name">goal</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-assembly-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">descriptorRef</span>&gt;</span>jar-with-dependencies<span class="tag">&lt;/<span class="name">descriptorRef</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">id</span>&gt;</span>make-assembly<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;<span class="name">goal</span>&gt;</span>single<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单词统计</span></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWords</span>(<span class="params">line:<span class="type">String</span></span>)</span></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">App</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">  <span class="keyword">val</span> spark = <span class="type">SparkSession</span>.builder().master(<span class="string">&quot;local[*]&quot;</span>).appName(<span class="string">&quot;mytest&quot;</span>).getOrCreate()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">import</span> spark.implicits._</span><br><span class="line">    <span class="keyword">val</span> df = spark.createDataFrame(<span class="type">List</span>(</span><br><span class="line">      <span class="type">MyWords</span>(<span class="string">&quot;Hello World&quot;</span>),</span><br><span class="line">      <span class="type">MyWords</span>(<span class="string">&quot;Hello Spark&quot;</span>)</span><br><span class="line">    )).select(explode(split($<span class="string">&quot;line&quot;</span>,<span class="string">&quot; &quot;</span>)).as(<span class="string">&quot;word&quot;</span>))</span><br><span class="line">      .groupBy(<span class="string">&quot;word&quot;</span>).agg(count($<span class="string">&quot;word&quot;</span>).as(<span class="string">&quot;word_num&quot;</span>))</span><br><span class="line">    df.show()</span><br><span class="line">    spark.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>Maven-&gt;clean-&gt;package</p>
+<p>把打包的<code>mypacket-1.0-SNAPSHOT.jar</code>拿出放入服务器中，在服务器上打开Hadoop、yarn和Spark。</p>
+</li>
+<li><p>Master服务器提交</p>
+<p>两种提交方式，一种为cluster一种是client，cluster会把把算子到各个节点，client会汇总到客户端</p>
+<p><a target="_blank" rel="noopener" href="https://www.baidu.com/link?url=TqeEtqOZe2F8Q1sibqQ_ctTIaw5L4w3EX1REXbAmtjIp85JYdxq9qqc3WN4xzhiBA7ubJZqnDe6Nbm7BBYPn5XhOXtkfDY_aLR_eQ_tiT2_&wd=&eqid=aa4eb0da010216a20000000566c99d3f"><em>spark提交</em>任务的几种<em>方式</em>_spark 提交模式-CSDN博客</a></p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   <span class="built_in">cd</span> /opt/soft/spark234/bin/</span><br><span class="line">   ./spark-submit \</span><br><span class="line">   --class com.njupt.mypackage.App \</span><br><span class="line">   --master spark://192.168.179.139:7077 \</span><br><span class="line">   --executor-memory 3G \</span><br><span class="line">--total-executor-cores 4 \</span><br><span class="line">   --deploy-mode cluster \</span><br><span class="line">   /opt/mypacket-1.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   ./spark-submit \</span><br><span class="line">   --class com.njupt.mypackage.App \			<span class="comment"># 程序包路径</span></span><br><span class="line">   --master spark://192.168.179.139:7077 \		<span class="comment"># Master地址</span></span><br><span class="line">   --executor-memory 3G \						<span class="comment"># 单个executor内存</span></span><br><span class="line">--total-executor-cores 4 \					<span class="comment"># 总核数3个</span></span><br><span class="line">   --deploy-mode cluster \						<span class="comment"># 使用--deploy-mode cluster参数提交作业时，意味着你希望Spark作业的驱动程序在集群中运行，而不是在提交作业的客户端机器上运行。这边结果给client，信息最后一定是在driver上看到的</span></span><br><span class="line">   /opt/mypacket-1.0-SNAPSHOT.jar				<span class="comment"># 包的主机中路径，后面可以跟参数</span></span><br></pre></td></tr></table></figure></div></li>
+</ol>
+</li>
+</ul>
+<h4 id="B-yarn服务器提交"><a href="#B-yarn服务器提交" class="headerlink" title="B.yarn服务器提交"></a>B.yarn服务器提交</h4><ol>
+<li><p>先配yarn环境</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">在/etc/profile中(要现有)YARN_HOME</span><br><span class="line">上面已经有</span><br><span class="line"><span class="built_in">export</span> HADOOP_HOME=/opt/soft/hadoop260</span><br><span class="line"><span class="built_in">export</span> YARN_HOME=<span class="variable">$HADOOP_HOME</span></span><br><span class="line"></span><br><span class="line">下面要写</span><br><span class="line"><span class="comment">#Yarn Env</span></span><br><span class="line"><span class="built_in">export</span> YARN_CONF_DIR=<span class="variable">$YARN_HOME</span>/etc/hadoop</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line">查看一下</span><br><span class="line"><span class="comment"># echo $YARN_CONF_DIR</span></span><br><span class="line">/opt/soft/hadoop260/etc/hadoop</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>代码注释掉<code>.master(&quot;local[*]&quot;)</code>重打包，覆盖原本包</p>
+</li>
+<li><p>命令</p>
+<div class="code-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/soft/spark234/bin/</span><br><span class="line">./spark-submit \</span><br><span class="line">--class com.njupt.mypackage.App \</span><br><span class="line">--master yarn \		<span class="comment"># 改了这个</span></span><br><span class="line">--executor-memory 3G \</span><br><span class="line">--total-executor-cores 4 \</span><br><span class="line">--deploy-mode client \ <span class="comment">#改了这个 发布的时候还是要用cluster</span></span><br><span class="line">/opt/mypacket-1.0-SNAPSHOT.jar</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h2 id="五-基础学习"><a href="#五-基础学习" class="headerlink" title="(五)基础学习"></a>(五)基础学习</h2><ul>
+<li><p>repartition设置分区个数</p>
+</li>
+<li><p>做全体排序的时候，要设置分区为1</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> infos = line.split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">(infos(<span class="number">2</span>),infos(<span class="number">1</span>))</span><br><span class="line">&#125;).groupByKey().mapValues(_.toList.size)</span><br><span class="line">.repartition(<span class="number">1</span>).sortBy(-_._2).take(<span class="number">5</span>)</span><br><span class="line">.foreach(println)</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="1-SparkSession"><a href="#1-SparkSession" class="headerlink" title="1.SparkSession"></a>1.SparkSession</h3><ul>
+<li><p><strong><code>SparkSession</code>的使用</strong></p>
+</li>
+<li><p>算子要有顺序，比如要先分组才能找到相应的聚合项</p>
+</li>
+<li><p><strong>装载CSV数据源</strong>可用sql的语句，可以展示表</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="comment">//    val conf = new SparkConf().setAppName(&quot;exp03&quot;).setMaster(&quot;local[*]&quot;)</span></span><br><span class="line">    <span class="comment">//    val sc = SparkContext.getOrCreate(conf)</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">//    val rdd = sc.textFile(&quot;E:\\ProgramFile\\BigDataStudy\\data\\customer_details.csv&quot;)</span></span><br><span class="line">    <span class="comment">//    // 获取首行信息</span></span><br><span class="line">    <span class="comment">//    val first = rdd.first()</span></span><br><span class="line">    <span class="comment">//    // 通过过滤器去除首行</span></span><br><span class="line">    <span class="comment">//    rdd.filter(line =&gt; !line.equals(first)).take(5).foreach(println)</span></span><br><span class="line">    <span class="comment">//    sc.stop()</span></span><br><span class="line">    <span class="keyword">val</span> spark = <span class="type">SparkSession</span>.builder().master(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line">    .appName(<span class="string">&quot;exp03&quot;</span>).getOrCreate();</span><br><span class="line">    <span class="comment">// 读有表头的文件</span></span><br><span class="line">    <span class="keyword">val</span> df = spark.read.option(<span class="string">&quot;header&quot;</span>, <span class="literal">true</span>)</span><br><span class="line">    .csv(<span class="string">&quot;E:\\ProgramFile\\BigDataStudy\\data\\customer_details.csv&quot;</span>);</span><br><span class="line">    <span class="comment">//    df.show();</span></span><br><span class="line">    <span class="comment">// 给df起个名字</span></span><br><span class="line">    df.createTempView(<span class="string">&quot;customer&quot;</span>)</span><br><span class="line">    <span class="comment">// 尽心查询</span></span><br><span class="line">    spark.sql(</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        |select count(*) s_name from customer where first_name like &#x27;S%&#x27;</span></span><br><span class="line"><span class="string">        |&quot;&quot;&quot;</span>.stripMargin).show();</span><br><span class="line">    spark.stop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/Helen_1997_1997/article/details/128222147" >sql经典50题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</li>
+<li><p>sql中的函数通过<code>import org.apache.spark.sql.functions._</code>导入，要用<code>spark.implicits._</code>要先导入前面的包，这个spark不是绝对的，而是前面开启配置时的对象</p>
+</li>
+<li><p>SparkSession后的算子</p>
+<ul>
+<li><p><code>show(5,false)</code>显示5行不剪切</p>
+</li>
+<li><p><code>withColumn</code>多加一列</p>
+<p>这儿是把这两列用空格的方式相连生成新一列</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.withColumn(<span class="string">&quot;name&quot;</span>,concat_ws(<span class="string">&quot; &quot;</span>,</span><br><span class="line">  col(<span class="string">&quot;first_name&quot;</span>),col(<span class="string">&quot;last_name&quot;</span>))).show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>withColumnRenamed</code>改列名</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.withColumnRenamed(<span class="string">&quot;first_name&quot;</span>,<span class="string">&quot;fname&quot;</span>).show();</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>toDF</code>变为DataFrame，起列名</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> df1 = spark.read.csv(<span class="string">&quot;E:\\ProgramFile\\BigDataStudy\\data\\customers.csv&quot;</span>)</span><br><span class="line">.toDF(<span class="string">&quot;id&quot;</span>,<span class="string">&quot;fname&quot;</span>,<span class="string">&quot;lname&quot;</span>,<span class="string">&quot;xxx&quot;</span>,<span class="string">&quot;xxx1&quot;</span>,<span class="string">&quot;address&quot;</span>,<span class="string">&quot;area&quot;</span>,<span class="string">&quot;ar&quot;</span>,<span class="string">&quot;num&quot;</span>)</span><br><span class="line">.show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>RDD转DataFrame</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 必须紧跟在toDF上</span></span><br><span class="line"><span class="keyword">import</span> spark.implicits._</span><br><span class="line">spark.sparkContext.parallelize(<span class="type">Seq</span>((<span class="number">1</span>,<span class="string">&quot;zs&quot;</span>),(<span class="number">2</span>,<span class="string">&quot;ls&quot;</span>))).toDF(<span class="string">&quot;id&quot;</span>,<span class="string">&quot;name&quot;</span>).show()</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>orderBy</code>排序</p>
+<p>倒叙前5</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.orderBy(col(<span class="string">&quot;customer_id&quot;</span>).desc).show(<span class="number">5</span>);</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>where</code>和<code>like</code></p>
+<p>三种方法</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df.where(<span class="string">&quot;first_name like &#x27;Z%&#x27;&quot;</span>).show()</span><br><span class="line">df.where(col(<span class="string">&quot;first_name&quot;</span>).like(<span class="string">&quot;Z%&quot;</span>)).show(<span class="number">5</span>) <span class="comment">// 效果相同</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 效果也相同</span></span><br><span class="line"><span class="keyword">import</span> spark.implicits._</span><br><span class="line">df.where($<span class="string">&quot;first_name&quot;</span>.like(<span class="string">&quot;Z%&quot;</span>)).show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>lit</code>相当于做了一个小表一行一列</p>
+</li>
+<li><p><code>===</code>是等于</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> spark.implicits._</span><br><span class="line">df.where($<span class="string">&quot;first_name&quot;</span>===lit(<span class="string">&quot;Zachariah&quot;</span>)).show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>and</code>条件相连</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.where($<span class="string">&quot;first_name&quot;</span>.like(<span class="string">&quot;Z%&quot;</span>) and $<span class="string">&quot;gender&quot;</span>===lit(<span class="string">&quot;Female&quot;</span>)).show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>select</code>选择投影</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.select($<span class="string">&quot;first_name&quot;</span>.as(<span class="string">&quot;fanme&quot;</span>),$<span class="string">&quot;last_name&quot;</span>.as(<span class="string">&quot;lname&quot;</span>),$<span class="string">&quot;email&quot;</span>).show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>as</code>改别名</p>
+</li>
+</ul>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">import</span> spark.implicits._</span><br><span class="line">df.select($<span class="string">&quot;first_name&quot;</span>.as(<span class="string">&quot;fanme&quot;</span>),$<span class="string">&quot;last_name&quot;</span>.as(<span class="string">&quot;lname&quot;</span>),$<span class="string">&quot;email&quot;</span>).show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p><code>join</code> inner join，要左右外联，只要把<code>inner</code>改<code>left</code>或right</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">custdf.join(transdf,custdf(<span class="string">&quot;customer_id&quot;</span>)===transdf(<span class="string">&quot;customer_id&quot;</span>),<span class="string">&quot;inner&quot;</span>)</span><br><span class="line">  <span class="comment">// 列名一样可以用一下的方式相关联</span></span><br><span class="line">custdf.join(transdf,<span class="type">Seq</span>(<span class="string">&quot;customer_id&quot;</span>),<span class="string">&quot;inner&quot;</span>).show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>crossJoin</code>笛卡尔集</p>
+</li>
+<li><p><code>groupBy</code>分组，聚合函数</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transdf.groupBy($<span class="string">&quot;customer_id&quot;</span>).agg(sum($<span class="string">&quot;price&quot;</span>).as(<span class="string">&quot;totalprice&quot;</span>),count($<span class="string">&quot;product&quot;</span>).as(<span class="string">&quot;paynum&quot;</span>)).show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>Windows.partitionedby</p>
+<p>Windows窗口函数</p>
+<p><code>rank().over(Window.orderBy(desc(&quot;event_num&quot;)))</code></p>
+</li>
+<li><p>但凡有null的地方补为0</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.na.fill(0)</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-装载JSON"><a href="#2-装载JSON" class="headerlink" title="2.装载JSON"></a>2.装载JSON</h3><h3 id="3-Spark-SQL架构"><a href="#3-Spark-SQL架构" class="headerlink" title="3.Spark SQL架构"></a>3.Spark SQL架构</h3><ul>
+<li>介绍<ul>
+<li>提高了更高层次的接口方便地处理数据</li>
+<li>是Spark的核心组件，能够直接访问现存的hive</li>
+<li>支持SQL、API编程</li>
+<li><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240729091721730.png"
+                      alt="image-20240729091721730"
+                ></li>
+</ul>
+</li>
+<li><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240729092734922.png"
+                      alt="image-20240729092734922" style="zoom: 33%;" 
+                >
+- 主要是SparkSession</li>
+</ul>
+<h4 id="A-DataSet"><a href="#A-DataSet" class="headerlink" title="A.DataSet"></a>A.DataSet</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240729092912362.png"
+                      alt="image-20240729092912362"
+                ></p>
+<h4 id="B-DataFrame"><a href="#B-DataFrame" class="headerlink" title="B.DataFrame"></a>B.DataFrame</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240729093126751.png"
+                      alt="image-20240729093126751" style="zoom:50%;" 
+                >
+
+<h4 id="C-Spark-SQL-函数"><a href="#C-Spark-SQL-函数" class="headerlink" title="C.Spark SQL 函数"></a>C.Spark SQL 函数</h4><ul>
+<li><p>内置函数</p>
+</li>
+<li><p>自定义函数</p>
+<p>Java中有LocalDate来转为星期</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Exp04</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 自定义UDF</span></span><br><span class="line">  <span class="keyword">val</span> myDayOfWeek=udf((time:<span class="type">String</span>)=&gt;&#123;</span><br><span class="line">    <span class="type">LocalDate</span>.parse(time.split(<span class="string">&quot; &quot;</span>)(<span class="number">0</span>)).getDayOfWeek.toString</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> spark = <span class="type">SparkSession</span>.builder().master(<span class="string">&quot;local[*]&quot;</span>).appName(<span class="string">&quot;exp04&quot;</span>).getOrCreate();</span><br><span class="line">    <span class="keyword">val</span> ordDF = spark.read.csv(<span class="string">&quot;E:/Temp/retail_db/orders.csv&quot;</span>)</span><br><span class="line">      .toDF(<span class="string">&quot;ordid&quot;</span>, <span class="string">&quot;orddate&quot;</span>, <span class="string">&quot;userid&quot;</span>, <span class="string">&quot;statu&quot;</span>)</span><br><span class="line">    <span class="keyword">val</span> itemDF = spark.read.csv(<span class="string">&quot;E:/Temp/retail_db/order_items.csv&quot;</span>)</span><br><span class="line">      .toDF(<span class="string">&quot;itemid&quot;</span>, <span class="string">&quot;ordid&quot;</span>, <span class="string">&quot;productid&quot;</span>, <span class="string">&quot;buynum&quot;</span>, <span class="string">&quot;cntprice&quot;</span>, <span class="string">&quot;price&quot;</span>)</span><br><span class="line">    <span class="keyword">import</span> spark.implicits._</span><br><span class="line">    ordDF.join(itemDF,<span class="type">Seq</span>(<span class="string">&quot;ordid&quot;</span>)).select($<span class="string">&quot;ordid&quot;</span>,</span><br><span class="line">      myDayOfWeek($<span class="string">&quot;orddate&quot;</span>).as(<span class="string">&quot;weekday&quot;</span>),$<span class="string">&quot;buynum&quot;</span>)</span><br><span class="line">      .groupBy(<span class="string">&quot;weekday&quot;</span>).agg(sum(<span class="string">&quot;buynum&quot;</span>).as(<span class="string">&quot;cnt_buynum&quot;</span>))</span><br><span class="line">      .show()</span><br><span class="line">    spark.stop();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h4 id="E-操作外部数据源"><a href="#E-操作外部数据源" class="headerlink" title="E.操作外部数据源"></a>E.操作外部数据源</h4><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240729111835878.png"
+                      alt="image-20240729111835878" style="zoom: 50%;" 
+                >
+
+<ul>
+<li>PostgreSQL建议自学一下</li>
+<li><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240729115558749.png"
+                      alt="image-20240729115558749"
+                ></li>
+</ul>
+<h5 id="连接MySQL"><a href="#连接MySQL" class="headerlink" title="连接MySQL"></a><strong>连接MySQL</strong></h5><ol>
+<li><p>导入包</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.38<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>连接取数据</p>
+<ul>
+<li>读：<code>spark.read.jdbc(url, 表名, param)</code></li>
+</ul>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Exp05</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">        <span class="keyword">val</span> spark = <span class="type">SparkSession</span>.builder().master(<span class="string">&quot;local[*]&quot;</span>).appName(<span class="string">&quot;exp05&quot;</span>).getOrCreate();</span><br><span class="line">        <span class="comment">// 读取数据库</span></span><br><span class="line">        <span class="keyword">val</span> param = <span class="keyword">new</span> <span class="type">Properties</span>()</span><br><span class="line">        param.setProperty(<span class="string">&quot;user&quot;</span>,<span class="string">&quot;root&quot;</span>)</span><br><span class="line">        param.setProperty(<span class="string">&quot;password&quot;</span>,<span class="string">&quot;ok&quot;</span>)</span><br><span class="line">        param.setProperty(<span class="string">&quot;driver&quot;</span>,<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>) <span class="comment">// mysql5 8要在mysql后加cj</span></span><br><span class="line">        <span class="keyword">val</span> url = <span class="string">&quot;jdbc:mysql://192.168.179.139:3306/exp&quot;</span></span><br><span class="line">        <span class="keyword">val</span> custDF = spark.read.jdbc(url, <span class="string">&quot;customers&quot;</span>, param)</span><br><span class="line">        custDF.show()</span><br><span class="line">        spark.stop()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>写 <code>custDF.write.mode(SaveMode.Append).saveAsTable(&quot;products&quot;)</code></p>
+<p><code>SaveMode.OverWrite</code>属性，要填入</p>
+<p>写样例类，并且用DF传入</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Products</span>(<span class="params">productid:<span class="type">Int</span>,typeid:<span class="type">Int</span>,title:<span class="type">String</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">                    orginprice:<span class="type">Double</span>,imgs:<span class="type">String</span></span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Exp05</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">        <span class="keyword">val</span> spark = <span class="type">SparkSession</span>.builder().master(<span class="string">&quot;local[*]&quot;</span>).appName(<span class="string">&quot;exp05&quot;</span>).getOrCreate();</span><br><span class="line">        <span class="comment">// 读取数据库</span></span><br><span class="line">        <span class="keyword">val</span> param = <span class="keyword">new</span> <span class="type">Properties</span>()</span><br><span class="line">        param.setProperty(<span class="string">&quot;user&quot;</span>,<span class="string">&quot;root&quot;</span>)</span><br><span class="line">        param.setProperty(<span class="string">&quot;password&quot;</span>,<span class="string">&quot;ok&quot;</span>)</span><br><span class="line">        param.setProperty(<span class="string">&quot;driver&quot;</span>,<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>) <span class="comment">// mysql5 8要在mysql后加cj 下面的url也要加相关配置</span></span><br><span class="line">        <span class="keyword">val</span> url = <span class="string">&quot;jdbc:mysql://192.168.179.139:3306/exp&quot;</span></span><br><span class="line">        <span class="comment">//    val custDF = spark.read.jdbc(url, &quot;products&quot;, param)</span></span><br><span class="line">        <span class="keyword">val</span> df = spark.createDataFrame(<span class="type">List</span>(<span class="type">Products</span>(<span class="number">1500</span>, <span class="number">1</span>, <span class="string">&quot;中国商品&quot;</span>, <span class="number">1000.12</span>, <span class="string">&quot;http://imgs/123.jpg&quot;</span>)))</span><br><span class="line">        df.write.mode(<span class="type">SaveMode</span>.<span class="type">Append</span>).jdbc(url, <span class="string">&quot;products&quot;</span>, param)</span><br><span class="line">        <span class="comment">//    custDF.show()</span></span><br><span class="line"></span><br><span class="line">        spark.stop()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+</ol>
+<h5 id="连接Hive"><a href="#连接Hive" class="headerlink" title="连接Hive"></a><strong>连接Hive</strong></h5><ol>
+<li><p>导入包</p>
+<p>要对应好hive和spark版本</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-hive_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>代码</p>
+<ul>
+<li>读</li>
+</ul>
+<p>9083端口</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Exp06</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">var</span> spark=<span class="type">SparkSession</span>.builder().appName(<span class="string">&quot;exp06&quot;</span>)</span><br><span class="line">      .master(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line">      .config(<span class="string">&quot;hive.metastore.uris&quot;</span>,<span class="string">&quot;thrift://192.168.179.139:9083&quot;</span>)</span><br><span class="line">      .enableHiveSupport()</span><br><span class="line">      .getOrCreate()</span><br><span class="line">    <span class="keyword">val</span> df = spark.sql(<span class="string">&quot;select * from exp.cust&quot;</span>)</span><br><span class="line">    df.show()</span><br><span class="line">    spark.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>写</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Custs</span>(<span class="params">id:<span class="type">String</span>,name:<span class="type">String</span></span>)</span>;</span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Exp06</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="type">System</span>.setProperty(<span class="string">&quot;HADOOP_USER_NAME&quot;</span>,<span class="string">&quot;root&quot;</span>) <span class="comment">// 写的时候要设置用户</span></span><br><span class="line">    <span class="keyword">var</span> spark=<span class="type">SparkSession</span>.builder().appName(<span class="string">&quot;exp06&quot;</span>)</span><br><span class="line">      .master(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line">      .config(<span class="string">&quot;hive.metastore.uris&quot;</span>,<span class="string">&quot;thrift://192.168.179.139:9083&quot;</span>)</span><br><span class="line">      .enableHiveSupport()</span><br><span class="line">      .getOrCreate()</span><br><span class="line"><span class="comment">//    val df = spark.sql(&quot;select * from exp.custs&quot;)</span></span><br><span class="line">    <span class="keyword">val</span> df = spark.createDataFrame(<span class="type">List</span>(<span class="type">Custs</span>(<span class="string">&quot;4&quot;</span>, <span class="string">&quot;zl&quot;</span>)))</span><br><span class="line">    df.write.format(<span class="string">&quot;Hive&quot;</span>).mode(<span class="type">SaveMode</span>.<span class="type">Append</span>).saveAsTable(<span class="string">&quot;exp.custs&quot;</span>) <span class="comment">// 文本格式要默认为Hive的</span></span><br><span class="line"><span class="comment">//    df.show()</span></span><br><span class="line">    spark.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</li>
+</ol>
+<h5 id="连接Hbase"><a href="#连接Hbase" class="headerlink" title="连接Hbase"></a>连接Hbase</h5><ol>
+<li><p>导入包</p>
+<div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hbase<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hbase-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hbase<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hbase-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>读</p>
+<p>导包要注意</p>
+<p>spark.sparkContext那段不知道是什么</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.<span class="type">HBaseConfiguration</span></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.<span class="type">Result</span></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.io.<span class="type">ImmutableBytesWritable</span></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.mapreduce.<span class="type">TableInputFormat</span></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.util.<span class="type">Bytes</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.&#123;<span class="type">Row</span>, <span class="type">SparkSession</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Users</span>(<span class="params">userid:<span class="type">String</span>,uname:<span class="type">String</span>,gender:<span class="type">String</span>,say:<span class="type">String</span></span>)</span></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Exp07</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">        <span class="keyword">val</span> spark=<span class="type">SparkSession</span>.builder().appName(<span class="string">&quot;exp07&quot;</span>)</span><br><span class="line">        .master(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line">        .getOrCreate()</span><br><span class="line">        <span class="keyword">val</span> config = <span class="type">HBaseConfiguration</span>.create()</span><br><span class="line">        config.set(<span class="string">&quot;hbase.zookeeper.quorum&quot;</span>,<span class="string">&quot;192.168.179.139:2181&quot;</span>)</span><br><span class="line">        config.set(<span class="type">TableInputFormat</span>.<span class="type">INPUT_TABLE</span>,<span class="string">&quot;mydemo:users&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> rdd=spark.sparkContext.newAPIHadoopRDD( <span class="comment">// &lt;-------------</span></span><br><span class="line">            config,</span><br><span class="line">            classOf[<span class="type">TableInputFormat</span>],</span><br><span class="line">            classOf[<span class="type">ImmutableBytesWritable</span>],</span><br><span class="line">            classOf[<span class="type">Result</span>]</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">import</span> spark.implicits._</span><br><span class="line">        <span class="keyword">val</span> arrRDD = rdd.map &#123;</span><br><span class="line">            <span class="keyword">case</span> (_, result) =&gt; &#123;</span><br><span class="line">                <span class="keyword">val</span> key = <span class="type">Bytes</span>.toString(result.getRow)</span><br><span class="line">                <span class="keyword">val</span> uname = <span class="type">Bytes</span>.toString(result.getValue(<span class="string">&quot;base&quot;</span>.getBytes(), <span class="string">&quot;uname&quot;</span>.getBytes()))</span><br><span class="line">                <span class="keyword">val</span> gender = <span class="type">Bytes</span>.toString(result.getValue(<span class="string">&quot;base&quot;</span>.getBytes(), <span class="string">&quot;gender&quot;</span>.getBytes()))</span><br><span class="line">                <span class="keyword">val</span> say = <span class="type">Bytes</span>.toString(result.getValue(<span class="string">&quot;base&quot;</span>.getBytes(), <span class="string">&quot;say&quot;</span>.getBytes()))</span><br><span class="line">                <span class="type">Users</span>(key, uname, gender, say)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.toDF()</span><br><span class="line">        <span class="comment">//    // 做一个表的元数据结构</span></span><br><span class="line">        <span class="comment">//    val tabSchema = StructType(Seq(</span></span><br><span class="line">        <span class="comment">//      StructField(&quot;userid&quot;, StringType),</span></span><br><span class="line">        <span class="comment">//      StructField(&quot;uname&quot;, StringType),</span></span><br><span class="line">        <span class="comment">//      StructField(&quot;gender&quot;, StringType),</span></span><br><span class="line">        <span class="comment">//      StructField(&quot;say&quot;, StringType)</span></span><br><span class="line">        <span class="comment">//    ))</span></span><br><span class="line">        arrRDD.show(<span class="literal">false</span>)</span><br><span class="line">        spark.stop()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>写</p>
+<p>这边要注意写入要foreachPartition，因为Hbase驱动在Driver Program端，而塞数据在Executor中，table和conn都是接口，无法序列化传输</p>
+<p>后期再用数组作为缓存，一次性放入</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.njupt.spark001</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.&#123;<span class="type">HBaseConfiguration</span>, <span class="type">TableName</span>&#125;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.&#123;<span class="type">ConnectionFactory</span>, <span class="type">Put</span>&#125;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql._</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scala.collection.mutable.<span class="type">ListBuffer</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Users</span>(<span class="params">rk:<span class="type">Int</span>,uname:<span class="type">String</span></span>)</span></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Exp07</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">        <span class="keyword">val</span> spark=<span class="type">SparkSession</span>.builder().appName(<span class="string">&quot;exp07&quot;</span>)</span><br><span class="line">        .master(<span class="string">&quot;local[*]&quot;</span>)</span><br><span class="line">        .getOrCreate()</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 写数据</span></span><br><span class="line">        <span class="keyword">val</span> data= <span class="type">ListBuffer</span>[<span class="type">Users</span>]()</span><br><span class="line">        <span class="keyword">for</span>(k:<span class="type">Int</span> &lt;- <span class="number">1000</span> to <span class="number">2000</span>)&#123;</span><br><span class="line">            <span class="type">Users</span>(k,<span class="string">s&quot;test<span class="subst">$&#123;k&#125;</span>&quot;</span>)+=:data</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">val</span> df: <span class="type">DataFrame</span> = spark.createDataFrame[<span class="type">Users</span>](data).repartition(<span class="number">5</span>)</span><br><span class="line">        <span class="comment">// 创建hbase连接</span></span><br><span class="line"></span><br><span class="line">        df.foreachPartition(partition=&gt; &#123;</span><br><span class="line">            <span class="comment">//一个分区开一次连接</span></span><br><span class="line">            <span class="keyword">val</span> config = <span class="type">HBaseConfiguration</span>.create()</span><br><span class="line">            config.set(<span class="string">&quot;hbase.zookeeper.quorum&quot;</span>,<span class="string">&quot;192.168.179.139:2181&quot;</span>)</span><br><span class="line">            <span class="keyword">val</span> conn = <span class="type">ConnectionFactory</span>.createConnection(config)</span><br><span class="line">            <span class="keyword">val</span> table = conn.getTable(<span class="type">TableName</span>.valueOf(<span class="string">&quot;mydemo:uuu&quot;</span>))</span><br><span class="line">            partition.foreach(row =&gt; &#123;</span><br><span class="line">                <span class="keyword">val</span> put = <span class="keyword">new</span> <span class="type">Put</span>(row.getAs(<span class="string">&quot;rk&quot;</span>).toString.getBytes())</span><br><span class="line">                put.addColumn(<span class="string">&quot;base&quot;</span>.getBytes(),<span class="string">&quot;uname&quot;</span>.getBytes()</span><br><span class="line">                              , row.getAs(<span class="string">&quot;uname&quot;</span>).toString.getBytes())</span><br><span class="line">                table.put(put)</span><br><span class="line">            &#125;)</span><br><span class="line">            table.close()</span><br><span class="line">            conn.close()</span><br><span class="line">        &#125;)</span><br><span class="line">        spark.stop()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h5 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h5><ul>
+<li><p>1个分区，有头</p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resDF.coalesce(<span class="number">1</span>).write.option(<span class="string">&quot;header&quot;</span>,<span class="string">&quot;true&quot;</span>).mode(<span class="type">SaveMode</span>.<span class="type">Overwrite</span>).csv(param.get(<span class="string">&quot;write_file_path&quot;</span>).get)</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="4-Spark-Machine-Learning架构"><a href="#4-Spark-Machine-Learning架构" class="headerlink" title="4.Spark Machine Learning架构"></a>4.Spark Machine Learning架构</h3><h4 id="1"><a href="#1" class="headerlink" title="(1)"></a>(1)</h4><div class="code-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-mllib_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spark.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2"><a href="#2" class="headerlink" title="(2)"></a>(2)</h4><h4 id="3"><a href="#3" class="headerlink" title="(3)"></a>(3)</h4><h4 id="4-离线项目"><a href="#4-离线项目" class="headerlink" title="(4)离线项目"></a>(4)离线项目</h4><ul>
+<li>工程名spkmodel</li>
+</ul>
+<p><a class="link"   target="_blank" rel="noopener" href="https://dblab.xmu.edu.cn/blog/1454/" >Spark 2.1.0 入门：KMeans聚类算法<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/sabertobih/p/13824739.html" >Spark ML 之 KMeans算法的应用实操——用户分群召回推荐算法<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h2 id="六-进阶学习"><a href="#六-进阶学习" class="headerlink" title="(六)进阶学习"></a>(六)进阶学习</h2><h3 id="1-性能优化"><a href="#1-性能优化" class="headerlink" title="1.性能优化"></a>1.性能优化</h3><h4 id="A-序列化"><a href="#A-序列化" class="headerlink" title="A.序列化"></a>A.序列化</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240731084117663.png"
+                      alt="image-20240731084117663"
+                ></p>
+<div class="code-container" data-rel="Scala"><figure class="iseeu highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWords</span>(<span class="params">line:<span class="type">String</span></span>)</span></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">App</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="comment">// 但凡传输和落盘都序列化</span></span><br><span class="line">    <span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>()</span><br><span class="line">      .set(<span class="string">&quot;spark.serializer&quot;</span>, <span class="string">&quot;org.apache.spark.serializer.KryoSerializer&quot;</span>)</span><br><span class="line">      .setAppName(<span class="string">&quot;aaa&quot;</span>)</span><br><span class="line">    <span class="comment">// 凡是MyWords类型的数据 在序列化时候都采用Kryo方式进行</span></span><br><span class="line">    conf.registerKryoClasses(<span class="type">Array</span>(classOf[<span class="type">MyWords</span>]))</span><br><span class="line">    <span class="keyword">val</span> spark = <span class="type">SparkSession</span>.builder().config(conf).getOrCreate()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">import</span> spark.implicits._</span><br><span class="line">    <span class="keyword">val</span> df = spark.createDataFrame(<span class="type">List</span>(</span><br><span class="line">      <span class="type">MyWords</span>(<span class="string">&quot;Hello World&quot;</span>),</span><br><span class="line">      <span class="type">MyWords</span>(<span class="string">&quot;Hello Spark&quot;</span>)</span><br><span class="line">    )).select(explode(split($<span class="string">&quot;line&quot;</span>,<span class="string">&quot; &quot;</span>)).as(<span class="string">&quot;word&quot;</span>))</span><br><span class="line">      .groupBy(<span class="string">&quot;word&quot;</span>).agg(count($<span class="string">&quot;word&quot;</span>).as(<span class="string">&quot;word_num&quot;</span>))</span><br><span class="line">    df.show()</span><br><span class="line">    spark.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="B-性能优化2"><a href="#B-性能优化2" class="headerlink" title="B.性能优化2"></a>B.性能优化2</h4><ul>
+<li>使用对象数组、原始类型代替Java、Scala集合类(如HashMap)</li>
+<li>避免嵌套结构</li>
+<li><strong>尽量使用数字作为Key</strong>，而非字符串</li>
+<li>以较大的RDD使用MEMORY ONLY SER</li>
+<li>加载CSV、JSON时，仅加载所需字段</li>
+<li>仅在需要时持久化中间结果(RDD&#x2F;DS&#x2F;DF)</li>
+<li>避免不必要的中间结果(RDD&#x2F;DS&#x2F;DF)的生成</li>
+<li>DF的执行速度比DS快约3倍</li>
+</ul>
+<h4 id="C-性能优化3"><a href="#C-性能优化3" class="headerlink" title="C.性能优化3"></a>C.性能优化3</h4><ul>
+<li>自定义RDD分区与spark.default.parallelism<ul>
+<li>该参数用于设置每个stage的默认task数量</li>
+</ul>
+</li>
+<li>将大变量广播出去，而不是直接使用</li>
+<li>尝试处理本地数据并最小化跨工作节点的数据传输</li>
+</ul>
+<h4 id="D-性能优化4"><a href="#D-性能优化4" class="headerlink" title="D.性能优化4"></a>D.性能优化4</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://sabthever.github.io/Pictures1/Blog_Base_Resouces/bigdata/image-20240730173259229.png"
+                      alt="image-20240730173259229"
+                ></p>
+<ul>
+<li><p>起别名效率高，因为会有映射</p>
+</li>
+<li></li>
+</ul>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 大数据学习笔记4-Spark</li>
+        <li><strong>作者:</strong> Sabthever</li>
+        <li><strong>创建于
+                :</strong> 2025-07-08 20:02:34</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-09-11 14:27:30
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://sabthever.cn/2025/07/08/technology/bigdata/Hadoop4-Spark/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Bigdata/">#Bigdata</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Spark/">#Spark</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/05/27/technology/bigdata/Hadoop3-Scala/" title="大数据学习笔记3-Scala" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="大数据学习笔记3-Scala" class="!max-w-none">
+  <span class="title">大数据学习笔记3-Scala</span>
+</a><a class="recommended-article-item" href="/2025/02/17/technology/bigdata/Hadoop2-Hive-Hbase/" title="大数据学习笔记1-Hive、Hbase" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="大数据学习笔记1-Hive、Hbase" class="!max-w-none">
+  <span class="title">大数据学习笔记1-Hive、Hbase</span>
+</a><a class="recommended-article-item" href="/2025/09/11/technology/bigdata/Hadoop5-离线项目/" title="大数据学习笔记5-离线项目学习" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="大数据学习笔记5-离线项目学习" class="!max-w-none">
+  <span class="title">大数据学习笔记5-离线项目学习</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/05/27/technology/bigdata/Hadoop3-Scala/" title="大数据学习笔记3-Scala" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="大数据学习笔记3-Scala" class="!max-w-none">
+  <span class="title">大数据学习笔记3-Scala</span>
+</a><a class="recommended-article-item" href="/2025/02/17/technology/bigdata/Hadoop2-Hive-Hbase/" title="大数据学习笔记1-Hive、Hbase" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="大数据学习笔记1-Hive、Hbase" class="!max-w-none">
+  <span class="title">大数据学习笔记1-Hive、Hbase</span>
+</a></div>
+   </div>
+  </div>
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/07/25/technology/%E5%B5%8C%E5%A5%97%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">利用脚本进行接口测试</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/07/02/technology/java/%E8%8B%A5%E4%BE%9DMyBatis-Plus%E6%8A%A5%E9%94%99/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">转载：若依框架使用MyBatis-Plus中的baseMapper的方法报错Invalid bound statement (not found):</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">大数据学习笔记4-Spark</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81-Spark"><span class="nav-text">十.Spark</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%89%8D%E6%9C%9F"><span class="nav-text">(一)前期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%9B%A0"><span class="nav-text">1.使用原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Spark%E7%AE%80%E4%BB%8B"><span class="nav-text">2.Spark简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Spark%E4%BC%98%E5%8A%BF"><span class="nav-text">3.Spark优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Spark%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-text">4.Spark技术栈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D"><span class="nav-text">(二)内容介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Spark%E8%BF%90%E8%A1%8C%E6%9E%B6%E6%9E%84"><span class="nav-text">1.Spark运行架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Spark%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><span class="nav-text">2.Spark架构核心组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Spark-API"><span class="nav-text">3.Spark API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-RDD"><span class="nav-text">4.RDD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-%E8%A7%A3%E9%87%8A"><span class="nav-text">A.解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E5%AE%8C%E6%95%B4%E8%A7%A3%E9%87%8A-%E9%87%8D%E8%A6%81"><span class="nav-text">B.完整解释(重要)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-DAG"><span class="nav-text">C.DAG</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-%E7%89%B9%E6%80%A7"><span class="nav-text">D.特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#E-RDD%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">E.RDD的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a-%E4%BD%BF%E7%94%A8%E9%9B%86%E5%90%88%E5%88%9B%E5%BB%BA"><span class="nav-text">a.使用集合创建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b-%E9%80%9A%E8%BF%87%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E4%BA%A7%E7%94%9FRDD"><span class="nav-text">b.通过加载文件产生RDD</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c-RDD%E6%93%8D%E4%BD%9C-%E9%87%8D%E8%A6%81"><span class="nav-text">c.RDD操作(重要)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#F-RDD%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-text">F.RDD持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%93%E5%AD%98"><span class="nav-text">缓存</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#persist%E4%B8%AD%E5%86%99%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5"><span class="nav-text">persist中写缓存策略</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E7%82%B9"><span class="nav-text">检查点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#G-RDD%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F"><span class="nav-text">G.RDD共享变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B9%BF%E6%92%AD%E5%8F%98%E9%87%8F"><span class="nav-text">广播变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B4%AF%E5%8A%A0%E5%99%A8"><span class="nav-text">累加器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#H-RDD%E5%88%86%E5%8C%BA%E8%AE%BE%E8%AE%A1"><span class="nav-text">H.RDD分区设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Spark-WordCount%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="nav-text">5.Spark WordCount运行原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-%E5%88%92%E5%88%86stage%E5%8E%9F%E5%9B%A0"><span class="nav-text">A.划分stage原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-Spark-Shuffle%E8%BF%87%E7%A8%8B"><span class="nav-text">B.Spark Shuffle过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB"><span class="nav-text">C.依赖关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C"><span class="nav-text">6.数据倾斜</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%89%E8%A3%85"><span class="nav-text">(三)安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%EF%BC%88%E5%8D%95%E6%9C%BA%E7%89%88%EF%BC%89"><span class="nav-text">1.服务器安装（单机版）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E4%BD%BF%E7%94%A8"><span class="nav-text">(四)使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8-idea-%E6%97%A0%E7%8E%AF%E5%A2%83"><span class="nav-text">1.第一次使用(idea&#x2F;无环境)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-%E5%AF%BC%E5%85%A5%E5%8C%85"><span class="nav-text">A.导入包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E5%AF%BC%E5%85%A5scala%E7%9A%84%E5%BA%93"><span class="nav-text">B.导入scala的库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-%E4%BD%BF%E7%94%A8Scala%E7%BB%9F%E8%AE%A1%E5%AD%97%E6%95%B0"><span class="nav-text">C.使用Scala统计字数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-%E4%BD%BF%E7%94%A8Java%E7%BB%9F%E8%AE%A1%E5%AD%97%E6%95%B0"><span class="nav-text">D.使用Java统计字数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%A8%8B%E5%BA%8F%E6%8F%90%E4%BA%A4%E6%9C%8D%E5%8A%A1%E5%99%A8-%E5%8F%91%E5%B8%83"><span class="nav-text">2.程序提交服务器(发布)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-Standalone"><span class="nav-text">A.Standalone</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-yarn%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8F%90%E4%BA%A4"><span class="nav-text">B.yarn服务器提交</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0"><span class="nav-text">(五)基础学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-SparkSession"><span class="nav-text">1.SparkSession</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A3%85%E8%BD%BDJSON"><span class="nav-text">2.装载JSON</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Spark-SQL%E6%9E%B6%E6%9E%84"><span class="nav-text">3.Spark SQL架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-DataSet"><span class="nav-text">A.DataSet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-DataFrame"><span class="nav-text">B.DataFrame</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-Spark-SQL-%E5%87%BD%E6%95%B0"><span class="nav-text">C.Spark SQL 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#E-%E6%93%8D%E4%BD%9C%E5%A4%96%E9%83%A8%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-text">E.操作外部数据源</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5MySQL"><span class="nav-text">连接MySQL</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5Hive"><span class="nav-text">连接Hive</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5Hbase"><span class="nav-text">连接Hbase</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6"><span class="nav-text">写入文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Spark-Machine-Learning%E6%9E%B6%E6%9E%84"><span class="nav-text">4.Spark Machine Learning架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1"><span class="nav-text">(1)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2"><span class="nav-text">(2)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3"><span class="nav-text">(3)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%A6%BB%E7%BA%BF%E9%A1%B9%E7%9B%AE"><span class="nav-text">(4)离线项目</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0"><span class="nav-text">(六)进阶学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-text">1.性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">A.序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%962"><span class="nav-text">B.性能优化2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%963"><span class="nav-text">C.性能优化3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%964"><span class="nav-text">D.性能优化4</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-text">最后</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Sabthever</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 32 篇文章
+                    </span>
+                    
+                        <span>
+                            共 85.6k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+            <div class="customize-info my-1">本站所有内容完全免费！不得将本站内容用于商业或者非法用途！</div>
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+    
+<script src="/js/build/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/build/plugins/masonry.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+    
+<script src="/js/build/layouts/bookmarkNav.js" type="module"></script>
+
+
+	
+</body>
+
+</html>
