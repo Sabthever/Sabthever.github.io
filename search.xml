@@ -5323,7 +5323,6 @@ public class NewMain &#123;
 <h3 id="Cloudflare介绍"><a href="#Cloudflare介绍" class="headerlink" title="Cloudflare介绍"></a>Cloudflare介绍</h3></blockquote>
 <p>　　Cloudflare是一家美国的跨国科技企业，总部位于旧金山，在英国伦敦亦设有办事处。Cloudflare以向客户提供网站安全管理、性能优化及相关的技术支持为主要业务。通过基于反向代理的内容分发网络(CDN, Content Delivery Network)、任播(Anycast)技术 、基于nginx+lua架构的Web应用防火墙(WAF, Web Application Firewall) 及分布式域名解析服务(Distributed Domain Name Server)等技术，Cloudflare可以帮助受保护站点抵御包括分布式拒绝服务攻击(DDoS, Distributed Denial of Service)在内的大多数网络攻击，确保该网站长期在线，同时提升网站的性能、访问速度以改善访客体验。</p>
 <div style="text-align: right;">-- 摘自<a class="link"   href="https://baike.baidu.com/item/Cloudflare/17359757?fr=ge_ala" >Cloudflare(美国的跨国科技企业) - 百度百科<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></div>
-
 </p>
 
 <p>　　可以看到它的功能是很多的，我主要就用里面的DNS服务、CDN服务，当然一些免费的小组件肯定也是开起来的，不用白不用。</p>
@@ -5432,6 +5431,10 @@ public class NewMain &#123;
 <li><p><strong>2025-09-11 cloudflare DNS CNAME通向netlify 由netlify管理静态资源</strong></p>
 <p>网站：<a class="link"   href="https://app.netlify.com/" >https://app.netlify.com/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <p>根据 Blog：<a class="link"   href="https://blog.csdn.net/q2158798/article/details/149050188" >github pages使用免费CDN加速-netlify<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 做了一个二次挂载。</p>
+</li>
+<li><p><strong>2025-10-09 图片也由netlify进行资源管理</strong></p>
+<p>由于9-11的修改，我github上Picture1项目原本挂载在<code>www.sabthever.cn/Picture1</code>下的，但是cloudflare现在只做一个DNS做域名到netlify的重定向，而netlify中一个站点只能绑定一个项目，所以图片都无法显示了。</p>
+<p>基于此，在DNS中重新写了一个<code>CNAME</code>，从<code>pic1.sabthever.cn</code>重定向到netlify一个新站点，新站点的域名就写pic1这个，绑定的项目为Picture1，并且Picture1中的Page image 的url也要改为pic1这个。</p>
 </li>
 </ul>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
