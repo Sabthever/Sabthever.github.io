@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sabthever.cn/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-06-03T08:02:06.000Z">
-<meta property="article:modified_time" content="2025-10-09T08:14:31.626Z">
+<meta property="article:modified_time" content="2025-11-06T02:17:33.074Z">
 <meta property="article:author" content="Sabthever">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="若依">
@@ -484,7 +484,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">38</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">39</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -533,8 +533,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-10-09 16:14:31</span>
-            <span class="mobile">2025-10-09 16:14:31</span>
+            <span class="desktop">2025-11-06 10:17:33</span>
+            <span class="mobile">2025-11-06 10:17:33</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -607,7 +607,7 @@
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			<p>在<a class="link"   target="_blank" rel="noopener" href="https://www.sabthever.cn/2025/01/03/technology/java/ruoyi-1/#2-SecurityUtils" >若依框架的简单使用<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>中，已经简单介绍了一下<code>SecurityUtils</code>这个类的作用，并且简单的阐述了一下其中方法的使用。</p>
-<p>近段时间有个项目要求没有任何登录就能够访问，而若依框架本身对于每一个接口都会进行token的判断，以此来获取当前用户信息以及是否有权限访问。这个切片的控制实际上由<code>Security</code>机制来控制的。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近段时间有个项目要求没有任何登录就能够访问，而若依框架本身对于每一个接口都会进行token的判断，以此来获取当前用户信息以及是否有权限访问。这个切片的控制实际上由<code>Security</code>机制来控制的。</p>
 <p>这个中间的token判断、ip判断、权限判断等等，都可以在<code>SecurityConfig</code>的<code>configure</code>方法中来配置，这个方法原型如下。</p>
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * anyRequest          |   匹配所有请求路径</span></span><br><span class="line"><span class="comment"> * access              |   SpringEl表达式结果为true时可以访问</span></span><br><span class="line"><span class="comment"> * anonymous           |   匿名可以访问</span></span><br><span class="line"><span class="comment"> * denyAll             |   用户不能访问</span></span><br><span class="line"><span class="comment"> * fullyAuthenticated  |   用户完全认证可以访问（非remember-me下自动登录）</span></span><br><span class="line"><span class="comment"> * hasAnyAuthority     |   如果有参数，参数表示权限，则其中任何一个权限可以访问</span></span><br><span class="line"><span class="comment"> * hasAnyRole          |   如果有参数，参数表示角色，则其中任何一个角色可以访问</span></span><br><span class="line"><span class="comment"> * hasAuthority        |   如果有参数，参数表示权限，则其权限可以访问</span></span><br><span class="line"><span class="comment"> * hasIpAddress        |   如果有参数，参数表示IP地址，如果用户IP和参数匹配，则可以访问</span></span><br><span class="line"><span class="comment"> * hasRole             |   如果有参数，参数表示角色，则其角色可以访问</span></span><br><span class="line"><span class="comment"> * permitAll           |   用户可以任意访问</span></span><br><span class="line"><span class="comment"> * rememberMe          |   允许通过remember-me登录的用户访问</span></span><br><span class="line"><span class="comment"> * authenticated       |   用户登录后可访问</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(HttpSecurity httpSecurity)</span> <span class="keyword">throws</span> Exception</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 注解标记允许匿名访问的url</span></span><br><span class="line">    ExpressionUrlAuthorizationConfigurer&lt;HttpSecurity&gt;.<span class="type">ExpressionInterceptUrlRegistry</span> <span class="variable">registry</span> <span class="operator">=</span> httpSecurity.authorizeRequests();</span><br><span class="line">    permitAllUrl.getUrls().forEach(url -&gt; registry.antMatchers(url).permitAll());</span><br><span class="line"></span><br><span class="line">    httpSecurity</span><br><span class="line">        <span class="comment">// CSRF禁用，因为不使用session</span></span><br><span class="line">        .csrf().disable()</span><br><span class="line">        <span class="comment">// 禁用HTTP响应标头</span></span><br><span class="line">        .headers().cacheControl().disable().and()</span><br><span class="line">        <span class="comment">// 认证失败处理类</span></span><br><span class="line">        .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()</span><br><span class="line">        <span class="comment">// 基于token，所以不需要session</span></span><br><span class="line">        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()</span><br><span class="line">        <span class="comment">// 过滤请求</span></span><br><span class="line">        .authorizeRequests()</span><br><span class="line">        <span class="comment">// 对于登录login 注册register 验证码captchaImage 允许匿名访问</span></span><br><span class="line">        .antMatchers(<span class="string">&quot;/login&quot;</span>, <span class="string">&quot;/register&quot;</span>, <span class="string">&quot;/captchaImage&quot;</span>).permitAll()</span><br><span class="line">        <span class="comment">// 静态资源，可匿名访问</span></span><br><span class="line">        .antMatchers(HttpMethod.GET, <span class="string">&quot;/&quot;</span>, <span class="string">&quot;/*.html&quot;</span>, <span class="string">&quot;/**/*.html&quot;</span>, <span class="string">&quot;/**/*.css&quot;</span>, <span class="string">&quot;/**/*.js&quot;</span>, <span class="string">&quot;/profile/**&quot;</span>).permitAll()</span><br><span class="line">        .antMatchers(<span class="string">&quot;/swagger-ui.html&quot;</span>, <span class="string">&quot;/swagger-resources/**&quot;</span>, <span class="string">&quot;/webjars/**&quot;</span>, <span class="string">&quot;/*/api-docs&quot;</span>, <span class="string">&quot;/druid/**&quot;</span>).permitAll()</span><br><span class="line">        <span class="comment">// 除上面外的所有请求全部需要鉴权认证</span></span><br><span class="line">        .anyRequest().authenticated()</span><br><span class="line">        .and()</span><br><span class="line">        .headers().frameOptions().disable();</span><br><span class="line">    <span class="comment">// 添加Logout filter</span></span><br><span class="line">    httpSecurity.logout().logoutUrl(<span class="string">&quot;/logout&quot;</span>).logoutSuccessHandler(logoutSuccessHandler);</span><br><span class="line">    <span class="comment">// 添加JWT filter</span></span><br><span class="line">    httpSecurity.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);</span><br><span class="line">    <span class="comment">// 添加CORS filter</span></span><br><span class="line">    httpSecurity.addFilterBefore(corsFilter, JwtAuthenticationTokenFilter.class);</span><br><span class="line">    httpSecurity.addFilterBefore(corsFilter, LogoutFilter.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
@@ -616,14 +616,14 @@
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    http</span><br><span class="line">        <span class="comment">// 禁用CSRF保护</span></span><br><span class="line">        .csrf().disable()</span><br><span class="line">        <span class="comment">// 不需要session</span></span><br><span class="line">        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()</span><br><span class="line">        <span class="comment">// 对所有请求允许访问</span></span><br><span class="line">        .authorizeRequests().anyRequest().permitAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <p>其他的一些配置要求，也可以一起来看一下。</p>
-<blockquote>
 <h2 id="HttpSecurity-配置方法详解"><a href="#HttpSecurity-配置方法详解" class="headerlink" title="HttpSecurity 配置方法详解"></a>HttpSecurity 配置方法详解</h2><p>在使用 Spring Security 时，<code>HttpSecurity</code> 是一个核心类，用于配置基于 HTTP 请求的安全策略。通过 <code>HttpSecurity</code>，我们可以灵活地定义哪些请求需要进行身份验证、哪些请求需要特定的角色或权限，以及如何处理各种安全相关的细节。</p>
-<h3 id="常见配置方法"><a href="#常见配置方法" class="headerlink" title="常见配置方法"></a>常见配置方法</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;http.authorizeRequests()</span><br><span class="line"> .antMatchers(<span class="string">&quot;/public/**&quot;</span>).permitAll()</span><br><span class="line">.antMatchers(<span class="string">&quot;/admin/**&quot;</span>).hasRole(<span class="string">&quot;ADMIN&quot;</span>)</span><br><span class="line"> .anyRequest().authenticated();</span><br></pre></td></tr></table></figure></div>
+<h3 id="常见配置方法"><a href="#常见配置方法" class="headerlink" title="常见配置方法"></a>常见配置方法</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http.authorizeRequests()</span><br><span class="line"> .antMatchers(<span class="string">&quot;/public/**&quot;</span>).permitAll()</span><br><span class="line">.antMatchers(<span class="string">&quot;/admin/**&quot;</span>).hasRole(<span class="string">&quot;ADMIN&quot;</span>)</span><br><span class="line"> .anyRequest().authenticated();</span><br></pre></td></tr></table></figure></div>
+
 <h4 id="anyRequest"><a href="#anyRequest" class="headerlink" title="anyRequest"></a>anyRequest</h4><ul>
 <li><p><strong>描述</strong>：匹配所有请求路径。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.anyRequest().authenticated()</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.anyRequest().authenticated()</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：如果没有其他更具体的匹配规则，所有请求都将应用此规则。</p>
 </li>
@@ -632,7 +632,7 @@
 <li><p><strong>描述</strong>：SpringEl 表达式结果为 <code>true</code> 时可以访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/api/**&quot;</span>).access(<span class="string">&quot;hasRole(&#x27;ADMIN&#x27;) or hasRole(&#x27;USER&#x27;)&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/api/**&quot;</span>).access(<span class="string">&quot;hasRole(&#x27;ADMIN&#x27;) or hasRole(&#x27;USER&#x27;)&quot;</span>)</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：可以使用复杂的 SpringEl 表达式来定义访问规则。</p>
 </li>
@@ -641,7 +641,7 @@
 <li><p><strong>描述</strong>：匿名可以访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/guest/**&quot;</span>).anonymous()</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/guest/**&quot;</span>).anonymous()</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：允许未登录的用户访问指定路径。</p>
 </li>
@@ -650,7 +650,7 @@
 <li><p><strong>描述</strong>：用户不能访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/secure/**&quot;</span>).denyAll()</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/secure/**&quot;</span>).denyAll()</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：完全禁止访问指定路径。</p>
 </li>
@@ -659,7 +659,7 @@
 <li><p><strong>描述</strong>：用户完全认证可以访问（非 remember-me 下自动登录）。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/admin/**&quot;</span>).fullyAuthenticated()</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/admin/**&quot;</span>).fullyAuthenticated()</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：只有通过完整认证的用户（非 remember-me 登录）可以访问。</p>
 </li>
@@ -668,7 +668,7 @@
 <li><p><strong>描述</strong>：如果有参数，参数表示权限，则其中任何一个权限可以访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/api/**&quot;</span>).hasAnyAuthority(<span class="string">&quot;ROLE_ADMIN&quot;</span>, <span class="string">&quot;ROLE_USER&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/api/**&quot;</span>).hasAnyAuthority(<span class="string">&quot;ROLE_ADMIN&quot;</span>, <span class="string">&quot;ROLE_USER&quot;</span>)</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：用户拥有任何一个指定权限即可访问。</p>
 </li>
@@ -677,7 +677,7 @@
 <li><p><strong>描述</strong>：如果有参数，参数表示角色，则其中任何一个角色可以访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/api/**&quot;</span>).hasAnyRole(<span class="string">&quot;ADMIN&quot;</span>, <span class="string">&quot;USER&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/api/**&quot;</span>).hasAnyRole(<span class="string">&quot;ADMIN&quot;</span>, <span class="string">&quot;USER&quot;</span>)</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：用户拥有任何一个指定角色即可访问。</p>
 </li>
@@ -686,7 +686,7 @@
 <li><p><strong>描述</strong>：如果有参数，参数表示权限，则其权限可以访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/api/admin/**&quot;</span>).hasAuthority(<span class="string">&quot;ROLE_ADMIN&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/api/admin/**&quot;</span>).hasAuthority(<span class="string">&quot;ROLE_ADMIN&quot;</span>)</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：用户必须拥有指定权限才能访问。</p>
 </li>
@@ -695,7 +695,7 @@
 <li><p><strong>描述</strong>：如果有参数，参数表示 IP 地址，如果用户 IP 和参数匹配，则可以访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/api/**&quot;</span>).hasIpAddress(<span class="string">&quot;192.168.1.1&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/api/**&quot;</span>).hasIpAddress(<span class="string">&quot;192.168.1.1&quot;</span>)</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：只有来自指定 IP 地址的用户可以访问。</p>
 </li>
@@ -704,7 +704,7 @@
 <li><p><strong>描述</strong>：如果有参数，参数表示角色，则其角色可以访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/api/admin/**&quot;</span>).hasRole(<span class="string">&quot;ADMIN&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/api/admin/**&quot;</span>).hasRole(<span class="string">&quot;ADMIN&quot;</span>)</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：用户必须拥有指定角色才能访问。</p>
 </li>
@@ -713,7 +713,7 @@
 <li><p><strong>描述</strong>：用户可以任意访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/public/**&quot;</span>).permitAll()</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/public/**&quot;</span>).permitAll()</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：允许所有用户（包括未登录用户）访问指定路径。</p>
 </li>
@@ -722,7 +722,7 @@
 <li><p><strong>描述</strong>：允许通过 remember-me 登录的用户访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/api/user/**&quot;</span>).rememberMe()</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/api/user/**&quot;</span>).rememberMe()</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：允许通过 remember-me 功能自动登录的用户访问。</p>
 </li>
@@ -731,7 +731,7 @@
 <li><p><strong>描述</strong>：用户登录后可访问。</p>
 </li>
 <li><p><strong>示例</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;.antMatchers(<span class="string">&quot;/api/**&quot;</span>).authenticated()</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.antMatchers(<span class="string">&quot;/api/**&quot;</span>).authenticated()</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>说明</strong>：用户必须登录后才能访问。</p>
 </li>
@@ -739,32 +739,34 @@
 <h3 id="其他配置要求"><a href="#其他配置要求" class="headerlink" title="其他配置要求"></a>其他配置要求</h3><p>除了上述常见的配置方法，<code>HttpSecurity</code> 还提供了许多其他配置选项，用于处理各种安全相关的细节。以下是一些常见的配置要求和示例：</p>
 <h4 id="登录和注销"><a href="#登录和注销" class="headerlink" title="登录和注销"></a>登录和注销</h4><ul>
 <li><p><strong>登录配置</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;http</span><br><span class="line">      .formLogin()</span><br><span class="line">       .loginPage(<span class="string">&quot;/login&quot;</span>)</span><br><span class="line">          .defaultSuccessUrl(<span class="string">&quot;/home&quot;</span>, <span class="literal">true</span>)</span><br><span class="line">         .permitAll();</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http</span><br><span class="line">      .formLogin()</span><br><span class="line">       .loginPage(<span class="string">&quot;/login&quot;</span>)</span><br><span class="line">          .defaultSuccessUrl(<span class="string">&quot;/home&quot;</span>, <span class="literal">true</span>)</span><br><span class="line">         .permitAll();</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p><strong>注销配置</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;http</span><br><span class="line">      .logout()</span><br><span class="line">        .logoutUrl(<span class="string">&quot;/logout&quot;</span>)</span><br><span class="line">          .logoutSuccessUrl(<span class="string">&quot;/login?logout&quot;</span>)</span><br><span class="line">         .permitAll();</span><br></pre></td></tr></table></figure></div></li>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http</span><br><span class="line">      .logout()</span><br><span class="line">        .logoutUrl(<span class="string">&quot;/logout&quot;</span>)</span><br><span class="line">          .logoutSuccessUrl(<span class="string">&quot;/login?logout&quot;</span>)</span><br><span class="line">         .permitAll();</span><br></pre></td></tr></table></figure></div></li>
 </ul>
 <h4 id="CSRF-保护"><a href="#CSRF-保护" class="headerlink" title="CSRF 保护"></a>CSRF 保护</h4><ul>
 <li><strong>启用 CSRF 保护</strong>：</li>
 </ul>
  <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http</span><br><span class="line">     .csrf()</span><br><span class="line">        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());</span><br></pre></td></tr></table></figure></div>
+
 <ul>
 <li><p><strong>禁用 CSRF 保护</strong>：</p>
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http</span><br><span class="line">     .csrf()</span><br><span class="line">        .disable();</span><br></pre></td></tr></table></figure></div></li>
 </ul>
 <h4 id="CORS-配置"><a href="#CORS-配置" class="headerlink" title="CORS 配置"></a>CORS 配置</h4><ul>
 <li><p><strong>启用 CORS</strong>：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;http</span><br><span class="line">      .cors()</span><br><span class="line">       .and()</span><br><span class="line">          .csrf()</span><br><span class="line">         .disable();</span><br></pre></td></tr></table></figure></div></li>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http</span><br><span class="line">      .cors()</span><br><span class="line">       .and()</span><br><span class="line">          .csrf()</span><br><span class="line">         .disable();</span><br></pre></td></tr></table></figure></div></li>
 </ul>
 <h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h4><ul>
 <li><strong>自定义异常处理</strong>：</li>
 </ul>
  <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http</span><br><span class="line">     .exceptionHandling()</span><br><span class="line">        .accessDeniedPage(<span class="string">&quot;/403&quot;</span>)</span><br><span class="line">         .authenticationEntryPoint(<span class="keyword">new</span> <span class="title class_">CustomAuthenticationEntryPoint</span>());</span><br></pre></td></tr></table></figure></div>
+
+
 <h4 id="安全上下文"><a href="#安全上下文" class="headerlink" title="安全上下文"></a>安全上下文</h4><ul>
 <li><p><strong>配置安全上下文</strong>：</p>
 <div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http</span><br><span class="line">     .securityContext()</span><br><span class="line">        .securityContextRepository(<span class="keyword">new</span> <span class="title class_">CustomSecurityContextRepository</span>());</span><br></pre></td></tr></table></figure></div></li>
 </ul>
-</blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过 <code>HttpSecurity</code>，我们可以灵活地配置 Spring Security 的各种安全策略。从简单的访问控制到复杂的异常处理，<code>HttpSecurity</code> 提供了丰富的配置选项，满足不同项目的需求。更多详细信息可以参考 <a class="link"   target="_blank" rel="noopener" href="https://docs.spring.io/spring-security/reference/5.8.0-M1/index.html" >Spring Security 官方文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。</p>
 <p><img  
                      lazyload
@@ -786,7 +788,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-10-09 16:14:31
+                    :</strong> 2025-11-06 10:17:33
             </li>
         
         <li>
@@ -894,7 +896,7 @@
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">若依框架免token访问</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HttpSecurity-%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3"><span class="nav-text">HttpSecurity 配置方法详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-text">常见配置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#anyRequest"><span class="nav-text">anyRequest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#access"><span class="nav-text">access</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#anonymous"><span class="nav-text">anonymous</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#denyAll"><span class="nav-text">denyAll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fullyAuthenticated"><span class="nav-text">fullyAuthenticated</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasAnyAuthority"><span class="nav-text">hasAnyAuthority</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasAnyRole"><span class="nav-text">hasAnyRole</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasAuthority"><span class="nav-text">hasAuthority</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasIpAddress"><span class="nav-text">hasIpAddress</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasRole"><span class="nav-text">hasRole</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#permitAll"><span class="nav-text">permitAll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rememberMe"><span class="nav-text">rememberMe</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#authenticated"><span class="nav-text">authenticated</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82"><span class="nav-text">其他配置要求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E9%94%80"><span class="nav-text">登录和注销</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSRF-%E4%BF%9D%E6%8A%A4"><span class="nav-text">CSRF 保护</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS-%E9%85%8D%E7%BD%AE"><span class="nav-text">CORS 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-text">安全上下文</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HttpSecurity-%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3"><span class="nav-text">HttpSecurity 配置方法详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-text">常见配置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#anyRequest"><span class="nav-text">anyRequest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#access"><span class="nav-text">access</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#anonymous"><span class="nav-text">anonymous</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#denyAll"><span class="nav-text">denyAll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fullyAuthenticated"><span class="nav-text">fullyAuthenticated</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasAnyAuthority"><span class="nav-text">hasAnyAuthority</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasAnyRole"><span class="nav-text">hasAnyRole</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasAuthority"><span class="nav-text">hasAuthority</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasIpAddress"><span class="nav-text">hasIpAddress</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasRole"><span class="nav-text">hasRole</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#permitAll"><span class="nav-text">permitAll</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rememberMe"><span class="nav-text">rememberMe</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#authenticated"><span class="nav-text">authenticated</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%85%8D%E7%BD%AE%E8%A6%81%E6%B1%82"><span class="nav-text">其他配置要求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E9%94%80"><span class="nav-text">登录和注销</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSRF-%E4%BF%9D%E6%8A%A4"><span class="nav-text">CSRF 保护</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS-%E9%85%8D%E7%BD%AE"><span class="nav-text">CORS 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-text">安全上下文</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a>
 
 	</div>
 </div>
@@ -921,11 +923,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 38 篇文章
+                        共撰写了 39 篇文章
                     </span>
                     
                         <span>
-                            共 91.1k 字
+                            共 93.5k 字
                         </span>
                     
                 </p>
