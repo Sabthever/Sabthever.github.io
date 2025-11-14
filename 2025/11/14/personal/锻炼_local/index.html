@@ -1,0 +1,1767 @@
+
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>一周哑铃综合训练与营养计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1a365d',
+                        'secondary': '#2d3748',
+                        'accent': '#ed8936',
+                        'neutral': '#4a5568',
+                        'base': '#f7fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9) 0%, rgba(45, 55, 72, 0.8) 100%);
+        }
+        .citation-link {
+            color: #ed8936;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #ed8936;
+        }
+        .citation-link:hover {
+            background-color: rgba(237, 137, 54, 0.1);
+            border-bottom: 1px solid #ed8936;
+        }
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: #4a5568;
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            padding-left: 1rem;
+            transition: all 0.2s;
+        }
+        .toc-link:hover, .toc-link.active {
+            color: #1a365d;
+            border-left-color: #ed8936;
+            background-color: rgba(237, 137, 54, 0.05);
+        }
+        .toc-link.level-2 {
+            padding-left: 2rem;
+            font-size: 0.9rem;
+        }
+        .toc-link.level-3 {
+            padding-left: 3rem;
+            font-size: 0.85rem;
+            color: #718096;
+        }
+        
+        /* Mermaid 图表样式优化 */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none; /* 防止触摸设备上的默认行为 */
+            -webkit-user-select: none; /* 防止文本选择 */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* 自定义 Mermaid 主题样式 - 提高对比度 */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            stroke-width: 2px !important;
+        }
+        
+        .mermaid .node text {
+            font-family: 'Inter', sans-serif !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            fill: #1a365d !important;
+        }
+        
+        .mermaid .edgeLabel {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            border-radius: 6px !important;
+            padding: 4px 8px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            color: #2d3748 !important;
+            border: 1px solid rgba(237, 137, 54, 0.3) !important;
+        }
+        
+        .mermaid .edgeLabel text {
+            fill: #2d3748 !important;
+        }
+        
+        /* 确保不同类型节点的对比度 */
+        .mermaid .node[class*="default"] rect,
+        .mermaid .node[class*="default"] circle,
+        .mermaid .node[class*="default"] polygon {
+            stroke: #1a365d !important;
+            fill: #ffffff !important;
+        }
+        
+        .mermaid .node[class*="primary"] rect,
+        .mermaid .node[class*="primary"] circle,
+        .mermaid .node[class*="primary"] polygon {
+            stroke: #1a365d !important;
+            fill: #ebf8ff !important;
+        }
+        
+        .mermaid .node[class*="secondary"] rect,
+        .mermaid .node[class*="secondary"] circle,
+        .mermaid .node[class*="secondary"] polygon {
+            stroke: #2d3748 !important;
+            fill: #f7fafc !important;
+        }
+        
+        .mermaid .node[class*="accent"] rect,
+        .mermaid .node[class*="accent"] circle,
+        .mermaid .node[class*="accent"] polygon {
+            stroke: #ed8936 !important;
+            fill: #fffaf0 !important;
+        }
+        
+        /* 箭头样式 */
+        .mermaid .arrowheadPath {
+            fill: #ed8936 !important;
+            stroke: #ed8936 !important;
+        }
+        
+        .mermaid .edgePath path {
+            stroke: #4a5568 !important;
+            stroke-width: 2px !important;
+        }
+        
+        @media (max-width: 1024px) {
+            .toc-fixed {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .mermaid-container {
+                padding: 15px;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-base font-sans text-secondary">
+    <!-- 返回按钮 -->
+    <button id="backButton" class="fixed top-4 left-4 z-[9999] bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg hover:bg-white transition-all duration-200 border border-gray-200" title="返回上一页">
+        <i class="fas fa-arrow-left text-primary text-xl"></i>
+    </button>
+
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+      <h3 class="font-serif text-lg font-semibold text-primary mb-4">目录</h3>
+      <div class="space-y-1">
+        <a href="#hero" class="toc-link">概述</a>
+        <a href="#training-overview" class="toc-link">1. 训练计划总览</a>
+        <a href="#plan-goals" class="toc-link level-2">1.1 计划目标与原则</a>
+        <a href="#schedule" class="toc-link level-2">1.2 时间安排与训练结构</a>
+        <a href="#weekly-plan" class="toc-link">2. 详细周度训练安排</a>
+        <a href="#monday" class="toc-link level-2">2.1 周一：上肢力量与核心</a>
+        <a href="#tuesday" class="toc-link level-2">2.2 周二：下肢力量与膝踝稳定性</a>
+        <a href="#wednesday" class="toc-link level-2">2.3 周三：上肢塑形与心肺HIIT</a>
+        <a href="#thursday" class="toc-link level-2">2.4 周四：下肢爆发力与膝踝强化</a>
+        <a href="#saturday" class="toc-link level-2">2.5 周六：全身力量与有氧耐力</a>
+        <a href="#sunday" class="toc-link level-2">2.6 周日：稳定性、灵活性与有氧</a>
+        <a href="#exercise-details" class="toc-link">3. 关键训练动作详解</a>
+        <a href="#upper-body" class="toc-link level-2">3.1 上肢训练动作</a>
+        <a href="#core" class="toc-link level-2">3.2 核心训练动作</a>
+        <a href="#legs" class="toc-link level-2">3.3 臀腿训练动作</a>
+        <a href="#knee-ankle" class="toc-link level-2">3.4 膝盖与脚踝力量训练</a>
+        <a href="#cardio-hiit" class="toc-link level-2">3.5 心肺与HIIT训练</a>
+        <a href="#nutrition" class="toc-link">4. 营养摄入与补剂建议</a>
+        <a href="#nutrition-strategy" class="toc-link level-2">4.1 核心营养策略</a>
+        <a href="#supplements" class="toc-link level-2">4.2 运动补剂选择</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section id="hero" class="relative min-h-screen flex items-center">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/558c9cd70fccdb3c6f95c72349a1e1b36970efaf.jpg"
+                      alt="哑铃健身动作" class="absolute inset-0 w-full h-full object-cover opacity-30" size="wallpaper" aspect="wide" style="photo" query="哑铃健身" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+
+        <div class="relative z-10 max-w-7xl mx-auto px-8 py-16">
+          <!-- Bento Grid Layout -->
+          <div class="grid grid-cols-12 gap-8 items-center">
+            <!-- Main Title -->
+            <div class="col-span-12 lg:col-span-8">
+              <h1 class="font-serif text-5xl lg:text-7xl font-semibold text-white leading-tight mb-6">
+                <span class="italic">一周哑铃</span>
+                <br/>
+                <span class="text-accent">综合训练</span>
+                <br/>
+                <span class="text-3xl lg:text-4xl font-normal">与营养计划</span>
+              </h1>
+              <p class="text-xl text-gray-200 leading-relaxed max-w-2xl">
+                针对上肢薄弱、下肢力量强的个性化需求，仅需一对哑铃，全面提升身体素质，兼顾减脂增肌。
+              </p>
+            </div>
+
+            <!-- Key Highlights -->
+            <div class="col-span-12 lg:col-span-4">
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <h3 class="font-serif text-xl text-white mb-4">核心要点</h3>
+                <ul class="space-y-3 text-gray-200">
+                  <li class="flex items-center">
+                    <i class="fas fa-dumbbell text-accent mr-3"></i>
+                    每日30-60分钟训练
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-heart text-accent mr-3"></i>
+                    上肢专项强化
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-fire text-accent mr-3"></i>
+                    高效减脂塑形
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-apple-alt text-accent mr-3"></i>
+                    科学营养搭配
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Metrics -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/20">
+              <div class="text-2xl font-bold text-accent">144斤</div>
+              <div class="text-sm text-gray-200">当前体重</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/20">
+              <div class="text-2xl font-bold text-accent">182cm</div>
+              <div class="text-sm text-gray-200">身高</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/20">
+              <div class="text-2xl font-bold text-accent">30-60</div>
+              <div class="text-sm text-gray-200">分钟/天</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/20">
+              <div class="text-2xl font-bold text-accent">1对</div>
+              <div class="text-sm text-gray-200">哑铃</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Training Plan Overview -->
+      <section id="training-overview" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+          <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-semibold text-primary mb-4">训练计划总览</h2>
+            <p class="text-lg text-neutral max-w-3xl mx-auto">
+              基于您的身体情况和健身目标，我们设计了一套全面而高效的训练体系
+            </p>
+          </div>
+
+          <!-- Training Philosophy -->
+          <div class="mb-16">
+            <h3 id="plan-goals" class="font-serif text-2xl font-semibold text-primary mb-6">计划目标与原则</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+              <div class="bg-gray-50 rounded-xl p-6">
+                <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+                  <i class="fas fa-balance-scale text-accent text-xl"></i>
+                </div>
+                <h4 class="font-semibold text-lg mb-3">全面发展</h4>
+                <p class="text-neutral">
+                  针对上肢、核心、臀腿、膝踝进行全面训练，特别强化上肢薄弱部位，巩固下肢优势。
+                  <a class="link"   href="https://tyj.wuhan.gov.cn/ggfwsx_14800/tyjs/202504/t20250420_2569710.html"  class="citation-link">[298]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                  <a class="link"   href="https://health.baidu.com/m/detail/ar_6175779634848552828"  class="citation-link">[299]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                </p>
+              </div>
+              <div class="bg-gray-50 rounded-xl p-6">
+                <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+                  <i class="fas fa-fire text-accent text-xl"></i>
+                </div>
+                <h4 class="font-semibold text-lg mb-3">减脂增效</h4>
+                <p class="text-neutral">
+                  结合力量训练与HIIT，提高基础代谢率，高效燃脂，同时显著提升心肺功能。
+                  <a class="link"   href="http://www.360doc.com/content/24/0716/16/77684867_1128919223.shtml"  class="citation-link">[234]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                  <a class="link"   href="https://www.codoon.com/iec/article/r4woqCxD1dc="  class="citation-link">[240]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                </p>
+              </div>
+              <div class="bg-gray-50 rounded-xl p-6">
+                <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+                  <i class="fas fa-user-cog text-accent text-xl"></i>
+                </div>
+                <h4 class="font-semibold text-lg mb-3">因材施教</h4>
+                <p class="text-neutral">
+                  针对&#34;上肢相对薄弱，下肢力量强&#34;的具体情况，在训练安排上有所侧重，采用单侧训练改善不平衡。
+                  <a class="link"   href="https://zhuanlan.zhihu.com/p/573221267"  class="citation-link">[238]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Training Schedule Structure -->
+          <div id="schedule">
+            <h3 class="font-serif text-2xl font-semibold text-primary mb-6">时间安排与训练结构</h3>
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6">
+                <h4 class="font-semibold text-lg mb-4 flex items-center">
+                  <i class="fas fa-clock text-primary mr-2"></i>
+                  平日训练（周一至周四）
+                </h4>
+                <p class="text-neutral mb-4">每天30分钟高效训练，采用&#34;热身+专项训练+核心/稳定性&#34;的结构</p>
+                <ul class="space-y-2 text-sm">
+                  <li class="flex items-center"><span class="w-2 h-2 bg-accent rounded-full mr-2"></span>上肢专项：周一、周三</li>
+                  <li class="flex items-center"><span class="w-2 h-2 bg-accent rounded-full mr-2"></span>下肢专项：周二、周四</li>
+                  <li class="flex items-center"><span class="w-2 h-2 bg-accent rounded-full mr-2"></span>核心训练：贯穿全周</li>
+                  <li class="flex items-center"><span class="w-2 h-2 bg-accent rounded-full mr-2"></span>HIIT训练：周三专项</li>
+                </ul>
+              </div>
+              <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6">
+                <h4 class="font-semibold text-lg mb-4 flex items-center">
+                  <i class="fas fa-calendar-week text-accent mr-2"></i>
+                  周末训练（周六、周日）
+                </h4>
+                <p class="text-neutral mb-4">每天60分钟综合强化，内容更全面、强度更高</p>
+                <ul class="space-y-2 text-sm">
+                  <li class="flex items-center"><span class="w-2 h-2 bg-primary rounded-full mr-2"></span>周六：全身力量与有氧耐力</li>
+                  <li class="flex items-center"><span class="w-2 h-2 bg-primary rounded-full mr-2"></span>周日：稳定性、灵活性与恢复</li>
+                  <li class="flex items-center"><span class="w-2 h-2 bg-primary rounded-full mr-2"></span>有氧训练：持续20分钟</li>
+                  <li class="flex items-center"><span class="w-2 h-2 bg-primary rounded-full mr-2"></span>拉伸放松：每次训练后</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Training Components Visualization -->
+            <div class="mt-12 bg-gray-50 rounded-xl p-8">
+              <h4 class="font-semibold text-lg mb-6 text-center">训练组成结构</h4>
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid">
+                  graph TD
+                  A[&#34;综合训练计划&#34;] --&gt; B[&#34;力量训练&#34;]
+                  A --&gt; C[&#34;HIIT训练&#34;]
+                  A --&gt; D[&#34;有氧训练&#34;]
+                  A --&gt; E[&#34;稳定性训练&#34;]
+                  A --&gt; F[&#34;拉伸放松&#34;]
+
+                  B --&gt; B1[&#34;上肢专项&#34;]
+                  B --&gt; B2[&#34;下肢专项&#34;]
+                  B --&gt; B3[&#34;核心强化&#34;]
+
+                  C --&gt; C1[&#34;Tabata模式&#34;]
+                  C --&gt; C2[&#34;波比跳&#34;]
+                  C --&gt; C3[&#34;登山者&#34;]
+
+                  D --&gt; D1[&#34;持续有氧&#34;]
+                  D --&gt; D2[&#34;高强度间歇&#34;]
+
+                  E --&gt; E1[&#34;膝踝稳定&#34;]
+                  E --&gt; E2[&#34;平衡训练&#34;]
+                  E --&gt; E3[&#34;单侧强化&#34;]
+
+                  F --&gt; F1[&#34;静态拉伸&#34;]
+                  F --&gt; F2[&#34;动态拉伸&#34;]
+
+                  style A fill:#1a365d,color:#fff,stroke:#2d3748,stroke-width:3px
+                  style B fill:#ebf8ff,color:#1a365d,stroke:#1a365d,stroke-width:2px
+                  style C fill:#fffaf0,color:#1a365d,stroke:#ed8936,stroke-width:2px
+                  style D fill:#f0fff4,color:#1a365d,stroke:#38a169,stroke-width:2px
+                  style E fill:#fff5f5,color:#1a365d,stroke:#e53e3e,stroke-width:2px
+                  style F fill:#faf5ff,color:#1a365d,stroke:#805ad5,stroke-width:2px
+                  style B1 fill:#ebf8ff,color:#1a365d,stroke:#1a365d,stroke-width:1px
+                  style B2 fill:#ebf8ff,color:#1a365d,stroke:#1a365d,stroke-width:1px
+                  style B3 fill:#ebf8ff,color:#1a365d,stroke:#1a365d,stroke-width:1px
+                  style C1 fill:#fffaf0,color:#1a365d,stroke:#ed8936,stroke-width:1px
+                  style C2 fill:#fffaf0,color:#1a365d,stroke:#ed8936,stroke-width:1px
+                  style C3 fill:#fffaf0,color:#1a365d,stroke:#ed8936,stroke-width:1px
+                  style D1 fill:#f0fff4,color:#1a365d,stroke:#38a169,stroke-width:1px
+                  style D2 fill:#f0fff4,color:#1a365d,stroke:#38a169,stroke-width:1px
+                  style E1 fill:#fff5f5,color:#1a365d,stroke:#e53e3e,stroke-width:1px
+                  style E2 fill:#fff5f5,color:#1a365d,stroke:#e53e3e,stroke-width:1px
+                  style E3 fill:#fff5f5,color:#1a365d,stroke:#e53e3e,stroke-width:1px
+                  style F1 fill:#faf5ff,color:#1a365d,stroke:#805ad5,stroke-width:1px
+                  style F2 fill:#faf5ff,color:#1a365d,stroke:#805ad5,stroke-width:1px
+                </div>
+              </div>
+              <p class="text-sm text-neutral text-center mt-4">
+                <i class="fas fa-info-circle mr-1"></i>
+                可使用鼠标拖拽移动图表，点击右上角按钮进行缩放操作
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Weekly Training Plan -->
+      <section id="weekly-plan" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-8">
+          <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-semibold text-primary mb-4">详细周度训练安排</h2>
+            <p class="text-lg text-neutral max-w-3xl mx-auto">
+              精心设计的每日训练计划，确保在有限时间内获得最大训练效果
+            </p>
+          </div>
+
+          <!-- Monday Training -->
+          <div id="monday" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div class="bg-primary text-white p-6">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="font-serif text-2xl font-semibold">周一：上肢力量与核心</h3>
+                    <p class="text-blue-100">30分钟专项训练</p>
+                  </div>
+                  <i class="fas fa-dumbbell text-4xl text-blue-200"></i>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-fire text-accent mr-2"></i>
+                      热身（5分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>关节活动：手腕、肘、肩、颈、髋、膝、踝各10次</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>动态拉伸：手臂画圈、体转运动</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>轻重量激活：哑铃推举、划船各10次</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-dumbbell text-primary mr-2"></i>
+                      上肢力量（20分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃卧推：3组×8-10次 <a class="link"   href="https://blog.csdn.net/liliyoung_/article/details/145211137"  class="citation-link">[226]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>单臂哑铃划船：3组×每侧8-10次 <a class="link"   href="https://postimg.aliavv.com/wp-content/uploads/2017/09/%E4%B8%80%E5%B9%B3%E7%B1%B3%E5%81%A5%E8%BA%AB-%E6%96%8C%E5%8D%A1.pdf"  class="citation-link">[227]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃推举：3组×8-10次 <a class="link"   href="https://www.lifetimes.cn/article/9CaKrnKsJKM"  class="citation-link">[1]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃弯举：2组×10-12次</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>俯身臂屈伸：2组×10-12次</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-spa text-green-600 mr-2"></i>
+                      核心训练（5分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-green-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>平板支撑：2组×30-60秒 <a class="link"   href="https://zhuanlan.zhihu.com/p/1956045448730112882"  class="citation-link">[288]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-green-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>仰卧举腿：2组×10-15次 <a class="link"   href="http://www.thearxiv.net/2025/116/dd0c20251160477.html"  class="citation-link">[220]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tuesday Training -->
+          <div id="tuesday" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div class="bg-secondary text-white p-6">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="font-serif text-2xl font-semibold">周二：下肢力量与膝踝稳定性</h3>
+                    <p class="text-gray-300">30分钟专项训练</p>
+                  </div>
+                  <i class="fas fa-running text-4xl text-gray-400"></i>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-fire text-accent mr-2"></i>
+                      热身（5分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>关节活动：同周一</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>动态拉伸：高抬腿、后踢腿、弓步转体</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>激活：徒手深蹲、提踵各10次</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-dumbbell text-primary mr-2"></i>
+                      下肢力量（15分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>高脚杯深蹲：3组×10-12次 <a class="link"   href="https://www.jfdaily.com/sgh/detail?id=1626650"  class="citation-link">[229]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                          <a class="link"   href="http://www.360doc.com/content/25/0419/14/68965551_1151570587.shtml"  class="citation-link">[230]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                        </span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃罗马尼亚硬拉：3组×10-12次 <a class="link"   href="https://postimg.aliavv.com/wp-content/uploads/2017/09/%E4%B8%80%E5%B9%B3%E7%B1%B3%E5%81%A5%E8%BA%AB-%E6%96%8C%E5%8D%A1.pdf"  class="citation-link">[227]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃侧弓步：2组×每侧10次 <a class="link"   href="http://www.360doc.com/content/25/0419/14/68965551_1151570587.shtml"  class="citation-link">[230]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-shield-alt text-blue-600 mr-2"></i>
+                      膝踝稳定（10分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃站姿提踵：3组×15-20次 <a class="link"   href="https://postimg.aliavv.com/wp-content/uploads/2017/09/%E4%B8%80%E5%B9%B3%E7%B1%B3%E5%81%A5%E8%BA%AB-%E6%96%8C%E5%8D%A1.pdf"  class="citation-link">[227]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>单腿硬拉：2组×每侧8-10次 <a class="link"   href="https://www.jfdaily.com/sgh/detail?id=1626650"  class="citation-link">[229]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>靠墙静蹲：2组×30-45秒 <a class="link"   href="http://www.news.cn/20250820/b6cc5d8942704978ad54370694434769/c.html"  class="citation-link">[253]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wednesday Training -->
+          <div id="wednesday" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div class="bg-gradient-to-r from-red-500 to-orange-500 text-white p-6">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="font-serif text-2xl font-semibold">周三：上肢塑形与心肺HIIT</h3>
+                    <p class="text-red-100">30分钟高强度训练</p>
+                  </div>
+                  <i class="fas fa-bolt text-4xl text-red-200"></i>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-fire text-accent mr-2"></i>
+                      热身（5分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>开合跳：1分钟</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>高抬腿：1分钟</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>动态拉伸：手臂画圈、体转等3分钟</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-dumbbell text-primary mr-2"></i>
+                      上肢塑形（15分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃飞鸟：3组×12-15次 <a class="link"   href="https://blog.csdn.net/liliyoung_/article/details/145211137"  class="citation-link">[226]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃侧平举：3组×12-15次 <a class="link"   href="https://postimg.aliavv.com/wp-content/uploads/2017/09/%E4%B8%80%E5%B9%B3%E7%B1%B3%E5%81%A5%E8%BA%AB-%E6%96%8C%E5%8D%A1.pdf"  class="citation-link">[227]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃俯身飞鸟：2组×12-15次</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃交替弯举：2组×每侧12-15次</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-bolt text-red-600 mr-2"></i>
+                      HIIT心肺（10分钟）
+                    </h4>
+                    <div class="bg-red-50 rounded-lg p-3 mb-3">
+                      <p class="text-sm font-medium text-red-800">Tabata模式：20秒高强度 + 10秒休息</p>
+                      <p class="text-xs text-red-600">共8轮，每个动作4轮</p>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-red-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>波比跳：4轮 <a class="link"   href="https://www.qxbwa.com/367.html"  class="citation-link">[284]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-red-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>登山者：4轮 <a class="link"   href="https://zzzxb.xyz/2025/03/12/ExercisePlanning.html"  class="citation-link">[286]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thursday Training -->
+          <div id="thursday" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div class="bg-gradient-to-r from-purple-500 to-blue-500 text-white p-6">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="font-serif text-2xl font-semibold">周四：下肢爆发力与膝踝强化</h3>
+                    <p class="text-purple-100">30分钟专项训练</p>
+                  </div>
+                  <i class="fas fa-rocket text-4xl text-purple-200"></i>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-fire text-accent mr-2"></i>
+                      热身（5分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>动态拉伸：弓步走、侧弓步</span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-accent rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>激活：徒手深蹲跳5次，提踵10次</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-dumbbell text-primary mr-2"></i>
+                      爆发力训练（15分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>哑铃箭步蹲：3组×每侧10次 <a class="link"   href="http://www.thearxiv.net/2025/116/dd0c20251160477.html"  class="citation-link">[237]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>保加利亚分腿蹲：3组×每侧8-10次 <a class="link"   href="https://zhuanlan.zhihu.com/p/573221267"  class="citation-link">[238]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-primary rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>负重深蹲跳：2组×6-8次 <a class="link"   href="https://www.qxbwa.com/367.html"  class="citation-link">[284]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg mb-3 flex items-center">
+                      <i class="fas fa-shield-alt text-blue-600 mr-2"></i>
+                      膝踝强化（10分钟）
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>单腿站立平衡：2组×每侧30秒 <a class="link"   href="https://sports.jschina.com.cn/ydjk/202504/t20250421_s6806140ee4b0b8e94c500a2b.shtml"  class="citation-link">[231]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>弹力带侧向行走：2组×每侧10-12步 <a class="link"   href="https://postimg.aliavv.com/wp-content/uploads/2017/09/%E4%B8%80%E5%B9%B3%E7%B1%B3%E5%81%A5%E8%BA%AB-%E6%96%8C%E5%8D%A1.pdf"  class="citation-link">[227]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></span>
+                      </li>
+                      <li class="flex items-start">
+                        <span class="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                        <span>坐姿提踵：2组×15-20次</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weekend Training -->
+          <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Saturday -->
+            <div id="saturday">
+              <div class="bg-white rounded-2xl shadow-lg overflow-hidden h-full">
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h3 class="font-serif text-xl font-semibold">周六：全身力量与有氧耐力</h3>
+                      <p class="text-indigo-100">60分钟综合训练</p>
+                    </div>
+                    <i class="fas fa-mountain text-3xl text-indigo-200"></i>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <div class="space-y-6">
+                    <div>
+                      <h4 class="font-semibold mb-2">热身（5分钟）</h4>
+                      <p class="text-sm text-neutral">快走或慢跑5分钟 + 全身动态拉伸</p>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-2">全身复合力量（30分钟）</h4>
+                      <ul class="text-sm space-y-1">
+                        <li>• 高脚杯深蹲：4组×10次</li>
+                        <li>• 哑铃推举：4组×10次</li>
+                        <li>• 哑铃划船：4组×10次</li>
+                        <li>• 哑铃硬拉：3组×10次</li>
+                        <li>• 平板支撑：3组×45秒</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-2">有氧耐力（20分钟）</h4>
+                      <p class="text-sm text-neutral">快走、慢跑、跳绳或骑行（心率60-70%）
+                        <a class="link"   href="https://health.baidu.com/m/detail/ar_6625398986385922499"  class="citation-link">[232]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                      </p>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-2">拉伸放松（5分钟）</h4>
+                      <p class="text-sm text-neutral">全身静态拉伸，每个动作20-30秒</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sunday -->
+            <div id="sunday">
+              <div class="bg-white rounded-2xl shadow-lg overflow-hidden h-full">
+                <div class="bg-gradient-to-r from-green-500 to-teal-600 text-white p-6">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h3 class="font-serif text-xl font-semibold">周日：稳定性、灵活性与有氧</h3>
+                      <p class="text-green-100">60分钟恢复训练</p>
+                    </div>
+                    <i class="fas fa-leaf text-3xl text-green-200"></i>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <div class="space-y-6">
+                    <div>
+                      <h4 class="font-semibold mb-2">热身（5分钟）</h4>
+                      <p class="text-sm text-neutral">快走或慢跑5分钟 + 全身动态拉伸</p>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-2">稳定性与灵活性（30分钟）</h4>
+                      <ul class="text-sm space-y-1">
+                        <li>• 单腿深蹲（至凳面）：3组×每侧6-8次</li>
+                        <li>• 瑜伽战士系列：2组×每侧30秒</li>
+                        <li>• 猫牛式：2组×10-12次</li>
+                        <li>• 眼镜蛇式：2组×20-30秒</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-2">有氧训练（20分钟）</h4>
+                      <p class="text-sm text-neutral">低强度有氧运动（心率50-60%），促进恢复</p>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-2">拉伸放松（5分钟）</h4>
+                      <p class="text-sm text-neutral">深度放松拉伸，可使用泡沫轴进行筋膜放松</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Exercise Details -->
+      <section id="exercise-details" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+          <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-semibold text-primary mb-4">关键训练动作详解</h2>
+            <p class="text-lg text-neutral max-w-3xl mx-auto">
+              深入了解每个训练动作的要领、注意事项和训练效果
+            </p>
+          </div>
+
+          <!-- Upper Body Exercises -->
+          <div id="upper-body" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-primary mb-8">上肢训练动作</h3>
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div class="bg-blue-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/e650c429927fbbb0bf78b847d91d247c0c98e108.jpg"
+                      alt="哑铃卧推标准动作示范" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="哑铃卧推标准动作" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">哑铃卧推</h4>
+                    <p class="text-sm text-neutral">胸部、三角肌前束、肱三头肌</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <span class="font-medium text-blue-700">动作要领：</span>
+                    <p>仰卧，双脚踩实，核心收紧，将哑铃从胸部两侧推起至手臂伸直，缓慢下放。保持肩胛骨后缩下沉，背部微微反弓。</p>
+                  </div>
+                  <div>
+                    <span class="font-medium text-blue-700">训练效果：</span>
+                    <p>增加胸肌厚度，提升上肢整体力量 <a class="link"   href="https://zhuanlan.zhihu.com/p/1956045448730112882"  class="citation-link">[288]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-green-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/684500443ee26da4520912c0b36c8e119bc2b676.jpeg"
+                      alt="单臂哑铃划船动作示范" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="单臂哑铃划船标准动作" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">单臂哑铃划船</h4>
+                    <p class="text-sm text-neutral">背阔肌、菱形肌、斜方肌</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <span class="font-medium text-green-700">动作要领：</span>
+                    <p>单膝和同侧手支撑在长凳上，保持背部平行于地面。另一只手持哑铃，沿大腿方向向上提拉至腰部，肘部贴近身体。</p>
+                  </div>
+                  <div>
+                    <span class="font-medium text-green-700">训练效果：</span>
+                    <p>有效增厚背部肌群，改善两侧力量不平衡 <a class="link"   href="https://postimg.aliavv.com/wp-content/uploads/2017/09/%E4%B8%80%E5%B9%B3%E7%B1%B3%E5%81%A5%E8%BA%AB-%E6%96%8C%E5%8D%A1.pdf"  class="citation-link">[227]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Core Exercises -->
+          <div id="core" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-primary mb-8">核心训练动作</h3>
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div class="bg-purple-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/1b39cc8ab316edec3a6b067af0ee7ee0cfb3e527.jpeg"
+                      alt="平板支撑标准动作示范" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="平板支撑正确姿势" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">平板支撑</h4>
+                    <p class="text-sm text-neutral">腹横肌、腹直肌、腹斜肌</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <span class="font-medium text-purple-700">动作要领：</span>
+                    <p>俯卧，用前臂和脚尖支撑身体，肘部位于肩部正下方。身体呈一条直线，核心收紧，臀部不要塌陷或抬高。</p>
+                  </div>
+                  <div>
+                    <span class="font-medium text-purple-700">训练效果：</span>
+                    <p>全面锻炼核心肌群，增强躯干稳定性 <a class="link"   href="https://zzzxb.xyz/2025/03/12/ExercisePlanning.html"  class="citation-link">[286]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-orange-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/ec461d559de8dbabed7ff16141eb69523d6cb321.jpg"
+                      alt="仰卧举腿动作示范" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="仰卧举腿标准动作" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">仰卧举腿</h4>
+                    <p class="text-sm text-neutral">下腹部肌群</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <span class="font-medium text-orange-700">动作要领：</span>
+                    <p>仰卧，双腿伸直并拢。核心发力，将双腿缓慢抬起至与地面垂直，控制下放，保持腹部持续紧张。</p>
+                  </div>
+                  <div>
+                    <span class="font-medium text-orange-700">训练效果：</span>
+                    <p>主要针对下腹部，增强核心控制力 <a class="link"   href="http://www.thearxiv.net/2025/116/dd0c20251160477.html"  class="citation-link">[220]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                      <a class="link"   href="https://blog.douchi.space/workout-from-home/"  class="citation-link">[193]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leg Exercises -->
+          <div id="legs" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-primary mb-8">臀腿训练动作</h3>
+            <div class="grid lg:grid-cols-3 gap-6">
+              <div class="bg-red-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/a253c62d06940a84f7ae6fe90a7a2fc97d3fb761.jpeg"
+                      alt="哑铃深蹲标准动作示范" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="哑铃深蹲标准动作" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">哑铃深蹲</h4>
+                    <p class="text-sm text-neutral">股四头肌、臀大肌</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <p><span class="font-medium text-red-700">要领：</span>双脚与肩同宽，臀部向后推，蹲至大腿与地面平行</p>
+                  <p><span class="font-medium text-red-700">效果：</span>下肢力量基础，增加肌肉围度 <a class="link"   href="https://zhuanlan.zhihu.com/p/1956045448730112882"  class="citation-link">[288]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                  </p>
+                </div>
+              </div>
+              <div class="bg-yellow-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/9f099d9d4941a56b86d4742ff17fec584cb50899.jpg"
+                      alt="哑铃罗马尼亚硬拉动作示范" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="哑铃罗马尼亚硬拉标准动作" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">哑铃硬拉</h4>
+                    <p class="text-sm text-neutral">臀大肌、腘绳肌</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <p><span class="font-medium text-yellow-700">要领：</span>屈髋向后，保持背部挺直，感受大腿后侧拉伸</p>
+                  <p><span class="font-medium text-yellow-700">效果：</span>锻炼后链肌群，提升臀部力量 <a class="link"   href="https://zhuanlan.zhihu.com/p/602137353"  class="citation-link">[301]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                  </p>
+                </div>
+              </div>
+              <div class="bg-indigo-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/8783499e3fc1680cbd25a88da29c640ab5f35640.jpg"
+                      alt="保加利亚分腿蹲动作示范" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="保加利亚分腿蹲" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">保加利亚分腿蹲</h4>
+                    <p class="text-sm text-neutral">单侧腿部强化</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <p><span class="font-medium text-indigo-700">要领：</span>后脚置于凳上，前脚单腿下蹲至大腿平行地面</p>
+                  <p><span class="font-medium text-indigo-700">效果：</span>极大刺激股四头肌和臀大肌，提升平衡性 <a class="link"   href="https://zhuanlan.zhihu.com/p/573221267"  class="citation-link">[238]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Knee and Ankle Exercises -->
+          <div id="knee-ankle" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-primary mb-8">膝盖与脚踝力量训练</h3>
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div class="bg-teal-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/cab1819535b0749d4488f495f4a50f4b6db45b59.jpeg"
+                      alt="站姿提踵动作示范" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="站姿提踵标准动作" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">站姿提踵</h4>
+                    <p class="text-sm text-neutral">小腿三头肌、脚踝力量</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <span class="font-medium text-teal-700">动作要领：</span>
+                    <p>前脚掌站在台阶上，脚跟悬空。缓慢下放至最低点，然后发力踮起脚尖至最高点，顶峰收缩1-2秒。</p>
+                  </div>
+                  <div>
+                    <span class="font-medium text-teal-700">训练效果：</span>
+                    <p>直接增强脚踝蹬伸力量，预防脚踝损伤 <a class="link"   href="https://health.baidu.com/m/detail/ar_6175779634848552828"  class="citation-link">[299]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-cyan-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/7cde1588f8818396f4279a5146f8ab98575c64d7.jpg"
+                      alt="单腿硬拉标准动作示范" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="单腿硬拉标准动作" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">单腿硬拉</h4>
+                    <p class="text-sm text-neutral">膝盖稳定性、平衡能力</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <span class="font-medium text-cyan-700">动作要领：</span>
+                    <p>单腿站立，保持背部挺直，以髋关节为轴，上半身前倾，非支撑腿向后伸直，哑铃沿支撑腿下放。</p>
+                  </div>
+                  <div>
+                    <span class="font-medium text-cyan-700">训练效果：</span>
+                    <p>提升平衡能力，强化膝盖稳定肌群 <a class="link"   href="https://tyj.wuhan.gov.cn/ggfwsx_14800/tyjs/202504/t20250420_2569710.html"  class="citation-link">[298]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cardio and HIIT -->
+          <div id="cardio-hiit" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-primary mb-8">心肺与HIIT训练</h3>
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div class="bg-red-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/d1799650ab76205f6ce2468843ec1706b7a8dcc3.jpg"
+                      alt="波比跳健身动作" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="波比跳动作示范" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">波比跳</h4>
+                    <p class="text-sm text-neutral">全身性高强度训练</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <span class="font-medium text-red-700">动作要领：</span>
+                    <p>从站立开始，下蹲双手撑地，双脚向后跳至俯卧撑姿势，做一个俯卧撑，然后跳回并向上跳起。</p>
+                  </div>
+                  <div>
+                    <span class="font-medium text-red-700">训练效果：</span>
+                    <p>短时间内心率极限，极佳的燃脂效果 <a class="link"   href="https://www.qxbwa.com/367.html"  class="citation-link">[284]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                      <a class="link"   href="https://www.codoon.com/iec/article/r4woqCxD1dc="  class="citation-link">[240]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-orange-50 rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.sabthever.cn/Blog_Base_Resouces/fbd03fcbb26e4e251d76584aed977139d0e5f1a4.jpg"
+                      alt="登山者训练动作" class="w-16 h-16 rounded-lg object-cover mr-4" size="small" aspect="square" style="photo" query="登山者健身动作示范" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"
+                >
+                  <div>
+                    <h4 class="font-semibold text-lg">登山者</h4>
+                    <p class="text-sm text-neutral">核心+心肺训练</p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <span class="font-medium text-orange-700">动作要领：</span>
+                    <p>俯卧撑姿势开始，核心收紧，交替将膝盖向胸部快速收拢，保持上身稳定。</p>
+                  </div>
+                  <div>
+                    <span class="font-medium text-orange-700">训练效果：</span>
+                    <p>锻炼心肺功能，有效刺激核心肌群 <a class="link"   href="https://zzzxb.xyz/2025/03/12/ExercisePlanning.html"  class="citation-link">[286]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nutrition Section -->
+      <section id="nutrition" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-8">
+          <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-semibold text-primary mb-4">营养摄入与补剂建议</h2>
+            <p class="text-lg text-neutral max-w-3xl mx-auto">
+              科学的营养策略是训练效果的重要保障，合理的饮食计划将加速您的健身目标实现
+            </p>
+          </div>
+
+          <!-- Nutrition Strategy -->
+          <div id="nutrition-strategy" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-primary mb-8">核心营养策略</h3>
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div class="space-y-6">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                      <i class="fas fa-fire text-red-600 text-xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg">热量控制</h4>
+                  </div>
+                  <div class="space-y-3">
+                    <p class="text-sm"><span class="font-medium">原则：</span>创造合理热量缺口，约为每日维持热量的15-20%</p>
+                    <p class="text-sm"><span class="font-medium">目标：</span>温和减脂，避免肌肉流失和代谢下降</p>
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                      <i class="fas fa-drumstick-bite text-blue-600 text-xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg">蛋白质摄入</h4>
+                  </div>
+                  <div class="space-y-3">
+                    <p class="text-sm"><span class="font-medium">推荐量：</span>每日1.2-2.0克/公斤体重</p>
+                    <p class="text-sm"><span class="font-medium">您的需求：</span>约86-144克/天（以72kg体重计算）</p>
+                    <p class="text-sm"><span class="font-medium">来源：</span>鸡胸肉、鱼肉、瘦牛肉、鸡蛋、牛奶、豆腐</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                      <i class="fas fa-seedling text-green-600 text-xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg">碳水化合物</h4>
+                  </div>
+                  <div class="space-y-3">
+                    <p class="text-sm"><span class="font-medium">选择：</span>优选复合碳水化合物（燕麦、糙米、全麦面包、红薯）</p>
+                    <p class="text-sm"><span class="font-medium">时机：</span>训练前后摄入，为训练供能和促进恢复</p>
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                      <i class="fas fa-apple-alt text-yellow-600 text-xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg">健康脂肪</h4>
+                  </div>
+                  <div class="space-y-3">
+                    <p class="text-sm"><span class="font-medium">选择：</span>不饱和脂肪酸（牛油果、坚果、橄榄油、深海鱼）</p>
+                    <p class="text-sm"><span class="font-medium">比例：</span>占总热量的20-30%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Supplements -->
+          <div id="supplements">
+            <h3 class="font-serif text-2xl font-semibold text-primary mb-8">运动补剂选择</h3>
+            <div class="grid lg:grid-cols-3 gap-6">
+              <div class="bg-white rounded-xl p-6 shadow-sm">
+                <div class="text-center mb-4">
+                  <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-blender text-blue-600 text-2xl"></i>
+                  </div>
+                  <h4 class="font-semibold text-lg">蛋白粉</h4>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <p><span class="font-medium">作用：</span>补充蛋白质，促进肌肉修复</p>
+                  <p><span class="font-medium">建议：</span>训练后30分钟内补充20-30克</p>
+                  <p><span class="font-medium">选择：</span>乳清蛋白粉，吸收快、生物利用度高</p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-xl p-6 shadow-sm">
+                <div class="text-center mb-4">
+                  <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-bolt text-purple-600 text-2xl"></i>
+                  </div>
+                  <h4 class="font-semibold text-lg">肌酸</h4>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <p><span class="font-medium">作用：</span>提升力量与爆发力</p>
+                  <p><span class="font-medium">建议：</span>每日3-5克肌酸一水合物</p>
+                  <p><span class="font-medium">研究：</span>最安全有效的运动补剂之一</p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-xl p-6 shadow-sm">
+                <div class="text-center mb-4">
+                  <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-leaf text-green-600 text-2xl"></i>
+                  </div>
+                  <h4 class="font-semibold text-lg">其他补剂</h4>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <p><span class="font-medium">Omega-3：</span>抗炎，促进关节健康</p>
+                  <p><span class="font-medium">维生素D：</span>骨骼健康，免疫功能</p>
+                  <p><span class="font-medium">BCAA：</span>减少肌肉分解，缓解疲劳</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-primary text-white py-12">
+        <div class="max-w-6xl mx-auto px-8">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 class="font-serif text-xl font-semibold mb-4">训练日记</h3>
+              <p class="text-blue-200">记录每一次进步，见证身体的蜕变</p>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl font-semibold mb-4">营养追踪</h3>
+              <p class="text-blue-200">科学饮食，为训练提供最佳燃料</p>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl font-semibold mb-4">持续进步</h3>
+              <p class="text-blue-200">坚持就是胜利，每一步都算数</p>
+            </div>
+          </div>
+          <div class="border-t border-blue-700 mt-8 pt-8 text-center">
+            <p class="text-blue-200">© 2025 一周哑铃综合训练与营养计划</p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#ebf8ff',
+                primaryTextColor: '#1a365d',
+                primaryBorderColor: '#1a365d',
+                lineColor: '#4a5568',
+                secondaryColor: '#f7fafc',
+                tertiaryColor: '#fffaf0',
+                background: '#ffffff',
+                mainBkg: '#ffffff',
+                secondBkg: '#f7fafc',
+                tertiaryBkg: '#fffaf0',
+                nodeBkg: '#ffffff',
+                nodeBorder: '#1a365d',
+                clusterBkg: '#f7fafc',
+                clusterBorder: '#2d3748',
+                defaultLinkColor: '#4a5568',
+                titleColor: '#1a365d',
+                edgeLabelBackground: '#ffffff',
+                nodeTextColor: '#1a365d',
+                // 提高对比度的颜色配置
+                cScale0: '#ebf8ff',
+                cScale1: '#f0fff4', 
+                cScale2: '#fffaf0',
+                cScale3: '#fff5f5',
+                cScale4: '#faf5ff',
+                cScale5: '#f7fafc',
+                cScale6: '#fed7d7',
+                cScale7: '#e6fffa'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 80,
+                diagramPadding: 20
+            },
+            fontSize: 14,
+            fontFamily: 'Inter, sans-serif'
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize mermaid controls after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for mermaid to render
+            setTimeout(() => {
+                initializeMermaidControls();
+            }, 1500);
+        });
+
+        // Table of Contents functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('section[id], div[id]');
+            
+            // Add click handlers to TOC links
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Highlight active section
+            function highlightActiveSection() {
+                let current = '';
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        current = section.id;
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightActiveSection);
+            highlightActiveSection(); // Initial call
+        });
+
+        // 返回按钮功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 使用 setTimeout 确保 DOM 完全加载
+            setTimeout(function() {
+                const backButton = document.getElementById('backButton');
+                if (backButton) {
+                    backButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        window.history.back();
+                    });
+                }
+            }, 100);
+        });
+
+    </script>
+  
+
+</body></html><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
