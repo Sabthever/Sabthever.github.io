@@ -605,7 +605,7 @@ button {
 }
 .markdown-body h1,
 .markdown-body .h1 {
-  font-size: 3.2rem;
+  font-size: 2.7rem;
   font-weight: 650;
   border-bottom: solid 2px var(--fourth-text-color);
   margin-top: 3.2rem;
@@ -616,7 +616,7 @@ button {
 @media (max-width: 768px) {
   .markdown-body h1,
   .markdown-body .h1 {
-    font-size: 1.7rem;
+    font-size: 1.65rem;
     line-height: 1.2;
   }
 }
